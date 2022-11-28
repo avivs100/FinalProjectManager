@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "157KGB+JmftYMNEkwycBdM6YvGirYU/ntwdnzPWKXtp2PRp4b/DBxqjCJm0HRQAwr0S6zjxQNgXFfKJPDCBOcA==",
+=======
+  "dgSpecHash": "gU8R5gumM0Dq8WSFqcpE3UQp529wmSiTzrnCSzpBgV0Q3UShPiGWPnEvwPlJCZdI3fWBOCKo/ixUH/rQib4Esw==",
+>>>>>>> 7390f351938687a6e7c30b8aa65c4a8806f41f79
   "success": true,
   "projectFilePath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
