@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManger-serverApp\\Data\\Data.csproj": {}
+    "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
+    "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManger-serverApp\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManger-serverApp\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManger-serverApp\\Data\\obj\\",
+        "outputPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",

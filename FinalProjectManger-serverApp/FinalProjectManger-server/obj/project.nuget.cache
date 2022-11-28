@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wiIlyWVXAKA5XRP/Cmr2iDw+7iSX63OAOgzEBlqOX7IuFwTUlMARSyz/KwqTd1E45AoamTxT/wfAdmp/8djM2A==",
+  "dgSpecHash": "SygvCG5IBuS6190yA7LbRAuuS3s0ABketjbLkEV94UrFjYQ6khxwfBil0qwxKlrLfYPn5UI8VwHrbL+ak0sDsg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
+  "projectFilePath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AVIVSHI\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\AVIVSHI\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

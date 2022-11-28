@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yUvK0plWhv4ncmARaVnlp9DqGSQ72XsuOf++aM5MdtIzb6zLvR4BzpaAcywlfs0qiwvIoSksf/ysXLJZi+GoAQ==",
+  "dgSpecHash": "EYdilx6q9YV+5pjse5JIOk/8pOBbehpAtX9vpSvmciO3LKvoXj2wAW9Uv3hZVBsZTF7tno3tavd2AuokEteU/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManger-serverApp\\Data\\Data.csproj",
+  "projectFilePath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AVIVSHI\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\AVIVSHI\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
