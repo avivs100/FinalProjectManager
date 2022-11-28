@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0f4qf+VQlVwhNMrWzXKBfmMuhgEXzcURj3sY6qq2CHRiYvJy5Dc56fmc0p0NvMl+MzieWDWKIDRsUT0RshLqXQ==",
+  "dgSpecHash": "z7ZZXaJavDVaWQPf4uHLx5uRI0xvOGtMqIIPYKXKMUJ8Ev1crKq58y6pm/TvojXJWmEAZKS7XQhmkiYAvcfYtw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManger-serverApp\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
