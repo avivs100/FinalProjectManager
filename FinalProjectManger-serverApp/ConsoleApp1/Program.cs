@@ -1,10 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Data;
 
-using (PubContext context = new PubContext())
-{
-    context.Database.EnsureCreated();
-}
+//using (PubContext context = new PubContext())
+//{
+//    context.Database.EnsureCreated();
+//}
 
 GetAuthors();
 
