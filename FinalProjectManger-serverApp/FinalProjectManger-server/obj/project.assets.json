@@ -10116,11 +10116,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
+      "projectUniqueName": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
       "projectName": "FinalProjectManger-server",
-      "projectPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
+      "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
       "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\obj\\",
+      "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10137,8 +10137,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj"
+            "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj"
             }
           }
         }

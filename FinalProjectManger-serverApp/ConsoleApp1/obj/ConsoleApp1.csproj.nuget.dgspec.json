@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj"
+              "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj"
               }
             }
           }
@@ -43,6 +43,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -62,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
+    "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\obj\\",
+        "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -86,8 +94,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj"
+              "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj"
               }
             }
           }
@@ -142,14 +150,14 @@
         }
       }
     },
-    "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj": {
+    "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AVIVSHI\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
