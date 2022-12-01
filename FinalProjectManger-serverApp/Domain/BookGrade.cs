@@ -10,6 +10,11 @@ namespace Domain
     {
         public int Id { get; set; }
 
+        public Grade Research;
+        public Grade AnalysisAndConclusion;
+        public Grade SwQuality;
+        public Grade UIandAPPguides;
         public Grade Organization;
+        public Grade GeneralEvaluation;
     }
 }

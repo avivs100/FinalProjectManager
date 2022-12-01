@@ -20,7 +20,6 @@ public class Grade
 
     private Grade(string description)
     {
-        Description = description;
-        
+        Description = description;        
     }
 }
