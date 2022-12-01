@@ -2,6 +2,12 @@
 
 public class UserType
 {
-    public int Id { get; set; }
-    public int Name { get; set; }
+    public UserType(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+
+    public Guid Id { get; set; }
+    public string Name { get; set; }
 }

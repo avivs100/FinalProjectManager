@@ -2,10 +2,25 @@
 
 public class User
 {
-    public string UserName { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-    public UserType? UserType { get; set; } = null;
-    public bool IsLecturer { get; set; } = false;
-    public int UserTypeId { get; set; }
+    public static User Create(Guid id, string name, UserType type)
+    {
+        return new User(id, name, type.Id, type);
+    }
+
+    private User()
+    {
+    }
+
+    private User(Guid id, string name, Guid typeId, UserType type)
+    {
+        Id = id;
+        Name = name;
+        TypeId = typeId;
+        Type = type;
+    }
+
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public Guid TypeId { get; set; }
+    public UserType Type { get; set; } = null!;
 }
