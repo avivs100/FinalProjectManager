@@ -11,6 +11,14 @@ namespace Domain
         PresentationGrade presentationGrade { get; set; }
         BookGrade bookGrade { get; set; }
         LecturerGrade lecturerGrade { get; set; }
-        int AverageScore { get; set; }
+        double AverageScore { get; set; }
+
+        public double ComputeGrade()
+        {
+            AverageScore = presentationGrade.AverageScore * PresentationGrade.Precentage
+                + bookGrade.AverageScore * BookGrade.Precentage
+                + lecturerGrade.AverageScore * LecturerGrade.Precentage; ;
+            return AverageScore;
+        }
     }
 }

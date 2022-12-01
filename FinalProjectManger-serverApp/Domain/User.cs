@@ -7,11 +7,11 @@ public class User
         return new User(id, name, type.Id, type);
     }
 
-    private User()
+    public User()
     {
     }
 
-    private User(Guid id, string name, Guid typeId, UserType type)
+    public User(Guid id, string name, Guid typeId, UserType type)
     {
         Id = id;
         Name = name;
