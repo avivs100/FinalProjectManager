@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{FD4D5D3B-EC58-491B-BF77-0EEDBD1AE9CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{0D0C2B02-5BC2-4EAA-B382-4EE1CBD3E879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{0D0C2B02-5BC2-4EAA-B382-4EE1CBD3E879}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

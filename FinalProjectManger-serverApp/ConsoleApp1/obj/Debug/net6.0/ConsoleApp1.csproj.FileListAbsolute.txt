@@ -65,3 +65,11 @@ C:\Users\AVIVSHI\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\C
 C:\Users\AVIVSHI\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.pdb
 C:\Users\AVIVSHI\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.genruntimeconfig.cache
 C:\Users\AVIVSHI\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\obj\Debug\net6.0\ref\ConsoleApp1.dll
+C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\bin\Debug\net6.0\Humanizer.dll
+C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\ConsoleApp1\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

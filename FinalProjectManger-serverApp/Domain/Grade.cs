@@ -9,6 +9,10 @@ public class Grade
     }
     public string Description { get; set; } = null!;
     public int Id { get; set; }
+    public int Score { get; set; }
+    public int Precentage { get; set; }
+    public string Name { get; set; }
+
 
     private Grade()
     {

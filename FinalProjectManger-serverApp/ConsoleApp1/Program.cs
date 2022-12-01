@@ -1,10 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Data;
 using Domain;
-using Microsoft.EntityFrameworkCore;
 
 
-using (var context = new PubContext())
+
+using (var context = new UsersDbContext())
 { 
     context.Database.EnsureDeleted();
     context.Database.EnsureCreated();
@@ -15,7 +15,7 @@ GetAuthors();
 
 void SeedDb()
 {
-    using var context = new PubContext();
+    using var context = new UsersDbContext();
     var userType = new UserType(Guid.NewGuid(), "Admin");
     var user = User.Create(Guid.NewGuid(), "Natasha", userType);
 
@@ -27,7 +27,7 @@ void SeedDb()
 
 void GetAuthors()
 {
-    using var context = new PubContext();
+    using var context = new UsersDbContext();
     var users = context.Set<User>().ToList();
     foreach (var user in users)
     {

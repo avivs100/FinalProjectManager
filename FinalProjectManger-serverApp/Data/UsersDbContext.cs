@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data;
 
-public class PubContext : DbContext
+public class UsersDbContext : DbContext
 {
-    //public DbSet<User> Users { get; set; } = null!;
-    //public DbSet<UserType> UserTypes { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
+    public DbSet<UserType> UserTypes { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
