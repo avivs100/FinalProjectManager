@@ -26,7 +26,7 @@ import { RegisterComponent } from './pages/register/register/register.component'
     AppRoutingModule,
     ButtonModule,
     RippleModule,
-    BrowserAnimationsModule,
+    //BrowserAnimationsModule,
     CalendarModule,
   ],
   providers: [],
