@@ -5,8 +5,10 @@ export enum UserType {
 }
 
 export interface User {
-  id: string;
+  id: number;
   pass: string;
   userType: UserType;
   email: String;
+  firstName: string;
+  lastName: string;
 }
