@@ -1,1 +1,116 @@
-<p>register works!</p>
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
+  <div class="flex card border-solid align-content-center">
+    <div class="grid col-6 m-4">
+      <div class="field col-6 mb-4">
+        <span class="p-float-label">
+          <p-inputMask
+            mask="999999999"
+            id="IdInput"
+            formControlName="id"
+          ></p-inputMask>
+          <label for="IdNumber">Id</label>
+        </span>
+      </div>
+
+      <div class="field mb-4 col-6">
+        <span class="p-float-label">
+          <p-password
+            id="passwordInput"
+            class="max-w-13rem"
+            formControlName="password"
+          ></p-password>
+          <label for="passwordInput">Password</label>
+        </span>
+      </div>
+
+      <div class="field mb-4 col-6">
+        <span class="p-float-label">
+          <p-password
+            id="passwordVInput"
+            class="max-w-13rem"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="varifyPass"
+          ></p-password>
+          <label for="passwordVInput">Confirm Password</label>
+        </span>
+      </div>
+
+      <div class="fields mb-4 max-w-10rem">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="emailInput"
+              class="max-w-13rem"
+              pInputText
+              formControlName="email"
+            />
+            <label for="emailInput">email</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="fields mb-4 max-w-10rem">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="firstInput"
+              class="max-w-13rem"
+              pInputText
+              formControlName="firstName"
+            />
+            <label for="firstInput">First Name</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="fields mb-4 max-w-10rem">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="lastInput"
+              class="max-w-13rem"
+              pInputText
+              formControlName="lastName"
+            />
+            <label for="lastInput">Last Name</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="fields mb-4">
+        <div class="field pt-2">
+          <span>
+            <input
+              type="checkbox"
+              formControlName="lecturer"
+              id="lecturerInputId"
+            />
+            <label for="lecturerInputId"> Lecturer </label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-5">
+      <button
+        pButton
+        type="submit"
+        label="Create New User"
+        class="p-button-raised p-button-outlined"
+        [disabled]="form.invalid"
+      ></button>
+    </div>
+    <div class="">
+      <button
+        pButton
+        type="button"
+        label="Already have an account ? Login"
+        class="p-button-text"
+        (click)="moveToLoginPage()"
+      ></button>
+    </div>
+  </div>
+</form>

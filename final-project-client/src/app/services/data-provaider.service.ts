@@ -26,11 +26,17 @@ export class DataProvaiderService {
   }
 
   public checkLogin(id: number, pass: string): User | null {
-    for (let i = 0; this.users.length; i++) {
-      if (this.users[i].id == id && this.users[i].pass == pass) {
-        return this.users[i];
-      }
-    }
-    return null;
+    // for (let i = 0; this.users.length; i++)
+    console.log('values to check');
+    console.log(id, pass);
+    var userToCheck: User | null = null;
+    this.users.forEach((user) => {
+      if (user.id == id && user.pass == pass) userToCheck = user;
+    });
+    // if (this.users[i].id == id && this.users[i].pass == pass) {
+    //   return this.users[i];
+    // }
+    // }
+    return userToCheck;
   }
 }
