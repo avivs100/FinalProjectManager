@@ -1,11 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Data;
 using Domain;
-
+Console.WriteLine("");
 
 
 using (var context = new UsersDbContext())
-{ 
+{
     context.Database.EnsureDeleted();
     context.Database.EnsureCreated();
 }
@@ -16,8 +16,8 @@ GetAuthors();
 void SeedDb()
 {
     using var context = new UsersDbContext();
-    var userType = new UserType(Guid.NewGuid(), "Admin");
-    var user = User.Create(Guid.NewGuid(), "Natasha", userType);
+    
+    var user = User.Create(20, "Natasha",0);
 
     //context.UserTypes.Add(userType);
     context.Set<User>().Add(user);

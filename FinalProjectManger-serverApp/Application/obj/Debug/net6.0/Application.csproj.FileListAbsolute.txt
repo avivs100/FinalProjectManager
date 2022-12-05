@@ -10,3 +10,15 @@ C:\Users\AVIVSHI\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\A
 C:\Users\AVIVSHI\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\refint\Application.dll
 C:\Users\AVIVSHI\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.pdb
 C:\Users\AVIVSHI\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\ref\Application.dll
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\bin\Debug\net6.0\Application.deps.json
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\bin\Debug\net6.0\Application.dll
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\bin\Debug\net6.0\Application.pdb
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.csproj.AssemblyReference.cache
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.AssemblyInfoInputs.cache
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.AssemblyInfo.cs
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.dll
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\refint\Application.dll
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.pdb
+C:\Users\sagif\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\ref\Application.dll

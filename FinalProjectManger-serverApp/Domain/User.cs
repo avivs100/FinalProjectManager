@@ -2,25 +2,29 @@
 
 public class User
 {
-    public static User Create(Guid id, string name, UserType type)
+    public static User Create(long id, string name, Permission permission)
     {
-        return new User(id, name, type.Id, type);
+        return new User(id, name, permission);
     }
 
     public User()
     {
     }
 
-    public User(Guid id, string name, Guid typeId, UserType type)
+    public User(long id, string name)
     {
         Id = id;
         Name = name;
-        TypeId = typeId;
-        Type = type;
     }
 
-    public Guid Id { get; set; }
+    public User(long id, string name, Permission permission)
+    {
+        Id = id;
+        Name = name;
+        Permission = permission;
+    }
+
+    public long Id { get; set; }
     public string Name { get; set; }
-    public Guid TypeId { get; set; }
-    public UserType Type { get; set; } = null!;
+    public Permission Permission { get; set; }
 }
