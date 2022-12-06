@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginServiceService } from 'src/app/services/login-service.service';
+import { LoginService } from 'src/app/services/login-service.service';
 
 export interface RegisterFormData {
   id: number;
@@ -22,7 +22,7 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginServiceService
+    private loginService: LoginService
   ) {}
   public form: FormGroup = this.fb.group({
     id: [, Validators.required],

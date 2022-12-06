@@ -11,11 +11,11 @@ export class StudentSidebarComponent {
 
   public items: MenuItem[] = [
     {
-      label: 'Home',
-      routerLink: '',
+      label: 'Submission',
+      routerLink: 'student-submission',
       icon: 'pi pi-book',
       tooltipOptions: {
-        tooltipLabel: 'Home',
+        tooltipLabel: 'Submission',
       },
     },
     {
