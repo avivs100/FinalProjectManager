@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
+  selector: 'app-student-sidebar',
+  templateUrl: './student-sidebar.component.html',
+  styleUrls: ['./student-sidebar.component.scss'],
 })
-export class SidebarComponent {
+export class StudentSidebarComponent {
   public expendSideBar = true;
 
   public items: MenuItem[] = [

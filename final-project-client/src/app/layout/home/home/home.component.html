@@ -5,7 +5,7 @@
 
   <main class="flex-grow-1 flex flex-row h-full">
     <p-toast position="top-right"></p-toast>
-    <app-sidebar></app-sidebar>
+    <app-student-sidebar *ngIf="userType == 0"></app-student-sidebar>
 
     <div class="flex-grow-1 surface-ground">
       <router-outlet></router-outlet>

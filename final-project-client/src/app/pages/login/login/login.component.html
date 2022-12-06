@@ -1,46 +1,58 @@
-<p-card class="grid col-6 max-w-30rem">
-  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
-    <div class="grid col-6 m-4 border-solid">
-      <div class="field col-6 mb-4">
-        <span class="p-float-label">
-          <p-inputMask
-            mask="999999999"
-            id="IdInput"
-            formControlName="id"
-          ></p-inputMask>
-          <label for="IdNumber">Id</label>
-        </span>
-      </div>
+<div
+  class="h-full"
+  [ngStyle]="{ background: 'url(../../assets/braude.jpeg)' }"
+  style="
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+  "
+>
+  <p-card class="grid justify-content-center my-5">
+    <div class="text-2xl mb-5 m-4">Please Login</div>
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
+      <div class="grid col-6 m-4">
+        <div class="field col-6 mb-4">
+          <span class="p-float-label">
+            <p-inputMask
+              mask="999999999"
+              id="IdInput"
+              formControlName="id"
+            ></p-inputMask>
+            <label for="IdNumber">Id</label>
+          </span>
+        </div>
 
-      <div class="field col-6 mb-4">
-        <span class="p-float-label">
-          <p-password
-            id="passwordInput"
-            class="max-w-13rem"
-            formControlName="password"
-            [toggleMask]="true"
-            [feedback]="false"
-          ></p-password>
-          <label for="passwordInput">Password</label>
-        </span>
-      </div>
+        <div class="field col-6 mb-4">
+          <span class="p-float-label">
+            <p-password
+              id="passwordInput"
+              class="max-w-13rem"
+              formControlName="password"
+              [toggleMask]="true"
+              [feedback]="false"
+            ></p-password>
+            <label for="passwordInput">Password</label>
+          </span>
+        </div>
+        <div class="m-4">
+          <button
+            pButton
+            type="submit"
+            label="Login"
+            class="p-button-raised p-button-outlined max-h-4rem"
+            [disabled]="form.invalid"
+          ></button>
 
-      <button
-        pButton
-        type="submit"
-        label="Create Tested Product"
-        class="p-button-raised p-button-outlined col-3"
-        [disabled]="form.invalid"
-      ></button>
-      <div class="col-6">
-        <button
-          pButton
-          type="button"
-          label="Dont have an account ? register"
-          class="p-button-text col-5"
-          (click)="moveToRegisterPage()"
-        ></button>
+          <button
+            pButton
+            type="button"
+            label="Dont have an account ? register"
+            class="p-button-text"
+            (click)="moveToRegisterPage()"
+          ></button>
+        </div>
       </div>
-    </div>
-  </form>
-</p-card>
+    </form>
+  </p-card>
+</div>

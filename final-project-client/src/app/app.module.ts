@@ -7,7 +7,7 @@ import { RippleModule } from 'primeng/ripple';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
 import { HomeComponent } from './layout/home/home/home.component';
-import { SidebarComponent } from './layout/sidebar/sidebar/sidebar.component';
+import { StudentSidebarComponent } from './layout/sidebar/student-sidebar/student-sidebar.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar/toolbar.component';
 import { LoginComponent } from './pages/login/login/login.component';
 import { RegisterComponent } from './pages/register/register/register.component';
@@ -32,17 +32,21 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { GradesComponent } from './pages/grades/grades.component';
+import { LecturerSidebarComponent } from './layout/sidebar/lecturer-sidebar/lecturer-sidebar.component';
+import { AdminSidebarComponent } from './layout/sidebar/admin-sidebar/admin-sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SidebarComponent,
+    StudentSidebarComponent,
     ToolbarComponent,
     LoginComponent,
     RegisterComponent,
     MessagesComponent,
     GradesComponent,
+    LecturerSidebarComponent,
+    AdminSidebarComponent,
   ],
   imports: [
     BrowserModule,

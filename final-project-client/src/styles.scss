@@ -1,1 +1,115 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import 'primeflex/primeflex.scss';
+
+:root {
+  --text-color-secondary: rgb(184, 216, 255) !important;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto,
+    'Helvetica Neue', Helvetica, Ubuntu, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.logo {
+  color: rgb(0, 120, 212);
+}
+
+.h-0 {
+  height: 0px;
+}
+
+.header-margin {
+  @include styleclass('mb-3');
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px var(--surface-300);
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--surface-400);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--surface-600);
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gutter {
+  padding: $gutter;
+}
+
+.field-border {
+  @include styleclass('border-gray border-round gutter');
+}
+
+.field-width {
+  @include styleclass('w-12rem');
+}
+
+.small-field-width {
+  @include styleclass('w-6rem');
+}
+
+.xs-field-width {
+  @include styleclass('w-4rem');
+}
+
+.text-center {
+  @include styleclass('flex align-items-center justify-content-center');
+}
+
+.text-center-v {
+  @include styleclass('flex align-items-center');
+}
+
+.text-center-h {
+  @include styleclass('flex justify-content-center');
+}
+
+.border-gray {
+  border: 1px solid rgba(0, 0, 0, 0.38);
+}
+
+p-card {
+  .p-card-content {
+    height: 100% !important;
+  }
+}
+
+p-dropdown {
+  .p-dropdown {
+    width: 208px;
+  }
+}
+
+.mini-sidebar {
+  width: 44px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px !important;
+}
+
