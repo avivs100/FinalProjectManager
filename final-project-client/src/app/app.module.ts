@@ -49,7 +49,7 @@ import { GradesComponent } from './pages/grades/grades.component';
     AppRoutingModule,
     ButtonModule,
     RippleModule,
-    //BrowserAnimationsModule,
+    BrowserAnimationsModule,
     CalendarModule,
     FormsModule,
     ReactiveFormsModule,
