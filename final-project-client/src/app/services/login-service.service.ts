@@ -5,17 +5,17 @@ import { DataProvaiderService } from './data-provaider.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
-  public connectedUser: User | null = null;
+export class LoginServiceService {
   constructor(private data: DataProvaiderService) {}
+
+  public connerctedUser: User | null = null;
 
   public login(id: number, pass: string): boolean {
     var user = this.data.checkLogin(id, pass);
     if (user == null) {
       return false;
-    } else {
-      this.connectedUser = user;
-      return true;
     }
+    this.connerctedUser = user;
+    return true;
   }
 }

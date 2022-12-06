@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserType } from 'src/app/models/modelsInterfaces';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from 'src/app/services/login-service.service';
 
 @Component({
-  selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
