@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
-import { DataGenService } from './services/data-gen.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +7,9 @@ import { DataGenService } from './services/data-gen.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(
-    private primengConfig: PrimeNGConfig,
-    private dataDervice: DataGenService
-  ) {}
+  constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit() {
     this.primengConfig.ripple = true;
-    this.dataDervice.genrateLogedStudent;
   }
 }

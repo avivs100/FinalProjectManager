@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User, UserType } from 'src/app/models/modelsInterfaces';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginServiceService } from 'src/app/services/login-service.service';
+
 export interface RegisterFormData {
   id: number;
   password: string;
@@ -22,7 +22,7 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginServiceService
   ) {}
   public form: FormGroup = this.fb.group({
     id: [, Validators.required],
