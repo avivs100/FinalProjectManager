@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Student : User
+    public class Admin : User
     {
-        GradeA gradeA { get; set; }
-        GradeB gradeB { get; set; } 
-
     }
 }
