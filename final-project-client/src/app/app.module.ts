@@ -34,6 +34,14 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { GradesComponent } from './pages/grades/grades.component';
 import { LecturerSidebarComponent } from './layout/sidebar/lecturer-sidebar/lecturer-sidebar.component';
 import { AdminSidebarComponent } from './layout/sidebar/admin-sidebar/admin-sidebar.component';
+import { StudentMessagesComponent } from './pages/messages/student-messages/student-messages.component';
+import { LecturerMessagesComponent } from './pages/messages/lecturer-messages/lecturer-messages.component';
+import { AdminMessagesComponent } from './pages/messages/admin-messages/admin-messages.component';
+import { AdminGradesComponent } from './pages/grades/admin-grades/admin-grades.component';
+import { LecturerGradesComponent } from './pages/grades/lecturer-grades/lecturer-grades.component';
+import { StudentGradesComponent } from './pages/grades/student-grades/student-grades.component';
+import { AdminProjectsComponent } from './pages/projects/admin-projects/admin-projects.component';
+import { LecturerProjectsComponent } from './pages/projects/lecturer-projects/lecturer-projects.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +55,14 @@ import { AdminSidebarComponent } from './layout/sidebar/admin-sidebar/admin-side
     GradesComponent,
     LecturerSidebarComponent,
     AdminSidebarComponent,
+    StudentMessagesComponent,
+    LecturerMessagesComponent,
+    AdminMessagesComponent,
+    AdminGradesComponent,
+    LecturerGradesComponent,
+    StudentGradesComponent,
+    AdminProjectsComponent,
+    LecturerProjectsComponent,
   ],
   imports: [
     BrowserModule,
