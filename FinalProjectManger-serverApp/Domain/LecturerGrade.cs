@@ -6,13 +6,22 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class LecturerGrade
+    public class LecturerGrade//: GradeCollection
     {
-        public int Id { get; set; }
-        public static double Precentage = 0.5;
+       
+        public Grade? Grade1 { get; set; }
+        public Grade? Grade2 { get; set; }
+        public long Id { get;  set; }
         public int AverageScore { get; set; }
+        public string Description { get; set; } = null!;
+        public static double Precentage = 0.5;
+
         //TODO: check with Naomi what grades need to be
 
+        public LecturerGrade()
+        {
+
+        }
         public int ComputeGrade()
         {
             AverageScore = 0; // add the hishuv

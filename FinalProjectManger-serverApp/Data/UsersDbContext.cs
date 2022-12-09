@@ -1,14 +1,15 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Data;
 
 public class UsersDbContext : DbContext
 {
-    public DbSet<User> Users { get; set; } = null!;
-    public DbSet<UserType> UserTypes { get; set; } = null!;
-    public DbSet<Student> Students { get; set; } = null!;
-    public DbSet<Project> Projects { get; set; } = null!;
+    //public DbSet<User> Users { get; set; } = null!;
+    //public DbSet<UserType> UserTypes { get; set; } = null!;
+    //public DbSet<Student> Students { get; set; } = null!;
+    //public DbSet<Project> Projects { get; set; } = null!;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Data Source= (localdb)\\MSSQLLocalDb; Initial Catalog = PubDataBase");
@@ -21,25 +22,49 @@ public class UsersDbContext : DbContext
         //modelBuilder.Entity<UserType>()
         //    .Property(e => e.Id).ValueGeneratedNever();
 
-        modelBuilder.Entity<User>()
-            .Property(e => e.Id).ValueGeneratedNever();
-        modelBuilder.Entity<User>().OwnsOne(x => x.Type);
+        modelBuilder.Entity<Student>()
+            .Property(e => e.id).ValueGeneratedNever();
 
-        modelBuilder.Entity<Project>()
-            .Property(e => e.ProjectId).ValueGeneratedNever();
-        modelBuilder.Entity<Project>()
-            .OwnsOne(e => e.student1)
-            .OwnsOne(e=>e.Type);
-        //modelBuilder.Entity<GradeA>()
-        //    .Property(e => e.gradeA_ID).ValueGeneratedNever();
-        //modelBuilder.Entity<GradeA>().OwnsOne(x => x.bookGrade);
-        //modelBuilder.Entity<GradeA>().OwnsOne(x => x.presentationGrade);
-        //modelBuilder.Entity<GradeA>().OwnsOne(x => x.lecturerGrade);
+        modelBuilder.Entity<Lecturer>()
+    .Property(e => e.id).ValueGeneratedNever();
+        modelBuilder.Entity<Lecturer>().HasMany<Constraint>();
 
-        //modelBuilder.Entity<GradeB>()
-        //  .Property(e => e.gradeB_ID).ValueGeneratedNever();
-        //modelBuilder.Entity<GradeB>().OwnsOne(x => x.bookGrade);
-        //modelBuilder.Entity<GradeB>().OwnsOne(x => x.presentationGrade);
-        //modelBuilder.Entity<GradeB>().OwnsOne(x => x.lecturerGrade);
+        modelBuilder.Entity<Admin>()
+        .Property(e => e.id).ValueGeneratedNever();
+
+        modelBuilder.Entity<LecturerGrade>()
+.Property(e => e.Id).ValueGeneratedNever();
+        modelBuilder.Entity<LecturerGrade>().OwnsOne(x => x.Grade1);
+        modelBuilder.Entity<LecturerGrade>().OwnsOne(x => x.Grade2);
+
+        modelBuilder.Entity<BookGrade>()
+.Property(e => e.Id).ValueGeneratedNever();
+        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.AnalysisAndConclusion);
+        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.UIandAPPguides);
+        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.Research);
+        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.Organization);
+        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.SwQuality);
+        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.GeneralEvaluation);
+
+        modelBuilder.Entity<PresentationGrade>()
+.Property(e => e.Id).ValueGeneratedNever();
+        modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.Organization);
+        modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.QualityOfProblem);
+        modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.TechnicalQuality);
+        modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.GeneralEvaluation);
+        //        modelBuilder.Entity<BookGrade>()
+        //        .Property(e => e.Id).ValueGeneratedNever();
+        //        modelBuilder.Entity<BookGrade>().HasMany<Grade>();
+
+        //        modelBuilder.Entity<PresentationGrade>()
+        //.Property(e => e.Id).ValueGeneratedNever();
+        //        modelBuilder.Entity<PresentationGrade>().HasMany<Grade>();
+
+
+
+        //modelBuilder.Entity<Project>()
+        //.Property(e => e.ProjectId).ValueGeneratedNever();
+
+
     }
 }

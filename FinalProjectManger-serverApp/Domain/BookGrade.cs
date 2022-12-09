@@ -8,7 +8,7 @@ namespace Domain
 {
     public class BookGrade
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public Grade Research;
         public Grade AnalysisAndConclusion;
@@ -19,6 +19,10 @@ namespace Domain
         public static double Precentage = 0.25;
         public double AverageScore { get; set; }
 
+        public BookGrade()
+        {
+
+        }
         public double ComputeGrade()
         {
             AverageScore = Research.Score * Research.Precentage

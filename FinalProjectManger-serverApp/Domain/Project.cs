@@ -8,12 +8,19 @@ namespace Domain
 {
     public class Project
     {
-        public long ProjectId { get; set; }
-        public GradeA gradeA;
-        public GradeB gradeB;
-        public Lecturer lecturer { get; set; }
-        public Student student1 { get; set; }
-        public Student student2 { get; set; }
+        public Guid ProjectId { get; set; }
         public string ProjectName { get; set; }
+        public List<Grade> Grades { get; set; }
+        public Lecturer Lecturer { get; set; }
+        public List<Student> students { get; set; }
+        
+        public Project(string projectName, Lecturer lecturer, Student student1, Student student2)
+        {
+            ProjectName = projectName;
+            ProjectId = Guid.NewGuid();
+            Grades = new List<Grade>();
+            Lecturer = lecturer;
+            students = new List<Student> { student1, student2 };
+        }
     }
 }

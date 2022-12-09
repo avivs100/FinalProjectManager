@@ -8,10 +8,11 @@ namespace Domain
 {
     public class GradeA
     {
+        public Guid id { get; set; }
         public PresentationGrade presentationGrade { get; set; }
         public BookGrade bookGrade { get; set; }
         public LecturerGrade lecturerGrade { get; set; }
-        public Guid gradeA_ID { get; set; }
+
         double AverageScore { get; set; }
 
         public double ComputeGrade()
