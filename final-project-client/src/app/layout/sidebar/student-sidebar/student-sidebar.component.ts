@@ -7,8 +7,6 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./student-sidebar.component.scss'],
 })
 export class StudentSidebarComponent {
-  public expendSideBar = true;
-
   public items: MenuItem[] = [
     {
       label: 'Submission',
@@ -34,12 +32,15 @@ export class StudentSidebarComponent {
         tooltipLabel: 'Messages',
       },
     },
+    {
+      label: 'Messages',
+      routerLink: 'messages',
+      icon: 'pi pi-forward',
+      tooltipOptions: {
+        tooltipLabel: 'Messages',
+      },
+    },
   ];
 
   constructor() {}
-
-  public toggleSidebar(): void {
-    this.expendSideBar = !this.expendSideBar;
-    console.log(this.expendSideBar);
-  }
 }

@@ -13,11 +13,11 @@ export interface RegisterFormData {
 }
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-register-page',
+  templateUrl: './register-page.component.html',
+  styleUrls: ['./register-page.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterPageComponent {
   public varifyPass: string = '';
   constructor(
     private fb: FormBuilder,
