@@ -11,7 +11,7 @@ export class DataProvaiderService {
       email: 'avi1aviv2@gmail.com',
       id: 203639869,
       pass: '102030',
-      userType: UserType.admin,
+      userType: UserType.lecturer,
       firstName: 'Aviv',
       lastName: 'Shichman',
     });

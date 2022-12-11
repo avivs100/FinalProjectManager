@@ -8,7 +8,9 @@ import { PremissionsPageComponent } from './pages/premissions-page/premissions-p
 import { ProjectsPageComponent } from './pages/projects/projects-page.component';
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
 import { LecturerScheduleComponent } from './pages/schedule-page/lecturer-schedule/lecturer-schedule.component';
+import { ScheduleComponent } from './pages/schedule-page/schedule-page.component';
 import { LecturerSubmissionsComponent } from './pages/submissions-page/lecturer-submissions/lecturer-submissions.component';
+import { SubmissionsComponent } from './pages/submissions-page/submissions-page.component';
 
 const routes: Routes = [
   {
@@ -33,11 +35,11 @@ const routes: Routes = [
       },
       {
         path: 'schedule',
-        component: LecturerScheduleComponent,
+        component: ScheduleComponent,
       },
       {
         path: 'submissions',
-        component: LecturerSubmissionsComponent,
+        component: SubmissionsComponent,
       },
     ],
   },

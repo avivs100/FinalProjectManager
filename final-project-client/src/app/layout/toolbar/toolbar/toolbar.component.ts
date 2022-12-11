@@ -10,6 +10,7 @@ import { User } from 'src/app/models/modelsInterfaces';
 export class ToolbarComponent {
   public firstName: string | undefined;
   public lastName: string | undefined;
+  public space = '   ';
 
   constructor(private loginService: LoginService) {
     this.firstName = loginService.connectedUser?.firstName;

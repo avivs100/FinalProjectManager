@@ -48,5 +48,13 @@ export class AdminSidebarComponent {
         tooltipLabel: 'Submission',
       },
     },
+    {
+      label: 'Submission',
+      routerLink: 'submissions',
+      icon: 'pi pi-book',
+      tooltipOptions: {
+        tooltipLabel: 'Submission',
+      },
+    },
   ];
 }
