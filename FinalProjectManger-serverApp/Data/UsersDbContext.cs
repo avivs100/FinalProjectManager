@@ -17,11 +17,6 @@ public class UsersDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
-
-        //modelBuilder.Entity<UserType>()
-        //    .Property(e => e.Id).ValueGeneratedNever();
-
         modelBuilder.Entity<Student>()
             .Property(e => e.id).ValueGeneratedNever();
 
@@ -52,18 +47,25 @@ public class UsersDbContext : DbContext
         modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.QualityOfProblem);
         modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.TechnicalQuality);
         modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.GeneralEvaluation);
-        //        modelBuilder.Entity<BookGrade>()
-        //        .Property(e => e.Id).ValueGeneratedNever();
-        //        modelBuilder.Entity<BookGrade>().HasMany<Grade>();
 
-        //        modelBuilder.Entity<PresentationGrade>()
-        //.Property(e => e.Id).ValueGeneratedNever();
-        //        modelBuilder.Entity<PresentationGrade>().HasMany<Grade>();
+        modelBuilder.Entity<GradeA>()
+.Property(e => e.gradeAid).ValueGeneratedNever();
+        modelBuilder.Entity<GradeA>().HasOne(x => x.bookGrade);
+        modelBuilder.Entity<GradeA>().HasOne(x => x.presentationGrade);
+        modelBuilder.Entity<GradeA>().HasOne(x => x.lecturerGrade);
 
+        modelBuilder.Entity<GradeB>()
+.Property(e => e.gradeBid).ValueGeneratedNever();
+        modelBuilder.Entity<GradeB>().HasOne(x => x.bookGrade);
+        modelBuilder.Entity<GradeB>().HasOne(x => x.presentationGrade);
+        modelBuilder.Entity<GradeB>().HasOne(x => x.lecturerGrade);
 
-
-        //modelBuilder.Entity<Project>()
-        //.Property(e => e.ProjectId).ValueGeneratedNever();
+        modelBuilder.Entity<Project>()
+        .Property(e => e.ProjectId).ValueGeneratedNever();
+        modelBuilder.Entity<Project>().HasOne(x=>x.Lecturer);
+        modelBuilder.Entity<Project>().HasMany<Student>();
+        modelBuilder.Entity<Project>().HasOne<GradeA>();
+        modelBuilder.Entity<Project>().HasOne<GradeB>();
 
 
     }

@@ -8,7 +8,7 @@ namespace Domain
 {
     public class GradeB
     {
-        public Guid id { get; set; }
+        public int gradeBid { get; set; }
         public PresentationGrade presentationGrade { get; set; }
         public BookGrade bookGrade { get; set; }
         public LecturerGrade lecturerGrade { get; set; }
@@ -20,6 +20,19 @@ namespace Domain
                 + bookGrade.AverageScore * BookGrade.Precentage
                 + lecturerGrade.AverageScore * LecturerGrade.Precentage; ;
             return AverageScore;
+        }
+
+        public GradeB()
+        {
+
+        }
+        public GradeB(PresentationGrade presentationGrade, BookGrade bookGrade, LecturerGrade lecturerGrade)
+        {
+            gradeBid = new Random().Next();
+            this.bookGrade = bookGrade;
+            this.presentationGrade = presentationGrade;
+            this.lecturerGrade = lecturerGrade;
+            
         }
     }
 }

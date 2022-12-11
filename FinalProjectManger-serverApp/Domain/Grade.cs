@@ -9,10 +9,28 @@ namespace Domain
     public class Grade
     {
         public int ID;
-        public string Description { get; set; } = null!;
+        public string Description { get; set; }
         public int GradeCollectionId { get; set; }
         public int Score { get; set; }
-        public int Precentage { get; set; }
+        public double Precentage { get; set; }
         public string Name { get; set; }
+
+        public Grade()
+        {
+
+        }
+
+        public Grade(string description, int score, double precentage, string name)
+        {
+            GradeCollectionId = 1;
+            ID = new Random().Next();
+            Description = description;
+            Score = score;
+            Precentage = precentage;
+            Name = name;
+        }
     }
+
+
+
 }

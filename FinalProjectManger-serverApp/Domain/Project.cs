@@ -10,17 +10,16 @@ namespace Domain
     {
         public Guid ProjectId { get; set; }
         public string ProjectName { get; set; }
-        public List<Grade> Grades { get; set; }
+        //public List<Grade> Grades { get; set; }
         public Lecturer Lecturer { get; set; }
-        public List<Student> students { get; set; }
-        
-        public Project(string projectName, Lecturer lecturer, Student student1, Student student2)
+        public Student student1 { get; set; }
+        public Student student2 { get; set; }
+        public GradeA gradeA { get; set; }
+        //public GradeB gradeB { get; set; }
+
+        public Project()
         {
-            ProjectName = projectName;
-            ProjectId = Guid.NewGuid();
-            Grades = new List<Grade>();
-            Lecturer = lecturer;
-            students = new List<Student> { student1, student2 };
+                
         }
     }
 }
