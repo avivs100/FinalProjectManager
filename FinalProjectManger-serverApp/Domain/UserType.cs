@@ -1,13 +1,15 @@
-﻿namespace Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class UserType
+namespace Domain
 {
-    public UserType(Guid id, string name)
+    public enum UserType
     {
-        Id = id;
-        Name = name;
+        admin,
+        student,
+        lecturer        
     }
-
-    public Guid Id { get; set; }
-    public string Name { get; set; }
 }

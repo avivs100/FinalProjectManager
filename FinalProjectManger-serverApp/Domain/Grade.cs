@@ -1,25 +1,36 @@
-﻿namespace Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Grade
+namespace Domain
 {
-    
-    public static Grade Create(string description)
+    public class Grade
     {
-        return new Grade(description);
+        public int ID;
+        public string Description { get; set; }
+        public int GradeCollectionId { get; set; }
+        public int Score { get; set; }
+        public double Precentage { get; set; }
+        public string Name { get; set; }
+
+        public Grade()
+        {
+
+        }
+
+        public Grade(string description, int score, double precentage, string name)
+        {
+            GradeCollectionId = 1;
+            ID = new Random().Next();
+            Description = description;
+            Score = score;
+            Precentage = precentage;
+            Name = name;
+        }
     }
-    public string Description { get; set; } = null!;
-    public int Id { get; set; }
-    public int Score { get; set; }
-    public int Precentage { get; set; }
-    public string Name { get; set; }
 
 
-    private Grade()
-    {
-    }
 
-    private Grade(string description)
-    {
-        Description = description;        
-    }
 }

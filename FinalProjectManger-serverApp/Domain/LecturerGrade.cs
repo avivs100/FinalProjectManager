@@ -6,12 +6,29 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class LecturerGrade
+    public class LecturerGrade//: GradeCollection
     {
-        public int Id { get; set; }
-        public static double Precentage = 0.5;
+       
+        public Grade? Grade1 { get; set; }
+        public Grade? Grade2 { get; set; }
+        public int Id { get;  set; }
         public int AverageScore { get; set; }
+        public string Description { get; set; } = null!;
+        public static double Precentage = 0.5;
+
         //TODO: check with Naomi what grades need to be
+
+        public LecturerGrade()
+        {
+
+        }
+        public LecturerGrade(Grade? grade1, Grade? grade2, string description)
+        {
+            Grade1 = grade1;
+            Grade2 = grade2;
+            Id = new Random().Next();
+            Description = description;
+        }
 
         public int ComputeGrade()
         {

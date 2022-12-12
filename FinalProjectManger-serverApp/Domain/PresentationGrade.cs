@@ -16,6 +16,7 @@ namespace Domain
         public string AdditionalComment { get; set; }
         public static double Precentage = 0.25;
         public double AverageScore { get; set; }
+
         public double ComputeScore()
         {
             AverageScore = Organization.Score * Organization.Precentage
@@ -23,6 +24,22 @@ namespace Domain
                 + TechnicalQuality.Score * TechnicalQuality.Precentage
                 + GeneralEvaluation.Score * GeneralEvaluation.Precentage;
             return AverageScore;
+        }
+
+        public PresentationGrade()
+        {
+
+        }
+
+        public PresentationGrade(Grade organization, Grade qualityOfProblem, Grade technicalQuality, Grade generalEvaluation
+            ,string additionalComment)
+        {
+            Id = new Random().Next();
+            Organization = organization;
+            QualityOfProblem = qualityOfProblem;
+            GeneralEvaluation = generalEvaluation;
+            AdditionalComment = additionalComment;
+            TechnicalQuality = technicalQuality;
         }
 
     }

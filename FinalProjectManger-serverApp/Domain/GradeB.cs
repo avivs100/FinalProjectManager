@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class GradeA
+    public class GradeB
     {
-        public int gradeAid { get; set; }
+        public int gradeBid { get; set; }
         public PresentationGrade presentationGrade { get; set; }
         public BookGrade bookGrade { get; set; }
         public LecturerGrade lecturerGrade { get; set; }
-
-        double AverageScore { get; set; }
-
+        public double AverageScore { get; set; }
+        
         public double ComputeGrade()
         {
             AverageScore = presentationGrade.AverageScore * PresentationGrade.Precentage
@@ -23,16 +22,17 @@ namespace Domain
             return AverageScore;
         }
 
-        public GradeA()
+        public GradeB()
         {
 
         }
-        public GradeA(PresentationGrade presentationGrade, BookGrade bookGrade, LecturerGrade lecturerGrade)
+        public GradeB(PresentationGrade presentationGrade, BookGrade bookGrade, LecturerGrade lecturerGrade)
         {
-            gradeAid = new Random().Next();
-            this.presentationGrade = presentationGrade;
+            gradeBid = new Random().Next();
             this.bookGrade = bookGrade;
+            this.presentationGrade = presentationGrade;
             this.lecturerGrade = lecturerGrade;
+            
         }
     }
 }

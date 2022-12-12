@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Domain
 {
     public class BookGrade
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public Grade Research;
         public Grade AnalysisAndConclusion;
@@ -19,6 +20,10 @@ namespace Domain
         public static double Precentage = 0.25;
         public double AverageScore { get; set; }
 
+        public BookGrade()
+        {
+
+        }
         public double ComputeGrade()
         {
             AverageScore = Research.Score * Research.Precentage
@@ -28,6 +33,17 @@ namespace Domain
                 + Organization.Score * Organization.Precentage
                 + GeneralEvaluation.Score * GeneralEvaluation.Precentage;
             return AverageScore;
+        }
+
+        public BookGrade(Grade research, Grade analysisAndConclusion, Grade swQuality, Grade uIandAPPguides, Grade organization, Grade generalEvaluation)
+        {
+            Id = new Random().Next();
+            Research = research;
+            AnalysisAndConclusion = analysisAndConclusion;
+            SwQuality = swQuality;
+            UIandAPPguides = uIandAPPguides;
+            Organization = organization;
+            GeneralEvaluation = generalEvaluation;
         }
     }
 }
