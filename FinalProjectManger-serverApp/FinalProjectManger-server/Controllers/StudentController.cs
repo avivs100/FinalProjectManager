@@ -14,7 +14,7 @@ namespace FinalProjectManger_server.Controllers
         static UsersDbContext context = new UsersDbContext();
         List<Student> students = context.Set<Student>().ToList();
         // GET: api/<StudentController>
-        [HttpGet]
+        [HttpGet("students")]
         public IEnumerable<Student> Get()
         {
             return students;
