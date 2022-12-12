@@ -11,6 +11,6 @@ export class ServerApiService {
   constructor(private http: HttpClient) {}
 
   getAllFuckingThings(): Observable<any[]> {
-    return this.http.get<any>(this.serverUrl + '/weatherForecast');
+    return this.http.get<any>(this.serverUrl + '/Student');
   }
 }
