@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserType } from 'src/app/models/modelsInterfaces';
+import { User, UserType } from 'src/app/models/modelsInterfaces';
 import { LoginService } from 'src/app/services/login-service.service';
 
 @Component({
@@ -9,7 +9,9 @@ import { LoginService } from 'src/app/services/login-service.service';
 })
 export class ProjectsPageComponent {
   public userType: UserType | undefined;
+  public user: User | null = null;
   constructor(public loginService: LoginService) {
     this.userType = loginService.connectedUser?.userType;
+    this.user = loginService.connectedUser;
   }
 }

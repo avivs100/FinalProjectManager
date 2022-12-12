@@ -40,6 +40,14 @@ export class StudentSidebarComponent {
         tooltipLabel: 'Schedule',
       },
     },
+    {
+      label: 'Project',
+      routerLink: 'projects',
+      icon: 'pi pi-book',
+      tooltipOptions: {
+        tooltipLabel: 'projects',
+      },
+    },
   ];
 
   constructor() {}

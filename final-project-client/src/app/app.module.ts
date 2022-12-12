@@ -44,19 +44,23 @@ import { PremissionsPageComponent } from './pages/premissions-page/premissions-p
 import { LecturerSubmissionsComponent } from './pages/submissions-page/lecturer-submissions/lecturer-submissions.component';
 import { StudentSubmissionsComponent } from './pages/submissions-page/student-submissions/student-submissions.component';
 import { AdminSubmissionsComponent } from './pages/submissions-page/admin-submissions/admin-submissions.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { LecturerScheduleComponent } from './pages/schedule-page/lecturer-schedule/lecturer-schedule.component';
 import { StudentScheduleComponent } from './pages/schedule-page/student-schedule/student-schedule.component';
 import { AdminScheduleComponent } from './pages/schedule-page/admin-schedule/admin-schedule.component';
 import { SubmissionsComponent } from './pages/submissions-page/submissions-page.component';
 import { ProjectsPageComponent } from './pages/projects/projects-page.component';
-
+import { TableModule } from 'primeng/table';
 import { LecturerMessagesComponent } from './pages/messages-page/lecturer-messages/lecturer-messages.component';
 import { StudentMessagesComponent } from './pages/messages-page/student-messages/student-messages.component';
 import { AdminMessagesComponent } from './pages/messages-page/admin-messages/admin-messages.component';
 import { MessagesPageComponent } from './pages/messages-page/messages-page.component';
 import { ScheduleComponent } from './pages/schedule-page/schedule-page.component';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
+import { ServerApiService } from './services/server-api.service';
+import { WelcomeComponent } from './layout/welcome/welcome.component';
+import { StudentProjectsComponent } from './pages/projects/student-projects/student-projects.component';
+import { ProjectDetailsComponent } from './pages/projects/project-details/project-details.component';
 
 @NgModule({
   declarations: [
@@ -89,8 +93,12 @@ import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot
     SubmissionsComponent,
     ProjectsPageComponent,
     ForgotPasswordPageComponent,
+    WelcomeComponent,
+    StudentProjectsComponent,
+    ProjectDetailsComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ButtonModule,
@@ -115,8 +123,9 @@ import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot
     PasswordModule,
     ToastModule,
     ConfirmDialogModule,
+    TableModule,
   ],
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService, ServerApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
