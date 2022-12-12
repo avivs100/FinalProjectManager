@@ -7,12 +7,10 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./student-sidebar.component.scss'],
 })
 export class StudentSidebarComponent {
-  public expendSideBar = true;
-
   public items: MenuItem[] = [
     {
       label: 'Submission',
-      routerLink: 'student-submission',
+      routerLink: 'submissions',
       icon: 'pi pi-book',
       tooltipOptions: {
         tooltipLabel: 'Submission',
@@ -34,12 +32,23 @@ export class StudentSidebarComponent {
         tooltipLabel: 'Messages',
       },
     },
+    {
+      label: 'Schedule',
+      routerLink: 'schedule',
+      icon: 'pi pi-book',
+      tooltipOptions: {
+        tooltipLabel: 'Schedule',
+      },
+    },
+    {
+      label: 'Project',
+      routerLink: 'projects',
+      icon: 'pi pi-book',
+      tooltipOptions: {
+        tooltipLabel: 'projects',
+      },
+    },
   ];
 
   constructor() {}
-
-  public toggleSidebar(): void {
-    this.expendSideBar = !this.expendSideBar;
-    console.log(this.expendSideBar);
-  }
 }

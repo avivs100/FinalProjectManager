@@ -9,10 +9,10 @@ import { CalendarModule } from 'primeng/calendar';
 import { HomeComponent } from './layout/home/home/home.component';
 import { StudentSidebarComponent } from './layout/sidebar/student-sidebar/student-sidebar.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar/toolbar.component';
-import { LoginComponent } from './pages/login/login/login.component';
-import { RegisterComponent } from './pages/register/register/register.component';
+import { LoginPageComponent } from './pages/login/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -30,41 +30,75 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
-import { MessagesComponent } from './pages/messages/messages.component';
-import { GradesComponent } from './pages/grades/grades.component';
+
+import { GradesComponent } from './pages/grades-page/grades-page.component';
 import { LecturerSidebarComponent } from './layout/sidebar/lecturer-sidebar/lecturer-sidebar.component';
 import { AdminSidebarComponent } from './layout/sidebar/admin-sidebar/admin-sidebar.component';
-import { StudentMessagesComponent } from './pages/messages/student-messages/student-messages.component';
-import { LecturerMessagesComponent } from './pages/messages/lecturer-messages/lecturer-messages.component';
-import { AdminMessagesComponent } from './pages/messages/admin-messages/admin-messages.component';
-import { AdminGradesComponent } from './pages/grades/admin-grades/admin-grades.component';
-import { LecturerGradesComponent } from './pages/grades/lecturer-grades/lecturer-grades.component';
-import { StudentGradesComponent } from './pages/grades/student-grades/student-grades.component';
+
+import { AdminGradesComponent } from './pages/grades-page/admin-grades/admin-grades.component';
+import { LecturerGradesComponent } from './pages/grades-page/lecturer-grades/lecturer-grades.component';
+import { StudentGradesComponent } from './pages/grades-page/student-grades/student-grades.component';
 import { AdminProjectsComponent } from './pages/projects/admin-projects/admin-projects.component';
 import { LecturerProjectsComponent } from './pages/projects/lecturer-projects/lecturer-projects.component';
+import { PremissionsPageComponent } from './pages/premissions-page/premissions-page.component';
+import { LecturerSubmissionsComponent } from './pages/submissions-page/lecturer-submissions/lecturer-submissions.component';
+import { StudentSubmissionsComponent } from './pages/submissions-page/student-submissions/student-submissions.component';
+import { AdminSubmissionsComponent } from './pages/submissions-page/admin-submissions/admin-submissions.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LecturerScheduleComponent } from './pages/schedule-page/lecturer-schedule/lecturer-schedule.component';
+import { StudentScheduleComponent } from './pages/schedule-page/student-schedule/student-schedule.component';
+import { AdminScheduleComponent } from './pages/schedule-page/admin-schedule/admin-schedule.component';
+import { SubmissionsComponent } from './pages/submissions-page/submissions-page.component';
+import { ProjectsPageComponent } from './pages/projects/projects-page.component';
+import { TableModule } from 'primeng/table';
+import { LecturerMessagesComponent } from './pages/messages-page/lecturer-messages/lecturer-messages.component';
+import { StudentMessagesComponent } from './pages/messages-page/student-messages/student-messages.component';
+import { AdminMessagesComponent } from './pages/messages-page/admin-messages/admin-messages.component';
+import { MessagesPageComponent } from './pages/messages-page/messages-page.component';
+import { ScheduleComponent } from './pages/schedule-page/schedule-page.component';
+import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
+import { ServerApiService } from './services/server-api.service';
+import { WelcomeComponent } from './layout/welcome/welcome.component';
+import { StudentProjectsComponent } from './pages/projects/student-projects/student-projects.component';
+import { ProjectDetailsComponent } from './pages/projects/project-details/project-details.component';
 
 @NgModule({
   declarations: [
+    ScheduleComponent,
     AppComponent,
     HomeComponent,
     StudentSidebarComponent,
     ToolbarComponent,
-    LoginComponent,
-    RegisterComponent,
-    MessagesComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    StudentMessagesComponent,
     GradesComponent,
     LecturerSidebarComponent,
     AdminSidebarComponent,
-    StudentMessagesComponent,
     LecturerMessagesComponent,
     AdminMessagesComponent,
+    MessagesPageComponent,
     AdminGradesComponent,
     LecturerGradesComponent,
     StudentGradesComponent,
     AdminProjectsComponent,
     LecturerProjectsComponent,
+    PremissionsPageComponent,
+    LecturerSubmissionsComponent,
+    StudentSubmissionsComponent,
+    AdminSubmissionsComponent,
+    LecturerScheduleComponent,
+    StudentScheduleComponent,
+    AdminScheduleComponent,
+    SubmissionsComponent,
+    ProjectsPageComponent,
+    ForgotPasswordPageComponent,
+    WelcomeComponent,
+    StudentProjectsComponent,
+    ProjectDetailsComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ButtonModule,
@@ -89,8 +123,9 @@ import { LecturerProjectsComponent } from './pages/projects/lecturer-projects/le
     PasswordModule,
     ToastModule,
     ConfirmDialogModule,
+    TableModule,
   ],
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService, ServerApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
