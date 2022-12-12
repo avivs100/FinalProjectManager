@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\FinalProjectManger-serverApp",
-    "\\FinalProjectManger-serverApp\\FinalProjectManger-server",
-    "\\FinalProjectManger-serverApp\\FinalProjectManger-server\\Controllers"
+    ""
   ],
-  "SelectedNode": "\\FinalProjectManger-serverApp\\FinalProjectManger-server\\Controllers\\WeatherForecastController.cs",
+  "SelectedNode": "\\FinalProjectManger-serverApp.sln",
   "PreviewInSolutionExplorer": false
 }

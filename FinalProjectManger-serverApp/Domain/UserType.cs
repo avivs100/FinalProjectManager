@@ -10,6 +10,7 @@ namespace Domain
     {
         admin,
         student,
-        lecturer        
+        lecturer,
+        none
     }
 }

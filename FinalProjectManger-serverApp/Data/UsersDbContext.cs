@@ -60,12 +60,9 @@ public class UsersDbContext : DbContext
         modelBuilder.Entity<GradeB>().HasOne(x => x.presentationGrade);
         modelBuilder.Entity<GradeB>().HasOne(x => x.lecturerGrade);
 
-        //modelBuilder.Entity<Project>()
-        //.Property(e => e.ProjectId).ValueGeneratedNever();
-        //modelBuilder.Entity<Project>().HasOne(x=>x.Lecturer);
-        //modelBuilder.Entity<Project>().HasMany<Student>();
-        //modelBuilder.Entity<Project>().HasOne<GradeA>();
-        //modelBuilder.Entity<Project>().HasOne<GradeB>();
+        modelBuilder.Entity<Project>()
+        .Property(e => e.ProjectId).ValueGeneratedNever();
+
 
 
     }
