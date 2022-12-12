@@ -12,7 +12,6 @@ import { ToolbarComponent } from './layout/toolbar/toolbar/toolbar.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';

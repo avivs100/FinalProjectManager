@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectManger_server.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    
     public class StudentController : ControllerBase
     {
         static UsersDbContext context = new UsersDbContext();
@@ -25,7 +26,7 @@ namespace FinalProjectManger_server.Controllers
         public Student Get(long id)
         {
             var student = students.Find(x => x.id == id);
-            return student;
+            return student ;
         }
 
         // POST api/<StudentController>
