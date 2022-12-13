@@ -19,6 +19,10 @@ void SeedDb()
     var Natasha = new Student(1, UserType.student, "Natasha", "ABC", "1");
     var Sagi = new Student(2, UserType.student, "Sagi", "Fishman", "1");
     var Aviv = new Student(3, UserType.student, "Aviv", "GayBa", "1");
+    var itay = new Student(11, UserType.student, "Itay", "ABC", "1");
+    var lital = new Student(8, UserType.student, "Lital", "Fishman", "1");
+    var yaron = new Student(9, UserType.student, "Yaron", "GayBa", "1");
+    var david = new Student(10, UserType.student, "David", "GayBa", "1");
     context.Set<Student>().Add(Natasha);
     context.Set<Student>().Add(Sagi);
     context.Set<Student>().Add(Aviv);
@@ -99,8 +103,10 @@ void SeedDb()
     context.Set<GradeB>().Add(gradeB1);
     context.Set<GradeB>().Add(gradeB2);
 
-    Project project= new Project("Project Management", Erez.id, Sagi.id, Aviv.id, gradeA1.gradeAid, gradeB1.gradeBid);
-    context.Set<Project>().Add(project);
+    Project project1= new Project("Project Management", Erez.id, Sagi.id, Aviv.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project1);
 
+    Project project2 = new Project("akol tov", Erez.id, Natasha.id, yaron.id, gradeA2.gradeAid, gradeB2.gradeBid);
+    context.Set<Project>().Add(project1);
     context.SaveChanges();
 }

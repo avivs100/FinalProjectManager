@@ -64,12 +64,12 @@ export class DataProvaiderService {
       lastName: 'homo',
     });
     this.users.push({
-      email: 'avi1aviv2@gmail.com',
+      email: 'erez@gmail.com',
       id: 4,
-      pass: '102030',
+      pass: '1',
       userType: UserType.lecturer,
-      firstName: 'Yadin',
-      lastName: 'angular',
+      firstName: 'erz',
+      lastName: 'erez',
     });
     this.users.push({
       email: 'sagifishman1@gmail.com',

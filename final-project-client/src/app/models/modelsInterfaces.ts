@@ -19,6 +19,39 @@ export interface User {
   lastName: string;
 }
 
+export interface Admin {
+  id: number;
+  pass: string;
+  userType: UserType;
+  //email: String;
+  firstName: string;
+  lastName: string;
+}
+export interface constraint {
+  id: string;
+  dataTime: Date;
+}
+
+export interface Lecturer {
+  id: number;
+  pass: string;
+  userType: UserType;
+  //email: String;
+  firstName: string;
+  lastName: string;
+  constraints: constraint[];
+}
+
+export interface Student {
+  id: number;
+  pass: string;
+  userType: UserType;
+  //email: String;
+  firstName: string;
+  lastName: string;
+  partnerId: number;
+}
+
 export interface Project {
   StudentId1: number;
   StudentId2: number;
