@@ -13,6 +13,7 @@ namespace FinalProjectManger_server.Controllers
         static UsersDbContext context = new UsersDbContext();
         List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
         List<Constraint> constraints = context.Set<Constraint>().ToList();
+        List<ScheduleDates> scheduleDates = context.Set<ScheduleDates>().ToList();
         // GET: api/<LecturerController>
         [HttpGet]
         public IEnumerable<Lecturer> Get()
@@ -76,5 +77,10 @@ namespace FinalProjectManger_server.Controllers
         //    }
         //    return false;
         //}
+        [HttpGet("GetSchedulesTime")]
+        public IEnumerable<ScheduleDates> GetSchedulesTime()
+        {
+            return scheduleDates;
+        }
     }
 }
