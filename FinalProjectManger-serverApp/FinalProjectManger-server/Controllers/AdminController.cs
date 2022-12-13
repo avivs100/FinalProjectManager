@@ -21,7 +21,7 @@ namespace FinalProjectManger_server.Controllers
 
         // GET api/<AdminController>/5
         [HttpGet("{id}")]
-        public Admin Get(long id)
+        public Admin Get([FromRoute]long id)
         {
             var admin = admins.Find(x => x.id == id);
             return admin;
