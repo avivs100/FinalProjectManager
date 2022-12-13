@@ -99,6 +99,8 @@ void SeedDb()
     context.Set<GradeB>().Add(gradeB1);
     context.Set<GradeB>().Add(gradeB2);
 
+    Project project= new Project("Project Management", Erez.id, Sagi.id, Aviv.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project);
 
     context.SaveChanges();
 }

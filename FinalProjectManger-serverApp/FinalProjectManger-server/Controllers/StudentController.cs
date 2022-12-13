@@ -50,7 +50,7 @@ namespace FinalProjectManger_server.Controllers
 
         // PUT api/<StudentController>/5
         [HttpPut]
-        public void Put(long id, [FromBody] Student s)
+        public void Put([FromBody] Student s)
         {
             Student student = new Student();
             student.id = s.id;
@@ -74,5 +74,13 @@ namespace FinalProjectManger_server.Controllers
             }
             return false;
         }
+
+        //[HttpGet("id-pass")]
+        //public Student Get(List<object> idAndPass)
+        //{
+        //    var student = students.Find(x => x.id == id);
+        //    return student;
+        //}
+
     }
 }
