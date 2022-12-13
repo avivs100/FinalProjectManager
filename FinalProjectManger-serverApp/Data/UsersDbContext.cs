@@ -62,8 +62,5 @@ public class UsersDbContext : DbContext
 
         modelBuilder.Entity<Project>()
         .Property(e => e.ProjectId).ValueGeneratedNever();
-
-
-
     }
 }
