@@ -1,12 +1,18 @@
-import { Injectable } from '@angular/core';
-import { User, UserType } from '../models/modelsInterfaces';
+import { Injectable, OnInit } from '@angular/core';
+import { map, Observable, pipe, tap } from 'rxjs';
+import { Lecturer, Student, User } from '../models/modelsInterfaces';
 import { DataProvaiderService } from './data-provaider.service';
+import { LecturerApiService } from './lecturer-api.service';
+import { StudentApiService } from './student-api.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class LoginService implements OnInit {
   constructor(private data: DataProvaiderService) {}
+  public student: Student | null = null;
+  public lecturer: Lecturer | null = null;
+  ngOnInit(): void {}
 
   public connectedUser: User | null = this.data.users[1];
 
