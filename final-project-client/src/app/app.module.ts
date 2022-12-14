@@ -60,6 +60,11 @@ import { ServerApiService } from './services/server-api.service';
 import { WelcomeComponent } from './layout/welcome/welcome.component';
 import { StudentProjectsComponent } from './pages/projects/student-projects/student-projects.component';
 import { ProjectDetailsComponent } from './pages/projects/project-details/project-details.component';
+import { AdminApiService } from './services/admin-api.service';
+import { GeneralApiService } from './services/general-api.service';
+import { LecturerApiService } from './services/lecturer-api.service';
+import { LoginService } from './services/login-service.service';
+import { StateService } from './services/state.service';
 
 @NgModule({
   declarations: [
@@ -124,7 +129,16 @@ import { ProjectDetailsComponent } from './pages/projects/project-details/projec
     ConfirmDialogModule,
     TableModule,
   ],
-  providers: [ConfirmationService, MessageService, ServerApiService],
+  providers: [
+    ConfirmationService,
+    MessageService,
+    ServerApiService,
+    AdminApiService,
+    GeneralApiService,
+    LecturerApiService,
+    LoginService,
+    StateService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

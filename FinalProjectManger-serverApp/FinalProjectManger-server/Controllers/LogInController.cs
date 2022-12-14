@@ -18,17 +18,17 @@ namespace FinalProjectManger_server.Controllers
         List<Admin> admins = context.Set<Admin>().ToList();
 
         // GET: api/<LogInController>
-        [HttpGet()]
-        public UserType Get(long id, string Password)
+        [HttpGet("{id}/{password}")]
+        public UserType Get([FromRoute]long id,[FromRoute] string password)
         {
             var admin = admins.Find(x => x.id == id);
-            if (admin != null && admin.password.Equals(Password))
+            if (admin != null && admin.password.Equals(password))
                 return UserType.admin;
             var lecturer = lecturers.Find(x => x.id == id);
-            if (lecturer != null && lecturer.password.Equals(Password))
+            if (lecturer != null && lecturer.password.Equals(password))
                 return UserType.lecturer;
             var student = students.Find(x => x.id == id);
-            if (student != null && student.password.Equals(Password))
+            if (student != null && student.password.Equals(password))
                 return UserType.student;
             return UserType.none;
         }

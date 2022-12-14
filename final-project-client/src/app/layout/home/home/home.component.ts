@@ -5,6 +5,7 @@ import { UserType } from 'src/app/models/modelsInterfaces';
 import { LecturerApiService } from 'src/app/services/lecturer-api.service';
 import { LoginService } from 'src/app/services/login-service.service';
 import { ServerApiService } from 'src/app/services/server-api.service';
+import { StateService } from 'src/app/services/state.service';
 import { StudentApiService } from 'src/app/services/student-api.service';
 
 @Component({
@@ -14,25 +15,18 @@ import { StudentApiService } from 'src/app/services/student-api.service';
 export class HomeComponent implements OnInit, OnDestroy {
   public userType: UserType | undefined;
 
-  constructor(
-    public loginService: LoginService,
-    private router: Router,
-    private getService: ServerApiService,
-    private studentApi: StudentApiService,
-    private lecturerApi: LecturerApiService
-  ) {}
+  constructor(private router: Router, private state: StateService) {}
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    console.log('home page on destroy');
   }
 
   ngOnInit(): void {
-    if (this.loginService.connectedUser == null) {
+    if (this.state.connectedUser == null) {
+      console.log(this.state.connectedUser);
       this.router.navigate(['/login']);
     } else {
-      this.userType = this.loginService.connectedUser.userType;
+      this.userType = this.state.connectedUser.userType;
+      console.log(this.state.connectedUser);
     }
-    console.log('david');
-    this.studentApi.getStudent(1).subscribe((x) => console.log(x));
-    this.lecturerApi.getLecturer(4).subscribe((x) => console.log(x));
   }
 }

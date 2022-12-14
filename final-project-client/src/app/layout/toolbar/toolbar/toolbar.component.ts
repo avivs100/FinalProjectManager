@@ -1,6 +1,7 @@
 import { LoginService } from 'src/app/services/login-service.service';
 import { Component } from '@angular/core';
 import { User } from 'src/app/models/modelsInterfaces';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,10 +11,9 @@ import { User } from 'src/app/models/modelsInterfaces';
 export class ToolbarComponent {
   public firstName: string | undefined;
   public lastName: string | undefined;
-  public space = '   ';
 
-  constructor(private loginService: LoginService) {
-    this.firstName = loginService.connectedUser?.firstName;
-    this.lastName = loginService.connectedUser?.lastName;
+  constructor(private state: StateService) {
+    this.firstName = state.connectedUser?.firstName;
+    this.lastName = state.connectedUser?.lastName;
   }
 }

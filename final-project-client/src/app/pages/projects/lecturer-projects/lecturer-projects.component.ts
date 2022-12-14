@@ -17,8 +17,8 @@ export class LecturerProjectsComponent implements OnChanges {
 
   constructor(private data: DataProvaiderService) {}
   ngOnChanges(): void {
-    this.projects = this.data.Projects.filter(
-      (x) => x.lecturerId === this.user!.id
-    );
+    // this.projects = this.data.Projects.filter(
+    //   (x) => x.lecturerId === this.user!.id
+    // );
   }
 }

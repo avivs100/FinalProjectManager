@@ -25,10 +25,9 @@ export class LoginPageComponent {
   });
 
   onSubmit(formData: loginFormData) {
-    console.log(formData);
-    var success = this.loginService.login(formData.id, formData.password);
-    if (success == true) {
-      this.router.navigate(['']);
+    if (this.loginService.login(formData.id, formData.password)) {
+      this.router.navigate(['/home']);
+      console.log('submitform');
     } else {
       console.log('error');
     }

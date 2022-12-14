@@ -1,6 +1,7 @@
 ﻿using Data;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,20 +12,22 @@ namespace FinalProjectManger_server.Controllers
     public class AdminController : ControllerBase
     {
         static UsersDbContext context = new UsersDbContext();
-        List<Admin> admins = context.Set<Admin>().ToList();
+        
         // GET: api/<AdminController>
         [HttpGet]
-        public IEnumerable<Admin> Get()
+        public async Task<ActionResult<IReadOnlyList<Admin>>> ListAdmins()
         {
-            return admins;
+            return await context.Set<Admin>().ToListAsync();
         }
 
         // GET api/<AdminController>/5
         [HttpGet("{id}")]
-        public Admin Get(long id)
+        public async Task<ActionResult<Admin>> GetAdmin([FromRoute] long id)
         {
-            var admin = admins.Find(x => x.id == id);
-            return admin;
+            var admin = await context.Set<Admin>().Where(x => x.id == id).FirstOrDefaultAsync();
+            if (admin == null)
+                return NotFound();
+            return Ok(admin);
         }
     }
 }
