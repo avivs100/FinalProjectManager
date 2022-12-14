@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "Kfv7CpuY/aXhzKHNkbYAxRlF2mbDB24OP+j2y/T5vRdG2ZBLERwUdzMmrpE1vJGU5HmxJclzuexaZywsa/8cCw==",
   "success": true,
   "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
+=======
+  "dgSpecHash": "8A93NZpHb/Kz4obaK25bFtQ72u7Go6tf6G1FV1/Ais1cz8/NPV8oHFHIqs0GYugqHM2kGcS/e0S/49xhhhBxFA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\SAGIF2\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
+>>>>>>> 8a61ea1af2dc78f5be565850b73f59ba41ede88a
   "expectedPackageFiles": [],
   "logs": []
 }

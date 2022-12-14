@@ -12,6 +12,8 @@ namespace FinalProjectManger_server.Controllers
     {
         static UsersDbContext context = new UsersDbContext();
         List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
+        List<Constraint> constraints = context.Set<Constraint>().ToList();
+        List<ScheduleDates> scheduleDates = context.Set<ScheduleDates>().ToList();
         // GET: api/<LecturerController>
         [HttpGet]
         public IEnumerable<Lecturer> Get()
@@ -21,56 +23,64 @@ namespace FinalProjectManger_server.Controllers
 
         // GET api/<LecturerController>/5
         [HttpGet("{id}")]
-        public Lecturer Get(long id)
+        public Lecturer Get([FromRoute] long id)
         {
             var lecturer = lecturers.Find(x => x.id == id);
             return lecturer;
         }
 
         // POST api/<LecturerController>
-        [HttpPost]
-        public bool Post(long id, [FromBody] LecturerDetails lecturerDetails)
-        {
-            if (!(lecturers.Any(x => x.id == id)))
-            {
-                return false;
-            }
-            Lecturer lecturer = lecturers.Find(x => x.id == id);
-            context.Remove(lecturer);
-            context.SaveChanges();
-            lecturer.FirstName = lecturerDetails.FirstName;
-            lecturer.LastName = lecturerDetails.LastName;
-            lecturer.password = lecturerDetails.password;
-            context.Add(lecturer);
-            context.SaveChanges();
-            return true;
-        }
+        //[HttpPost]
+        //public bool Post([FromRoute] long id, [FromBody] LecturerDetails lecturerDetails)
+        //{
+        //    if (!(lecturers.Any(x => x.id == id)))
+        //    {
+        //        return false;
+        //    }
+        //    var lecturer = lecturers.Find(x => x.id == id);
+        //    var constraintsToDelete = new List<Constraint>();
+        //    context.Remove(lecturer);
+        //    context.SaveChanges();
+        //    lecturer.FirstName = lecturerDetails.FirstName;
+        //    lecturer.LastName = lecturerDetails.LastName;
+        //    lecturer.password = lecturerDetails.password;
+        //    context.Add(lecturer);
+        //    context.SaveChanges();
+        //    return true;
+        //}
 
         // PUT api/<LecturerController>/5
-        [HttpPut]
-        public void Put(int id, [FromBody] Lecturer l)
-        {
-            Lecturer lecturer = new Lecturer();
-            lecturer.id = l.id;
-            lecturer.FirstName = l.FirstName;
-            lecturer.LastName = l.LastName;
-            lecturer.password = l.password;
-            context.Add(lecturer);
-            context.SaveChanges();
-        }
+        //[HttpPut("{id}")]
+        //public void Put([FromRoute]int id, [FromBody] Lecturer l)
+        //{
+        //    Lecturer lecturer = new Lecturer();
+
+        //    lecturer.id = l.id;
+        //    lecturer.FirstName = l.FirstName;
+        //    lecturer.LastName = l.LastName;
+        //    lecturer.password = l.password;
+        //    context.Add(lecturer);
+        //    context.SaveChanges();
+        //}
 
         // DELETE api/<LecturerController>/5
-        [HttpDelete("{id}")]
-        public bool Delete(long id)
+        //[HttpDelete("{id}")]
+        //public bool Delete(long id)
+        //{
+        //    if (lecturers.Any(x => x.id == id))
+        //    {
+
+        //        Lecturer lecturerToDelete = lecturers.Find(x => x.id == id);
+        //        context.Remove(lecturerToDelete);
+        //        context.SaveChanges();
+        //        return true;
+        //    }
+        //    return false;
+        //}
+        [HttpGet("GetSchedulesTime")]
+        public IEnumerable<ScheduleDates> GetSchedulesTime()
         {
-            if (lecturers.Any(x => x.id == id))
-            {
-                Lecturer lecturerToDelete = lecturers.Find(x => x.id == id);
-                context.Remove(lecturerToDelete);
-                context.SaveChanges();
-                return true;
-            }
-            return false;
+            return scheduleDates;
         }
     }
 }

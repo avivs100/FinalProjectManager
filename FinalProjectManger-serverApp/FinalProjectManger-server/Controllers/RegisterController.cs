@@ -15,19 +15,19 @@ namespace FinalProjectManger_server.Controllers
         List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
         // PUT api/<RegisterController>/5
         [HttpPut("{id}")]
-        public bool Put(long id, string fName, string lName, string password, bool isLecturer)
+        public bool Put([FromRoute] long id, [FromBody] DetailsForRegister detailsForRegister)
         {
             if (id < 1)
             {
                 return false;
             }
-            if (isLecturer == false)
+            if (detailsForRegister.isLecturer == false)
             {
                 if(students.Any(x=>x.id == id))
                     return false;
                 else
                 {
-                    context.Add(new Student(id, UserType.student, fName, lName, password));
+                    context.Add(new Student(id, UserType.student, detailsForRegister.fName, detailsForRegister.lName, detailsForRegister.password));
                     context.SaveChanges();
                     return true;
                 }
@@ -38,7 +38,7 @@ namespace FinalProjectManger_server.Controllers
                     return false;
                 else
                 {
-                    context.Add(new Lecturer(id, UserType.lecturer, fName, lName, password));
+                    context.Add(new Lecturer(id, UserType.lecturer, detailsForRegister.fName, detailsForRegister.lName, detailsForRegister.password));
                     context.SaveChanges();
                     return true;
                 }

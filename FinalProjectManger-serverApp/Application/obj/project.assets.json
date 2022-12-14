@@ -8,19 +8,37 @@
     "net6.0": []
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\AVIVSHI\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\SAGIF2\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> 8a61ea1af2dc78f5be565850b73f59ba41ede88a
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
       "projectName": "Application",
       "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\SAGIF2\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
+      "projectName": "Application",
+      "projectPath": "C:\\Users\\SAGIF2\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\SAGIF2\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\SAGIF2\\Source\\Repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\obj\\",
+>>>>>>> 8a61ea1af2dc78f5be565850b73f59ba41ede88a
       "projectStyle": "PackageReference",
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\SAGIF2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> 8a61ea1af2dc78f5be565850b73f59ba41ede88a
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

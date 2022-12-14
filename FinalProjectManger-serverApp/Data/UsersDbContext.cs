@@ -62,5 +62,8 @@ public class UsersDbContext : DbContext
 
         modelBuilder.Entity<Project>()
         .Property(e => e.ProjectId).ValueGeneratedNever();
+
+        modelBuilder.Entity<ScheduleDates>()
+        .Property(e => e.id).ValueGeneratedNever();
     }
 }

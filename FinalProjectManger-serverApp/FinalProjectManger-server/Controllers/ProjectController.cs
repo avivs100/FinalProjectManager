@@ -12,24 +12,39 @@ namespace FinalProjectManger_server.Controllers
     {
         static UsersDbContext context = new UsersDbContext();
         List<Project> projects = context.Set<Project>().ToList();
+        List<Student> students = context.Set<Student>().ToList();
+        List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
+        List<GradeA> gradeAs = context.Set<GradeA>().ToList();
+        List<GradeB> gradeBs = context.Set<GradeB>().ToList();
         // GET: api/<ProjectController>
         [HttpGet]
-        public IEnumerable<Project> Get()
+        public IEnumerable<ProjectFull> Get()
         {
-            return projects;
+            var Fullprojects = new List<ProjectFull>();
+            foreach (var proj in projects)
+            {                
+                var student1 = students.Find(x=>x.id == proj.student1Id);
+                var student2 = students.Find(x => x.id == proj.student2Id);
+                var lecturer = lecturers.Find(x => x.id == proj.LecturerId);
+                var gradeA = gradeAs.Find(x => x.gradeAid == proj.gradeAId);
+                var gradeB = gradeBs.Find(x => x.gradeBid == proj.gradeBId);
+                var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB);
+                Fullprojects.Add(fullProj);
+            }
+            return Fullprojects;
         }
 
         // GET api/<ProjectController>/5
         [HttpGet("{id}")]
-        public Project Get(int id)
+        public Project Get([FromRoute] int id)
         {
             var project = projects.Find(x => x.ProjectId == id);
             return project;
         }
 
         // POST api/<ProjectController>
-        [HttpPost]
-        public bool Post(long id, [FromBody] ProjectDetails projectDetails)
+        [HttpPost("{id}")]
+        public bool Post([FromRoute] long id, [FromBody] ProjectDetails projectDetails)
         {
             if (!(projects.Any(x => x.ProjectId == id)))
             {
@@ -76,7 +91,7 @@ namespace FinalProjectManger_server.Controllers
 
         // DELETE api/<ProjectController>/5
         [HttpDelete("{id}")]
-        public bool Delete(int id)
+        public bool Delete([FromRoute] int id)
         {
             if (projects.Any(x => x.ProjectId == id))
             {
@@ -89,8 +104,8 @@ namespace FinalProjectManger_server.Controllers
 
         }
 
-        [HttpGet("GetFullProjectByIdProject")]
-        public ProjectFull GetFullProjectByIdProject(int id)
+        [HttpGet("GetFullProjectByIdProject{id}")]
+        public ProjectFull GetFullProjectByIdProject([FromRoute] int id)
         {
             var FullProject = new ProjectFull();
             var project = projects.Find(x => x.ProjectId == id);
@@ -118,8 +133,8 @@ namespace FinalProjectManger_server.Controllers
             return FullProject;
         }
 
-        [HttpGet("GetFullProjectByStudentId")]
-        public ProjectFull GetFullProjectByStudentId(int studentId)
+        [HttpGet("GetFullProjectByStudentId{studentId}")]
+        public ProjectFull GetFullProjectByStudentId([FromRoute]int studentId)
         {
             var lecturers = context.Set<Lecturer>().ToList();
             var gradeAs = context.Set<GradeA>().ToList();
@@ -182,8 +197,8 @@ namespace FinalProjectManger_server.Controllers
             }
             return null;
         }
-        [HttpGet("GetAllProjectsOfLecturer")]
-        public List<ProjectFull> GetAllProjectsOfLecturer(int lecturerId)
+        [HttpGet("GetAllProjectsOfLecturer{lecturerId}")]
+        public List<ProjectFull> GetAllProjectsOfLecturer([FromRoute]int lecturerId)
         {
             var gradeAs = context.Set<GradeA>().ToList();
             var gradeBs = context.Set<GradeB>().ToList();
