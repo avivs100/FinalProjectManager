@@ -1,9 +1,3 @@
 <app-admin-projects *ngIf="userType == 0"></app-admin-projects>
-<app-student-projects
-  *ngIf="userType == 1"
-  [user]="user"
-></app-student-projects>
-<app-lecturer-projects
-  *ngIf="userType == 2"
-  [user]="user"
-></app-lecturer-projects>
+<app-student-projects *ngIf="userType == 1"></app-student-projects>
+<app-lecturer-projects *ngIf="userType == 2"></app-lecturer-projects>

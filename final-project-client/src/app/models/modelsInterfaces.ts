@@ -2,6 +2,7 @@ export enum UserType {
   admin,
   Student,
   lecturer,
+  none,
 }
 
 export enum ProjectType {
@@ -19,7 +20,70 @@ export interface User {
   lastName: string;
 }
 
-export interface Project {
+export interface Admin {
+  id: number;
+  pass: string;
+  userType: UserType;
+  //email: String;
+  firstName: string;
+  lastName: string;
+}
+export interface constraint {
+  id: string;
+  dataTime: Date;
+}
+
+export interface Lecturer {
+  id: number;
+  pass: string;
+  userType: UserType;
+  //email: String;
+  firstName: string;
+  lastName: string;
+  constraints: constraint[];
+}
+
+export interface Student {
+  id: number;
+  pass: string;
+  userType: UserType;
+  //email: String;
+  firstName: string;
+  lastName: string;
+  partnerId: number;
+}
+
+export interface Grade {
+  description: string;
+  gradeCollectionId: number;
+  score: number;
+  precentage: number;
+  name: string;
+}
+export interface PresentationGrade {
+  id: number;
+  organization: Grade;
+  qualityOfProblem: Grade;
+  technicalQuality: Grade;
+  generalEvaluation: Grade;
+  additionalComment: string;
+  averageScore: number;
+}
+
+export interface BookGrade {
+  id: number;
+  averageScore: number;
+}
+
+export interface LecturerGrade {
+  id: number;
+  averageScore: number;
+  description: string;
+  grade1: Grade;
+  grade2: Grade;
+}
+
+export interface ProjectIds {
   StudentId1: number;
   StudentId2: number;
   lecturerId: number;
@@ -30,12 +94,26 @@ export interface Project {
 }
 
 export interface GradeA {
-  lecturerScore: number;
-  bookScore: number;
-  presentationScore: number;
+  gradeAid: number;
+  presentationGrade: PresentationGrade;
+  bookGrade: BookGrade;
+  lecturerGrade: LecturerGrade;
+  averageScore: number;
 }
+
 export interface GradeB {
-  lecturerScore: number;
-  bookScore: number;
-  presentationScore: number;
+  gradeBid: number;
+  presentationGrade: PresentationGrade;
+  bookGrade: BookGrade;
+  lecturerGrade: LecturerGrade;
+  averageScore: number;
+}
+export interface Project {
+  projectId: number;
+  projectName: string;
+  lecturer: Lecturer;
+  student1: Student;
+  student2: Student;
+  gradeB: GradeB;
+  gradeA: GradeA;
 }

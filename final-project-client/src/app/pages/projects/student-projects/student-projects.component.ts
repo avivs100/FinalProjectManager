@@ -12,8 +12,8 @@ export class StudentProjectsComponent implements OnChanges {
   public project: Project | null = null;
   constructor(private data: DataProvaiderService) {}
   ngOnChanges(): void {
-    this.project = this.data.Projects.find(
-      (x) => x.StudentId1 === this.user?.id
-    )!;
+    // this.project = this.data.Projects.find(
+    //   (x) => x.StudentId1 === this.user?.id
+    // )!;
   }
 }
