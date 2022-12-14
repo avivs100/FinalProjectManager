@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   GradeA,
   GradeB,
-  Project,
+  ProjectFull,
   ProjectType,
   User,
   UserType,
@@ -15,7 +15,7 @@ export class DataProvaiderService {
   public users: User[] = [];
   public gradesA: GradeA[] = [];
   public gradesB: GradeB[] = [];
-  public Projects: Project[] = [];
+  public Projects: ProjectFull[] = [];
 
   // constructor() {
   //   this.pushUsers();

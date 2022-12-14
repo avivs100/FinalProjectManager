@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Lecturer, Project } from '../models/modelsInterfaces';
+import { Lecturer, ProjectFull } from '../models/modelsInterfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class LecturerApiService {
     return this.http.get<Lecturer>(`${this.serverUrl}/Lecturer/${id}`);
   }
 
-  getAllProject(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.serverUrl + '/Project');
+  getAllProject(): Observable<ProjectFull[]> {
+    return this.http.get<ProjectFull[]>(this.serverUrl + '/Project');
   }
 }

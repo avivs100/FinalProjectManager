@@ -26,7 +26,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Lecturer>> Get([FromRoute] long id)
         {
-            var lecturer = context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefault();
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
             if (lecturer == null)
             {
                 return NotFound();

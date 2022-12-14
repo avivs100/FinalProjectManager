@@ -25,11 +25,11 @@ namespace FinalProjectManger_server.Controllers
             var Fullprojects = new List<ProjectFull>();
             foreach (var proj in projects)
             {                
-                var student1 = context.Set<Student>().Where(x=>x.id == proj.student1Id).FirstOrDefault();
-                var student2 = context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefault();
-                var lecturer = context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefault();
-                var gradeA = context.Set<GradeA>().Where(x => x.gradeAid == proj.gradeAId).FirstOrDefault();
-                var gradeB = context.Set<GradeB>().Where(x => x.gradeBid == proj.gradeBId).FirstOrDefault();
+                var student1 = await context.Set<Student>().Where(x=>x.id == proj.student1Id).FirstOrDefaultAsync();
+                var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
+                var lecturer = await  context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
+                var gradeA = await context.Set<GradeA>().Include(b=>b.bookGrade).Include(z => z.lecturerGrade).Include(e => e.presentationGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
+                var gradeB = await context.Set<GradeB>().Include(b => b.bookGrade).Include(z => z.lecturerGrade).Include(e => e.presentationGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
                 var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB);
                 Fullprojects.Add(fullProj);
             }

@@ -101,7 +101,6 @@ export interface GradeA {
   presentationGrade: PresentationGrade;
   bookGrade: BookGrade;
   lecturerGrade: LecturerGrade;
-  averageScore: number;
 }
 
 export interface GradeB {
@@ -111,7 +110,7 @@ export interface GradeB {
   lecturerGrade: LecturerGrade;
   averageScore: number;
 }
-export interface Project {
+export interface ProjectFull {
   projectId: number;
   projectName: string;
   lecturer: Lecturer;

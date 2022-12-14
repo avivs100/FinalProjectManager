@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Project, User } from 'src/app/models/modelsInterfaces';
+import { ProjectFull, User } from 'src/app/models/modelsInterfaces';
 import { DataProvaiderService } from 'src/app/services/data-provaider.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { DataProvaiderService } from 'src/app/services/data-provaider.service';
 })
 export class StudentProjectsComponent implements OnChanges {
   @Input() public user: User | null = null;
-  public project: Project | null = null;
+  public project: ProjectFull | null = null;
   constructor(private data: DataProvaiderService) {}
   ngOnChanges(): void {
     // this.project = this.data.Projects.find(

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Project, User } from 'src/app/models/modelsInterfaces';
+import { ProjectFull, User } from 'src/app/models/modelsInterfaces';
 import { DataProvaiderService } from 'src/app/services/data-provaider.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class LecturerProjectsComponent implements OnChanges {
   selectedProduct($event: any) {
     throw new Error('Method not implemented.');
   }
-  public projects: Project[] = [];
+  public projects: ProjectFull[] = [];
 
   @Input() public user: User | null = null;
 
@@ -20,5 +20,9 @@ export class LecturerProjectsComponent implements OnChanges {
     // this.projects = this.data.Projects.filter(
     //   (x) => x.lecturerId === this.user!.id
     // );
+  }
+
+  public selectedProject({ data }: { data: ProjectFull }) {
+    console.log(data);
   }
 }
