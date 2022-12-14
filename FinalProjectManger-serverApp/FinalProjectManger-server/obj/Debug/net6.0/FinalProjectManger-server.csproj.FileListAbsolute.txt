@@ -874,7 +874,6 @@ C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\Fi
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.AssemblyInfoInputs.cache
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.AssemblyInfo.cs
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.csproj.CoreCompileInputs.cache
-C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\staticwebassets\msbuild.FinalProjectManger-server.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\staticwebassets\msbuild.build.FinalProjectManger-server.props
@@ -890,3 +889,4 @@ C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\Fi
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.pdb
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.genruntimeconfig.cache
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\ref\FinalProjectManger-server.dll
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.MvcApplicationPartsAssemblyInfo.cs

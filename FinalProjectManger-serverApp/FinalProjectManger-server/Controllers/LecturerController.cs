@@ -13,66 +13,32 @@ namespace FinalProjectManger_server.Controllers
     {
         static UsersDbContext context = new UsersDbContext();
         List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
+        List<Constraint> constraints = context.Set<Constraint>().ToList();
+        List<ScheduleDates> scheduleDates = context.Set<ScheduleDates>().ToList();
         // GET: api/<LecturerController>
-        [HttpGet]
-        public IEnumerable<Lecturer> Get()
+        [HttpGet("ListLecturers")]
+        public async Task<ActionResult<IReadOnlyList<Lecturer>>> ListLecturers()
         {
-            return lecturers;
+            return await context.Set<Lecturer>().ToListAsync();
         }
 
         // GET api/<LecturerController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Lecturer>> Get([FromRoute]long id)
+        public async Task<ActionResult<Lecturer>> Get([FromRoute] long id)
         {
-            var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
-            if (lecturer == null) return NotFound();
-            return lecturer;
-        }
-
-        // POST api/<LecturerController>
-        [HttpPost]
-        public bool Post(long id, [FromBody] LecturerDetails lecturerDetails)
-        {
-            if (!(lecturers.Any(x => x.id == id)))
+            var lecturer = context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefault();
+            if (lecturer == null)
             {
-                return false;
+                return NotFound();
             }
-            Lecturer lecturer = lecturers.Find(x => x.id == id);
-            context.Remove(lecturer);
-            context.SaveChanges();
-            lecturer.FirstName = lecturerDetails.FirstName;
-            lecturer.LastName = lecturerDetails.LastName;
-            lecturer.password = lecturerDetails.password;
-            context.Add(lecturer);
-            context.SaveChanges();
-            return true;
+            else
+                return Ok(lecturer);
         }
 
-        // PUT api/<LecturerController>/5
-        [HttpPut]
-        public void Put(int id, [FromBody] Lecturer l)
+        [HttpGet("ScheduleDates")]
+        public async Task<ActionResult<IReadOnlyList<ScheduleDates>>> ScheduleDates()
         {
-            Lecturer lecturer = new Lecturer();
-            lecturer.id = l.id;
-            lecturer.FirstName = l.FirstName;
-            lecturer.LastName = l.LastName;
-            lecturer.password = l.password;
-            context.Add(lecturer);
-            context.SaveChanges();
-        }
-
-        // DELETE api/<LecturerController>/5
-        [HttpDelete("{id}")]
-        public bool Delete(long id)
-        {
-            if (lecturers.Any(x => x.id == id))
-            {
-                Lecturer lecturerToDelete = lecturers.Find(x => x.id == id);
-                context.Remove(lecturerToDelete);
-                context.SaveChanges();
-                return true;
-            }
-            return false;
+            return await context.Set<ScheduleDates>().ToListAsync();
         }
     }
 }

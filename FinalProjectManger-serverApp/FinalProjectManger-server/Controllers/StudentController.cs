@@ -32,8 +32,8 @@ namespace FinalProjectManger_server.Controllers
         }
 
         // POST api/<StudentController>
-        [HttpPost] 
-        public bool Post(long id, [FromBody] StudentDetails studentDetails)
+        [HttpPost("{id}")] 
+        public bool Post([FromRoute]long id, [FromBody] StudentDetails studentDetails)
         {
             if (!(students.Any(x => x.id == id)))
             {
@@ -51,11 +51,11 @@ namespace FinalProjectManger_server.Controllers
         }
 
         // PUT api/<StudentController>/5
-        [HttpPut]
-        public void Put([FromBody] Student s)
+        [HttpPut("{id}")]
+        public void Put([FromRoute] long id, [FromBody] StudentDetails s)
         {
             Student student = new Student();
-            student.id = s.id;
+            student.id = id;
             student.FirstName = s.FirstName;
             student.LastName = s.LastName;
             student.password = s.password;
@@ -65,7 +65,7 @@ namespace FinalProjectManger_server.Controllers
 
         // DELETE api/<StudentController>/5
         [HttpDelete("{id}")]
-        public bool Delete(long id)
+        public bool Delete([FromRoute]long id)
         {
             if (students.Any(x => x.id == id))
             {

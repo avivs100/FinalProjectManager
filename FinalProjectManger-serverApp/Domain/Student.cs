@@ -36,4 +36,12 @@ namespace Domain
         public string LastName { get; set; }
     }
 
+    public class DetailsForRegister
+    {
+        public bool isLecturer { get; set; }
+        public string password { get; set; }
+        public string lName { get; set; }
+        public string fName { get; set; }
+    }
+
 }
