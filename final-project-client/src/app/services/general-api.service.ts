@@ -11,9 +11,9 @@ export class GeneralApiService {
 
   constructor(private http: HttpClient) {}
 
-  public login(id: number, pass: string): Observable<any> {
+  public login(id: number, pass: string): Observable<number> {
     console.log('generalApiLoginFunction');
-    return this.http.get<any>(this.serverUrl + `/LogIn/${id}/${pass}`);
+    return this.http.get<number>(this.serverUrl + `/LogIn/${id}/${pass}`);
   }
 
   getAdmin(id: number): Observable<Admin> {

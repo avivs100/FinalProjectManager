@@ -22,8 +22,9 @@ export interface User {
 
 export interface Admin {
   id: number;
-  pass: string;
+  password: string;
   userType: UserType;
+
   //email: String;
   firstName: string;
   lastName: string;
@@ -35,8 +36,9 @@ export interface constraint {
 
 export interface Lecturer {
   id: number;
-  pass: string;
+
   userType: UserType;
+  password: string;
   //email: String;
   firstName: string;
   lastName: string;
@@ -45,8 +47,9 @@ export interface Lecturer {
 
 export interface Student {
   id: number;
-  pass: string;
+
   userType: UserType;
+  password: string;
   //email: String;
   firstName: string;
   lastName: string;

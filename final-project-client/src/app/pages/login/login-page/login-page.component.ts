@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { delay } from 'rxjs';
 import { LoginService } from 'src/app/services/login-service.service';
+import { StateService } from 'src/app/services/state.service';
 
 export interface loginFormData {
   id: number;
@@ -17,24 +20,21 @@ export class LoginPageComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
-  ) {}
+    private loginService: LoginService,
+    private state: StateService
+  ) {
+    console.log('now log in commponent start');
+  }
   public form: FormGroup = this.fb.group({
     id: [, Validators.required],
     password: ['', Validators.required],
   });
 
   onSubmit(formData: loginFormData) {
-    if (this.loginService.login(formData.id, formData.password)) {
-      this.router.navigate(['/home']);
-      console.log('submitform');
-    } else {
-      console.log('error');
-    }
+    this.loginService.login(formData.id, formData.password);
   }
 
   public moveToRegisterPage(): void {
-    console.log('david');
     this.router.navigate(['register']);
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './layout/home/home/home.component';
+import { WelcomeComponent } from './layout/welcome/welcome.component';
 import { GradesComponent } from './pages/grades-page/grades-page.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { MessagesPageComponent } from './pages/messages-page/messages-page.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
+      {
+        path: 'welcome',
+        component: WelcomeComponent,
+      },
       {
         path: 'messages',
         component: MessagesPageComponent,

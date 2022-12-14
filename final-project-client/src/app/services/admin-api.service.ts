@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Admin } from '../models/modelsInterfaces';
+import { Admin, Project } from '../models/modelsInterfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +13,9 @@ export class AdminApiService {
 
   getAdmin(id: number): Observable<Admin> {
     return this.http.get<Admin>(`${this.serverUrl}/Admin/${id}`);
+  }
+
+  getProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.serverUrl}/Project`);
   }
 }

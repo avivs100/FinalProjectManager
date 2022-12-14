@@ -1,5 +1,16 @@
 import { Injectable, OnInit } from '@angular/core';
-import { map, observable, Observable, pipe, Subscriber, tap } from 'rxjs';
+import {
+  catchError,
+  lastValueFrom,
+  map,
+  observable,
+  Observable,
+  of,
+  pipe,
+  Subscriber,
+  take,
+  tap,
+} from 'rxjs';
 import {
   Admin,
   Lecturer,
@@ -13,6 +24,8 @@ import { LecturerApiService } from './lecturer-api.service';
 import { StateService } from './state.service';
 import { StudentApiService } from './student-api.service';
 import { SubSink } from 'subsink';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
@@ -20,47 +33,65 @@ import { SubSink } from 'subsink';
 export class LoginService implements OnInit {
   constructor(
     private generalApi: GeneralApiService,
-    private state: StateService
+    private state: StateService,
+    private router: Router
   ) {}
-  public type: UserType | null = null;
+  public ob$: Observable<any> | undefined;
+  public type: number | undefined;
   private readonly subs: SubSink = new SubSink();
+
   ngOnInit(): void {}
 
-  public login(id: number, pass: string): boolean {
-    const sub = this.generalApi
+  public login(id: number, pass: string) {
+    this.generalApi
       .login(id, pass)
-      .subscribe((x: UserType) => (this.type = x));
+      .pipe(
+        tap((x) => console.log('type from the server is:', x)),
+        catchError((err) => {
+          return of(this.showError());
+        })
+      )
+      .subscribe((x) => {
+        if (x === 0) {
+          this.generalApi
+            .getAdmin(id)
+            .pipe(
+              tap((admin) => (this.state.connectedUser = admin)),
+              catchError((err) => {
+                return of(this.showError());
+              })
+            )
+            .subscribe(() => this.router.navigate(['/home']));
+        }
+        if (x === 1) {
+          this.generalApi
+            .getStudent(id)
+            .pipe(
+              tap((student) => (this.state.connectedUser = student)),
+              catchError((err) => {
+                return of(this.showError());
+              })
+            )
+            .subscribe(() => this.router.navigate(['/home']));
+        }
+        if (x === 2) {
+          this.generalApi
+            .getLecturer(id)
+            .pipe(
+              tap((lecturer) => (this.state.connectedUser = lecturer)),
+              catchError((err) => {
+                return of(this.showError());
+              })
+            )
+            .subscribe(() => this.router.navigate(['/home']));
+        }
+        if (x === 3) {
+          this.showError();
+        }
+      });
+  }
 
-    console.log('beforeswitch');
-    console.log(this.type);
-    switch (this.type) {
-      case 0: {
-        console.log('InSwitch1');
-        this.subs.sink = this.generalApi
-          .getAdmin(id)
-          .subscribe((a) => (this.state.connectedUser = a));
-        break;
-      }
-      case 1: {
-        console.log('InSwitch2');
-        this.subs.sink = this.generalApi
-          .getStudent(id)
-          .subscribe((s) => (this.state.connectedUser = s));
-        break;
-      }
-      case 2: {
-        console.log('InSwitch3');
-        this.subs.sink = this.generalApi
-          .getLecturer(id)
-          .subscribe((l) => (this.state.connectedUser = l));
-        break;
-      }
-      case 3: {
-        console.log('InSwitch4');
-        return false;
-      }
-    }
-    this.subs.unsubscribe();
-    return true;
+  showError() {
+    console.log('error');
   }
 }

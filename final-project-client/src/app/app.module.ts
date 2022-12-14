@@ -18,7 +18,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { ToastModule } from 'primeng/toast';
+
 import { TagModule } from 'primeng/tag';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
@@ -65,6 +65,7 @@ import { GeneralApiService } from './services/general-api.service';
 import { LecturerApiService } from './services/lecturer-api.service';
 import { LoginService } from './services/login-service.service';
 import { StateService } from './services/state.service';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { StateService } from './services/state.service';
     ProjectDetailsComponent,
   ],
   imports: [
+    ToastModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
