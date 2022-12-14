@@ -1,6 +1,7 @@
 ﻿using Data;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,40 +13,38 @@ namespace FinalProjectManger_server.Controllers
     public class ConstraintController : ControllerBase
     {
         static UsersDbContext context = new UsersDbContext();
-        List<Constraint> constraints = context.Set<Constraint>().ToList();
-        List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
         // GET: api/<ConstraintController>
         [HttpGet]
-        public IEnumerable<Constraint> Get()
+        public async Task<ActionResult<IReadOnlyList<Constraint>>> ListAdmins()
         {
-            return constraints;
+            return await context.Set<Constraint>().ToListAsync();
         }
-
-        // POST api/<ConstraintController>
-        [HttpPost("{lecturerID}")]
-        public bool Post([FromRoute] long lecturerID, [FromBody] ConstraintDetails constraint)
+        [HttpPost("AddConstraint{lecturerID}")]
+        public async Task<ActionResult<Constraint>> AddConstraint([FromRoute] long lecturerID, [FromBody] ConstraintDetails constraint)
         {
-            var lecturer = lecturers.Find(x => x.id== lecturerID);
-            if (lecturer == null) return false;
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == lecturerID).FirstOrDefaultAsync();
+            if (lecturer == null) return NotFound();
             var constraintToAdd = new Constraint(constraint.Year, constraint.Month, constraint.Day, constraint.Hour, constraint.Minute, constraint.Second);
             lecturer.constraints.Add(constraintToAdd);
-            constraints.Add(constraintToAdd);
+            context.Set<Constraint>().Add(constraintToAdd);
             context.SaveChanges();
-            return true;
+            return Ok();
         }
+
 
         // DELETE api/<ConstraintController>/5
         [HttpDelete("{lecturerID}")]
-        public bool Delete([FromRoute]int lecturerID, [FromBody] Guid constraintID)
+        public async Task<ActionResult<Constraint>> Delete([FromRoute] int lecturerID, [FromBody] Guid constraintID)
         {
-            var lecturer = lecturers.Find(x => x.id == lecturerID);
-            if (lecturer == null) return false;
-            var conToDel = constraints.Find(x => x.id == constraintID);
-            if (conToDel == null) return false;
-            lecturer.constraints.Remove(conToDel);
-            constraints.Remove(conToDel);
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == lecturerID).FirstOrDefaultAsync();
+            var constraints = await context.Set<Constraint>().ToListAsync();
+            if (lecturer == null) return NotFound();
+            var conToDel = await context.Set<Constraint>().Where(x => x.id == constraintID).FirstOrDefaultAsync();
+            if (conToDel == null) return NotFound();
+            var a =  lecturer.constraints.Remove(conToDel);
+            context.Remove(conToDel);
             context.SaveChanges();
-            return true;
+            return Ok();
         }
     }
 }

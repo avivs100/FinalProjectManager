@@ -1,6 +1,7 @@
 ﻿using Data;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,48 +12,23 @@ namespace FinalProjectManger_server.Controllers
     public class GradesController : ControllerBase
     {
         static UsersDbContext context = new UsersDbContext();
-        List<Student> students = context.Set<Student>().ToList();
-        List<LecturerGrade> LecturerGrades = context.Set<LecturerGrade>().ToList();
-        List<PresentationGrade> PresentationGrades = context.Set<PresentationGrade>().ToList();
-        List<BookGrade> BookGrades = context.Set<BookGrade>().ToList();
-        List<Project> Projects = context.Set<Project>().ToList();
 
-
-        [HttpGet("GetLecturerGrade")]
-        public IEnumerable<LecturerGrade> GetLecturerGrade()
+        [HttpGet("LecturerGrades")]
+        public async Task<ActionResult<IReadOnlyList<LecturerGrade>>> LecturerGrades()
         {
-            return LecturerGrades;
+            return await context.Set<LecturerGrade>().ToListAsync();
         }
 
-        [HttpGet("GetPresentationGrade")]
-        public IEnumerable<PresentationGrade> GetPresentationGrade()
+        [HttpGet("BookGrades")]
+        public async Task<ActionResult<IReadOnlyList<BookGrade>>> BookGrades()
         {
-            return PresentationGrades;
+            return await context.Set<BookGrade>().ToListAsync();
+        }
+        [HttpGet("PresentationGrades")]
+        public async Task<ActionResult<IReadOnlyList<PresentationGrade>>> PresentationGrades()
+        {
+            return await context.Set<PresentationGrade>().ToListAsync();
         }
 
-        [HttpGet("GetBookGrade")]
-        public IEnumerable<BookGrade> GetBookGrade()
-        {
-            return BookGrades;
-        }
-
-
-
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<GradesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<GradesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
