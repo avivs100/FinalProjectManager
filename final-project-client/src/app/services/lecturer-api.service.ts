@@ -22,4 +22,10 @@ export class LecturerApiService {
   getAllProject(): Observable<ProjectFull[]> {
     return this.http.get<ProjectFull[]>(this.serverUrl + '/Project');
   }
+
+  getLecturerProjects(id: string): Observable<ProjectFull[]> {
+    return this.http.get<ProjectFull[]>(
+      this.serverUrl + `/Project/GetAllProjectsOfLecturer/${id}`
+    );
+  }
 }
