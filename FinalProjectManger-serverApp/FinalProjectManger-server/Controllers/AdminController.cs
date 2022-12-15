@@ -29,5 +29,14 @@ namespace FinalProjectManger_server.Controllers
                 return NotFound();
             return Ok(admin);
         }
+
+        [HttpPut("PutScheduleDates")]
+        public async Task<ActionResult<ScheduleDates>> PutScheduleDates([FromBody] ScheduleDatesDetails details)
+        {
+            ScheduleDates scheduleDates = new ScheduleDates(details.date1, details.date2);
+            context.Set<ScheduleDates>().Add(scheduleDates);
+            context.SaveChanges();
+            return Ok(scheduleDates);
+        }
     }
 }
