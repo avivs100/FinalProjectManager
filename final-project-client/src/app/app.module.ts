@@ -68,7 +68,8 @@ import { StateService } from './services/state.service';
 import { ToastModule } from 'primeng/toast';
 import { ScheduleDetailsComponent } from './pages/schedule-page/schedule-details/schedule-details.component';
 import { CreateScheduleComponent } from './pages/schedule-page/admin-schedule/create-schedule/create-schedule.component';
-import { SelectScheduleDaysComponent } from './pages/schedule-page/admin-schedule/select-schedule-days/select-schedule-days.component';
+import { SelectScheduleDaysDialogComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-dialog.component';
+//import { SelectScheduleDaysFormComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-form/select-schedule-days-form.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,7 @@ import { SelectScheduleDaysComponent } from './pages/schedule-page/admin-schedul
     ProjectDetailsComponent,
     ScheduleDetailsComponent,
     CreateScheduleComponent,
-    SelectScheduleDaysComponent,
+    SelectScheduleDaysDialogComponent,
   ],
   imports: [
     ToastModule,
