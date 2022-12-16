@@ -21,8 +21,20 @@ void SeedDb()
     var Aviv = new Student(3, UserType.student, "Aviv", "GayBa", "1");
     var itay = new Student(11, UserType.student, "Itay", "ABC", "1");
     var lital = new Student(8, UserType.student, "Lital", "Fishman", "1");
-    var yaron = new Student(9, UserType.student, "Yaron", "GayBa", "1");
-    var david = new Student(10, UserType.student, "David", "GayBa", "1");
+    var yaron = new Student(9, UserType.student, "Yaron", "Cohen", "1");
+    var david = new Student(10, UserType.student, "David", "Levi", "1");
+    var shlomi = new Student(11, UserType.student, "shlomi", "Ashkenazi", "1");
+    var marom = new Student(12, UserType.student, "marom", "Muhamad", "1");
+    var Menahem = new Student(13, UserType.student, "Yaron", "Argaz", "1");
+    var Meshulam = new Student(14, UserType.student, "David", "Kesef", "1");
+    var Benny = new Student(15, UserType.student, "Benny", "Kise", "1");
+    var Munitz = new Student(16, UserType.student, "Munitz", "Shulhan", "1");
+    var messi = new Student(17, UserType.student, "Messi", "Kise", "1");
+    var hameleh = new Student(18, UserType.student, "King", "Shulhan", "1");
+    context.Set<Student>().Add(lital);
+    context.Set<Student>().Add(yaron);
+    context.Set<Student>().Add(david);
+    context.Set<Student>().Add(itay);
     context.Set<Student>().Add(Natasha);
     context.Set<Student>().Add(Sagi);
     context.Set<Student>().Add(Aviv);
@@ -110,11 +122,23 @@ void SeedDb()
     GradeB gradeB2 = new GradeB(PresentationGrade2, bookGrade2, lecturerGrade2);
     context.Set<GradeB>().Add(gradeB1);
     context.Set<GradeB>().Add(gradeB2);
-
+    
     Project project1= new Project("Project Management", Erez.id, Sagi.id, Aviv.id, gradeA1.gradeAid, gradeB1.gradeBid);
     context.Set<Project>().Add(project1);
+    Project project2 = new Project("Test Schedule", Erez.id, Natasha.id, yaron.id, gradeA2.gradeAid, gradeB2.gradeBid);
+    context.Set<Project>().Add(project2);
+    Project project3 = new Project("Image Painting", Ohad.id, yaron.id, lital.id, gradeA2.gradeAid, gradeB2.gradeBid);
+    context.Set<Project>().Add(project3);
+    Project project4 = new Project("akol tov", Meni.id, david.id, itay.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project4);
+    Project project5 = new Project("Name1", Meni.id, Menahem.id, Meshulam.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project5);
+    Project project6 = new Project("Name2", Meni.id, marom.id, shlomi.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project6);
+    Project project7 = new Project("Name4", Ohad.id, Benny.id, Munitz.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project7);
+    Project project8 = new Project("Name8", Ohad.id, messi.id, hameleh.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project8);
 
-    Project project2 = new Project("akol tov", Erez.id, Natasha.id, yaron.id, gradeA2.gradeAid, gradeB2.gradeBid);
-    context.Set<Project>().Add(project1);
     context.SaveChanges();
 }
