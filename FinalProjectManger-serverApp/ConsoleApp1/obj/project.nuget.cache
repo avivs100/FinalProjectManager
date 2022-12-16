@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "ExMzAebIbS20uoEzRtPo4Au7uKzuck4RC1N31ZsVNrmYHcovC3opjLZ5vQ9Z9lBG/ap32nI9IrRDDNLwPXyXCg==",
+=======
+  "dgSpecHash": "K+RcsWypO9Szhp7Gh3aEnkVtOwsh1YqP0M1kEa80wcFXsuIMQ75ZK/vLwyZLoxrvfgtHjVXQ0DrWHA3hpjRkbw==",
+>>>>>>> cdd7e17b4d2936f510111d6efe4489e98655b3e8
   "success": true,
   "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [

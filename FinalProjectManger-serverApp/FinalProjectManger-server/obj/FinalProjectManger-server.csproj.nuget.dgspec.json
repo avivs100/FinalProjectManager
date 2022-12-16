@@ -9,9 +9,15 @@
       "restore": {
         "projectUniqueName": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
         "projectName": "Data",
+<<<<<<< HEAD
         "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\obj\\",
+=======
+        "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\SAGIF2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\obj\\",
+>>>>>>> cdd7e17b4d2936f510111d6efe4489e98655b3e8
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",

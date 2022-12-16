@@ -12,9 +12,7 @@ namespace FinalProjectManger_server.Controllers
     public class LecturerController : ControllerBase
     {
         static UsersDbContext context = new UsersDbContext();
-        List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
-        List<Constraint> constraints = context.Set<Constraint>().ToList();
-        List<ScheduleDates> scheduleDates = context.Set<ScheduleDates>().ToList();
+
         // GET: api/<LecturerController>
         [HttpGet("ListLecturers")]
         public async Task<ActionResult<IReadOnlyList<Lecturer>>> ListLecturers()
@@ -26,7 +24,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Lecturer>> Get([FromRoute] long id)
         {
-            var lecturer = context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefault();
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
             if (lecturer == null)
             {
                 return NotFound();
@@ -40,5 +38,12 @@ namespace FinalProjectManger_server.Controllers
         {
             return await context.Set<ScheduleDates>().ToListAsync();
         }
+
+        //[HttpPut("AddConstraint")]
+        //public async Task<ActionResult<IReadOnlyList<Constraint>>> AddConstraint([FromRoute] long id, [FromBody] ConstraintDetails constraintDetails)
+        //{
+        //    Constraint constraint = new Constraint(constraintDetails.Year, constraintDetails.Month, constraintDetails.Day, constraintDetails.Hour, constraintDetails.Minute, constraintDetails.Second);
+        //    await context.Set<Constraint>().Add(constraint);
+        //}
     }
 }

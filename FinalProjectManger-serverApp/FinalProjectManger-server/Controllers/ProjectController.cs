@@ -13,10 +13,6 @@ namespace FinalProjectManger_server.Controllers
     public class ProjectController : ControllerBase
     {
         static UsersDbContext context = new UsersDbContext();
-        List<Student> students = context.Set<Student>().ToList();
-        List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
-        List<GradeA> gradeAs = context.Set<GradeA>().ToList();
-        List<GradeB> gradeBs = context.Set<GradeB>().ToList();
         // GET: api/<ProjectController>
         [HttpGet("GetProjects")]
         public async Task<ActionResult<IReadOnlyList<ProjectFull>>> GetProjects()
@@ -25,11 +21,11 @@ namespace FinalProjectManger_server.Controllers
             var Fullprojects = new List<ProjectFull>();
             foreach (var proj in projects)
             {                
-                var student1 = context.Set<Student>().Where(x=>x.id == proj.student1Id).FirstOrDefault();
-                var student2 = context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefault();
-                var lecturer = context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefault();
-                var gradeA = context.Set<GradeA>().Where(x => x.gradeAid == proj.gradeAId).FirstOrDefault();
-                var gradeB = context.Set<GradeB>().Where(x => x.gradeBid == proj.gradeBId).FirstOrDefault();
+                var student1 = await context.Set<Student>().Where(x=>x.id == proj.student1Id).FirstOrDefaultAsync();
+                var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
+                var lecturer = await context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
+                var gradeA = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
+                var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
                 var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB);
                 Fullprojects.Add(fullProj);
             }
@@ -43,11 +39,11 @@ namespace FinalProjectManger_server.Controllers
             var projects = await context.Set<Project>().ToListAsync();
             var proj = projects.Where(x => x.ProjectId == id).FirstOrDefault();
             if(proj == null) return NotFound();
-            var student1 = context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefault();
-            var student2 = context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefault();
-            var lecturer = context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefault();
-            var gradeA = context.Set<GradeA>().Where(x => x.gradeAid == proj.gradeAId).FirstOrDefault();
-            var gradeB = context.Set<GradeB>().Where(x => x.gradeBid == proj.gradeBId).FirstOrDefault();
+            var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
+            var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
+            var gradeA = await context.Set<GradeA>().Include(x=>x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
+            var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
             var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB);
             return Ok(fullProj);
         }
@@ -57,11 +53,11 @@ namespace FinalProjectManger_server.Controllers
         {
             var project = new Project();
 
-            var student1 = context.Set<Student>().Where(x => x.id == projectDetails.student1Id).FirstOrDefault();
-            var student2 = context.Set<Student>().Where(x => x.id == projectDetails.student2Id).FirstOrDefault();
-            var lecturer = context.Set<Lecturer>().Where(x => x.id == projectDetails.LecturerId).FirstOrDefault();
-            var gradeA = context.Set<GradeA>().Where(x => x.gradeAid == projectDetails.gradeAId).FirstOrDefault();
-            var gradeB = context.Set<GradeB>().Where(x => x.gradeBid == projectDetails.gradeBId).FirstOrDefault();
+            var student1 = await context.Set<Student>().Where(x => x.id == projectDetails.student1Id).FirstOrDefaultAsync();
+            var student2 = await context.Set<Student>().Where(x => x.id == projectDetails.student2Id).FirstOrDefaultAsync();
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == projectDetails.LecturerId).FirstOrDefaultAsync();
+            var gradeA = await context.Set<GradeA>().Where(x => x.gradeAid == projectDetails.gradeAId).FirstOrDefaultAsync();
+            var gradeB = await context.Set<GradeB>().Where(x => x.gradeBid == projectDetails.gradeBId).FirstOrDefaultAsync();
             if(student1 == null || student2 == null || lecturer == null || gradeA == null || gradeB == null)
                 return NotFound();
             project.ProjectId = new Random().Next();
@@ -82,7 +78,7 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<Project>> Delete([FromRoute] int id)
         {
             var projects = await context.Set<Project>().ToListAsync();
-            var project = projects.Where(x => x.ProjectId == id).FirstOrDefault();
+            var project = await context.Set<Project>().Where(x => x.ProjectId == id).FirstOrDefaultAsync();
             if (project != null)
             {
                 context.Remove(project);
@@ -98,8 +94,8 @@ namespace FinalProjectManger_server.Controllers
         {
             var projects = await context.Set<Project>().ToListAsync();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
-            var gradeAs = await context.Set<GradeA>().ToListAsync();
-            var gradeBs = await context.Set<GradeB>().ToListAsync();
+            var gradeAs = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).ToListAsync();
+            var gradeBs = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).ToListAsync();
             var students = await context.Set<Student>().ToListAsync();
             var bookGrades = await context.Set<BookGrade>().ToListAsync();
             var presentationGrades = context.Set<PresentationGrade>().ToListAsync();
@@ -134,8 +130,8 @@ namespace FinalProjectManger_server.Controllers
         {
             var projects = await context.Set<Project>().ToListAsync();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
-            var gradeAs = await context.Set<GradeA>().ToListAsync();
-            var gradeBs = await context.Set<GradeB>().ToListAsync();
+            var gradeAs = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).ToListAsync();
+            var gradeBs = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).ToListAsync();
             var students = await context.Set<Student>().ToListAsync();
             var projectsOfLecturer = new List<ProjectFull>();
             var lecturer = lecturers.Where(x => x.id == lecturerId).FirstOrDefault();
