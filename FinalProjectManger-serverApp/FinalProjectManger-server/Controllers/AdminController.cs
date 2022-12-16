@@ -49,12 +49,14 @@ namespace FinalProjectManger_server.Controllers
         [HttpPost("ApproveLecturer/{id}")]
         public async Task<ActionResult<bool>> ApproveLecturer([FromRoute] long id)
         {
-
-            var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
+            
             var premission = await context.Set<Premission>().Where(x => x.LecturerId == id).FirstOrDefaultAsync();
-            if (lecturer == null || premission==null) return NotFound(false);
-            lecturer.IsActive = true;
+            if (premission == null) return NotFound(false);
             context.Set<Premission>().Remove(premission);
+            await context.SaveChangesAsync();
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
+            if (lecturer == null) return NotFound(false);
+            lecturer.IsActive = true;
             await context.SaveChangesAsync();
             return Ok(true);
         }

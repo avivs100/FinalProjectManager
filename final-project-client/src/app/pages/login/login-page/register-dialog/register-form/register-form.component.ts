@@ -8,7 +8,7 @@ export interface RegisterFormData {
   email: String;
   firstName: string;
   lastName: string;
-  lecturer: boolean;
+  isLecturer: boolean;
 }
 
 @Component({
@@ -27,11 +27,11 @@ export class RegisterFormComponent {
     email: ['', Validators.required],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    lecturer: [false],
+    isLecturer: [false],
   });
 
   onSubmit(formData: RegisterFormData) {
-    console.log(formData);
+    this.save.emit(formData);
   }
 
   moveToLoginPage() {

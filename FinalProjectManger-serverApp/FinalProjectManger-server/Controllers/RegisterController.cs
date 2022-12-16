@@ -31,11 +31,7 @@ namespace FinalProjectManger_server.Controllers
                 return NotFound(false);
 
             context.Add(new Lecturer(detailsForRegister.Id, UserType.lecturer, detailsForRegister.FirstName, detailsForRegister.LastName, detailsForRegister.Password, detailsForRegister.Email));
-            context.Add(new Premission()
-            {
-                LecturerId = detailsForRegister.Id,
-                LecturerName = detailsForRegister.FirstName + detailsForRegister.LastName
-            });
+            context.Add(new Premission(detailsForRegister.Id, detailsForRegister.FirstName + detailsForRegister.LastName ));
             await context.SaveChangesAsync();
             return Ok(true);
         }

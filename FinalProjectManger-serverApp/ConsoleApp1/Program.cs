@@ -140,6 +140,8 @@ void SeedDb()
     context.Set<Project>().Add(project7);
     Project project8 = new Project("Name8", Ohad.id, messi.id, hameleh.id, gradeA1.gradeAid, gradeB1.gradeBid);
     context.Set<Project>().Add(project8);
+    context.Set<Premission>().Add(new Premission(5, "Ohad AbuGay"));
+    context.Set<Premission>().Add(new Premission(6, "Meni Mamtera"));
 
     context.SaveChanges();
 }

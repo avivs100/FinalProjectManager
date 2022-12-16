@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Admin, Lecturer, Student, UserType } from '../models/modelsInterfaces';
+import { RegisterFormData } from '../pages/login/login-page/register-dialog/register-form/register-form.component';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,9 @@ export class GeneralApiService {
 
   getScheduleDates(): Observable<any> {
     return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  }
+
+  register(data: RegisterFormData): Observable<boolean> {
+    return this.http.put<boolean>(`${this.serverUrl}/Register/Register`, data);
   }
 }

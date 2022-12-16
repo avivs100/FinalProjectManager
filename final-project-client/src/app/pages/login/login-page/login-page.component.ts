@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { delay, filter } from 'rxjs';
+import { GeneralApiService } from 'src/app/services/general-api.service';
 import { LoginService } from 'src/app/services/login-service.service';
 import { StateService } from 'src/app/services/state.service';
 import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
@@ -25,7 +26,8 @@ export class LoginPageComponent {
     private router: Router,
     private loginService: LoginService,
     private state: StateService,
-    private dialog: DialogService
+    private dialog: DialogService,
+    private genApi: GeneralApiService
   ) {
     console.log('now log in commponent start');
   }
@@ -49,7 +51,7 @@ export class LoginPageComponent {
       height: '750px',
     });
     ref.onClose.pipe(filter(Boolean)).subscribe((formData) => {
-      console.log(formData);
+      this.genApi.register(formData).subscribe((x) => console.log(x));
     });
   }
 }

@@ -22,6 +22,7 @@ export class PremissionsPageComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.api.getAllLecturer().subscribe((x) => console.log(x));
     console.log('get premissions from server');
   }
 }
