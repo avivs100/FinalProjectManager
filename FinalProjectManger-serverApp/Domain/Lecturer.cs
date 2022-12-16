@@ -13,9 +13,11 @@ namespace Domain
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string password { get; set; }
+        public string Email { get; set; }
         public List<Constraint> constraints { get; set; }
+        public bool IsActive { get; set; }
 
-        public Lecturer(long id, UserType userType, string firstName, string lastName, string password)
+        public Lecturer(long id, UserType userType, string firstName, string lastName, string password, string email)
         {
             constraints = new List<Constraint>();
             this.id = id;
@@ -23,6 +25,20 @@ namespace Domain
             LastName = firstName;
             FirstName = lastName;
             this.password = password;
+            Email = email;
+            IsActive = false;
+        }
+
+        public Lecturer(long id, UserType userType, string firstName, string lastName, string password, string email,bool isActive)
+        {
+            constraints = new List<Constraint>();
+            this.id = id;
+            this.userType = userType;
+            LastName = firstName;
+            FirstName = lastName;
+            this.password = password;
+            Email = email;
+            IsActive = isActive;
         }
 
         public Lecturer()

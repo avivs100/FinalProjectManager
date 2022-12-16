@@ -18,7 +18,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { FocusTrapModule } from 'primeng/focustrap';
 import { TagModule } from 'primeng/tag';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
@@ -69,6 +69,8 @@ import { ToastModule } from 'primeng/toast';
 import { ScheduleDetailsComponent } from './pages/schedule-page/schedule-details/schedule-details.component';
 import { CreateScheduleComponent } from './pages/schedule-page/admin-schedule/create-schedule/create-schedule.component';
 import { SelectScheduleDaysDialogComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-dialog.component';
+import { RegisterDialogComponent } from './pages/login/login-page/register-dialog/register-dialog.component';
+import { RegisterFormComponent } from './pages/login/login-page/register-dialog/register-form/register-form.component';
 //import { SelectScheduleDaysFormComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-form/select-schedule-days-form.component';
 
 @NgModule({
@@ -108,8 +110,11 @@ import { SelectScheduleDaysDialogComponent } from './pages/schedule-page/admin-s
     ScheduleDetailsComponent,
     CreateScheduleComponent,
     SelectScheduleDaysDialogComponent,
+    RegisterDialogComponent,
+    RegisterFormComponent,
   ],
   imports: [
+    FocusTrapModule,
     ToastModule,
     HttpClientModule,
     BrowserModule,

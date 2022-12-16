@@ -14,37 +14,30 @@ namespace FinalProjectManger_server.Controllers
         static UsersDbContext context = new UsersDbContext();
 
         // PUT api/<RegisterController>/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Student>> Put([FromRoute] long id, [FromBody] DetailsForRegister detailsForRegister)
+        [HttpPut("Register")]
+        public async Task<ActionResult<bool>> Put( [FromBody] DetailsForRegister detailsForRegister)
         {
-            var students = await context.Set<Student>().ToListAsync();
-            var lecturers = await context.Set<Lecturer>().ToListAsync();
-            if (id < 1)
+            if (detailsForRegister.IsLecturer == false)
             {
-                return NotFound();
+                if( await context.Set<Student>().Where(x=>x.id == detailsForRegister.Id).FirstOrDefaultAsync() != null)
+                    return NotFound(false);
+
+                context.Add(new Student(detailsForRegister.Id, UserType.student, detailsForRegister.FirstName, detailsForRegister.LastName, detailsForRegister.Password, detailsForRegister.Email));
+                await context.SaveChangesAsync();
+                return Ok(true);
             }
-            if (detailsForRegister.isLecturer == false)
+
+            if (await context.Set<Lecturer>().Where(x => x.id == detailsForRegister.Id).FirstOrDefaultAsync() != null)
+                return NotFound(false);
+
+            context.Add(new Lecturer(detailsForRegister.Id, UserType.lecturer, detailsForRegister.FirstName, detailsForRegister.LastName, detailsForRegister.Password, detailsForRegister.Email));
+            context.Add(new Premission()
             {
-                if( await context.Set<Student>().Where(x=>x.id == id).FirstOrDefaultAsync() != null)
-                    return NotFound();
-                else
-                {
-                    context.Add(new Student(id, UserType.student, detailsForRegister.fName, detailsForRegister.lName, detailsForRegister.password));
-                    context.SaveChanges();
-                    return Ok();
-                }
-            }
-            else
-            {
-                if (await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync() != null)
-                    return NotFound();
-                else
-                {
-                    context.Add(new Lecturer(id, UserType.lecturer, detailsForRegister.fName, detailsForRegister.lName, detailsForRegister.password));
-                    context.SaveChanges();
-                    return Ok();
-                }
-            }
+                LecturerId = detailsForRegister.Id,
+                LecturerName = detailsForRegister.FirstName + detailsForRegister.LastName
+            });
+            await context.SaveChangesAsync();
+            return Ok(true);
         }
 
     }

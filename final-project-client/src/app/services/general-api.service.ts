@@ -27,4 +27,8 @@ export class GeneralApiService {
   getStudent(id: number): Observable<Student> {
     return this.http.get<Student>(this.serverUrl + `/Student/${id}`);
   }
+
+  getScheduleDates(): Observable<any> {
+    return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  }
 }

@@ -1,5 +1,5 @@
 <div
-  class="h-full"
+  class="h-full row-gap-7"
   [ngStyle]="{ background: 'url(../../assets/braude.jpeg)' }"
   style="
     background-position: center;
@@ -8,47 +8,57 @@
     align-items: center;
   "
 >
-  <p-card class="grid justify-content-center my-5">
-    <div class="text-2xl mb-5 m-4">Please Login</div>
-    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
-      <div class="grid col-6 m-4">
-        <div class="field col-6 mb-4">
-          <span class="p-float-label">
-            <input pInputText id="IdInput" formControlName="id" />
-            <label for="IdNumber">Id</label>
-          </span>
-        </div>
+  <div class="p-8 opacity-90">
+    <p-card class="grid justify-content-center mt-5">
+      <div class="text-5xl mb-5 mr-6 underline font-bold">Please Login</div>
+      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
+        <div class="grid col-6 m-4">
+          <div class="field col-6 mb-4">
+            <span class="p-float-label">
+              <input
+                pInputText
+                id="IdInput"
+                formControlName="id"
+                pTooltip="Enter your username"
+              />
+              <label for="IdNumber">Id</label>
+            </span>
+          </div>
 
-        <div class="field col-6 mb-4">
-          <span class="p-float-label">
-            <p-password
-              id="passwordInput"
-              class="max-w-13rem"
-              formControlName="password"
-              [toggleMask]="true"
-              [feedback]="false"
-            ></p-password>
-            <label for="passwordInput">Password</label>
-          </span>
-        </div>
-        <div class="m-4">
-          <button
-            pButton
-            type="submit"
-            label="Login"
-            class="p-button-raised p-button-outlined max-h-4rem"
-            [disabled]="form.invalid"
-          ></button>
+          <div class="field col-6 mb-4">
+            <span class="p-float-label">
+              <p-password
+                pTooltip="Enter your password"
+                id="passwordInput"
+                class="max-w-13rem"
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+              ></p-password>
+              <label for="passwordInput">Password</label>
+            </span>
+          </div>
+          <div class="m-6">
+            <button
+              pButton
+              type="submit"
+              label="Login"
+              class="p-button-raised p-button-outlined max-h-4rem shadow-4"
+              pTooltip="Click To Login"
+              [disabled]="form.invalid"
+            ></button>
 
-          <button
-            pButton
-            type="button"
-            label="Dont have an account ? register"
-            class="p-button-text"
-            (click)="moveToRegisterPage()"
-          ></button>
+            <button
+              pButton
+              pTooltip="Register new Account"
+              type="button"
+              label="Dont have an account ? register"
+              class="p-button-text"
+              (click)="openRegisterDialog()"
+            ></button>
+          </div>
         </div>
-      </div>
-    </form>
-  </p-card>
+      </form>
+    </p-card>
+  </div>
 </div>

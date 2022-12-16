@@ -38,5 +38,25 @@ namespace FinalProjectManger_server.Controllers
             context.SaveChanges();
             return Ok(scheduleDates);
         }
+
+        [HttpGet("premissions")]
+        public async Task<ActionResult<List<Premission>>> GetPremissions()
+        {
+            var premissions = await context.Set<Premission>().ToListAsync();
+            return Ok(premissions);
+        }
+
+        [HttpPost("ApproveLecturer/{id}")]
+        public async Task<ActionResult<bool>> ApproveLecturer([FromRoute] long id)
+        {
+
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
+            var premission = await context.Set<Premission>().Where(x => x.LecturerId == id).FirstOrDefaultAsync();
+            if (lecturer == null || premission==null) return NotFound(false);
+            lecturer.IsActive = true;
+            context.Set<Premission>().Remove(premission);
+            await context.SaveChangesAsync();
+            return Ok(true);
+        }
     }
 }
