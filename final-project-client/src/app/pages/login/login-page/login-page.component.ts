@@ -2,8 +2,9 @@ import { Component, ComponentFactoryResolver } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { delay, filter } from 'rxjs';
+import { catchError, delay, filter, map, of } from 'rxjs';
 import { GeneralApiService } from 'src/app/services/general-api.service';
 import { LoginService } from 'src/app/services/login-service.service';
 import { StateService } from 'src/app/services/state.service';
@@ -27,7 +28,8 @@ export class LoginPageComponent {
     private loginService: LoginService,
     private state: StateService,
     private dialog: DialogService,
-    private genApi: GeneralApiService
+    private genApi: GeneralApiService,
+    private messageService: MessageService
   ) {
     console.log('now log in commponent start');
   }
@@ -51,7 +53,32 @@ export class LoginPageComponent {
       height: '750px',
     });
     ref.onClose.pipe(filter(Boolean)).subscribe((formData) => {
-      this.genApi.register(formData).subscribe((x) => console.log(x));
+      this.genApi
+        .register(formData)
+        .pipe(
+          catchError((err) => of(this.showToast(false)).pipe(map(() => false)))
+        )
+        .subscribe((x) => this.showToast(x));
     });
+  }
+
+  onReject() {}
+
+  showToast(x: boolean) {
+    console.log(x);
+    if (x == true) {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail:
+          'Your Account added with success, if you a lecturer you need to wait for admin aprove',
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Error, you account creation fail',
+      });
+    }
   }
 }
