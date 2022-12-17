@@ -60,5 +60,15 @@ namespace FinalProjectManger_server.Controllers
             await context.SaveChangesAsync();
             return Ok(true);
         }
+
+        [HttpDelete("DeletePremission/{id}")]
+        public async Task<ActionResult<bool>> DeletePremission([FromRoute] long id)
+        {
+            var premission = await context.Set<Premission>().Where(x => x.LecturerId == id).FirstOrDefaultAsync();
+            if (premission == null) return NotFound(false);
+            context.Set<Premission>().Remove(premission);
+            await context.SaveChangesAsync();
+            return Ok(true);
+        }
     }
 }

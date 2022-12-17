@@ -1,5 +1,5 @@
 <!-- *ngIf="premissions$ | async as premissions" -->
-<div class="w-full h-full">
+<div class="w-full h-full" *ngIf="premissions$ | async as premissions">
   <p-card>
     <p-table
       [value]="premissions"
@@ -28,11 +28,17 @@
               class="flex align-items-stretch flex-wrap card-container blue-container"
             >
               <div class="p-field p-md-4">
-                <p-button label="Aprove"></p-button>
+                <p-button
+                  label="Aprove"
+                  (onClick)="aproveLecturerPremission(premission.lecturerId)"
+                ></p-button>
               </div>
 
               <div class="p-field p-md-4">
-                <p-button label="Denay"></p-button>
+                <p-button
+                  label="Denay"
+                  (onClick)="deleteLecturerPremission(premission.lecturerId)"
+                ></p-button>
               </div>
 
               <div class="p-field p-md-4">

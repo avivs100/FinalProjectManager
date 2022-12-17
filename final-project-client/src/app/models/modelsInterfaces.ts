@@ -11,6 +11,12 @@ export enum ProjectType {
   Data = 'Data',
 }
 
+export interface premission {
+  id: string;
+  lecturerId: number;
+  lecturerName: string;
+}
+
 export interface User {
   id: number;
   pass: string;

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {
   Admin,
   Lecturer,
+  premission,
   ProjectFull,
   Student,
 } from '../models/modelsInterfaces';
@@ -54,5 +55,22 @@ export class AdminApiService {
 
   getScheduleDates(): Observable<any> {
     return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  }
+
+  getPremissions(): Observable<premission[]> {
+    return this.http.get<premission[]>(`${this.serverUrl}/Admin/premissions`);
+  }
+
+  deleteLecturerPremission(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(
+      `${this.serverUrl}/Admin/DeletePremission/${id}`
+    );
+  }
+
+  aproveLecturerPremission(id: number): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.serverUrl}/Admin/ApproveLecturer/${id}`,
+      null
+    );
   }
 }
