@@ -1,6 +1,5 @@
-import { LoginService } from 'src/app/services/login-service.service';
 import { Component } from '@angular/core';
-import { User } from 'src/app/models/modelsInterfaces';
+import { Router } from '@angular/router';
 import { StateService } from 'src/app/services/state.service';
 
 @Component({
@@ -12,8 +11,12 @@ export class ToolbarComponent {
   public firstName: string | undefined;
   public lastName: string | undefined;
 
-  constructor(private state: StateService) {
+  constructor(state: StateService, private router: Router) {
     this.firstName = state.connectedUser?.firstName;
     this.lastName = state.connectedUser?.lastName;
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['login']);
   }
 }

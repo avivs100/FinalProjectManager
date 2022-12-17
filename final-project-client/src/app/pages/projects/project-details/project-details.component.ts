@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Project, ProjectType } from 'src/app/models/modelsInterfaces';
+import { ProjectFull, ProjectType } from 'src/app/models/modelsInterfaces';
 
 @Component({
   selector: 'app-project-details',
@@ -7,6 +7,6 @@ import { Project, ProjectType } from 'src/app/models/modelsInterfaces';
   styleUrls: ['./project-details.component.scss'],
 })
 export class ProjectDetailsComponent {
-  @Input() public project: Project | null = null;
+  @Input() public project: ProjectFull | null = null;
   public ProjectType: ProjectType | undefined;
 }

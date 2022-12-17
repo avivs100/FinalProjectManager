@@ -65,5 +65,8 @@ public class UsersDbContext : DbContext
 
         modelBuilder.Entity<ScheduleDates>()
         .Property(e => e.id).ValueGeneratedNever();
+
+        modelBuilder.Entity<Premission>().Property(e => e.Id).ValueGeneratedNever();
+
     }
 }

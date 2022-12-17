@@ -1,1 +1,47 @@
-<p>premissions works!</p>
+<!-- *ngIf="premissions$ | async as premissions" -->
+<div class="w-full h-full">
+  <p-card>
+    <p-table
+      [value]="premissions"
+      styleClass="p-datatable-gridlines p-datatable-striped h-20rem overflow-auto"
+      selectionMode="single"
+      scrollHeight="flex"
+      [scrollable]="true"
+      *ngIf="premissions"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Lecturer Name</th>
+          <th>Lecturer Id</th>
+          <th>Operations</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-premission class="max-h-2rem">
+        <tr>
+          <td>{{ premission.lecturerName }}</td>
+          <td>
+            {{ premission.lecturerId }}
+          </td>
+          <td>
+            <div
+              class="flex align-items-stretch flex-wrap card-container blue-container"
+            >
+              <div class="p-field p-md-4">
+                <p-button label="Aprove"></p-button>
+              </div>
+
+              <div class="p-field p-md-4">
+                <p-button label="Denay"></p-button>
+              </div>
+
+              <div class="p-field p-md-4">
+                <p-button label="Send Mail"></p-button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, Student } from '../models/modelsInterfaces';
+import { Lecturer, ProjectFull, Student } from '../models/modelsInterfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +16,28 @@ export class StudentApiService {
   }
 
   getAllStudents(): Observable<Student[]> {
-    return this.http.get<any>(this.serverUrl + '/Student');
+    return this.http.get<Student[]>(this.serverUrl + '/Student');
   }
 
   deleteStudent(id: number): Observable<Student> {
-    return this.http.delete<any>(this.serverUrl + `/Student/${id}`);
+    return this.http.delete<Student>(this.serverUrl + `/Student/${id}`);
   }
 
   addStudent(student: Student): Observable<Student> {
-    return this.http.post<any>(this.serverUrl + '/Student', student);
+    return this.http.post<Student>(this.serverUrl + '/Student', student);
   }
 
-  getProject(id: number): Observable<Project> {
-    return this.http.get<any>(this.serverUrl + `/Project/${id}`);
+  getProject(id: number): Observable<ProjectFull> {
+    return this.http.get<ProjectFull>(this.serverUrl + `/Project/${id}`);
+  }
+
+  getAllLecturer(): Observable<Lecturer[]> {
+    return this.http.get<Lecturer[]>(
+      this.serverUrl + '/Lecturer/ListLecturers'
+    );
+  }
+
+  getScheduleDates(): Observable<any> {
+    return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
   }
 }

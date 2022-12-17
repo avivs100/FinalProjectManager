@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Admin, Lecturer, Student, UserType } from '../models/modelsInterfaces';
+import { RegisterFormData } from '../pages/login/login-page/register-dialog/register-form/register-form.component';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,9 @@ export class GeneralApiService {
 
   constructor(private http: HttpClient) {}
 
-  public login(id: number, pass: string): Observable<any> {
+  public login(id: number, pass: string): Observable<number> {
     console.log('generalApiLoginFunction');
-    return this.http.get<any>(this.serverUrl + `/LogIn/${id}/${pass}`);
+    return this.http.get<number>(this.serverUrl + `/LogIn/${id}/${pass}`);
   }
 
   getAdmin(id: number): Observable<Admin> {
@@ -26,5 +27,13 @@ export class GeneralApiService {
 
   getStudent(id: number): Observable<Student> {
     return this.http.get<Student>(this.serverUrl + `/Student/${id}`);
+  }
+
+  getScheduleDates(): Observable<any> {
+    return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  }
+
+  register(data: RegisterFormData): Observable<boolean> {
+    return this.http.put<boolean>(`${this.serverUrl}/Register/Register`, data);
   }
 }

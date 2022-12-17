@@ -2,6 +2,7 @@
 using Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,10 +24,11 @@ namespace FinalProjectManger_server.Controllers
 
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
-        public Student Get([FromRoute]long id)
+        public async Task<ActionResult<Student>> Get([FromRoute]long id)
         {
-            var student = students.Find(x => x.id == id);
-            return student ;
+            var student = await context.Set<Student>().Where(x => x.id == id).FirstOrDefaultAsync();
+            if (student == null) return NotFound();
+            return Ok(student) ;
         }
 
         // POST api/<StudentController>
