@@ -93,7 +93,7 @@ namespace FinalProjectManger_server.Controllers
 
         }
 
-        [HttpGet("GetFullProjectByStudentId{studentId}")]
+        [HttpGet("GetFullProjectByStudentId/{studentId}")]
         public async Task<ActionResult<ProjectFull>> GetFullProjectByStudentId([FromRoute] int studentId)
         {
             var projects = await context.Set<Project>().ToListAsync();
@@ -129,7 +129,7 @@ namespace FinalProjectManger_server.Controllers
             FullProject.gradeB = gradeB;
             return Ok(FullProject);
         }
-        [HttpGet("GetAllProjectsOfLecturer{lecturerId}")]
+        [HttpGet("GetAllProjectsOfLecturer/{lecturerId}")]
         public async Task<ActionResult<IReadOnlyList<ProjectFull>>> GetAllProjectsOfLecturerr([FromRoute]int lecturerId)
         {
             var projects = await context.Set<Project>().ToListAsync();
@@ -148,11 +148,15 @@ namespace FinalProjectManger_server.Controllers
                     if(item.LecturerId == lecturerId)
                     {
                         ProjectFull FullProject = new ProjectFull();
-                        var s1 = students.Where(x => x.id == item.student1Id).FirstOrDefault();
-                        var s2 = students.Where(x => x.id == item.student2Id).FirstOrDefault();
-                        var l = lecturers.Where(x => x.id == item.LecturerId).FirstOrDefault();
-                        var gradeA = gradeAs.Where(x => x.gradeAid == item.gradeAId).FirstOrDefault();
-                        var gradeB = gradeBs.Where(x => x.gradeBid == item.gradeBId).FirstOrDefault();
+                        var s1 = students.FirstOrDefault(x => x.id == item.student1Id);
+                        var s2 = students.FirstOrDefault(x => x.id == item.student2Id);
+                        var l = lecturers.FirstOrDefault(x => x.id == item.LecturerId);
+                        var gradeA = gradeAs.FirstOrDefault(x => x.gradeAid == item.gradeAId);
+                        var gradeB = gradeBs.FirstOrDefault(x => x.gradeBid == item.gradeBId);
+                        if (gradeA == null && gradeB == null && s1 == null && s2 == null && l == null)
+                        {
+                            return NotFound();
+                        }
                         FullProject.ProjectId = item.ProjectId;
                         FullProject.Lecturer = l;
                         FullProject.ProjectName = item.ProjectName;
