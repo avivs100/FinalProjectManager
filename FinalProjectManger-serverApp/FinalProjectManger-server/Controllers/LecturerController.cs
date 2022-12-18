@@ -11,12 +11,13 @@ namespace FinalProjectManger_server.Controllers
     [ApiController]
     public class LecturerController : ControllerBase
     {
-        static UsersDbContext context = new UsersDbContext();
+        
 
         // GET: api/<LecturerController>
         [HttpGet("ListLecturers")]
         public async Task<ActionResult<IReadOnlyList<Lecturer>>> ListLecturers()
         {
+            var context = new UsersDbContext();
             return await context.Set<Lecturer>().ToListAsync();
         }
 
@@ -24,6 +25,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Lecturer>> Get([FromRoute] long id)
         {
+            var context = new UsersDbContext();
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
             if (lecturer == null)
             {
@@ -36,6 +38,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpGet("ScheduleDates")]
         public async Task<ActionResult<IReadOnlyList<ScheduleDates>>> ScheduleDates()
         {
+            var context = new UsersDbContext();
             return await context.Set<ScheduleDates>().ToListAsync();
         }
 

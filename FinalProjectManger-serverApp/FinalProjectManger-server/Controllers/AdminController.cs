@@ -11,12 +11,12 @@ namespace FinalProjectManger_server.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        static UsersDbContext context = new UsersDbContext();
-        
+
         // GET: api/<AdminController>
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<Admin>>> ListAdmins()
         {
+            var context = new UsersDbContext();
             return await context.Set<Admin>().ToListAsync();
         }
 
@@ -24,6 +24,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Admin>> GetAdmin([FromRoute] long id)
         {
+            var context = new UsersDbContext();
             var admin = await context.Set<Admin>().Where(x => x.id == id).FirstOrDefaultAsync();
             if (admin == null)
                 return NotFound();
@@ -33,6 +34,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("PutScheduleDates")]
         public async Task<ActionResult<ScheduleDates>> PutScheduleDates([FromBody] ScheduleDatesDetails details)
         {
+            var context = new UsersDbContext();
             ScheduleDates scheduleDates = new ScheduleDates(details.date1, details.date2);
             context.Set<ScheduleDates>().Add(scheduleDates);
             context.SaveChanges();
@@ -42,6 +44,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpGet("premissions")]
         public async Task<ActionResult<List<Premission>>> GetPremissions()
         {
+            var context = new UsersDbContext();
             var premissions = await context.Set<Premission>().ToListAsync();
             return Ok(premissions);
         }
@@ -49,7 +52,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPost("ApproveLecturer/{id}")]
         public async Task<ActionResult<bool>> ApproveLecturer([FromRoute] long id)
         {
-            
+            var context = new UsersDbContext();
             var premission = await context.Set<Premission>().Where(x => x.LecturerId == id).FirstOrDefaultAsync();
             if (premission == null) return NotFound(false);
             context.Set<Premission>().Remove(premission);
