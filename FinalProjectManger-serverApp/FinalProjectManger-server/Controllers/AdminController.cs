@@ -67,6 +67,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpDelete("DeletePremission/{id}")]
         public async Task<ActionResult<bool>> DeletePremission([FromRoute] long id)
         {
+            var context = new UsersDbContext();
             var premission = await context.Set<Premission>().Where(x => x.LecturerId == id).FirstOrDefaultAsync();
             if (premission == null) return NotFound(false);
             context.Set<Premission>().Remove(premission);

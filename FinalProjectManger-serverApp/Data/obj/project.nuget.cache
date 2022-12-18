@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/rrbgBZPAhUZHZm9wuDG74QIua+hKu+tycZ5zON7foEjGOrVitRIeP8njPiVCnaG7MuvrUDN6foFiL5aCFf++Q==",
+  "dgSpecHash": "edAtia/AgLFaGBLAFDJogXOYZiu82It8LnJbq/eeirYpdahkoRjNrPbFNQKVxISngaiqg3Gy0n0E0t67yIeJtg==",
   "success": true,
   "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
   "expectedPackageFiles": [
@@ -73,12 +73,5 @@
     "C:\\Users\\AVIVSHI\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\AVIVSHI\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
