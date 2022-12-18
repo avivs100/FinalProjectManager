@@ -1,0 +1,23 @@
+<div
+  class="flex align-items-stretch flex-wrap card-container blue-container"
+  style="min-height: 100px"
+>
+  <div class="p-field p-md-4 max-w-full">
+    <p-calendar
+      placeholder="Select the Dates"
+      [(ngModel)]="dates"
+      selectionMode="multiple"
+      [maxDateCount]="2"
+      [readonlyInput]="true"
+      inputId="multiple"
+      [showIcon]="true"
+    ></p-calendar>
+  </div>
+  <div class="p-field p-md-4">
+    <p-button label="save" (onClick)="save()"></p-button>
+  </div>
+
+  <div class="p-field p-md-4">
+    <p-button label="Send Mail" (onClick)="sendToLecturer()"></p-button>
+  </div>
+</div>

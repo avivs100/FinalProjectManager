@@ -19,7 +19,7 @@ export class AdminSidebarComponent {
     {
       label: 'Messages',
       routerLink: 'messages',
-      icon: 'pi pi-forward',
+      icon: 'pi pi-book',
       tooltipOptions: {
         tooltipLabel: 'Messages',
       },
@@ -27,7 +27,7 @@ export class AdminSidebarComponent {
     {
       label: 'Schedule',
       routerLink: 'schedule',
-      icon: 'pi pi-book',
+      icon: 'pi pi-calendar',
       tooltipOptions: {
         tooltipLabel: 'Schedule',
       },
@@ -35,7 +35,7 @@ export class AdminSidebarComponent {
     {
       label: 'Grades',
       routerLink: 'grades',
-      icon: 'pi pi-book',
+      icon: 'pi pi-star-fill',
       tooltipOptions: {
         tooltipLabel: 'Grades',
       },
@@ -43,15 +43,7 @@ export class AdminSidebarComponent {
     {
       label: 'Premissions',
       routerLink: 'premissions',
-      icon: 'pi pi-book',
-      tooltipOptions: {
-        tooltipLabel: 'Submission',
-      },
-    },
-    {
-      label: 'Submission',
-      routerLink: 'submissions',
-      icon: 'pi pi-book',
+      icon: 'pi pi-check-circle',
       tooltipOptions: {
         tooltipLabel: 'Submission',
       },

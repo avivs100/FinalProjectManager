@@ -16,31 +16,52 @@ SeedDb();
 void SeedDb()
 {
     using var context = new UsersDbContext();
-    var Natasha = new Student(1, UserType.student, "Natasha", "ABC", "1");
-    var Sagi = new Student(2, UserType.student, "Sagi", "Fishman", "1");
-    var Aviv = new Student(3, UserType.student, "Aviv", "GayBa", "1");
-    var itay = new Student(11, UserType.student, "Itay", "ABC", "1");
-    var lital = new Student(8, UserType.student, "Lital", "Fishman", "1");
-    var yaron = new Student(9, UserType.student, "Yaron", "GayBa", "1");
-    var david = new Student(10, UserType.student, "David", "GayBa", "1");
+    var Natasha = new Student(1, UserType.student, "Natasha", "ABC", "1","default@gmaol.com");
+    var Sagi = new Student(2, UserType.student, "Sagi", "Fishman", "1", "default@gmaol.com");
+    var Aviv = new Student(3, UserType.student, "Aviv", "GayBa", "1", "default@gmaol.com");
+    var itay = new Student(11, UserType.student, "Itay", "ABC", "1", "default@gmaol.com");
+    var lital = new Student(8, UserType.student, "Lital", "Fishman", "1", "default@gmaol.com");
+    var yaron = new Student(9, UserType.student, "Yaron", "Cohen", "1", "default@gmaol.com");
+    var david = new Student(10, UserType.student, "David", "Levi", "1", "default@gmaol.com");
+    var shlomi = new Student(1114, UserType.student, "shlomi", "Ashkenazi", "1", "default@gmaol.com");
+    var marom = new Student(12, UserType.student, "marom", "Muhamad", "1", "default@gmaol.com");
+    var Menahem = new Student(13, UserType.student, "Yaron", "Argaz", "1", "default@gmaol.com");
+    var Meshulam = new Student(14, UserType.student, "David", "Kesef", "1", "default@gmaol.com");
+    var Benny = new Student(15, UserType.student, "Benny", "Kise", "1", "default@gmaol.com");
+    var Munitz = new Student(16, UserType.student, "Munitz", "Shulhan", "1", "default@gmaol.com");
+    var messi = new Student(17, UserType.student, "Messi", "Kise", "1", "default@gmaol.com");
+    var hameleh = new Student(18, UserType.student, "King", "Shulhan", "1", "default@gmaol.com");
     context.Set<Student>().Add(Natasha);
     context.Set<Student>().Add(Sagi);
     context.Set<Student>().Add(Aviv);
-    var Erez = new Lecturer(4, UserType.lecturer, "Erez", "Eres", "1");
+    context.Set<Student>().Add(itay);
+    context.Set<Student>().Add(lital);
+    context.Set<Student>().Add(david);
+    context.Set<Student>().Add(yaron);
+    context.Set<Student>().Add(shlomi);
+    context.Set<Student>().Add(marom);
+    context.Set<Student>().Add(Menahem);
+    context.Set<Student>().Add(Meshulam);
+    context.Set<Student>().Add(Benny);
+    context.Set<Student>().Add(Munitz);
+    context.Set<Student>().Add(messi);
+    context.Set<Student>().Add(hameleh);
+    var Erez = new Lecturer(4, UserType.lecturer, "Erez", "Eres", "1", "default@gmaol.com",true);
+    var David = new Lecturer(15, UserType.lecturer, "David", "David", "1", "default@gmaol.com");
     var con1 = new Constraint(2022, 12, 9, 13, 22, 45);
     context.Set<Constraint>().Add(con1);
     Erez.constraints.Add(con1);
     var con = new Constraint(2022, 12, 9, 16, 15, 33);
     Erez.constraints.Add(con);
     context.Set<Constraint>().Add(con);
-    var Ohad = new Lecturer(5, UserType.lecturer, "Ohad", "Hahaham", "1");
+    var Ohad = new Lecturer(5, UserType.lecturer, "Ohad", "Hahaham", "1", "default@gmaol.com");
     con = new Constraint(2022, 11, 4, 7, 55, 34);
     Ohad.constraints.Add(con);
     context.Set<Constraint>().Add(con);
     con = new Constraint(2022, 9, 2, 19, 15, 52);
     Ohad.constraints.Add(con);
     context.Set<Constraint>().Add(con);
-    var Meni = new Lecturer(6, UserType.lecturer, "Meni", "Shit", "1");
+    var Meni = new Lecturer(6, UserType.lecturer, "Meni", "Shit", "1", "default@gmaol.com");
     con = new Constraint(2022, 4, 2, 5, 31, 17);
     Meni.constraints.Add(con);
     context.Set<Constraint>().Add(con);
@@ -48,7 +69,7 @@ void SeedDb()
     context.Set<Lecturer>().Add(Ohad);
     context.Set<Lecturer>().Add(Meni);
 
-    var Naomi = new Admin(7, UserType.admin, "Naomi", "Onklus", "1");
+    var Naomi = new Admin(7, UserType.admin, "Naomi", "Onklus", "1", "default@gmaol.com");
     context.Set<Admin>().Add(Naomi);
 
     Grade organization1 = new Grade("Almost", 80, 0.25, "organization");
@@ -110,11 +131,25 @@ void SeedDb()
     GradeB gradeB2 = new GradeB(PresentationGrade2, bookGrade2, lecturerGrade2);
     context.Set<GradeB>().Add(gradeB1);
     context.Set<GradeB>().Add(gradeB2);
-
+    
     Project project1= new Project("Project Management", Erez.id, Sagi.id, Aviv.id, gradeA1.gradeAid, gradeB1.gradeBid);
     context.Set<Project>().Add(project1);
+    Project project2 = new Project("Test Schedule", Erez.id, Natasha.id, yaron.id, gradeA2.gradeAid, gradeB2.gradeBid);
+    context.Set<Project>().Add(project2);
+    Project project3 = new Project("Image Painting", Ohad.id, yaron.id, lital.id, gradeA2.gradeAid, gradeB2.gradeBid);
+    context.Set<Project>().Add(project3);
+    Project project4 = new Project("akol tov", Meni.id, david.id, itay.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project4);
+    Project project5 = new Project("Name1", Meni.id, Menahem.id, Meshulam.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project5);
+    Project project6 = new Project("Name2", Meni.id, marom.id, shlomi.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project6);
+    Project project7 = new Project("Name4", Ohad.id, Benny.id, Munitz.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project7);
+    Project project8 = new Project("Name8", Ohad.id, messi.id, hameleh.id, gradeA1.gradeAid, gradeB1.gradeBid);
+    context.Set<Project>().Add(project8);
+    context.Set<Premission>().Add(new Premission(5, "Ohad AbuGay"));
+    context.Set<Premission>().Add(new Premission(6, "Meni Mamtera"));
 
-    Project project2 = new Project("akol tov", Erez.id, Natasha.id, yaron.id, gradeA2.gradeAid, gradeB2.gradeBid);
-    context.Set<Project>().Add(project1);
     context.SaveChanges();
 }

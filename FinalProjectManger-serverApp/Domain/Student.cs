@@ -14,13 +14,15 @@ namespace Domain
         public string password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Student(long id, UserType userType,string firstName, string lastName, string password)
+        public string Email { get; set; }
+        public Student(long id, UserType userType,string firstName, string lastName, string password, string email)
         {
             this.id = id;
             this.userType = userType;
             this.password = password;
             this.FirstName = firstName;
-            LastName  = lastName;
+            LastName = lastName;
+            Email = email;
         }
         public Student()
         {
@@ -38,10 +40,13 @@ namespace Domain
 
     public class DetailsForRegister
     {
-        public bool isLecturer { get; set; }
-        public string password { get; set; }
-        public string lName { get; set; }
-        public string fName { get; set; }
+        public long Id { get; set; }
+        public bool IsLecturer { get; set; }
+        public string Password { get; set; } = null!;
+        public string LastName { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+
     }
 
 }

@@ -12,7 +12,9 @@ export class LecturerApiService {
   constructor(private http: HttpClient) {}
 
   getAllLecturer(): Observable<Lecturer[]> {
-    return this.http.get<Lecturer[]>(this.serverUrl + '/Lecturer');
+    return this.http.get<Lecturer[]>(
+      this.serverUrl + '/Lecturer/ListLecturers'
+    );
   }
 
   getLecturer(id: number): Observable<Lecturer> {
@@ -21,5 +23,15 @@ export class LecturerApiService {
 
   getAllProject(): Observable<ProjectFull[]> {
     return this.http.get<ProjectFull[]>(this.serverUrl + '/Project');
+  }
+
+  getLecturerProjects(id: string): Observable<ProjectFull[]> {
+    return this.http.get<ProjectFull[]>(
+      this.serverUrl + `/Project/GetAllProjectsOfLecturer/${id}`
+    );
+  }
+
+  getScheduleDates(): Observable<any> {
+    return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
   }
 }

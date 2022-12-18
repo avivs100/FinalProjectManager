@@ -1,6 +1,7 @@
 ﻿using Data;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,38 +12,28 @@ namespace FinalProjectManger_server.Controllers
     public class RegisterController : ControllerBase
     {
         static UsersDbContext context = new UsersDbContext();
-        List<Student> students = context.Set<Student>().ToList();
-        List<Lecturer> lecturers = context.Set<Lecturer>().ToList();
+
         // PUT api/<RegisterController>/5
-        [HttpPut("{id}")]
-        public bool Put([FromRoute] long id, [FromBody] DetailsForRegister detailsForRegister)
+        [HttpPut("Register")]
+        public async Task<ActionResult<bool>> Put( [FromBody] DetailsForRegister detailsForRegister)
         {
-            if (id < 1)
+            if (detailsForRegister.IsLecturer == false)
             {
-                return false;
+                if( await context.Set<Student>().Where(x=>x.id == detailsForRegister.Id).FirstOrDefaultAsync() != null)
+                    return NotFound(false);
+
+                context.Add(new Student(detailsForRegister.Id, UserType.student, detailsForRegister.FirstName, detailsForRegister.LastName, detailsForRegister.Password, detailsForRegister.Email));
+                await context.SaveChangesAsync();
+                return Ok(true);
             }
-            if (detailsForRegister.isLecturer == false)
-            {
-                if(students.Any(x=>x.id == id))
-                    return false;
-                else
-                {
-                    context.Add(new Student(id, UserType.student, detailsForRegister.fName, detailsForRegister.lName, detailsForRegister.password));
-                    context.SaveChanges();
-                    return true;
-                }
-            }
-            else
-            {
-                if (lecturers.Any(x => x.id == id))
-                    return false;
-                else
-                {
-                    context.Add(new Lecturer(id, UserType.lecturer, detailsForRegister.fName, detailsForRegister.lName, detailsForRegister.password));
-                    context.SaveChanges();
-                    return true;
-                }
-            }
+
+            if (await context.Set<Lecturer>().Where(x => x.id == detailsForRegister.Id).FirstOrDefaultAsync() != null)
+                return NotFound(false);
+
+            context.Add(new Lecturer(detailsForRegister.Id, UserType.lecturer, detailsForRegister.FirstName, detailsForRegister.LastName, detailsForRegister.Password, detailsForRegister.Email));
+            context.Add(new Premission(detailsForRegister.Id, detailsForRegister.FirstName + detailsForRegister.LastName ));
+            await context.SaveChangesAsync();
+            return Ok(true);
         }
 
     }
