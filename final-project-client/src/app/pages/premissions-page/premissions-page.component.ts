@@ -14,7 +14,7 @@ export class PremissionsPageComponent implements OnInit {
   public premissions$: Observable<premission[]> = this.api.getPremissions();
 
   ngOnInit(): void {
-    this.api.getAllLecturer().subscribe((x) => console.log(x));
+    //this.api.getAllLecturer().subscribe((x) => console.log(x));
     console.log('get premissions from server');
   }
 

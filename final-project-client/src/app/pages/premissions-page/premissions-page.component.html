@@ -50,4 +50,9 @@
       </ng-template>
     </p-table>
   </p-card>
+  <p-card *ngIf="premissions.length == 0">
+    <div class="flex flex-row justify-content-between mb-5">
+      <div class="text-5xl">No Waiting Premissions</div>
+    </div>
+  </p-card>
 </div>

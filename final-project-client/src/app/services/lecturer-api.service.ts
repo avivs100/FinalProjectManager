@@ -25,7 +25,7 @@ export class LecturerApiService {
     return this.http.get<ProjectFull[]>(this.serverUrl + '/Project');
   }
 
-  getLecturerProjects(id: string): Observable<ProjectFull[]> {
+  getLecturerProjects(id: number): Observable<ProjectFull[]> {
     return this.http.get<ProjectFull[]>(
       this.serverUrl + `/Project/GetAllProjectsOfLecturer/${id}`
     );

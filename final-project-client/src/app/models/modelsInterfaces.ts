@@ -30,7 +30,7 @@ export interface Admin {
   id: number;
   password: string;
   userType: UserType;
-  //email: String;
+  email: String;
   firstName: string;
   lastName: string;
 }
@@ -43,17 +43,18 @@ export interface Lecturer {
   id: number;
   userType: UserType;
   password: string;
-  //email: String;
+  email: String;
   firstName: string;
   lastName: string;
   constraints: constraint[];
+  isActive: boolean;
 }
 
 export interface Student {
   id: number;
   userType: UserType;
   password: string;
-  //email: String;
+  email: String;
   firstName: string;
   lastName: string;
   partnerId: number;

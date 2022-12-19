@@ -1,28 +1,29 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ProjectFull, User } from 'src/app/models/modelsInterfaces';
-import { DataProvaiderService } from 'src/app/services/data-provaider.service';
+import { LecturerApiService } from 'src/app/services/lecturer-api.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-lecturer-projects',
   templateUrl: './lecturer-projects.component.html',
   styleUrls: ['./lecturer-projects.component.scss'],
 })
-export class LecturerProjectsComponent implements OnChanges {
-  selectedProduct($event: any) {
-    throw new Error('Method not implemented.');
-  }
-  public projects: ProjectFull[] = [];
+export class LecturerProjectsComponent {
+  //public projects: ProjectFull[] = [];
 
-  @Input() public user: User | null = null;
-
-  constructor(private data: DataProvaiderService) {}
-  ngOnChanges(): void {
-    // this.projects = this.data.Projects.filter(
-    //   (x) => x.lecturerId === this.user!.id
-    // );
-  }
+  constructor(
+    private api: LecturerApiService,
+    private state: StateService,
+    private router: Router
+  ) {}
+  public projects$: Observable<ProjectFull[]> = this.api.getLecturerProjects(
+    this.state.connectedUser!.id
+  );
 
   public selectedProject({ data }: { data: ProjectFull }) {
-    console.log(data);
+    this.state.project = data;
+    this.router.navigate(['home/project']);
   }
 }

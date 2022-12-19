@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProjectFull, ProjectType } from 'src/app/models/modelsInterfaces';
+import { StateService } from 'src/app/services/state.service';
+import { StudentApiService } from 'src/app/services/student-api.service';
 
 @Component({
   selector: 'app-project-details',
@@ -7,6 +9,13 @@ import { ProjectFull, ProjectType } from 'src/app/models/modelsInterfaces';
   styleUrls: ['./project-details.component.scss'],
 })
 export class ProjectDetailsComponent {
-  @Input() public project: ProjectFull | null = null;
   public ProjectType: ProjectType | undefined;
+  public project: ProjectFull | null = this.state.project;
+  public userType = this.state.connectedUser!.userType;
+  constructor(private state: StateService, private api: StudentApiService) {}
+  public newName: string = this.state.project!.projectName;
+
+  editProjectNameClick() {
+    console.log('edit project name to ', this.newName);
+  }
 }

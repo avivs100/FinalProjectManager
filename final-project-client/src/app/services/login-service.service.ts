@@ -18,7 +18,7 @@ import {
   User,
   UserType,
 } from '../models/modelsInterfaces';
-import { DataProvaiderService } from './data-provaider.service';
+
 import { GeneralApiService } from './general-api.service';
 import { LecturerApiService } from './lecturer-api.service';
 import { StateService } from './state.service';
@@ -46,7 +46,6 @@ export class LoginService implements OnInit {
     this.generalApi
       .login(id, pass)
       .pipe(
-        tap((x) => console.log('type from the server is:', x)),
         catchError((err) => {
           return of(this.showError());
         })

@@ -22,7 +22,7 @@ namespace FinalProjectManger_server.Controllers
             if (admin != null && admin.password.Equals(password))
                 return 0;
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
-            if (lecturer != null && lecturer.password.Equals(password))
+            if (lecturer != null && lecturer.password.Equals(password)&& lecturer.IsActive==true)
                 return 2;
             var student = await context.Set<Student>().Where(x => x.id == id).FirstOrDefaultAsync();
             if (student != null && student.password.Equals(password))

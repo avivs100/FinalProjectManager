@@ -14,6 +14,7 @@ namespace Domain
         public Grade TechnicalQuality { get; set; }
         public Grade GeneralEvaluation { get; set; }
         public string AdditionalComment { get; set; }
+
         public static double Precentage = 0.25;
         public double AverageScore { get; set; }
 

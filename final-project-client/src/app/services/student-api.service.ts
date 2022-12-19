@@ -28,7 +28,9 @@ export class StudentApiService {
   }
 
   getProject(id: number): Observable<ProjectFull> {
-    return this.http.get<ProjectFull>(this.serverUrl + `/Project/${id}`);
+    return this.http.get<ProjectFull>(
+      this.serverUrl + `/Project/GetFullProjectByStudentId/${id}`
+    );
   }
 
   getAllLecturer(): Observable<Lecturer[]> {

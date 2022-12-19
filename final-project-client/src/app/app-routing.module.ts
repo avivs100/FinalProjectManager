@@ -6,6 +6,7 @@ import { GradesComponent } from './pages/grades-page/grades-page.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { MessagesPageComponent } from './pages/messages-page/messages-page.component';
 import { PremissionsPageComponent } from './pages/premissions-page/premissions-page.component';
+import { ProjectDetailsComponent } from './pages/projects/project-details/project-details.component';
 import { ProjectsPageComponent } from './pages/projects/projects-page.component';
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
 import { LecturerScheduleComponent } from './pages/schedule-page/lecturer-schedule/lecturer-schedule.component';
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'submissions',
         component: SubmissionsComponent,
+      },
+      {
+        path: 'project',
+        component: ProjectDetailsComponent,
       },
     ],
   },
