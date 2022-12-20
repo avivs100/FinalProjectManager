@@ -143,8 +143,8 @@ namespace FinalProjectManger_server.Controllers
         {
             try
             {
-                MailMessage message = new MailMessage();
-                SmtpClient smtp = new SmtpClient();
+                var message = new MailMessage();
+                var smtp = new SmtpClient();
                 message.From = new MailAddress(from);
                 message.To.Add(new MailAddress(to));
                 message.Subject = subject;
