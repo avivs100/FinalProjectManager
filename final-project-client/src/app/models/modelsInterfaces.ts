@@ -123,3 +123,9 @@ export interface ProjectFull {
   gradeB: GradeB;
   gradeA: GradeA;
 }
+
+export interface ScheduleDates {
+  id: number;
+  date1: string;
+  date2: string;
+}
