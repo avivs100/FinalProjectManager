@@ -18,28 +18,12 @@ import { SubSink } from 'subsink';
   templateUrl: './projects-page.component.html',
   styleUrls: ['./projects-page.component.scss'],
 })
-export class ProjectsPageComponent implements OnDestroy {
+export class ProjectsPageComponent {
   public userType: UserType | undefined;
-  public projectFull$: ProjectFull | undefined;
-  public sub: SubSink = new SubSink();
+
   public user: Student | Lecturer | Admin | null = null;
-  constructor(
-    private state: StateService,
-    private api: StudentApiService,
-    private router: Router
-  ) {
+  constructor(state: StateService) {
     this.userType = state.connectedUser?.userType;
     this.user = state.connectedUser;
-    this.sub.sink = this.api.getProject(this.user!.id).subscribe((x) => {
-      this.state.project = x;
-      this.router.navigate(['home/project']);
-    });
-  }
-  ngOnDestroy(): void {
-    this.sub.unsubscribe;
-  }
-
-  navigateToProjectDetails() {
-    this.router.navigate(['home/project']);
   }
 }
