@@ -8,10 +8,12 @@ namespace Domain
 {
     public class GradeA
     {
-        PresentationGrade presentationGrade { get; set; }
-        BookGrade bookGrade { get; set; }
-        LecturerGrade lecturerGrade { get; set; }
-        double AverageScore { get; set; }
+        public int gradeAid { get; set; }
+        public PresentationGrade presentationGrade { get; set; }
+        public BookGrade bookGrade { get; set; }
+        public LecturerGrade lecturerGrade { get; set; }
+
+        public double AverageScore { get; set; }
 
         public double ComputeGrade()
         {
@@ -19,6 +21,21 @@ namespace Domain
                 + bookGrade.AverageScore * BookGrade.Precentage
                 + lecturerGrade.AverageScore * LecturerGrade.Precentage; ;
             return AverageScore;
+        }
+
+        public GradeA()
+        {
+            gradeAid = new Random().Next();
+            presentationGrade = new PresentationGrade();
+            bookGrade = new BookGrade();
+            lecturerGrade = new LecturerGrade();
+        }
+        public GradeA(PresentationGrade presentationGrade, BookGrade bookGrade, LecturerGrade lecturerGrade)
+        {
+            gradeAid = new Random().Next();
+            this.presentationGrade = presentationGrade;
+            this.bookGrade = bookGrade;
+            this.lecturerGrade = lecturerGrade;
         }
     }
 }

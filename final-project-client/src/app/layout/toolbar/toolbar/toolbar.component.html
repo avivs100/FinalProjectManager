@@ -1,11 +1,22 @@
 <p-toolbar styleClass="p-0">
-  <div class="p-toolbar-group-left">
-    <div class="mini-sidebar p-1 flex flex-row cursor-pointer" routerLink="/">
+  <div
+    class="p-toolbar-group-left w-full"
+    style="background-color: rgb(154, 197, 183)"
+  >
+    <div
+      class="mini-sidebar p-1 flex flex-row cursor-pointer w-full"
+      routerLink="/"
+    >
       <img src="assets/goofy.png" />
-      <div *ngIf="true" class="text-2xl font-bold text-center logo">
+      <div class="text-2xl font-bold text-center logo">
         Project management system
       </div>
+      <div class="text-2xl font-bold text-center logo ml-4 mr-4">
+        User: {{ firstName }} {{ lastName }}
+      </div>
+      <div class="text-2xl font-bold text-center logo"></div>
     </div>
+    <p-button icon="pi pi-sign-out" (click)="navigateToLogin()"></p-button>
   </div>
 
   <div class="p-toolbar-group-right"></div>
