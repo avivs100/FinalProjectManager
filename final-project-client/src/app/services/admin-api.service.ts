@@ -73,4 +73,11 @@ export class AdminApiService {
       null
     );
   }
+
+  putScheduleDates(dates: any) {
+    return this.http.put<boolean>(
+      `${this.serverUrl}/Admin/PutScheduleDates`,
+      dates
+    );
+  }
 }

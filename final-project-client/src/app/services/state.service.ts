@@ -41,7 +41,7 @@ export class StateService {
     email: 'default@gmaol.com',
   };
 
-  public connectedUser: Student | Admin | Lecturer | null = this.admin;
+  public connectedUser: Student | Admin | Lecturer | null = this.lecturer;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
 }

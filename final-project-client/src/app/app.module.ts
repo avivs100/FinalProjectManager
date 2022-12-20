@@ -71,6 +71,7 @@ import { CreateScheduleComponent } from './pages/schedule-page/admin-schedule/cr
 import { SelectScheduleDaysDialogComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-dialog.component';
 import { RegisterDialogComponent } from './pages/login/login-page/register-dialog/register-dialog.component';
 import { RegisterFormComponent } from './pages/login/login-page/register-dialog/register-form/register-form.component';
+import { LecturerAddConstraintsComponent } from './pages/schedule-page/lecturer-schedule/lecturer-add-constraints/lecturer-add-constraints.component';
 //import { SelectScheduleDaysFormComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-form/select-schedule-days-form.component';
 
 @NgModule({
@@ -112,6 +113,7 @@ import { RegisterFormComponent } from './pages/login/login-page/register-dialog/
     SelectScheduleDaysDialogComponent,
     RegisterDialogComponent,
     RegisterFormComponent,
+    LecturerAddConstraintsComponent,
   ],
   imports: [
     FocusTrapModule,
