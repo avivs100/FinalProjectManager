@@ -6,9 +6,8 @@ export enum UserType {
 }
 
 export enum ProjectType {
-  Development = 'Development',
-  Research = 'Research',
-  Data = 'Data',
+  Research,
+  Development,
 }
 
 export interface premission {
