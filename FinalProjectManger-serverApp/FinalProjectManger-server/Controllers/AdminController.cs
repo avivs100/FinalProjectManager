@@ -35,11 +35,16 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<ScheduleDates>> PutScheduleDates([FromBody] ScheduleDatesDetails details)
         {
             var context = new UsersDbContext();
-            ScheduleDates scheduleDates = new ScheduleDates(details.date1, details.date2);
+            var scheduleDates = new ScheduleDates(details.date1, details.date2);
+            var dates = await context.Set<ScheduleDates>().ToListAsync();
+            context.Set<ScheduleDates>().RemoveRange(dates);
+            await context.SaveChangesAsync();
             context.Set<ScheduleDates>().Add(scheduleDates);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             return Ok(scheduleDates);
         }
+
+        
 
         [HttpGet("premissions")]
         public async Task<ActionResult<List<Premission>>> GetPremissions()

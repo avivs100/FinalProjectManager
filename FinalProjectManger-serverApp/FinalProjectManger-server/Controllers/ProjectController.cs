@@ -123,6 +123,15 @@ namespace FinalProjectManger_server.Controllers
             fullProject.gradeB = gradeB;
             return Ok(fullProject);
         }
+
+        [HttpGet("GetScheduleDates")]
+        public async Task<ActionResult<ScheduleDates>> GetScheduleDates()
+        {
+            var context = new UsersDbContext();
+            var scheduleDates = await context.Set<ScheduleDates>().FirstOrDefaultAsync();
+            return Ok(scheduleDates);
+        }
+
         [HttpGet("GetAllProjectsOfLecturer/{lecturerId}")]
         public async Task<ActionResult<IReadOnlyList<ProjectFull>>> GetAllProjectsOfLecturer([FromRoute]int lecturerId)
         {
