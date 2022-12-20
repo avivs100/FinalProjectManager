@@ -77,14 +77,11 @@ namespace FinalProjectManger_server.Controllers
             project.student1Id = projectDetails.student1Id;
             project.student2Id = projectDetails.student2Id;
             context.Set<Project>().Add(project);
-<<<<<<< HEAD
+
             //context.Add(project);
             await context.SaveChangesAsync();
             return Ok();
-=======
-            context.SaveChanges();
-            return Ok(project);
->>>>>>> master
+
         }
 
         // DELETE api/<ProjectController>/5

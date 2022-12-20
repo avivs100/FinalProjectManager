@@ -12,10 +12,7 @@ namespace FinalProjectManger_server.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-<<<<<<< HEAD
-=======
-        static UsersDbContext context = new UsersDbContext();
->>>>>>> master
+
 
         // GET: api/<AdminController>
         [HttpGet]
@@ -62,11 +59,9 @@ namespace FinalProjectManger_server.Controllers
         [HttpPost("ApproveLecturer/{id}")]
         public async Task<ActionResult<bool>> ApproveLecturer([FromRoute] long id)
         {
-<<<<<<< HEAD
-            var context = new UsersDbContext();
-=======
 
->>>>>>> master
+            var context = new UsersDbContext();
+
             var premission = await context.Set<Premission>().Where(x => x.LecturerId == id).FirstOrDefaultAsync();
             if (premission == null) return NotFound(false);
             context.Set<Premission>().Remove(premission);
@@ -78,7 +73,6 @@ namespace FinalProjectManger_server.Controllers
             return Ok(true);
         }
 
-<<<<<<< HEAD
         [HttpDelete("DeletePremission/{id}")]
         public async Task<ActionResult<bool>> DeletePremission([FromRoute] long id)
         {
@@ -89,10 +83,11 @@ namespace FinalProjectManger_server.Controllers
             await context.SaveChangesAsync();
             return Ok(true);
         }
-=======
+
         [HttpPut("SendEmailToAllStudents")]
         public async Task<ActionResult<bool>> SendEmailToAllStudents([FromBody] EmailMessageDetails details)
         {
+            var context = new UsersDbContext();
             var students = await context.Set<Student>().ToListAsync();
             foreach (var student in students)
             {
@@ -105,6 +100,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailTo1Student{StudentId}")]
         public async Task<ActionResult<bool>> SendEmailTo1Student([FromBody] EmailMessageDetails details, [FromRoute] long StudentId)
         {
+            var context = new UsersDbContext();
             var student = await context.Set<Student>().Where(x => x.id == StudentId).FirstOrDefaultAsync();
             if(student == null)
                 return NotFound(false);
@@ -116,6 +112,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailTo1Lecturer{LecturerId}")]
         public async Task<ActionResult<bool>> SendEmailTo1Lecturer([FromBody] EmailMessageDetails details, [FromRoute] long LecturerId)
         {
+            var context = new UsersDbContext();
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == LecturerId).FirstOrDefaultAsync();
             if (lecturer == null)
                 return NotFound(false);
@@ -127,6 +124,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailTo2StudentsByProjectId{ProjectId}")]
         public async Task<ActionResult<bool>> SendEmaSendEmailTo2StudentsByProjectIdilTo1Lecturer([FromBody] EmailMessageDetails details, [FromRoute] long ProjectId)
         {
+            var context = new UsersDbContext();
             var project = await context.Set<Project>().Where(x => x.ProjectId == ProjectId).FirstOrDefaultAsync();
             if (project == null)
                 return NotFound(false);
@@ -164,6 +162,5 @@ namespace FinalProjectManger_server.Controllers
         }
 
 
->>>>>>> master
     }
 }
