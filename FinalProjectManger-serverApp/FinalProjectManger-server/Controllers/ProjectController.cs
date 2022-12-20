@@ -66,12 +66,12 @@ namespace FinalProjectManger_server.Controllers
             project.ProjectId = new Random().Next();
             project.LecturerId = projectDetails.LecturerId;
             project.ProjectName = projectDetails.ProjectName;
-            GradeB gradeB = new GradeB();
+            var gradeB = new GradeB();
             context.Set<GradeB>().Add(gradeB);
-            context.SaveChanges();
-            GradeA gradeA = new GradeA();
+            await context.SaveChangesAsync();
+            var gradeA = new GradeA();
             context.Set<GradeA>().Add(gradeA);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             project.gradeBId = gradeB.gradeBid;
             project.gradeAId = gradeA.gradeAid;
             project.student1Id = projectDetails.student1Id;
@@ -170,12 +170,12 @@ namespace FinalProjectManger_server.Controllers
                             return NotFound(null);
                         }
                         fullProject.ProjectId = item.ProjectId;
-                        fullProject.Lecturer = l;
+                        fullProject.Lecturer = l!;
                         fullProject.ProjectName = item.ProjectName;
-                        fullProject.student1 = s1;
-                        fullProject.student2 = s2;
-                        fullProject.gradeA = gradeA;
-                        fullProject.gradeB = gradeB;
+                        fullProject.student1 = s1!;
+                        fullProject.student2 = s2!;
+                        fullProject.gradeA = gradeA!;
+                        fullProject.gradeB = gradeB!;
                         projectsOfLecturer.Add(fullProject);
                     }
                     
