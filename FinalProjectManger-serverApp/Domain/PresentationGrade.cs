@@ -16,7 +16,7 @@ namespace Domain
         public string AdditionalComment { get; set; }
 
         public static double Precentage = 0.25;
-        public double AverageScore { get; set; }
+        public double AverageScore { get; set; } = 0;
 
         public double ComputeScore()
         {
@@ -29,7 +29,12 @@ namespace Domain
 
         public PresentationGrade()
         {
-
+            Id = new Random().Next();
+            Organization = new Grade(0.25,"Organization");
+            QualityOfProblem = new Grade(0.25, "Quality Of Problem");
+            TechnicalQuality = new Grade(0.25, "Technical Quality");
+            GeneralEvaluation = new Grade(0.25, "General Evaluation");
+            AdditionalComment = "";
         }
 
         public PresentationGrade(Grade organization, Grade qualityOfProblem, Grade technicalQuality, Grade generalEvaluation

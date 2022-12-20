@@ -18,11 +18,17 @@ namespace Domain
         public Grade Organization;
         public Grade GeneralEvaluation;
         public static double Precentage = 0.25;
-        public double AverageScore { get; set; }
+        public double AverageScore { get; set; } = 0;
 
         public BookGrade()
         {
-
+            Id = new Random().Next();
+            Research = new Grade(0.25,"Research");
+            AnalysisAndConclusion = new Grade(0.15, "Analysis And Conclusion");
+            SwQuality = new Grade(0.15, "Sw Quality");
+            UIandAPPguides = new Grade(0.15, "UI and APP guides");
+            Organization = new Grade(0.15, "Organization");
+            GeneralEvaluation = new Grade(0.15, "General Evaluation");
         }
         public double ComputeGrade()
         {
