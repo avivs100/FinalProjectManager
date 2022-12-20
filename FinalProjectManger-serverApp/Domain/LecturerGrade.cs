@@ -12,7 +12,7 @@ namespace Domain
         public Grade? Grade1 { get; set; }
         public Grade? Grade2 { get; set; }
         public int Id { get;  set; }
-        public int AverageScore { get; set; }
+        public int AverageScore { get; set; } = 0;
         public string Description { get; set; } = null!;
         public static double Precentage = 0.5;
 
@@ -20,7 +20,10 @@ namespace Domain
 
         public LecturerGrade()
         {
-
+            Id = new Random().Next();
+            Grade1 = new Grade(0.5, "Grade 1");
+            Grade2 = new Grade(0.5, "Grade 2");
+            Description = "";
         }
         public LecturerGrade(Grade? grade1, Grade? grade2, string description)
         {

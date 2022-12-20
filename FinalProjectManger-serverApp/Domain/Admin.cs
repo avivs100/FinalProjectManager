@@ -25,4 +25,11 @@ namespace Domain
             Email = email;
         }
     }
+    public class EmailMessageDetails
+    {
+        public string From { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+        public static string SystemEmail = "FinalProjectManager@outlook.com";
+    }
 }

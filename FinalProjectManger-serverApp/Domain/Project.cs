@@ -27,6 +27,7 @@ namespace Domain
             this.gradeAId = gradeAId;
             this.gradeBId = gradeBId;
         }
+
         public Project()
         {
 
@@ -68,6 +69,6 @@ public class ProjectDetails
     public long LecturerId { get; set; }
     public long student1Id { get; set; }
     public long student2Id { get; set; }
-    public int gradeAId { get; set; }
-    public int gradeBId { get; set; }
+    //public int gradeAId { get; set; }
+    //public int gradeBId { get; set; }
 }

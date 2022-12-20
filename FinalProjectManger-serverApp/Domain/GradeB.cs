@@ -24,6 +24,10 @@ namespace Domain
 
         public GradeB()
         {
+            gradeBid = new Random().Next();
+            presentationGrade = new PresentationGrade();
+            bookGrade = new BookGrade();
+            lecturerGrade = new LecturerGrade();
 
         }
         public GradeB(PresentationGrade presentationGrade, BookGrade bookGrade, LecturerGrade lecturerGrade)

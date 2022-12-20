@@ -59,21 +59,29 @@ namespace FinalProjectManger_server.Controllers
             var student1 = await context.Set<Student>().Where(x => x.id == projectDetails.student1Id).FirstOrDefaultAsync();
             var student2 = await context.Set<Student>().Where(x => x.id == projectDetails.student2Id).FirstOrDefaultAsync();
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == projectDetails.LecturerId).FirstOrDefaultAsync();
-            var gradeA = await context.Set<GradeA>().Where(x => x.gradeAid == projectDetails.gradeAId).FirstOrDefaultAsync();
-            var gradeB = await context.Set<GradeB>().Where(x => x.gradeBid == projectDetails.gradeBId).FirstOrDefaultAsync();
-            if(student1 == null || student2 == null || lecturer == null || gradeA == null || gradeB == null)
+            //var gradeA = await context.Set<GradeA>().Where(x => x.gradeAid == projectDetails.gradeAId).FirstOrDefaultAsync();
+            //var gradeB = await context.Set<GradeB>().Where(x => x.gradeBid == projectDetails.gradeBId).FirstOrDefaultAsync();
+            if(student1 == null || student2 == null || lecturer == null/* || gradeA == null || gradeB == null*/)
                 return NotFound();
             project.ProjectId = new Random().Next();
             project.LecturerId = projectDetails.LecturerId;
             project.ProjectName = projectDetails.ProjectName;
-            project.gradeBId = projectDetails.gradeBId;
-            project.gradeAId = projectDetails.gradeAId;
+            GradeB gradeB = new GradeB();
+            context.Set<GradeB>().Add(gradeB);
+            context.SaveChanges();
+            GradeA gradeA = new GradeA();
+            context.Set<GradeA>().Add(gradeA);
+            context.SaveChanges();
+            project.gradeBId = gradeB.gradeBid;
+            project.gradeAId = gradeA.gradeAid;
             project.student1Id = projectDetails.student1Id;
             project.student2Id = projectDetails.student2Id;
             context.Set<Project>().Add(project);
+
             //context.Add(project);
             await context.SaveChangesAsync();
             return Ok();
+
         }
 
         // DELETE api/<ProjectController>/5
@@ -123,6 +131,15 @@ namespace FinalProjectManger_server.Controllers
             fullProject.gradeB = gradeB;
             return Ok(fullProject);
         }
+
+        [HttpGet("GetScheduleDates")]
+        public async Task<ActionResult<ScheduleDates>> GetScheduleDates()
+        {
+            var context = new UsersDbContext();
+            var scheduleDates = await context.Set<ScheduleDates>().FirstOrDefaultAsync();
+            return Ok(scheduleDates);
+        }
+
         [HttpGet("GetAllProjectsOfLecturer/{lecturerId}")]
         public async Task<ActionResult<IReadOnlyList<ProjectFull>>> GetAllProjectsOfLecturer([FromRoute]int lecturerId)
         {
