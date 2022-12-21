@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserType } from 'src/app/models/modelsInterfaces';
+import { UserType } from 'src/app/models/enums';
 import { StateService } from 'src/app/services/state.service';
 
 @Component({

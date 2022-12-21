@@ -1,63 +1,5 @@
-export enum UserType {
-  admin,
-  Student,
-  lecturer,
-  none,
-}
-
-export enum ProjectType {
-  Research,
-  Development,
-}
-
-export interface premission {
-  id: string;
-  lecturerId: number;
-  lecturerName: string;
-}
-
-export interface User {
-  id: number;
-  pass: string;
-  userType: UserType;
-  email: String;
-  firstName: string;
-  lastName: string;
-}
-
-export interface Admin {
-  id: number;
-  password: string;
-  userType: UserType;
-  email: String;
-  firstName: string;
-  lastName: string;
-}
-export interface constraint {
-  id: string;
-  dataTime: Date;
-}
-
-export interface Lecturer {
-  id: number;
-  userType: UserType;
-  password: string;
-  email: String;
-  firstName: string;
-  lastName: string;
-  constraints: constraint[];
-  isActive: boolean;
-}
-
-export interface Student {
-  id: number;
-  userType: UserType;
-  password: string;
-  email: String;
-  firstName: string;
-  lastName: string;
-  partnerId: number;
-}
+import { ProjectType } from './enums';
+import { Lecturer, Student } from './users-models';
 
 export interface Grade {
   description: string;
@@ -121,10 +63,4 @@ export interface ProjectFull {
   student2: Student;
   gradeB: GradeB;
   gradeA: GradeA;
-}
-
-export interface ScheduleDates {
-  id: number;
-  date1: string;
-  date2: string;
 }

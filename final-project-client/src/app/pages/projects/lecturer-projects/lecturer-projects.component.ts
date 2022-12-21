@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProjectFull, User } from 'src/app/models/modelsInterfaces';
+import { ProjectFull } from 'src/app/models/project-grade-models';
+
 import { LecturerApiService } from 'src/app/services/lecturer-api.service';
 import { StateService } from 'src/app/services/state.service';
 
@@ -11,8 +12,6 @@ import { StateService } from 'src/app/services/state.service';
   styleUrls: ['./lecturer-projects.component.scss'],
 })
 export class LecturerProjectsComponent {
-  //public projects: ProjectFull[] = [];
-
   constructor(
     private api: LecturerApiService,
     private state: StateService,

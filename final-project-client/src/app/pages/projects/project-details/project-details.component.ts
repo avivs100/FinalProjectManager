@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ProjectFull, ProjectType } from 'src/app/models/modelsInterfaces';
+import { ProjectType } from 'src/app/models/enums';
+import { ProjectFull } from 'src/app/models/project-grade-models';
+
 import { StateService } from 'src/app/services/state.service';
 import { StudentApiService } from 'src/app/services/student-api.service';
 

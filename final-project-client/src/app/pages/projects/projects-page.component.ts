@@ -1,17 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-  Admin,
-  Lecturer,
-  ProjectFull,
-  Student,
-  User,
-  UserType,
-} from 'src/app/models/modelsInterfaces';
-import { LoginService } from 'src/app/services/login-service.service';
+import { Component } from '@angular/core';
+import { UserType } from 'src/app/models/enums';
+import { Student, Lecturer, Admin } from 'src/app/models/users-models';
 import { StateService } from 'src/app/services/state.service';
-import { StudentApiService } from 'src/app/services/student-api.service';
-import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-projects-page',

@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
-import { Component, Input, OnDestroy } from '@angular/core';
-import { ProjectFull, User } from 'src/app/models/modelsInterfaces';
+import { Component, OnDestroy } from '@angular/core';
+
 import { StateService } from 'src/app/services/state.service';
 import { StudentApiService } from 'src/app/services/student-api.service';
 import { SubSink } from 'subsink';
+import { ProjectFull } from 'src/app/models/project-grade-models';
 
 @Component({
   selector: 'app-student-projects',
@@ -11,7 +12,6 @@ import { SubSink } from 'subsink';
   styleUrls: ['./student-projects.component.scss'],
 })
 export class StudentProjectsComponent implements OnDestroy {
-  @Input() public user: User | null = null;
   public projectFull$: ProjectFull | undefined;
   public sub: SubSink = new SubSink();
 
@@ -21,10 +21,12 @@ export class StudentProjectsComponent implements OnDestroy {
     private api: StudentApiService,
     private router: Router
   ) {
-    this.sub.sink = this.api.getProject(this.user!.id).subscribe((x) => {
-      this.state.project = x;
-      this.navigateToProjectDetails();
-    });
+    this.sub.sink = this.api
+      .getProject(this.state.connectedUser!.id)
+      .subscribe((x) => {
+        this.state.project = x;
+        this.navigateToProjectDetails();
+      });
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();

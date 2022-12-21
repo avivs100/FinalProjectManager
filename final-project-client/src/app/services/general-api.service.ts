@@ -1,13 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  Admin,
-  Lecturer,
-  ScheduleDates,
-  Student,
-  UserType,
-} from '../models/modelsInterfaces';
+import { ScheduleDates } from '../models/schedule-models';
+import { Admin, Lecturer, Student } from '../models/users-models';
+
 import { RegisterFormData } from '../pages/login/login-page/register-dialog/register-form/register-form.component';
 
 @Injectable({

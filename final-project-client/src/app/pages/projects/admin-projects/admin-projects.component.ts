@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProjectFull } from 'src/app/models/modelsInterfaces';
+import { ProjectFull } from 'src/app/models/project-grade-models';
+
 import { AdminApiService } from 'src/app/services/admin-api.service';
 import { StateService } from 'src/app/services/state.service';
 
