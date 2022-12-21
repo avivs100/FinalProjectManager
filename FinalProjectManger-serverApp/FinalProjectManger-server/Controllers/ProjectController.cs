@@ -13,7 +13,6 @@ namespace FinalProjectManger_server.Controllers
     public class ProjectController : ControllerBase
     {
         
-        // GET: api/<ProjectController>
         [HttpGet("GetProjects")]
         public async Task<ActionResult<IReadOnlyList<ProjectFull>>> GetProjects()
         {
@@ -33,7 +32,6 @@ namespace FinalProjectManger_server.Controllers
             return fullprojects;
         }
 
-        // GET api/<ProjectController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProjectFull>> Get([FromRoute] int id)
         {
