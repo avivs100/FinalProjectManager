@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LecturerApiService } from './lecturer-api.service';
-import {
-  Admin,
-  Lecturer,
-  ProjectFull,
-  Student,
-} from '../models/modelsInterfaces';
+import { ProjectFull } from '../models/project-grade-models';
+import { Admin, Lecturer, Student } from '../models/users-models';
 
 @Injectable({
   providedIn: 'root',

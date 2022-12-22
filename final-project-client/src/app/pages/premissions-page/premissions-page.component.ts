@@ -1,8 +1,8 @@
-import { Lecturer, premission } from './../../models/modelsInterfaces';
 import { Observable } from 'rxjs';
 import { AdminApiService } from './../../services/admin-api.service';
 import { Component, OnInit } from '@angular/core';
 import { SubSink } from 'subsink';
+import { premission } from 'src/app/models/users-models';
 
 @Component({
   templateUrl: './premissions-page.component.html',

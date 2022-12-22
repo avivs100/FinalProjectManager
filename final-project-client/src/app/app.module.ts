@@ -56,7 +56,6 @@ import { AdminMessagesComponent } from './pages/messages-page/admin-messages/adm
 import { MessagesPageComponent } from './pages/messages-page/messages-page.component';
 import { ScheduleComponent } from './pages/schedule-page/schedule-page.component';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
-import { ServerApiService } from './services/server-api.service';
 import { WelcomeComponent } from './layout/welcome/welcome.component';
 import { StudentProjectsComponent } from './pages/projects/student-projects/student-projects.component';
 import { ProjectDetailsComponent } from './pages/projects/project-details/project-details.component';
@@ -148,7 +147,6 @@ import { LecturerAddConstraintsComponent } from './pages/schedule-page/lecturer-
   providers: [
     ConfirmationService,
     MessageService,
-    ServerApiService,
     AdminApiService,
     GeneralApiService,
     LecturerApiService,
