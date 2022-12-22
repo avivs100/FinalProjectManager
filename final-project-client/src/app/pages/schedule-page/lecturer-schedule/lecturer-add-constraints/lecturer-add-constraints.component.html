@@ -1,1 +1,29 @@
-<h1>david</h1>
+<h1 *ngIf="dates == null">The admin still not chose date for presentation</h1>
+<div
+  *ngIf="dates"
+  class="flex align-items-stretch flex-wrap card-container blue-container grid"
+>
+  <p-card class="p-field col-6">
+    <h5>select constraints for date {{ dates.date1.slice(0, 10) }}</h5>
+    <p-multiSelect
+      [options]="sessions"
+      [(ngModel)]="SelectedSession1"
+      display="chip"
+      [virtualScroll]="true"
+      [virtualScrollItemSize]="30"
+    ></p-multiSelect>
+  </p-card>
+  <p-card class="p-field col-6">
+    <h5>select constraints for date {{ dates.date1.slice(0, 10) }}</h5>
+    <p-multiSelect
+      [options]="sessions"
+      [(ngModel)]="SelectedSession2"
+      display="chip"
+      [virtualScroll]="true"
+      [virtualScrollItemSize]="30"
+    ></p-multiSelect>
+  </p-card>
+</div>
+<div class="flex align-items-center justify-content-center">
+  <p-button label="Save Constraints" (onClick)="saveConstrains()"></p-button>
+</div>

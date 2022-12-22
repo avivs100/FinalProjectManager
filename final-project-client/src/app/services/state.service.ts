@@ -1,3 +1,4 @@
+import { ScheduleDates } from './../models/schedule-models';
 import { Injectable } from '@angular/core';
 import { ProjectFull } from '../models/project-grade-models';
 import { Admin, Lecturer, Student } from '../models/users-models';
@@ -39,4 +40,5 @@ export class StateService {
   public connectedUser: Student | Admin | Lecturer | null = this.lecturer;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
+  public scheduleDates: ScheduleDates | null = null;
 }
