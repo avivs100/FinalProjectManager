@@ -1,1 +1,43 @@
-<p>admin-messages works!</p>
+<div class="gap-4 m-5">
+  <div class="text-2xl">Admin Messages</div>
+
+  <div class="grid">
+    <p-card class="col-4 mb-5">
+      <div class="text-2xl mb-5">Send message to all Users</div>
+      <p-button label="Create Message And Send"></p-button>
+    </p-card>
+
+    <p-card class="col-4 mb-5">
+      <div class="text-2xl mb-5">Send message to all Students</div>
+      <p-button label="Create Message And Send"></p-button>
+    </p-card>
+
+    <p-card class="col-4 mb-5">
+      <div class="text-2xl mb-5">Send message to all lecturers</div>
+      <p-button label="Create Message And Send"></p-button>
+    </p-card>
+
+    <p-card class="col-4 mb-5 grid">
+      <div class="text-2xl mb-5 col-12">
+        Send message to specific project (lecturer and students)
+      </div>
+      <p-dropdown class="col-5"></p-dropdown>
+      <p-button label="Create Message And Send" class="col-7"></p-button>
+    </p-card>
+
+    <p-card class="col-4 mb-5 grid">
+      <div class="text-2xl mb-5 col-12">Send message to specific lecturer</div>
+      <p-dropdown class="col-5"></p-dropdown>
+      <p-button class="col-7" label="Create Message And Send"></p-button>
+    </p-card>
+
+    <p-card class="col-4 mb-5">
+      <div class="text-2xl mb-5">
+        Send message to all student inside the Application
+      </div>
+      <p-button label="Create Message And Send"></p-button>
+    </p-card>
+  </div>
+</div>
+
+<p-button (onClick)="openRegisterDialog()"> send</p-button>
