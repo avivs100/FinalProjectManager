@@ -17,14 +17,17 @@ export class SelectScheduleDaysDialogComponent implements OnDestroy {
     this.subs.unsubscribe();
   }
   public save(): void {
-    var dates2: string[] = [];
+    var datesStr: string[] = [];
     this.dates.forEach((x) => {
-      dates2.push(x.toISOString());
+      var d1 = new Date(
+        new Date(x.getTime() - x.getTimezoneOffset() * 60 * 1000).toUTCString()
+      );
+      datesStr.push(d1.toISOString());
     });
-    console.log(dates2);
+    console.log(datesStr);
     var datesToSend = {
-      date1: dates2[0],
-      date2: dates2[1],
+      date1: datesStr[0],
+      date2: datesStr[1],
     };
     this.subs.sink = this.api
       .putScheduleDates(datesToSend)

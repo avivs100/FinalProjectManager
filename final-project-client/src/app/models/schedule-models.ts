@@ -6,6 +6,8 @@ export interface ScheduleDates {
 
 export interface LecturerConstarintForDate {
   lecturerId: number;
-  date: string;
-  sessions: number[];
+  date1: string;
+  date2: string;
+  sessions1: number[];
+  sessions2: number[];
 }

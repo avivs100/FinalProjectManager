@@ -1,3 +1,4 @@
+import { LecturerApiService } from 'src/app/services/lecturer-api.service';
 import { StateService } from 'src/app/services/state.service';
 import { GeneralApiService } from './../../../../services/general-api.service';
 import { SubSink } from 'subsink';
@@ -18,27 +19,25 @@ export class LecturerAddConstraintsComponent implements OnDestroy, OnInit {
   public sessions: number[] = [1, 2, 3, 4, 5, 6];
   public SelectedSession1: number[] = [];
   public SelectedSession2: number[] = [];
+  public conFromServer: LecturerConstarintForDate | undefined;
 
-  constructor(private state: StateService) {}
+  constructor(private state: StateService, private api: LecturerApiService) {}
   ngOnInit(): void {
     this.dates = this.state.scheduleDates;
   }
 
   saveConstrains() {
-    var con1: LecturerConstarintForDate = {
+    var lecturerConstraints: LecturerConstarintForDate = {
       lecturerId: this.state.connectedUser!.id,
-      date: this.dates!.date2,
-      sessions: this.SelectedSession2,
+      date1: this.dates!.date1,
+      date2: this.dates!.date2,
+      sessions1: this.SelectedSession2,
+      sessions2: this.SelectedSession1,
     };
-    var con2: LecturerConstarintForDate = {
-      lecturerId: this.state.connectedUser!.id,
-      date: this.dates!.date1,
-      sessions: this.SelectedSession1,
-    };
-    var lecturerConstrains = [con1, con2];
-    console.log(con1);
-    console.log(con2);
-    console.log(lecturerConstrains);
+    this.subs.sink = this.api
+      .PutLecturerConstraints(lecturerConstraints)
+      .subscribe((x) => console.log(x, 'response from server'));
+    console.log(lecturerConstraints, 'send to server');
   }
   ngOnDestroy(): void {
     this.subs.unsubscribe();

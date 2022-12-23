@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProjectFull } from '../models/project-grade-models';
+import { LecturerConstarintForDate } from '../models/schedule-models';
 import { Lecturer } from '../models/users-models';
 
 @Injectable({
@@ -34,5 +35,14 @@ export class LecturerApiService {
 
   getScheduleDates(): Observable<any> {
     return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  }
+
+  PutLecturerConstraints(
+    con: LecturerConstarintForDate
+  ): Observable<LecturerConstarintForDate> {
+    return this.http.put<LecturerConstarintForDate>(
+      `${this.serverUrl}/Lecturer/PutLecturerConstraints`,
+      con
+    );
   }
 }
