@@ -46,7 +46,18 @@ namespace FinalProjectManger_server.Controllers
             return Ok(scheduleDates);
         }
 
-        
+        [HttpDelete("DeleteScheduleDates")]
+        public async Task<ActionResult<bool>> DeleteScheduleDates()
+        {
+            var context = new UsersDbContext();
+            var dates = await context.Set<ScheduleDates>().FirstOrDefaultAsync();
+            if (dates == null) return NotFound(false);
+            context.Set<ScheduleDates>().RemoveRange(dates);
+            await context.SaveChangesAsync();
+            return Ok(true);
+        }
+
+
 
         [HttpGet("premissions")]
         public async Task<ActionResult<List<Premission>>> GetPremissions()
