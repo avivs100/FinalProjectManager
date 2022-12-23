@@ -42,6 +42,31 @@ namespace FinalProjectManger_server.Controllers
             return await context.Set<ScheduleDates>().ToListAsync();
         }
 
+        [HttpPut("PutLecturerConstraints")]
+        //TODO create with ef table for lecturer constraints and change return type to bool,
+        //TODO add the lc to the table, if the lecturer already have constraints so replace with this
+        //TODO create get method for this constraint by lecturer id, and also get all constraints for admin
+        //TODO make this method async
+        public ActionResult<LecturerConstraints> PutLecturerConstraints([FromBody] LecturerConstraintDto details)
+        {
+            var lc = new LecturerConstraints()
+            {
+                LecturerId = details.LecturerId,
+                Date1Constraint = new LecturerConstraint()
+                {
+                    Date = details.Date1,
+                    Sessions = details.Sessions1
+                },
+                Date2Constraint = new LecturerConstraint()
+                {
+                    Date = details.Date2,
+                    Sessions = details.Sessions2
+                }
+            };
+            return Ok(lc);
+        }
+
+
         //[HttpPut("AddConstraint")]
         //public async Task<ActionResult<IReadOnlyList<Constraint>>> AddConstraint([FromRoute] long id, [FromBody] ConstraintDetails constraintDetails)
         //{
