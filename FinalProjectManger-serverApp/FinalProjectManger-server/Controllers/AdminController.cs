@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 using System.Net;
+using FinalProjectManger_server.Services;
+using NuGet.Protocol.Plugins;
+using System.Reflection;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FinalProjectManger_server.Controllers
@@ -87,12 +90,47 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailToAllStudents")]
         public async Task<ActionResult<bool>> SendEmailToAllStudents([FromBody] EmailMessageDetails details)
         {
+            EmailService sender= new EmailService();
             var context = new UsersDbContext();
             var students = await context.Set<Student>().ToListAsync();
             foreach (var student in students)
             {
                 var msg = "Hi, " + student.FirstName + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
-                SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
+                sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
+            }
+            return Ok(true);
+        }
+
+        [HttpPut("SendEmailToAllLecturers")]
+        public async Task<ActionResult<bool>> SendEmailToAllLecturers([FromBody] EmailMessageDetails details)
+        {
+            EmailService sender = new EmailService();
+            var context = new UsersDbContext();
+            var lecturers = await context.Set<Lecturer>().ToListAsync();
+            foreach (var lecturer in lecturers)
+            {
+                var msg = "Hi, " + lecturer.FirstName + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+                sender.SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, details.Subject, msg);
+            }
+            return Ok(true);
+        }
+
+        [HttpPut("SendEmailToAllUsers")]
+        public async Task<ActionResult<bool>> SendEmailToAllUsers([FromBody] EmailMessageDetails details)
+        {
+            EmailService sender = new EmailService();
+            var context = new UsersDbContext();
+            var lecturers = await context.Set<Lecturer>().ToListAsync();
+            var students = await context.Set<Student>().ToListAsync();
+            foreach (var lecturer in lecturers)
+            {
+                var msg = "Hi, " + lecturer.FirstName + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+                sender.SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, details.Subject, msg);
+            }
+            foreach (var student in students)
+            {
+                var msg = "Hi, " + student.FirstName + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+                sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
             }
             return Ok(true);
         }
@@ -100,30 +138,33 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailTo1Student{StudentId}")]
         public async Task<ActionResult<bool>> SendEmailTo1Student([FromBody] EmailMessageDetails details, [FromRoute] long StudentId)
         {
+            EmailService sender = new EmailService();
             var context = new UsersDbContext();
             var student = await context.Set<Student>().Where(x => x.id == StudentId).FirstOrDefaultAsync();
             if(student == null)
                 return NotFound(false);
             var msg = "Hi, " + student.FirstName + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
-            SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
+            sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
             return Ok(true);
         }
 
         [HttpPut("SendEmailTo1Lecturer{LecturerId}")]
         public async Task<ActionResult<bool>> SendEmailTo1Lecturer([FromBody] EmailMessageDetails details, [FromRoute] long LecturerId)
         {
+            EmailService sender = new EmailService();
             var context = new UsersDbContext();
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == LecturerId).FirstOrDefaultAsync();
             if (lecturer == null)
                 return NotFound(false);
             var msg = "Hi, " + lecturer.FirstName + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
-            SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, details.Subject, msg);
+            sender.SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, details.Subject, msg);
             return Ok(true);
         }
 
         [HttpPut("SendEmailTo2StudentsByProjectId{ProjectId}")]
         public async Task<ActionResult<bool>> SendEmaSendEmailTo2StudentsByProjectIdilTo1Lecturer([FromBody] EmailMessageDetails details, [FromRoute] long ProjectId)
         {
+            EmailService sender = new EmailService();
             var context = new UsersDbContext();
             var project = await context.Set<Project>().Where(x => x.ProjectId == ProjectId).FirstOrDefaultAsync();
             if (project == null)
@@ -134,33 +175,53 @@ namespace FinalProjectManger_server.Controllers
             if (student1 == null || student2 == null)
                 return NotFound(false);
             var msg = "Hi, " + student1.FirstName + " " + student1.LastName + " and " + student2.FirstName + " " + student2.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
-            SendEmail(EmailMessageDetails.SystemEmail, student1.Email, details.Subject, msg);
-            SendEmail(EmailMessageDetails.SystemEmail, student2.Email, details.Subject, msg);
+            sender.SendEmail(EmailMessageDetails.SystemEmail, student1.Email, details.Subject, msg);
+            sender.SendEmail(EmailMessageDetails.SystemEmail, student2.Email, details.Subject, msg);
             return Ok(true);
         }
 
-        void SendEmail(string from, string to, string subject, string msg)
+        [HttpGet("GetLecturerPermissionToGiveGrades")]
+        public async Task<ActionResult<List<LecturerPermissionToGiveGrades>>> GetLecturerPermissionToGiveGrades()
         {
-            try
-            {
-                var message = new MailMessage();
-                var smtp = new SmtpClient();
-                message.From = new MailAddress(from);
-                message.To.Add(new MailAddress(to));
-                message.Subject = subject;
-                //message.IsBodyHtml = true;  
-                message.Body = msg;
-                smtp.Port = 587;
-                smtp.Host = "smtp-mail.outlook.com";
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("FinalProjectManager@outlook.com", "AaSs2804");
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Send(message);
-            }
-            catch (Exception) { }
+            var context = new UsersDbContext();
+            var premissions = await context.Set<LecturerPermissionToGiveGrades>().ToListAsync();
+            return Ok(premissions);
         }
 
-
+        [HttpGet("GetLecturerPermissionToGiveGradesFull")]
+        public async Task<ActionResult<List<LecturerPermissionToGiveGradesFull>>> GetLecturerPermissionToGiveGradesFull()
+        {
+            var context = new UsersDbContext();
+            var premissions = await context.Set<LecturerPermissionToGiveGrades>().ToListAsync();
+            var lecturerPermissionToGiveGradesFull = new List<LecturerPermissionToGiveGradesFull>();
+            foreach (var premission in premissions)
+            {
+                var lecturer = await context.Set<Lecturer>().Where(x => x.id == premission.Id).FirstOrDefaultAsync();
+                var LecturerGrades = new List<LecturerGrade>();
+                var BookGrades = new List<BookGrade>();
+                var PresentationGrades = new List<PresentationGrade>();
+                foreach (var item in premission.LecturerGradeId)
+                {
+                    var lecgrade = await context.Set<LecturerGrade>().Where(x => x.Id == item).FirstOrDefaultAsync();
+                    if (lecgrade != null)
+                        LecturerGrades.Add(lecgrade);
+                }
+                foreach (var item in premission.PresentationGradeId)
+                {
+                    var presentationgrade = await context.Set<PresentationGrade>().Where(x => x.Id == item).FirstOrDefaultAsync();
+                    if (presentationgrade != null)
+                        PresentationGrades.Add(presentationgrade);
+                }
+                foreach (var item in premission.BookGradeId)
+                {
+                    var bookgrade = await context.Set<BookGrade>().Where(x => x.Id == item).FirstOrDefaultAsync();
+                    if (bookgrade != null)
+                        BookGrades.Add(bookgrade);
+                }
+                var temp = new LecturerPermissionToGiveGradesFull(lecturer, PresentationGrades, BookGrades, LecturerGrades);
+                lecturerPermissionToGiveGradesFull.Add(temp);
+            }
+            return Ok(lecturerPermissionToGiveGradesFull);
+        }
     }
 }

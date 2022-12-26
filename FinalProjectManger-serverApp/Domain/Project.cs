@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
+    public enum ProjectType
+    {
+        Research,
+        Development
+    }
     public class Project
     {
         public int ProjectId { get; set; }
@@ -16,8 +21,9 @@ namespace Domain
         public long student2Id { get; set; }
         public int gradeAId { get; set; }
         public int gradeBId { get; set; }
+        public ProjectType ProjectType { get; set; }
 
-        public Project(string projectName, long lecturerId, long student1Id, long student2Id, int gradeAId, int gradeBId)
+        public Project(string projectName, long lecturerId, long student1Id, long student2Id, int gradeAId, int gradeBId, ProjectType projectType)
         {
             ProjectId = new Random().Next();
             ProjectName = projectName;
@@ -26,10 +32,12 @@ namespace Domain
             this.student2Id = student2Id;
             this.gradeAId = gradeAId;
             this.gradeBId = gradeBId;
+            ProjectType = projectType;
         }
 
         public Project()
         {
+            ProjectId = new Random().Next();
 
         }
     }
@@ -45,16 +53,18 @@ public class ProjectFull
     public Student student2 { get; set; }
     public GradeA gradeA { get; set; }
     public GradeB gradeB { get; set; }
+    public ProjectType ProjectType { get; set; }
 
-    public ProjectFull(int projectId, string projectName, Lecturer lecturer, Student student1, Student student2, GradeA gradeA, GradeB gradeB)
+    public ProjectFull(int projectId, string projectName, Lecturer lecturer, Student student1, Student student2, GradeA gradeA, GradeB gradeB, ProjectType projectType)
     {
-        ProjectId= projectId;
-        ProjectName= projectName;
-        Lecturer= lecturer;
-        this.student1= student1;
-        this.student2= student2;
-        this.gradeA=gradeA;
-        this.gradeB=gradeB;
+        ProjectId = projectId;
+        ProjectName = projectName;
+        Lecturer = lecturer;
+        this.student1 = student1;
+        this.student2 = student2;
+        this.gradeA = gradeA;
+        this.gradeB = gradeB;
+        ProjectType = projectType;
     }
     public ProjectFull()
     {
@@ -69,6 +79,7 @@ public class ProjectDetails
     public long LecturerId { get; set; }
     public long student1Id { get; set; }
     public long student2Id { get; set; }
+    public ProjectType ProjectType { get; set; }
     //public int gradeAId { get; set; }
     //public int gradeBId { get; set; }
 }
