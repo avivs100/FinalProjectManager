@@ -10,7 +10,7 @@ export interface MessageDetails {
 @Injectable({
   providedIn: 'root',
 })
-export class MessageService {
+export class MessageServiceApi {
   readonly serverUrl = 'https://localhost:7114/api';
   constructor(private http: HttpClient) {}
 
