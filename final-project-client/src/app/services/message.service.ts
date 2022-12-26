@@ -26,6 +26,30 @@ export class MessageService {
     );
   }
 
+  SendEmailToAllLecturers(from: string, subject: string, message: string) {
+    var details: MessageDetails = {
+      from: from,
+      message: subject,
+      subject: message,
+    };
+    return this.http.put<boolean>(
+      `${this.serverUrl}/Admin/SendEmailToAllLecturers`,
+      details
+    );
+  }
+
+  SendEmailToAllUsers(from: string, subject: string, message: string) {
+    var details: MessageDetails = {
+      from: from,
+      message: subject,
+      subject: message,
+    };
+    return this.http.put<boolean>(
+      `${this.serverUrl}/Admin/SendEmailToAllUsers`,
+      details
+    );
+  }
+
   SendEmailTo1Student(
     id: number,
     from: string,
@@ -73,6 +97,40 @@ export class MessageService {
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Admin/SendEmailTo2StudentsByProjectId${id}`,
+      details
+    );
+  }
+
+  SendEmailTo1StudentByLecturer(
+    id: number,
+    from: string,
+    subject: string,
+    message: string
+  ) {
+    var details: MessageDetails = {
+      from: from,
+      message: subject,
+      subject: message,
+    };
+    return this.http.put<boolean>(
+      `${this.serverUrl}/Lecturer/SendEmailTo1Lecturer${id}`,
+      details
+    );
+  }
+
+  SendEmailTo2StudentsByProjectIdByLectuer(
+    id: number,
+    from: string,
+    subject: string,
+    message: string
+  ) {
+    var details: MessageDetails = {
+      from: from,
+      message: subject,
+      subject: message,
+    };
+    return this.http.put<boolean>(
+      `${this.serverUrl}/Lecturer/SendEmailTo2StudentsByProjectId${id}`,
       details
     );
   }
