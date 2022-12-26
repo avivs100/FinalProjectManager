@@ -9,7 +9,7 @@ namespace Domain
 {
     public class BookGrade
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         public Grade Research;
         public Grade AnalysisAndConclusion;

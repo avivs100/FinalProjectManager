@@ -29,7 +29,7 @@ namespace Domain
             IsActive = false;
         }
 
-        public Lecturer(long id, UserType userType, string firstName, string lastName, string password, string email,bool isActive)
+        public Lecturer(long id, UserType userType, string firstName, string lastName, string password, string email, bool isActive)
         {
             constraints = new List<Constraint>();
             this.id = id;
@@ -53,33 +53,34 @@ namespace Domain
         public string LastName { get; set; }
     }
 
-    public class Constraint
+
+public class Constraint
+{
+    public Guid id { get; set; }
+    public int Year { get; set; }
+    public int Month { get; set; }
+    public int Day { get; set; }
+    public int Hour { get; set; }
+    public int Minute { get; set; }
+    public int Second { get; set; }
+    
+    public Constraint()
     {
-        public Guid id { get; set; }
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public int Day { get; set; }
-        public int Hour { get; set; }
-        public int Minute { get; set; }
-        public int Second { get; set; }
-
-        public Constraint()
-        {
-
-        }
-        public Constraint(int year, int month, int day, int hour, int minute, int second)
-        {
-            id = new Guid();
-            Year = year;
-            Month = month;
-            Day = day;
-            Hour = hour;
-            Minute = minute;
-            Second = second;
-        }
-
 
     }
+    public Constraint(int year, int month, int day, int hour, int minute, int second)
+    {
+        id = new Guid();
+        Year = year;
+        Month = month;
+        Day = day;
+        Hour = hour;
+        Minute = minute;
+        Second = second;
+    }
+
+
+}
 
 }
 public class ConstraintDetails
@@ -90,4 +91,5 @@ public class ConstraintDetails
     public int Hour { get; set; }
     public int Minute { get; set; }
     public int Second { get; set; }
+    public int a;
 }

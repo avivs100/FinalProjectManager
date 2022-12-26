@@ -34,3 +34,15 @@ C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\Ap
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\refint\Application.dll
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.pdb
 C:\Users\SAGIF2\source\repos\FinalProjectManager\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\ref\Application.dll
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\bin\Debug\net6.0\Application.deps.json
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\bin\Debug\net6.0\Application.dll
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\bin\Debug\net6.0\Application.pdb
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.csproj.AssemblyReference.cache
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.AssemblyInfoInputs.cache
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.AssemblyInfo.cs
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.dll
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\refint\Application.dll
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\Application.pdb
+C:\Users\SAGIF2\Source\Repos\FinalProjectManager1\FinalProjectManger-serverApp\Application\obj\Debug\net6.0\ref\Application.dll
