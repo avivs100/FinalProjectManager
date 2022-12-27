@@ -2,42 +2,78 @@
   <div class="text-2xl">Admin Messages</div>
 
   <div class="grid">
-    <p-card class="col-4 mb-5">
+    <p-card class="col-4">
       <div class="text-2xl mb-5">Send message to all Users</div>
-      <p-button label="Create Message And Send"></p-button>
+      <p-button label="Create Message" (onClick)="createMessage()"></p-button>
+      <p-button
+        class="ml-2"
+        label="Send"
+        [disabled]="message === null"
+        (onClick)="SendEmailToAllUsers()"
+      ></p-button>
     </p-card>
 
-    <p-card class="col-4 mb-5">
+    <p-card class="col-4">
       <div class="text-2xl mb-5">Send message to all Students</div>
-      <p-button label="Create Message And Send"></p-button>
+      <p-button label="Create Message" (onClick)="createMessage()"></p-button>
+      <p-button
+        class="ml-2"
+        label="Send"
+        [disabled]="message === null"
+        (onClick)="SendEmailToAllUsers()"
+      ></p-button>
     </p-card>
 
-    <p-card class="col-4 mb-5">
+    <p-card class="col-4">
       <div class="text-2xl mb-5">Send message to all lecturers</div>
-      <p-button label="Create Message And Send"></p-button>
+      <p-button label="Create Message" (onClick)="createMessage()"></p-button>
+      <p-button
+        class="ml-2"
+        label="Send"
+        [disabled]="message === null"
+        (onClick)="SendEmailToAllUsers()"
+      ></p-button>
     </p-card>
 
-    <p-card class="col-4 mb-5 grid">
+    <p-card class="col-6 grid">
       <div class="text-2xl mb-5 col-12">
         Send message to specific project (lecturer and students)
       </div>
       <p-dropdown class="col-5"></p-dropdown>
-      <p-button label="Create Message And Send" class="col-7"></p-button>
+      <p-button
+        label="Create Message"
+        class="col-1"
+        (onClick)="createMessage()"
+      ></p-button>
+      <p-button
+        class="ml-2 col-1"
+        label="Send"
+        [disabled]="message === null"
+        (onClick)="SendEmailToAllUsers()"
+      ></p-button>
     </p-card>
 
-    <p-card class="col-4 mb-5 grid">
+    <p-card class="col-6 grid">
       <div class="text-2xl mb-5 col-12">Send message to specific lecturer</div>
-      <p-dropdown class="col-5"></p-dropdown>
-      <p-button class="col-7" label="Create Message And Send"></p-button>
-    </p-card>
-
-    <p-card class="col-4 mb-5">
-      <div class="text-2xl mb-5">
-        Send message to all student inside the Application
-      </div>
-      <p-button label="Create Message And Send"></p-button>
+      <p-dropdown
+        class="col-5"
+        [options]="state.lecturers!"
+        optionValue="id"
+        optionLabel="firstName"
+        defaultLabel="Select Lecturer"
+        [(ngModel)]="idToSend"
+      ></p-dropdown>
+      <p-button
+        class="col-1"
+        label="Create Message"
+        (onClick)="createMessage()"
+      ></p-button>
+      <p-button
+        class="ml-2 col-1"
+        label="Send"
+        [disabled]="message === null"
+        (onClick)="SendEmailToAllUsers()"
+      ></p-button>
     </p-card>
   </div>
 </div>
-
-<p-button (onClick)="openRegisterDialog()"> send</p-button>

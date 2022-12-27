@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lecturer-schedule',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./lecturer-schedule.component.scss'],
 })
 export class LecturerScheduleComponent {
-  navigateToScheduleDetails() {}
+  constructor(private router: Router) {}
+  navigateToScheduleDetails() {
+    this.router.navigate(['home/schedule-details']);
+  }
 }

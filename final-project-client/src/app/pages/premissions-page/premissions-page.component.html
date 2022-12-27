@@ -1,12 +1,13 @@
 <!-- *ngIf="premissions$ | async as premissions" -->
-<div class="w-full h-full" *ngIf="premissions$ | async as premissions">
-  <p-card>
+<div class="w-full h-full" *ngIf="premissions">
+  <p-card class="w-full h-full">
     <p-table
+      class="w-full h-full"
       [value]="premissions"
-      styleClass="p-datatable-gridlines p-datatable-striped h-20rem overflow-auto"
+      styleClass="p-datatable-gridlines p-datatable-striped  overflow-auto"
       selectionMode="single"
       scrollHeight="flex"
-      [scrollable]="true"
+      [scrollable]="false"
       *ngIf="premissions"
     >
       <ng-template pTemplate="header">

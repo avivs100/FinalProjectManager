@@ -12,14 +12,14 @@ import { StateService } from 'src/app/services/state.service';
   styleUrls: ['./admin-projects.component.scss'],
 })
 export class AdminProjectsComponent implements OnInit {
-  public projects$: Observable<ProjectFull[]> = this.adminApi.getProjects();
+  public projects: ProjectFull[] | null = null;
   constructor(
     private adminApi: AdminApiService,
     private state: StateService,
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.projects$.subscribe((x) => console.log(x));
+    this.projects = this.state.projects;
   }
 
   public selectedProject({ data }: { data: ProjectFull }) {
