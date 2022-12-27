@@ -27,20 +27,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.state.connectedUser == null) {
       this.router.navigate(['/login']);
     } else {
-      this.userType = this.state.connectedUser.userType;
-      this.sub.sink = this.api
-        .getScheduleDate()
-        .pipe(
-          catchError((err) => {
-            console.log(err);
-            return of(null);
-          })
-        )
-        .subscribe((x) => {
-          this.state.scheduleDates = x;
-          console.log(x);
-        });
+      this.anyUserLogedIn();
       this.router.navigate(['/home/welcome']);
     }
+  }
+
+  anyUserLogedIn() {
+    this.userType = this.state.connectedUser!.userType;
+    this.state.userLogedIn();
+    if (this.userType == 0) this.state.adminLogedIn();
+    else if (this.userType == 1) this.state.StudentLogedIn();
+    else if (this.userType == 2) this.state.LecturerLogedIn();
+    else console.log('error');
   }
 }
