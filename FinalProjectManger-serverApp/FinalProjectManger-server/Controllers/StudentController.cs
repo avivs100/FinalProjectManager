@@ -86,12 +86,63 @@ namespace FinalProjectManger_server.Controllers
             }
         }
 
-        //[HttpGet("id-pass")]
-        //public Student Get(List<object> idAndPass)
-        //{
-        //    var student = students.Find(x => x.id == id);
-        //    return student;
-        //}
+        [HttpPost("AddNewProjectProposal")]
+        public async Task<ActionResult<ProjectProposal>> Post([FromBody] ProjectProposalDetails details)
+        {
+            var context = new UsersDbContext();
+            var student1 = await context.Set<Student>().Where(x => x.id == details.Student1ID).FirstOrDefaultAsync();
+            var student2 = await context.Set<Student>().Where(x => x.id == details.Student2ID).FirstOrDefaultAsync();
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == details.LecturerID).FirstOrDefaultAsync();
+            if (student1 == null || student2 == null || lecturer == null)
+                return NotFound();
+            ProjectProposal proposal = new ProjectProposal();
+            proposal.LecturerID = details.LecturerID;
+            proposal.ProjectName = details.ProjectName;
+            proposal.ProjectCategoryExplain = details.ProjectCategoryExplain;
+            proposal.IsApproved = false;
+            proposal.GeneralDescriptionOfTheProblem = details.GeneralDescriptionOfTheProblem;
+            proposal.Keywords = details.Keywords;
+            proposal.MainToolsThatWillBeUsedForSolvingTheProblem = details.MainToolsThatWillBeUsedForSolvingTheProblem;
+            proposal.PlannedWorkingProcessDuringTheFirstSemester = details.PlannedWorkingProcessDuringTheFirstSemester;
+            proposal.ProductOfTheWorkOfTheFirstSemester = details.ProductOfTheWorkOfTheFirstSemester;
+            proposal.Student1ID = details.Student1ID;
+            proposal.Student2ID= details.Student2ID;
+            proposal.ProjectType = details.ProjectType;
+
+            context.Add(proposal);
+            await context.SaveChangesAsync();
+            return Ok(proposal);
+        }
+
+        // GET api/<StudentController>/5
+        [HttpGet("GetProjectOfStudent/{StudentId}")]
+        public async Task<ActionResult<ProjectFull>> GetProjectOfStudent([FromRoute] long StudentId)
+        {
+            var context = new UsersDbContext();
+            var student = await context.Set<Student>().Where(x => x.id == StudentId).FirstOrDefaultAsync();
+            if (student == null)
+                return NotFound();
+
+            var projects = await context.Set<Project>().ToListAsync();
+            foreach (var project in projects)
+            {
+                if (project.student1Id == StudentId || project.student2Id == StudentId)
+                {
+                    var student1 = await context.Set<Student>().Where(x => x.id == project.student1Id).FirstOrDefaultAsync();
+                    var student2 = await context.Set<Student>().Where(x => x.id == project.student2Id).FirstOrDefaultAsync();
+                    var lecturer = await context.Set<Lecturer>().Where(x => x.id == project.LecturerId).FirstOrDefaultAsync();
+                    var gradeA = await context.Set<GradeA>().Where(x => x.gradeAid == project.gradeAId).FirstOrDefaultAsync();
+                    var gradeB = await context.Set<GradeB>().Where(x => x.gradeBid == project.gradeBId).FirstOrDefaultAsync();
+                    if(student1 == null || student2 == null || lecturer == null || gradeA == null || gradeB == null)
+                        return NotFound();
+                    var projectFull = new ProjectFull(project.ProjectId, project.ProjectName, lecturer, student1, student2, gradeA, gradeB, project.ProjectType);
+                    return Ok(projectFull);
+
+                }
+            }
+
+            return NotFound(); // check with Aviv Gayba what need to return
+        }
 
     }
 }
