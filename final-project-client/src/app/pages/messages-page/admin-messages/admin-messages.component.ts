@@ -9,8 +9,13 @@ import { MessageServiceApi } from 'src/app/services/message.service';
 import { SendMessageDialogComponent } from '../send-message-dialog/send-message-dialog.component';
 import { messageFormData } from '../send-message-dialog/send-message-form/send-message-form.component';
 
-export enum MessageType{
-  Student,Lecturer,Project,AllStudents,AllUsers,AllLecturers
+export enum MessageType {
+  Student,
+  Lecturer,
+  Project,
+  AllStudents,
+  AllUsers,
+  AllLecturers,
 }
 
 @Component({
@@ -50,7 +55,7 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
   public idOfProjectSend: number | null = null;
   public idOfStudentSend: number | null = null;
 
-  public openRegisterDialog(type:) {
+  public openMessageDialog(type: MessageType) {
     const ref = this.dialog.open(SendMessageDialogComponent, {
       header: 'Message Form',
       width: '800px',
@@ -58,94 +63,153 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
     });
     ref.onClose.pipe(filter(Boolean)).subscribe((formData) => {
       this.message = formData;
+      switch (type) {
+        case 0:
+          this.messageTo1Student = this.message;
+          break;
+        case 1:
+          this.messageTo1Lecturer = this.message;
+          break;
+        case 2:
+          this.messageTo1Project = this.message;
+          break;
+        case 3:
+          this.messageToAllStudents = this.message;
+          break;
+        case 4:
+          this.messageToAllUsers = this.message;
+          break;
+        case 5:
+          this.messageToAllLecturers = this.message;
+          break;
+        default:
+          break;
+      }
     });
   }
 
-  createMessage() {
-    this.openRegisterDialog();
+  createMessage(type: MessageType) {
+    this.openMessageDialog(type);
   }
 
   SendEmailToAllStudents() {
-    if (this.message == null) return;
-    
+    if (this.messageToAllStudents == null) return;
+
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailToAllStudents(from, this.message.subject, this.message.message)
-      .subscribe((x) => console.log(x));
+      .SendEmailToAllStudents(
+        from,
+        this.messageToAllStudents.subject,
+        this.messageToAllStudents.message
+      )
+      .subscribe((x) => {
+        console.log(x);
+        this.messageToAllStudents = null;
+        this.message = null;
+      });
   }
 
   SendEmailToAllLecturers() {
-    if (this.message == null) return;
+    if (this.messageToAllLecturers == null) return;
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailToAllLecturers(from, this.message.subject, this.message.message)
-      .subscribe((x) => console.log(x));
+      .SendEmailToAllLecturers(
+        from,
+        this.messageToAllLecturers.subject,
+        this.messageToAllLecturers.message
+      )
+      .subscribe((x) => {
+        console.log(x);
+        this.messageToAllLecturers = null;
+        this.message = null;
+      });
   }
 
   SendEmailToAllUsers() {
-    console.log(this.message);
-    if (this.message == null) return;
+    if (this.messageToAllUsers == null) return;
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailToAllUsers(from, this.message.subject, this.message.message)
+      .SendEmailToAllUsers(
+        from,
+        this.messageToAllUsers.subject,
+        this.messageToAllUsers.message
+      )
       .subscribe((x) => {
         console.log(x);
+        this.messageToAllUsers = null;
         this.message = null;
       });
   }
 
   SendEmailTo1Student() {
-    if (this.message == null) return;
-    var id = 1;
+    if (this.messageTo1Student == null) return;
+
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailTo1Student(id, from, this.message.subject, this.message.message)
-      .subscribe((x) => console.log(x));
+      .SendEmailTo1Student(
+        this.idOfStudentSend!,
+        from,
+        this.messageTo1Student.subject,
+        this.messageTo1Student.message
+      )
+      .subscribe((x) => {
+        console.log(x);
+        this.messageTo1Student = null;
+        this.message = null;
+      });
   }
 
   SendEmailTo1Lecturer() {
-    if (this.message == null) return;
-    var id = 1;
+    if (this.messageTo1Lecturer == null) return;
+
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
       .SendEmailTo1Lecturer(
-        id,
+        this.idOfLecturerSend!,
         from,
-        this.message.subject,
-        this.message.message
+        this.messageTo1Lecturer.subject,
+        this.messageTo1Lecturer.message
       )
-      .subscribe((x) => console.log(x));
+      .subscribe((x) => {
+        console.log(x);
+        this.messageTo1Lecturer = null;
+        this.message = null;
+      });
   }
 
   SendEmailTo2StudentsByProjectId() {
-    if (this.message == null) return;
-    var id = 1;
+    if (this.messageTo1Project == null) return;
+
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
       .SendEmailTo2StudentsByProjectId(
-        id,
+        this.idOfProjectSend!,
         from,
-        this.message.subject,
-        this.message.message
+        this.messageTo1Project.subject,
+        this.messageTo1Project.message
       )
-      .subscribe((x) => console.log(x));
+      .subscribe((x) => {
+        console.log(x);
+        this.messageTo1Project = null;
+        this.message = null;
+      });
   }
 }
