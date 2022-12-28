@@ -17,6 +17,7 @@ export interface ProposalFormData {
   plannedWorkingProcessDuringTheFirstSemester: string;
   productOfTheWorkOfTheFirstSemester: string;
 }
+
 @Component({
   selector: 'app-create-project-proposal-form',
   templateUrl: './create-project-proposal-form.component.html',
@@ -26,7 +27,11 @@ export class CreateProjectProposalFormComponent {
   @Input() lecturers: Lecturer[] | null = null;
   @Input() Students: Student[] | null = null;
 
-  public projectTypeValues = Object.keys(ProjectType);
+  public projectTypeOptions = [
+    { name: 'Research', num: 0 },
+    { name: 'Development', num: 1 },
+  ];
+
   constructor(private fb: FormBuilder) {}
 
   public form: FormGroup = this.fb.group({
@@ -44,7 +49,6 @@ export class CreateProjectProposalFormComponent {
   });
 
   onSubmit(formData: ProposalFormData) {
-    console.log('david');
     this.save.emit(formData);
   }
 }
