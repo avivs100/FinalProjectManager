@@ -10,11 +10,13 @@
 
       <div class="field col-12">
         <span class="p-float-label">
-          <input
+          <p-dropdown
+            [options]="projectTypeValues"
             id="projectTypeId"
             class="max-w-13rem"
             formControlName="projectType"
-          />
+            placeholder="Select project type"
+          ></p-dropdown>
           <label for="projectTypeId">Project Type</label>
         </span>
       </div>
@@ -66,7 +68,7 @@
         <span class="p-float-label">
           <textarea
             [rows]="10"
-            [cols]="30"
+            [cols]="50"
             pInputTextarea
             [autoResize]="true"
             formControlName="projectCategoryExplain"
@@ -80,7 +82,7 @@
         <span class="p-float-label">
           <textarea
             [rows]="10"
-            [cols]="30"
+            [cols]="50"
             pInputTextarea
             [autoResize]="true"
             formControlName="generalDescriptionOfTheProblem"
@@ -95,7 +97,7 @@
         <span class="p-float-label">
           <textarea
             [rows]="10"
-            [cols]="30"
+            [cols]="50"
             pInputTextarea
             [autoResize]="true"
             formControlName="mainToolsThatWillBeUsedForSolvingTheProblem"
@@ -112,7 +114,7 @@
         <span class="p-float-label">
           <textarea
             [rows]="10"
-            [cols]="30"
+            [cols]="50"
             pInputTextarea
             [autoResize]="true"
             formControlName="plannedWorkingProcessDuringTheFirstSemester"
@@ -129,7 +131,7 @@
         <span class="p-float-label">
           <textarea
             [rows]="10"
-            [cols]="30"
+            [cols]="50"
             pInputTextarea
             [autoResize]="true"
             formControlName="productOfTheWorkOfTheFirstSemester"
@@ -147,7 +149,7 @@
           <textarea
             pTooltip="enter keywords with , between each ketword"
             [rows]="10"
-            [cols]="30"
+            [cols]="50"
             pInputTextarea
             [autoResize]="true"
             formControlName="keywords"

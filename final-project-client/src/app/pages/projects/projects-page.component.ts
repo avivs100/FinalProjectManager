@@ -11,9 +11,7 @@ import { StateService } from 'src/app/services/state.service';
 export class ProjectsPageComponent {
   public userType: UserType | undefined;
 
-  public user: Student | Lecturer | Admin | null = null;
   constructor(state: StateService) {
     this.userType = state.connectedUser?.userType;
-    this.user = state.connectedUser;
   }
 }

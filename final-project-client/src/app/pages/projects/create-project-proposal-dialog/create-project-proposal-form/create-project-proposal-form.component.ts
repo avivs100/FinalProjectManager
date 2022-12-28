@@ -26,6 +26,7 @@ export class CreateProjectProposalFormComponent {
   @Input() lecturers: Lecturer[] | null = null;
   @Input() Students: Student[] | null = null;
 
+  public projectTypeValues = Object.keys(ProjectType);
   constructor(private fb: FormBuilder) {}
 
   public form: FormGroup = this.fb.group({
@@ -43,6 +44,7 @@ export class CreateProjectProposalFormComponent {
   });
 
   onSubmit(formData: ProposalFormData) {
+    console.log('david');
     this.save.emit(formData);
   }
 }

@@ -33,7 +33,8 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
     this.sub.unsubscribe();
   }
 
-  public openProposalDialog() {
+  openProposalDialog() {
+    console.log('open dialog');
     const ref = this.dialog.open(CreateProjectProposalDialogComponent, {
       header: 'Register Form',
       width: '800px',
@@ -46,5 +47,8 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
 
   navigateToProjectDetails() {
     this.router.navigate(['home/project']);
+  }
+  david() {
+    console.log('david');
   }
 }
