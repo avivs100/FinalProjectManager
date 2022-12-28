@@ -19,10 +19,13 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
   constructor(
     private dialog: DialogService,
     private messageService: MessageServiceApi,
-    private state: StateService,
+    public state: StateService,
     private adminApi: AdminApiService
-  ) {}
-
+  ) {
+    var lectuerers = this.state.lecturers;
+    var projects = this.state.projects;
+    var students = this.state.students;
+  }
   ngOnInit(): void {
     console.log('david get all details');
   }
@@ -30,6 +33,8 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
     this.subs.unsubscribe();
   }
   public subs: SubSink = new SubSink();
+  public message: messageFormData | null = null;
+  public idToSend: number | null = null;
 
   public openRegisterDialog() {
     const ref = this.dialog.open(SendMessageDialogComponent, {
@@ -38,63 +43,82 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
       height: '750px',
     });
     ref.onClose.pipe(filter(Boolean)).subscribe((formData) => {
-      console.log(formData);
+      this.message = formData;
     });
   }
 
-  SendEmailToAllStudents(message: messageFormData) {
+  createMessage() {
+    this.openRegisterDialog();
+  }
+
+  SendEmailToAllStudents() {
+    if (this.message == null) return;
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailToAllStudents(from, message.subject, message.message)
+      .SendEmailToAllStudents(from, this.message.subject, this.message.message)
       .subscribe((x) => console.log(x));
   }
 
-  SendEmailToAllLecturers(message: messageFormData) {
+  SendEmailToAllLecturers() {
+    if (this.message == null) return;
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailToAllLecturers(from, message.subject, message.message)
+      .SendEmailToAllLecturers(from, this.message.subject, this.message.message)
       .subscribe((x) => console.log(x));
   }
 
-  SendEmailToAllUsers(message: messageFormData) {
+  SendEmailToAllUsers() {
+    console.log(this.message);
+    if (this.message == null) return;
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailToAllUsers(from, message.subject, message.message)
-      .subscribe((x) => console.log(x));
+      .SendEmailToAllUsers(from, this.message.subject, this.message.message)
+      .subscribe((x) => {
+        console.log(x);
+        this.message = null;
+      });
   }
 
-  SendEmailTo1Student(message: messageFormData) {
+  SendEmailTo1Student() {
+    if (this.message == null) return;
     var id = 1;
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailTo1Student(id, from, message.subject, message.message)
+      .SendEmailTo1Student(id, from, this.message.subject, this.message.message)
       .subscribe((x) => console.log(x));
   }
 
-  SendEmailTo1Lecturer(message: messageFormData) {
+  SendEmailTo1Lecturer() {
+    if (this.message == null) return;
     var id = 1;
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
       this.state.connectedUser!.lastName;
     this.subs.sink = this.messageService
-      .SendEmailTo1Lecturer(id, from, message.subject, message.message)
+      .SendEmailTo1Lecturer(
+        id,
+        from,
+        this.message.subject,
+        this.message.message
+      )
       .subscribe((x) => console.log(x));
   }
 
-  SendEmailTo2StudentsByProjectId(message: messageFormData) {
+  SendEmailTo2StudentsByProjectId() {
+    if (this.message == null) return;
     var id = 1;
     var from =
       this.state.connectedUser!.firstName +
@@ -104,8 +128,8 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
       .SendEmailTo2StudentsByProjectId(
         id,
         from,
-        message.subject,
-        message.message
+        this.message.subject,
+        this.message.message
       )
       .subscribe((x) => console.log(x));
   }

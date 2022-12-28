@@ -16,6 +16,10 @@ export class AdminApiService {
     return this.http.get<Admin>(`${this.serverUrl}/Admin/${id}`);
   }
 
+  getStudents(): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.serverUrl}/Student/students`);
+  }
+
   getProjects(): Observable<ProjectFull[]> {
     return this.http.get<ProjectFull[]>(
       `${this.serverUrl}/Project/GetProjects`

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Console } from 'console';
 
 @Component({
@@ -7,7 +8,8 @@ import { Console } from 'console';
   styleUrls: ['./admin-schedule.component.scss'],
 })
 export class AdminScheduleComponent {
+  constructor(private router: Router) {}
   public navigateToScheduleDetails() {
-    console.log('navigate to schedule-details');
+    this.router.navigate(['home/schedule-details']);
   }
 }
