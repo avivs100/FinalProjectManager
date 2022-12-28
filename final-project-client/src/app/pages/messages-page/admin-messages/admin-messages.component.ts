@@ -9,6 +9,10 @@ import { MessageServiceApi } from 'src/app/services/message.service';
 import { SendMessageDialogComponent } from '../send-message-dialog/send-message-dialog.component';
 import { messageFormData } from '../send-message-dialog/send-message-form/send-message-form.component';
 
+export enum MessageType{
+  Student,Lecturer,Project,AllStudents,AllUsers,AllLecturers
+}
+
 @Component({
   providers: [DialogService],
   selector: 'app-admin-messages',
@@ -34,9 +38,19 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
   }
   public subs: SubSink = new SubSink();
   public message: messageFormData | null = null;
-  public idToSend: number | null = null;
 
-  public openRegisterDialog() {
+  public messageTo1Student: messageFormData | null = null; //0
+  public messageTo1Lecturer: messageFormData | null = null; //1
+  public messageTo1Project: messageFormData | null = null; //2
+  public messageToAllStudents: messageFormData | null = null; //3
+  public messageToAllUsers: messageFormData | null = null; //4
+  public messageToAllLecturers: messageFormData | null = null; //5
+
+  public idOfLecturerSend: number | null = null;
+  public idOfProjectSend: number | null = null;
+  public idOfStudentSend: number | null = null;
+
+  public openRegisterDialog(type:) {
     const ref = this.dialog.open(SendMessageDialogComponent, {
       header: 'Message Form',
       width: '800px',
@@ -53,6 +67,7 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
 
   SendEmailToAllStudents() {
     if (this.message == null) return;
+    
     var from =
       this.state.connectedUser!.firstName +
       ' ' +
