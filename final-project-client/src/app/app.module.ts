@@ -73,6 +73,8 @@ import { RegisterFormComponent } from './pages/login/login-page/register-dialog/
 import { LecturerAddConstraintsComponent } from './pages/schedule-page/lecturer-schedule/lecturer-add-constraints/lecturer-add-constraints.component';
 import { SendMessageDialogComponent } from './pages/messages-page/send-message-dialog/send-message-dialog.component';
 import { SendMessageFormComponent } from './pages/messages-page/send-message-dialog/send-message-form/send-message-form.component';
+import { CreateProjectProposalDialogComponent } from './pages/projects/create-project-proposal-dialog/create-project-proposal-dialog.component';
+import { CreateProjectProposalFormComponent } from './pages/projects/create-project-proposal-dialog/create-project-proposal-form/create-project-proposal-form.component';
 //import { SelectScheduleDaysFormComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-form/select-schedule-days-form.component';
 
 @NgModule({
@@ -117,6 +119,8 @@ import { SendMessageFormComponent } from './pages/messages-page/send-message-dia
     LecturerAddConstraintsComponent,
     SendMessageDialogComponent,
     SendMessageFormComponent,
+    CreateProjectProposalDialogComponent,
+    CreateProjectProposalFormComponent,
   ],
   imports: [
     FocusTrapModule,
