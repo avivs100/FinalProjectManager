@@ -64,3 +64,17 @@ export interface ProjectFull {
   gradeB: GradeB;
   gradeA: GradeA;
 }
+
+export interface ProjectProposalDetails {
+  projectName: string;
+  projectType: ProjectType;
+  student1ID: number;
+  student2ID: number;
+  lecturerID: number;
+  projectCategoryExplain: string;
+  keywords: string;
+  generalDescriptionOfTheProblem: string;
+  mainToolsThatWillBeUsedForSolvingTheProblem: string;
+  plannedWorkingProcessDuringTheFirstSemester: string;
+  productOfTheWorkOfTheFirstSemester: string;
+}
