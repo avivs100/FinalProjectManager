@@ -45,6 +45,7 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
     });
     ref.onClose.pipe(filter(Boolean)).subscribe((formData) => {
       console.log(formData);
+      this.addNewProposal(formData);
     });
   }
 
