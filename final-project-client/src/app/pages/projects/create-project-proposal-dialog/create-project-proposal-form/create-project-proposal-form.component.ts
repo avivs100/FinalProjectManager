@@ -17,6 +17,7 @@ export interface ProposalFormData {
   plannedWorkingProcessDuringTheFirstSemester: string;
   productOfTheWorkOfTheFirstSemester: string;
 }
+
 @Component({
   selector: 'app-create-project-proposal-form',
   templateUrl: './create-project-proposal-form.component.html',
@@ -25,6 +26,11 @@ export class CreateProjectProposalFormComponent {
   @Output() public save = new EventEmitter<ProposalFormData>();
   @Input() lecturers: Lecturer[] | null = null;
   @Input() Students: Student[] | null = null;
+
+  public projectTypeOptions = [
+    { name: 'Research', num: 0 },
+    { name: 'Development', num: 1 },
+  ];
 
   constructor(private fb: FormBuilder) {}
 

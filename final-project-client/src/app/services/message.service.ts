@@ -17,8 +17,8 @@ export class MessageServiceApi {
   SendEmailToAllStudents(from: string, subject: string, message: string) {
     var details: MessageDetails = {
       from: from,
-      message: subject,
-      subject: message,
+      subject,
+      message,
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Admin/SendEmailToAllStudents`,
@@ -29,8 +29,8 @@ export class MessageServiceApi {
   SendEmailToAllLecturers(from: string, subject: string, message: string) {
     var details: MessageDetails = {
       from: from,
-      message: subject,
-      subject: message,
+      subject,
+      message,
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Admin/SendEmailToAllLecturers`,
@@ -41,8 +41,8 @@ export class MessageServiceApi {
   SendEmailToAllUsers(from: string, subject: string, message: string) {
     var details: MessageDetails = {
       from: from,
-      message: subject,
-      subject: message,
+      subject,
+      message,
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Admin/SendEmailToAllUsers`,
@@ -58,8 +58,8 @@ export class MessageServiceApi {
   ) {
     var details: MessageDetails = {
       from: from,
-      message: subject,
-      subject: message,
+      subject,
+      message,
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Admin/SendEmailTo1Student${id}`,
@@ -75,8 +75,8 @@ export class MessageServiceApi {
   ) {
     var details: MessageDetails = {
       from: from,
-      message: subject,
-      subject: message,
+      subject,
+      message,
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Admin/SendEmailTo1Lecturer${id}`,
@@ -92,8 +92,8 @@ export class MessageServiceApi {
   ) {
     var details: MessageDetails = {
       from: from,
-      message: subject,
-      subject: message,
+      subject,
+      message,
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Admin/SendEmailTo2StudentsByProjectId${id}`,
@@ -109,8 +109,8 @@ export class MessageServiceApi {
   ) {
     var details: MessageDetails = {
       from: from,
-      message: subject,
-      subject: message,
+      subject,
+      message,
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Lecturer/SendEmailTo1Lecturer${id}`,
@@ -126,8 +126,8 @@ export class MessageServiceApi {
   ) {
     var details: MessageDetails = {
       from: from,
-      message: subject,
-      subject: message,
+      subject,
+      message,
     };
     return this.http.put<boolean>(
       `${this.serverUrl}/Lecturer/SendEmailTo2StudentsByProjectId${id}`,

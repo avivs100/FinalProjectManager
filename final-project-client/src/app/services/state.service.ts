@@ -1,4 +1,4 @@
-import { ScheduleDates } from './../models/schedule-models';
+import { ScheduleDates, ScheduleFull } from './../models/schedule-models';
 import { Injectable, OnDestroy } from '@angular/core';
 import { ProjectFull } from '../models/project-grade-models';
 import { Admin, Lecturer, premission, Student } from '../models/users-models';
@@ -34,16 +34,16 @@ export class StateService implements OnDestroy {
   };
 
   public student: Student = {
-    id: 2,
+    id: 203639869,
     userType: 1,
     partnerId: 0,
-    password: '1',
+    password: '102030',
     firstName: 'Sagi',
     lastName: 'Fishman',
-    email: 'default@gmaol.com',
+    email: 'sagifishman1@gmail.com',
   };
   public subs: SubSink = new SubSink();
-  public connectedUser: Student | Admin | Lecturer | null = this.admin;
+  public connectedUser: Student | Admin | Lecturer | null = this.student;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
   public lecturerProjects: ProjectFull[] | null = null;
@@ -51,6 +51,7 @@ export class StateService implements OnDestroy {
   public premissions: premission[] | null = null;
   public lecturers: Lecturer[] | null = null;
   public students: Student[] | null = null;
+  public schedule: ScheduleFull | null = null;
 
   constructor(
     private api: GeneralApiService,
@@ -113,6 +114,7 @@ export class StateService implements OnDestroy {
     console.log('student service start fetch data');
     this.subs.sink = this.studentApi
       .getProject(this.connectedUser!.id)
+      .pipe(catchError(async (err) => (this.project = null)))
       .subscribe((x) => {
         this.project = x;
         console.log('student project from server', this.project);
