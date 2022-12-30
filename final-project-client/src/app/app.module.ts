@@ -75,7 +75,13 @@ import { SendMessageDialogComponent } from './pages/messages-page/send-message-d
 import { SendMessageFormComponent } from './pages/messages-page/send-message-dialog/send-message-form/send-message-form.component';
 import { CreateProjectProposalDialogComponent } from './pages/projects/create-project-proposal-dialog/create-project-proposal-dialog.component';
 import { CreateProjectProposalFormComponent } from './pages/projects/create-project-proposal-dialog/create-project-proposal-form/create-project-proposal-form.component';
+import { ProposalPageComponent } from './pages/proposal-page/proposal-page.component';
+import { AdminProposalComponent } from './pages/proposal-page/admin-proposal/admin-proposal.component';
+import { LecturerProposalComponent } from './pages/proposal-page/lecturer-proposal/lecturer-proposal.component';
+import { ProposalListComponent } from './pages/proposal-page/proposal-list/proposal-list.component';
+import { ProposalDetailsPageComponent } from './pages/proposal-page/proposal-details-page/proposal-details-page.component';
 //import { SelectScheduleDaysFormComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-form/select-schedule-days-form.component';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -121,8 +127,14 @@ import { CreateProjectProposalFormComponent } from './pages/projects/create-proj
     SendMessageFormComponent,
     CreateProjectProposalDialogComponent,
     CreateProjectProposalFormComponent,
+    ProposalPageComponent,
+    AdminProposalComponent,
+    LecturerProposalComponent,
+    ProposalListComponent,
+    ProposalDetailsPageComponent,
   ],
   imports: [
+    DividerModule,
     FocusTrapModule,
     ToastModule,
     HttpClientModule,

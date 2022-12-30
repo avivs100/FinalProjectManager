@@ -48,5 +48,13 @@ export class AdminSidebarComponent {
         tooltipLabel: 'Submission',
       },
     },
+    {
+      label: 'Proposals',
+      routerLink: 'proposals',
+      icon: 'pi pi-paypal',
+      tooltipOptions: {
+        tooltipLabel: 'Project Proposals',
+      },
+    },
   ];
 }
