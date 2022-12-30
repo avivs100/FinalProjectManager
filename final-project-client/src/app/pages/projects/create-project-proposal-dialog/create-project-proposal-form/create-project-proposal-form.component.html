@@ -11,11 +11,13 @@
       <div class="field col-12">
         <span class="p-float-label">
           <p-dropdown
-            [options]="projectTypeValues"
+            [options]="projectTypeOptions"
             id="projectTypeId"
             class="max-w-13rem"
             formControlName="projectType"
             placeholder="Select project type"
+            optionValue="num"
+            optionLabel="name"
           ></p-dropdown>
           <label for="projectTypeId">Project Type</label>
         </span>

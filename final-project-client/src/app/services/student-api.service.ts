@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { error } from 'console';
-import { catchError, Observable, throwError } from 'rxjs';
+
+import { Observable } from 'rxjs';
 import {
   ProjectFull,
   ProjectProposalDetails,

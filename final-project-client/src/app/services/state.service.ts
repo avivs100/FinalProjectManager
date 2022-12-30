@@ -1,4 +1,4 @@
-import { ScheduleDates } from './../models/schedule-models';
+import { ScheduleDates, ScheduleFull } from './../models/schedule-models';
 import { Injectable, OnDestroy } from '@angular/core';
 import { ProjectFull } from '../models/project-grade-models';
 import { Admin, Lecturer, premission, Student } from '../models/users-models';
@@ -51,6 +51,7 @@ export class StateService implements OnDestroy {
   public premissions: premission[] | null = null;
   public lecturers: Lecturer[] | null = null;
   public students: Student[] | null = null;
+  public schedule: ScheduleFull | null = null;
 
   public errorMessage = '';
 
