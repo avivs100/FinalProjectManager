@@ -42,13 +42,13 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
     });
     ref.onClose.pipe(filter(Boolean)).subscribe((formData) => {
       console.log(formData);
+      this.sub.sink = this.api
+        .AddNewProjectProposal(formData)
+        .subscribe((x) => console.log('response from server', x));
     });
   }
 
   navigateToProjectDetails() {
     this.router.navigate(['home/project']);
-  }
-  david() {
-    console.log('david');
   }
 }

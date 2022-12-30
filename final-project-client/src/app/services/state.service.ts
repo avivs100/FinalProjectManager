@@ -7,7 +7,7 @@ import { LecturerApiService } from './lecturer-api.service';
 import { StudentApiService } from './student-api.service';
 import { SubSink } from 'subsink';
 import { GeneralApiService } from './general-api.service';
-import { catchError, of } from 'rxjs';
+import { catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +51,8 @@ export class StateService implements OnDestroy {
   public premissions: premission[] | null = null;
   public lecturers: Lecturer[] | null = null;
   public students: Student[] | null = null;
+
+  public errorMessage = '';
 
   constructor(
     private api: GeneralApiService,
@@ -113,7 +115,6 @@ export class StateService implements OnDestroy {
     console.log('student service start fetch data');
     this.subs.sink = this.studentApi
       .getProject(this.connectedUser!.id)
-      .pipe(catchError(async (err) => (this.project = null)))
       .subscribe((x) => {
         this.project = x;
         console.log('student project from server', this.project);
