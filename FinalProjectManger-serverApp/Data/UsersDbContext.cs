@@ -70,5 +70,10 @@ public class UsersDbContext : DbContext
         modelBuilder.Entity<LecturerPermissionToGiveGrades>().OwnsOne(e => e.BookGradeId);
         modelBuilder.Entity<LecturerPermissionToGiveGrades>().OwnsOne(e => e.LecturerGradeId);
         modelBuilder.Entity<LecturerPermissionToGiveGrades>().OwnsOne(e => e.PresentationGradeId);
+
+        //modelBuilder.Entity<LecturerConstraints>().Property(e => e.LecturerId).ValueGeneratedNever();
+        //modelBuilder.Entity<LecturerConstraints>().OwnsOne(e => e.Date1Constraint);
+        //modelBuilder.Entity<LecturerConstraints>().OwnsOne(e => e.Date2Constraint);
+
     }
 }

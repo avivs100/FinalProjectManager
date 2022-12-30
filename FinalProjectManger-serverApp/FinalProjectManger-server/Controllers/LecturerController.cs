@@ -124,11 +124,12 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<bool>> ApproveProposal([FromRoute] int proposalId)
         {
             var context = new UsersDbContext();
+            var proposals = await context.Set<ProjectProposal>().ToListAsync();
             var proposal = await context.Set<ProjectProposal>().Where(x => x.Id == proposalId).FirstOrDefaultAsync();
             if (proposal == null)
                 return NotFound(false);
             proposal.IsApproved = true;
-
+            
             Project project = new Project();
             var gradeA = new GradeA();
             var gradeB = new GradeB();
@@ -141,10 +142,44 @@ namespace FinalProjectManger_server.Controllers
             project.ProjectType = proposal.ProjectType;
             project.student1Id = proposal.Student1ID;
             project.student2Id= proposal.Student2ID;
+            context.Remove(proposal);
             context.Add(project);
             await context.SaveChangesAsync();
             return Ok(true);
 
         }
+
+        [HttpPut("SendEmailTo1Admin{AdminId}")]
+        public async Task<ActionResult<bool>> SendEmailTo1Admin([FromBody] EmailMessageDetails details, [FromRoute] long AdminId)
+        {
+            EmailService sender = new EmailService();
+            var context = new UsersDbContext();
+            var admin = await context.Set<Admin>().Where(x => x.id == AdminId).FirstOrDefaultAsync();
+            if (admin == null)
+                return NotFound(false);
+            var msg = "Hi, " + admin.FirstName + admin.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+            sender.SendEmail(EmailMessageDetails.SystemEmail, admin.Email, details.Subject, msg);
+            return Ok(true);
+        }
+
+        [HttpDelete("DenyProposal/{proposalId}")]
+        public async Task<ActionResult<bool>> DenyProposal([FromRoute] int proposalId)
+        {
+            var context = new UsersDbContext();
+            var proposals = await context.Set<ProjectProposal>().ToListAsync();
+            foreach (var item in proposals)
+            {
+                if (item.Id == proposalId)
+                { 
+                  context.Remove(item);
+                  await context.SaveChangesAsync();
+                  return Ok(true);
+                }
+            }
+            return NotFound(false);
+            
+        }
+
+
     }
 }

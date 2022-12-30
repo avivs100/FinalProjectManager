@@ -71,7 +71,7 @@ void SeedDb()
     context.Set<Lecturer>().Add(Ohad);
     context.Set<Lecturer>().Add(Meni);
 
-    var Naomi = new Admin(7, UserType.admin, "Naomi", "Onklus", "1", "default@gmaol.com");
+    var Naomi = new Admin(7, UserType.admin, "Naomi", "Onklus", "1", "sagifishman1@gmail.com");
     context.Set<Admin>().Add(Naomi);
 
     Grade organization1 = new Grade("Almost", 80, 0.25, "organization");
