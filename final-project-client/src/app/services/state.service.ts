@@ -1,6 +1,9 @@
 import { ScheduleDates, ScheduleFull } from './../models/schedule-models';
 import { Injectable, OnDestroy } from '@angular/core';
-import { ProjectFull } from '../models/project-grade-models';
+import {
+  ProjectFull,
+  ProjectProposalDetailsWithStatus,
+} from '../models/project-grade-models';
 import { Admin, Lecturer, premission, Student } from '../models/users-models';
 import { AdminApiService } from './admin-api.service';
 import { LecturerApiService } from './lecturer-api.service';
@@ -34,16 +37,16 @@ export class StateService implements OnDestroy {
   };
 
   public student: Student = {
-    id: 203639869,
+    id: 2,
     userType: 1,
     partnerId: 0,
-    password: '102030',
+    password: '1',
     firstName: 'Sagi',
     lastName: 'Fishman',
     email: 'sagifishman1@gmail.com',
   };
   public subs: SubSink = new SubSink();
-  public connectedUser: Student | Admin | Lecturer | null = this.student;
+  public connectedUser: Student | Admin | Lecturer | null = this.admin;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
   public lecturerProjects: ProjectFull[] | null = null;
@@ -52,6 +55,8 @@ export class StateService implements OnDestroy {
   public lecturers: Lecturer[] | null = null;
   public students: Student[] | null = null;
   public schedule: ScheduleFull | null = null;
+  public proposals: ProjectProposalDetailsWithStatus[] | null = null;
+  public selectedProposal: ProjectProposalDetailsWithStatus | null = null;
 
   public errorMessage = '';
 
@@ -100,6 +105,11 @@ export class StateService implements OnDestroy {
       this.premissions = x;
       console.log('premissions from server', this.premissions);
     });
+
+    this.subs.sink = this.api.getProposals().subscribe((x) => {
+      this.proposals = x;
+      console.log('proposals from server', this.proposals);
+    });
   }
 
   LecturerLogedIn() {
@@ -110,6 +120,11 @@ export class StateService implements OnDestroy {
         this.lecturerProjects = x;
         console.log('lectuerer projects from server', this.lecturerProjects);
       });
+
+    this.subs.sink = this.api.getProposals().subscribe((x) => {
+      this.proposals = x;
+      console.log('proposals from server', this.proposals);
+    });
   }
 
   StudentLogedIn() {
