@@ -45,4 +45,11 @@ export class LecturerApiService {
       con
     );
   }
+
+  aproveProposal(id: number) {
+    return this.http.post<boolean>(
+      `${this.serverUrl}/Lecturer/ApproveProposal${id}`,
+      null
+    );
+  }
 }

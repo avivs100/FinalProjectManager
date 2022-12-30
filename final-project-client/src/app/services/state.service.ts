@@ -57,6 +57,7 @@ export class StateService implements OnDestroy {
   public schedule: ScheduleFull | null = null;
   public proposals: ProjectProposalDetailsWithStatus[] | null = null;
   public selectedProposal: ProjectProposalDetailsWithStatus | null = null;
+  public admins: Admin[] | null = null;
 
   public errorMessage = '';
 
@@ -90,6 +91,11 @@ export class StateService implements OnDestroy {
     this.subs.sink = this.adminApi.getAllLecturer().subscribe((x) => {
       this.lecturers = x;
       console.log('lecturers from server', this.lecturers);
+    });
+
+    this.subs.sink = this.adminApi.getAdmins().subscribe((x) => {
+      this.admins = x;
+      console.log('admins from server', this.lecturers);
     });
   }
 

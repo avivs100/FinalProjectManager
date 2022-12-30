@@ -16,6 +16,10 @@ export class AdminApiService {
     return this.http.get<Admin>(`${this.serverUrl}/Admin/${id}`);
   }
 
+  getAdmins(): Observable<Admin[]> {
+    return this.http.get<Admin[]>(`${this.serverUrl}/Admin`);
+  }
+
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.serverUrl}/Student/students`);
   }
@@ -77,6 +81,13 @@ export class AdminApiService {
     return this.http.put<boolean>(
       `${this.serverUrl}/Admin/PutScheduleDates`,
       dates
+    );
+  }
+
+  aproveProposal(id: number) {
+    return this.http.post<boolean>(
+      `${this.serverUrl}/Lecturer/ApproveProposal${id}`,
+      null
     );
   }
 }
