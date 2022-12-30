@@ -5,10 +5,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StateService } from 'src/app/services/state.service';
 import { StudentApiService } from 'src/app/services/student-api.service';
 import { SubSink } from 'subsink';
-import {
-  ProjectFull,
-  ProjectProposalDetails,
-} from 'src/app/models/project-grade-models';
+import { ProjectFull } from 'src/app/models/project-grade-models';
 import { CreateProjectProposalDialogComponent } from '../create-project-proposal-dialog/create-project-proposal-dialog.component';
 import { filter } from 'rxjs';
 
