@@ -25,6 +25,13 @@ namespace FinalProjectManger_server.Controllers
             return await context.Set<Admin>().ToListAsync();
         }
 
+        [HttpGet("GetProposals")]
+        public async Task<ActionResult<IReadOnlyList<ProjectProposal>>> GetProposals()
+        {
+            var context = new UsersDbContext();
+            return await context.Set<ProjectProposal>().ToListAsync();
+        }
+
         // GET api/<AdminController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Admin>> GetAdmin([FromRoute] long id)
