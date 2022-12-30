@@ -8,6 +8,8 @@ import { MessagesPageComponent } from './pages/messages-page/messages-page.compo
 import { PremissionsPageComponent } from './pages/premissions-page/premissions-page.component';
 import { ProjectDetailsComponent } from './pages/projects/project-details/project-details.component';
 import { ProjectsPageComponent } from './pages/projects/projects-page.component';
+import { ProposalDetailsPageComponent } from './pages/proposal-page/proposal-details-page/proposal-details-page.component';
+import { ProposalPageComponent } from './pages/proposal-page/proposal-page.component';
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
 import { LecturerScheduleComponent } from './pages/schedule-page/lecturer-schedule/lecturer-schedule.component';
 import { ScheduleDetailsComponent } from './pages/schedule-page/schedule-details/schedule-details.component';
@@ -55,6 +57,14 @@ const routes: Routes = [
       {
         path: 'schedule-details',
         component: ScheduleDetailsComponent,
+      },
+      {
+        path: 'proposals',
+        component: ProposalPageComponent,
+      },
+      {
+        path: 'proposal-details',
+        component: ProposalDetailsPageComponent,
       },
     ],
   },

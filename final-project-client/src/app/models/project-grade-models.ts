@@ -78,3 +78,19 @@ export interface ProjectProposalDetails {
   plannedWorkingProcessDuringTheFirstSemester: string;
   productOfTheWorkOfTheFirstSemester: string;
 }
+
+export interface ProjectProposalDetailsWithStatus {
+  id: number;
+  projectName: string;
+  projectType: ProjectType;
+  student1ID: number;
+  student2ID: number;
+  lecturerID: number;
+  projectCategoryExplain: string;
+  keywords: string;
+  generalDescriptionOfTheProblem: string;
+  mainToolsThatWillBeUsedForSolvingTheProblem: string;
+  plannedWorkingProcessDuringTheFirstSemester: string;
+  productOfTheWorkOfTheFirstSemester: string;
+  isApproved: boolean;
+}

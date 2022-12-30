@@ -1,0 +1,6 @@
+<app-lecturer-proposal
+  *ngIf="state.connectedUser!.userType == 2"
+></app-lecturer-proposal>
+<app-admin-proposal
+  *ngIf="state.connectedUser!.userType == 0"
+></app-admin-proposal>

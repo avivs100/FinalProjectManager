@@ -5,10 +5,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StateService } from 'src/app/services/state.service';
 import { StudentApiService } from 'src/app/services/student-api.service';
 import { SubSink } from 'subsink';
-import {
-  ProjectFull,
-  ProjectProposalDetails,
-} from 'src/app/models/project-grade-models';
+import { ProjectFull } from 'src/app/models/project-grade-models';
 import { CreateProjectProposalDialogComponent } from '../create-project-proposal-dialog/create-project-proposal-dialog.component';
 import { filter } from 'rxjs';
 
@@ -37,7 +34,6 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
   }
 
   openProposalDialog() {
-    console.log('open dialog');
     const ref = this.dialog.open(CreateProjectProposalDialogComponent, {
       header: 'Register Form',
       width: '800px',
@@ -45,17 +41,14 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
     });
     ref.onClose.pipe(filter(Boolean)).subscribe((formData) => {
       console.log(formData);
-      this.addNewProposal(formData);
+
+      this.subs.sink = this.api
+        .AddNewProjectProposal(formData)
+        .subscribe((x) => console.log('response from server', x));
     });
   }
 
   navigateToProjectDetails() {
     this.router.navigate(['home/project']);
-  }
-
-  addNewProposal(details: ProjectProposalDetails) {
-    this.subs.sink = this.api.AddNewProjectProposal(details).subscribe((x) => {
-      console.log(x);
-    });
   }
 }

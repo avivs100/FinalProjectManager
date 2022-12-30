@@ -1,0 +1,40 @@
+<div class="w-full h-full" *ngIf="proposals">
+  <p-card class="w-full h-full">
+    <p-table
+      [value]="proposals"
+      styleClass="p-datatable-gridlines p-datatable-striped h-30rem overflow-auto"
+      selectionMode="single"
+      scrollHeight="flex"
+      (onRowSelect)="selectedProposal($event)"
+      [scrollable]="true"
+      *ngIf="proposals"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>projectName</th>
+          <th>projectType</th>
+          <th>student1ID</th>
+          <th>student2ID</th>
+          <th>lecturerID</th>
+          <th>isApproved</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-proposal class="max-h-2rem">
+        <tr [pSelectableRow]="proposal">
+          <td>{{ proposal.projectName }}</td>
+          <td>{{ proposal.projectType }}</td>
+          <td>{{ proposal.student1ID }}</td>
+          <td>{{ proposal.student2ID }}</td>
+          <td>{{ proposal.lecturerID }}</td>
+          <td>{{ proposal.isApproved }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+  <p-card *ngIf="proposals.length == 0 || proposals == null">
+    <div class="flex flex-row justify-content-between mb-5">
+      <div class="text-5xl">No Waiting Proposals</div>
+    </div>
+  </p-card>
+</div>

@@ -9,14 +9,6 @@ import { MenuItem } from 'primeng/api';
 export class LecturerSidebarComponent {
   public items: MenuItem[] = [
     {
-      label: 'Submission',
-      routerLink: 'submissions',
-      icon: 'pi pi-book',
-      tooltipOptions: {
-        tooltipLabel: 'Submission',
-      },
-    },
-    {
       label: 'Grade',
       routerLink: 'grades',
       icon: 'pi pi-sitemap',
@@ -46,6 +38,14 @@ export class LecturerSidebarComponent {
       icon: 'pi pi-sitemap',
       tooltipOptions: {
         tooltipLabel: 'Projects Page',
+      },
+    },
+    {
+      label: 'Proposals',
+      routerLink: 'proposals',
+      icon: 'pi pi-paypal',
+      tooltipOptions: {
+        tooltipLabel: 'Project Proposals',
       },
     },
   ];

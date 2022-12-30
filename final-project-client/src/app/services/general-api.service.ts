@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ProjectProposalDetailsWithStatus } from '../models/project-grade-models';
 import { ScheduleDates } from '../models/schedule-models';
 import { Admin, Lecturer, Student } from '../models/users-models';
 
@@ -38,6 +39,12 @@ export class GeneralApiService {
   getScheduleDate(): Observable<ScheduleDates> {
     return this.http.get<ScheduleDates>(
       `${this.serverUrl}/Project/GetScheduleDates`
+    );
+  }
+
+  getProposals(): Observable<ProjectProposalDetailsWithStatus[]> {
+    return this.http.get<ProjectProposalDetailsWithStatus[]>(
+      this.serverUrl + `/Admin/GetProposals`
     );
   }
 }
