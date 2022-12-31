@@ -46,7 +46,7 @@ export class StateService implements OnDestroy {
     email: 'sagifishman1@gmail.com',
   };
   public subs: SubSink = new SubSink();
-  public connectedUser: Student | Admin | Lecturer | null = this.admin;
+  public connectedUser: Student | Admin | Lecturer | null = this.student;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
   public lecturerProjects: ProjectFull[] | null = null;
