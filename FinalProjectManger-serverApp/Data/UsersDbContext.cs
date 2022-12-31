@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Data;
@@ -71,9 +72,12 @@ public class UsersDbContext : DbContext
         modelBuilder.Entity<LecturerPermissionToGiveGrades>().OwnsOne(e => e.LecturerGradeId);
         modelBuilder.Entity<LecturerPermissionToGiveGrades>().OwnsOne(e => e.PresentationGradeId);
 
-        //modelBuilder.Entity<LecturerConstraints>().Property(e => e.LecturerId).ValueGeneratedNever();
-        //modelBuilder.Entity<LecturerConstraints>().OwnsOne(e => e.Date1Constraint);
-        //modelBuilder.Entity<LecturerConstraints>().OwnsOne(e => e.Date2Constraint);
+        modelBuilder.Entity<LecturerConstraints>().HasKey(e => e.LecturerId);
+        modelBuilder.Entity<LecturerConstraints>().Property(e => e.LecturerId).ValueGeneratedNever();
+        modelBuilder.Entity<LecturerConstraints>().OwnsOne(e => e.Date1Constraint);
+        modelBuilder.Entity<LecturerConstraints>().OwnsOne(e => e.Date2Constraint);
+
+
 
     }
 }

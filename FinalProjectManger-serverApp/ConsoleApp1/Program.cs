@@ -186,5 +186,16 @@ void SeedDb()
     var lecturerPermissionToGiveGrades = new LecturerPermissionToGiveGrades(Erez.id, preList, bookList, lecList);
     context.Set<LecturerPermissionToGiveGrades>().Add(lecturerPermissionToGiveGrades);
     //LecturerPermissionToGiveGrades temp = new LecturerPermissionToGiveGrades(4,new List<>)
+    var lecturerConstraints = new LecturerConstraints();
+    lecturerConstraints.LecturerId = Erez.id;
+    var sessionList1 = new List<int>();
+    sessionList1.Add(1);
+    sessionList1.Add(3);
+    lecturerConstraints.Date1Constraint = new LecturerConstraint(DateTime.Today, sessionList1);
+    var sessionList2 = new List<int>();
+    sessionList2.Add(2);
+    sessionList2.Add(4);
+    lecturerConstraints.Date2Constraint = new LecturerConstraint(DateTime.Today, sessionList2);
+    context.Set<LecturerConstraints>().Add(lecturerConstraints);
     context.SaveChanges();
 }

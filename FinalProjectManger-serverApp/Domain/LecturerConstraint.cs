@@ -1,9 +1,22 @@
-﻿namespace Domain;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domain;
 
 public class LecturerConstraint
 {
     public DateTime Date { get; set; }
+    [NotMapped] 
     public List<int> Sessions { get; set; } = new ();
+
+    public LecturerConstraint()
+    {
+    }
+
+    public LecturerConstraint(DateTime date, List<int> sessions)
+    {
+        Date = date;
+        Sessions = sessions;
+    }
 }
 
 public class LecturerConstraints
