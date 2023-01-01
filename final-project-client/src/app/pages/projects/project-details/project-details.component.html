@@ -61,8 +61,11 @@
     </div>
 
     <div class="col-2 font-bold">Project Type :</div>
-    <div class="col-10">
-      <div class="field-width field">Web Application</div>
+    <div class="field-width field col-10" *ngIf="project.projectType == 0">
+      Research
+    </div>
+    <div class="field-width field col-10" *ngIf="project.projectType == 1">
+      Development
     </div>
   </div>
 </div>

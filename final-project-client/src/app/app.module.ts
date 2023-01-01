@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TabViewModule } from 'primeng/tabview';
 import { RippleModule } from 'primeng/ripple';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
@@ -65,6 +66,7 @@ import { LecturerApiService } from './services/lecturer-api.service';
 import { LoginService } from './services/login-service.service';
 import { StateService } from './services/state.service';
 import { ToastModule } from 'primeng/toast';
+import { FileUploadModule } from 'primeng/fileupload';
 import { ScheduleDetailsComponent } from './pages/schedule-page/schedule-details/schedule-details.component';
 import { CreateScheduleComponent } from './pages/schedule-page/admin-schedule/create-schedule/create-schedule.component';
 import { SelectScheduleDaysDialogComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-dialog.component';
@@ -82,6 +84,7 @@ import { ProposalListComponent } from './pages/proposal-page/proposal-list/propo
 import { ProposalDetailsPageComponent } from './pages/proposal-page/proposal-details-page/proposal-details-page.component';
 //import { SelectScheduleDaysFormComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-form/select-schedule-days-form.component';
 import { DividerModule } from 'primeng/divider';
+import { SessionDetailsComponent } from './pages/schedule-page/schedule-details/session-details/session-details.component';
 
 @NgModule({
   declarations: [
@@ -132,9 +135,11 @@ import { DividerModule } from 'primeng/divider';
     LecturerProposalComponent,
     ProposalListComponent,
     ProposalDetailsPageComponent,
+    SessionDetailsComponent,
   ],
   imports: [
     DividerModule,
+    FileUploadModule,
     FocusTrapModule,
     ToastModule,
     HttpClientModule,
@@ -163,6 +168,7 @@ import { DividerModule } from 'primeng/divider';
     ToastModule,
     ConfirmDialogModule,
     TableModule,
+    TabViewModule,
   ],
   providers: [
     ConfirmationService,

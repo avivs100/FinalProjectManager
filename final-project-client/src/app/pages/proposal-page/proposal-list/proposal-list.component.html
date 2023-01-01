@@ -23,7 +23,14 @@
       <ng-template pTemplate="body" let-proposal class="max-h-2rem">
         <tr [pSelectableRow]="proposal">
           <td>{{ proposal.projectName }}</td>
-          <td>{{ proposal.projectType }}</td>
+          <td>
+            <div class="field-width field" *ngIf="proposal.projectType == 0">
+              Research
+            </div>
+            <div class="field-width field" *ngIf="proposal.projectType == 1">
+              Development
+            </div>
+          </td>
           <td>{{ proposal.student1ID }}</td>
           <td>{{ proposal.student2ID }}</td>
           <td>{{ proposal.lecturerID }}</td>

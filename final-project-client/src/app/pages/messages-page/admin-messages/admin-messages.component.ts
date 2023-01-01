@@ -30,13 +30,9 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
     private messageService: MessageServiceApi,
     public state: StateService,
     private adminApi: AdminApiService
-  ) {
-    var lectuerers = this.state.lecturers;
-    var projects = this.state.projects;
-    var students = this.state.students;
-  }
+  ) {}
   ngOnInit(): void {
-    console.log('david get all details');
+    // console.log('david get all details');
   }
   ngOnDestroy(): void {
     this.subs.unsubscribe();

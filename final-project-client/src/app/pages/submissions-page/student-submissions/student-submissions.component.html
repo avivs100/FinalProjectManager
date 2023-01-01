@@ -1,1 +1,89 @@
-<p>student-premissions works!</p>
+<div class="gap-8 m-5 grid">
+  <div class="text-5xl col-12">Student Submission</div>
+
+  <p-tabView class="min-w-full max-w-screen">
+    <p-tabPanel
+      header="Submissions of Part 1"
+      class="min-w-max max-w-screen grid"
+    >
+      <div class="col-12 grid card m-2 mt-6">
+        <div class="text-3xl col-12">Submissions of Part 1</div>
+        <div class="text-2xl col-12 underline">Github Link</div>
+        <div class="p-float-label my-4 col-12 grid">
+          <i class="pi pi-github col-1"></i>
+          <input
+            class="col-7"
+            type="text"
+            pInputText
+            [(ngModel)]="gitHubForPart1"
+            id="float-input"
+          />
+          <label for="float-input"></label>
+        </div>
+        <div class="text-2xl col-12 underline">Upload files</div>
+        <div class="p-float-label my-4 col-12 grid">
+          <p-fileUpload
+            class="col-7"
+            name="demo[]"
+            url="./upload.php"
+            (onUpload)="onUpload($event)"
+            [multiple]="true"
+            accept="pdf/*,image/*,application/pdf"
+            [maxFileSize]="3000000"
+          >
+            <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">
+                  {{ file.name }} - {{ file.size }} bytes
+                </li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+          <label for="float-input"></label>
+        </div>
+        <div class="col-3"></div>
+        <p-button label="Submit"></p-button>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Submissions of Part 2" class="min-w-full grid">
+      <div class="col-12 grid card m-2 mt-6">
+        <div class="text-3xl col-12">Submissions of Part 2</div>
+        <div class="text-2xl col-12 underline">Github Link</div>
+        <div class="p-float-label my-4 col-12 grid">
+          <i class="pi pi-github col-1"></i>
+          <input
+            class="col-7"
+            type="text"
+            pInputText
+            [(ngModel)]="gitHubForPart1"
+            id="float-input"
+          />
+          <label for="float-input"></label>
+        </div>
+        <div class="text-2xl col-12 underline">Upload files</div>
+        <div class="p-float-label my-4 col-12 grid">
+          <p-fileUpload
+            class="col-7"
+            name="demo[]"
+            url="./upload.php"
+            (onUpload)="onUpload($event)"
+            [multiple]="true"
+            accept="pdf/*,image/*,application/pdf"
+            [maxFileSize]="3000000"
+          >
+            <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">
+                  {{ file.name }} - {{ file.size }} bytes
+                </li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+          <label for="float-input"></label>
+        </div>
+        <div class="col-3"></div>
+        <p-button label="Submit"></p-button>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>

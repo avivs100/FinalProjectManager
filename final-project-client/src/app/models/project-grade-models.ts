@@ -63,6 +63,7 @@ export interface ProjectFull {
   student2: Student;
   gradeB: GradeB;
   gradeA: GradeA;
+  projectType: ProjectType;
 }
 
 export interface ProjectProposalDetails {
