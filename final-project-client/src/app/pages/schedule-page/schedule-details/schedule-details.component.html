@@ -1,1 +1,20 @@
-<p>schedule-details works!</p>
+<div
+  style="
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-face-color: #367cd2;
+    scrollbar-shadow-color: #ffffff;
+    scrollbar-highlight-color: #ffffff;
+    scrollbar-3dlight-color: #ffffff;
+    scrollbar-darkshadow-color: #ffffff;
+    scrollbar-track-color: #ffffff;
+    scrollbar-arrow-color: #ffffff;
+  "
+  class="grid w-full h-full"
+>
+  <app-session-details [session]="session" class="col-5"></app-session-details>
+  <app-session-details [session]="session" class="col-5"></app-session-details>
+  <app-session-details [session]="session" class="col-5"></app-session-details>
+  <app-session-details [session]="session" class="col-5"></app-session-details>
+</div>
