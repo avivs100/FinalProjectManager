@@ -4,24 +4,38 @@
   class="flex align-items-stretch flex-wrap card-container blue-container grid"
 >
   <p-card class="p-field col-6">
-    <h5>select constraints for date {{ dates.date1.slice(0, 10) }}</h5>
+    <h5>
+      Choose hours when you cannot appear for date
+      {{ dates.date1.slice(0, 10) }}
+    </h5>
     <p-multiSelect
+      class="custom-ms"
       [options]="sessions"
+      optionValue="num"
+      optionLabel="presentation"
       [(ngModel)]="SelectedSession1"
-      display="chip"
       [virtualScroll]="true"
       [virtualScrollItemSize]="30"
+      placeholder="Select Constrints for day 1"
     ></p-multiSelect>
   </p-card>
   <p-card class="p-field col-6">
-    <h5>select constraints for date {{ dates.date2.slice(0, 10) }}</h5>
+    <h5>
+      Choose hours when you cannot appear for date
+      {{ dates.date2.slice(0, 10) }}
+    </h5>
     <p-multiSelect
+      class="custom-ms"
       [options]="sessions"
       [(ngModel)]="SelectedSession2"
-      display="chip"
+      optionValue="num"
+      optionLabel="presentation"
       [virtualScroll]="true"
       [virtualScrollItemSize]="30"
-    ></p-multiSelect>
+      placeholder="Select Constrints for day 2"
+    >
+      ></p-multiSelect
+    >
   </p-card>
 </div>
 <div *ngIf="dates" class="flex align-items-center justify-content-center">
