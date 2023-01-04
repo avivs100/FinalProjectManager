@@ -35,7 +35,7 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
 
   openProposalDialog() {
     const ref = this.dialog.open(CreateProjectProposalDialogComponent, {
-      header: 'Register Form',
+      header: 'Project Proposal Form',
       width: '800px',
       height: '750px',
     });
