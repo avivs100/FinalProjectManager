@@ -1,7 +1,9 @@
 ﻿using Data;
 using Domain;
 using FinalProjectManger_server.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using TryGenetic;
 using static Domain.DayInSchedule;
@@ -43,7 +45,18 @@ namespace FinalProjectManger_server.Controllers
         [HttpPost("GenerateSchedule")]
         public async Task<ActionResult<Schedule>> GenerateSchedule()
         {
+
             var context = new UsersDbContext();
+            var schedule1 = await context.Set<Schedule>().ToListAsync();
+            if(schedule1.Count != 0)
+            {
+                context.Set<Schedule>().RemoveRange(schedule1);
+                var sessions1 = await context.Set<Session>().ToListAsync();
+                context.Set<Session>().RemoveRange(sessions1);
+                var dayInSchedules1 = await context.Set<DayInSchedule>().ToListAsync();
+                context.Set<DayInSchedule>().RemoveRange(dayInSchedules1);
+                await context.SaveChangesAsync();
+            }
             var genetic = new Genetic();
             var lecturers = await context.Set<Domain.Lecturer>().Include(x => x.constraints).ToListAsync();
             var cons = await context.Set<LecConstraint>().ToListAsync();

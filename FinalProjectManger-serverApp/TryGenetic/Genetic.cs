@@ -45,7 +45,7 @@ namespace TryGenetic
     public class Genetic
     {
         public int popSize = 1000;
-        public int numOfSessions = 10;
+        public int numOfSessions = 40;
         public List<Solution> Solutions { get; set; } = new List<Solution>();
         public int numOfBestSolutions = 100;
         public double Treshold = 0.1;
