@@ -49,15 +49,6 @@ void SeedDb()
     context.Set<Student>().Add(hameleh);
     context.Set<Student>().Add(NoProjStudent);
     var Erez = new Lecturer(4, UserType.lecturer, "Erez", "Eres", "1", "sagifishman1@gmail.com",true);
-    var con = new LecConstraint(1);
-    context.Set<LecConstraint>().Add(con);
-    Erez.constraints.Add(con);
-    con = new LecConstraint(2);
-    context.Set<LecConstraint>().Add(con);
-    Erez.constraints.Add(con);
-    con = new LecConstraint(3);
-    context.Set<LecConstraint>().Add(con);
-    Erez.constraints.Add(con);
     var David = new Lecturer(15, UserType.lecturer, "David", "David", "1", "default@gmaol.com");
     var Ohad = new Lecturer(5, UserType.lecturer, "Ohad", "Hahaham", "1", "default@gmaol.com");
     var Meni = new Lecturer(6, UserType.lecturer, "Meni", "Shit", "1", "default@gmaol.com");

@@ -7,6 +7,10 @@ import {
   LecturerConstarintForDate,
   ScheduleDates,
 } from 'src/app/models/schedule-models';
+export interface DateAndNumberForConstraint {
+  num: Number;
+  presentation: String;
+}
 
 @Component({
   selector: 'app-lecturer-add-constraints',
@@ -16,7 +20,13 @@ import {
 export class LecturerAddConstraintsComponent implements OnDestroy, OnInit {
   public subs: SubSink = new SubSink();
   public dates: ScheduleDates | null = null;
-  public sessions: number[] = [1, 2, 3, 4, 5, 6];
+  public sessions: DateAndNumberForConstraint[] = [
+    { num: 1, presentation: '08:00-10:00' },
+    { num: 2, presentation: '10:00-12:00' },
+    { num: 3, presentation: '12:00-14:00' },
+    { num: 4, presentation: '14:00-16:00' },
+    { num: 5, presentation: '16:00-18:00' },
+  ];
   public SelectedSession1: number[] = [];
   public SelectedSession2: number[] = [];
   public conFromServer: LecturerConstarintForDate | undefined;
