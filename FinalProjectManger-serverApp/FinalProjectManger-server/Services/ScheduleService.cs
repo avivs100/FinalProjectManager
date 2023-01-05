@@ -6,6 +6,7 @@ namespace FinalProjectManger_server.Services
 {
     public class ScheduleService
     {
+
         public Session ConvertToSession(Gene gene)
         {
             var listOfProjects = new List<Domain.Project>();

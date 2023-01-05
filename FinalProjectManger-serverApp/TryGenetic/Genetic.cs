@@ -45,11 +45,12 @@ namespace TryGenetic
     public class Genetic
     {
         public int popSize = 1000;
-        public int numOfSessions = 40;
+        public int numOfSessions = 10;
         public List<Solution> Solutions { get; set; } = new List<Solution>();
         public int numOfBestSolutions = 100;
         public double Treshold = 0.1;
         public int lecNumbers { get; set; }
+        public int ClassRoomNum { get; set; }
 
         public void CreatePopulation(List<TryGenetic.Lecturer> lecturers)
         {
