@@ -19,7 +19,7 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<IReadOnlyList<Lecturer>>> ListLecturers()
         {
             var context = new UsersDbContext();
-            return await context.Set<Lecturer>().Include(x => x.constraints).ToListAsync();
+            return await context.Set<Lecturer>().ToListAsync();
         }
 
         // GET api/<LecturerController>/5
@@ -27,7 +27,7 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<Lecturer>> Get([FromRoute] long id)
         {
             var context = new UsersDbContext();
-            var lecturer = await context.Set<Lecturer>().Include(x => x.constraints).Where(x => x.id == id).FirstOrDefaultAsync();
+            var lecturer = await context.Set<Lecturer>().Where(x => x.id == id).FirstOrDefaultAsync();
             if (lecturer == null)
             {
                 return NotFound();
