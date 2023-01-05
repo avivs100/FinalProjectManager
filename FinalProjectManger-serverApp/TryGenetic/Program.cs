@@ -9,7 +9,7 @@ for (int i = 0; i < lecNum; i++)
 {
     var con = new List<int>();
     for (int j = 0; j < conNum; j++)
-        con.Add(new Random().Next(1, 13));
+        con.Add(new Random().Next(1, genetic.numOfSessions+1));
     lecturers.Add(new Lecturer(i + 1, con));
 }
 genetic.CreatePopulation(lecturers);
@@ -27,3 +27,5 @@ for (int i = 0; i < 1000; i++)
         break;
     genetic.CrossOver();
 }
+var bestSolution = genetic.Solutions[0];
+Console.WriteLine();

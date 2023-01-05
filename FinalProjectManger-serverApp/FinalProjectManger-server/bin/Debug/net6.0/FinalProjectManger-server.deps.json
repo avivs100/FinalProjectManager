@@ -11,7 +11,8 @@
           "Data": "1.0.0",
           "Microsoft.AspNet.WebApi.Cors": "5.2.9",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.10",
-          "Swashbuckle.AspNetCore": "6.2.3"
+          "Swashbuckle.AspNetCore": "6.2.3",
+          "TryGenetic": "1.0.0"
         },
         "runtime": {
           "FinalProjectManger-server.dll": {}
@@ -2442,6 +2443,11 @@
         "runtime": {
           "Domain.dll": {}
         }
+      },
+      "TryGenetic/1.0.0": {
+        "runtime": {
+          "TryGenetic.dll": {}
+        }
       }
     }
   },
@@ -3766,6 +3772,11 @@
       "sha512": ""
     },
     "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TryGenetic/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

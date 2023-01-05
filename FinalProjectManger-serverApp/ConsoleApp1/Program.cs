@@ -49,28 +49,21 @@ void SeedDb()
     context.Set<Student>().Add(hameleh);
     context.Set<Student>().Add(NoProjStudent);
     var Erez = new Lecturer(4, UserType.lecturer, "Erez", "Eres", "1", "sagifishman1@gmail.com",true);
-    var David = new Lecturer(15, UserType.lecturer, "David", "David", "1", "default@gmaol.com");
-    var con1 = new Constraint(2022, 12, 9, 13, 22, 45);
-    context.Set<Constraint>().Add(con1);
-    Erez.constraints.Add(con1);
-    var con = new Constraint(2022, 12, 9, 16, 15, 33);
+    var con = new LecConstraint(1);
+    context.Set<LecConstraint>().Add(con);
     Erez.constraints.Add(con);
-    context.Set<Constraint>().Add(con);
+    con = new LecConstraint(2);
+    context.Set<LecConstraint>().Add(con);
+    Erez.constraints.Add(con);
+    con = new LecConstraint(3);
+    context.Set<LecConstraint>().Add(con);
+    Erez.constraints.Add(con);
+    var David = new Lecturer(15, UserType.lecturer, "David", "David", "1", "default@gmaol.com");
     var Ohad = new Lecturer(5, UserType.lecturer, "Ohad", "Hahaham", "1", "default@gmaol.com");
-    con = new Constraint(2022, 11, 4, 7, 55, 34);
-    Ohad.constraints.Add(con);
-    context.Set<Constraint>().Add(con);
-    con = new Constraint(2022, 9, 2, 19, 15, 52);
-    Ohad.constraints.Add(con);
-    context.Set<Constraint>().Add(con);
     var Meni = new Lecturer(6, UserType.lecturer, "Meni", "Shit", "1", "default@gmaol.com");
-    con = new Constraint(2022, 4, 2, 5, 31, 17);
-    Meni.constraints.Add(con);
-    context.Set<Constraint>().Add(con);
     context.Set<Lecturer>().Add(Erez);
     context.Set<Lecturer>().Add(Ohad);
     context.Set<Lecturer>().Add(Meni);
-
     var Naomi = new Admin(7, UserType.admin, "Naomi", "Onklus", "1", "sagifishman1@gmail.com");
     context.Set<Admin>().Add(Naomi);
 
@@ -134,21 +127,21 @@ void SeedDb()
     context.Set<GradeB>().Add(gradeB1);
     context.Set<GradeB>().Add(gradeB2);
     
-    Project project1= new Project("Project Management", Erez.id, Sagi.id, Aviv.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Research);
+    Project project1= new Project("Project Management", Erez.id, Sagi.id, Aviv.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Research,"A");
     context.Set<Project>().Add(project1);
-    Project project2 = new Project("Test Schedule", Erez.id, Natasha.id, yaron.id, gradeA2.gradeAid, gradeB2.gradeBid, ProjectType.Research);
+    Project project2 = new Project("Test Schedule", Erez.id, Natasha.id, yaron.id, gradeA2.gradeAid, gradeB2.gradeBid, ProjectType.Research, "A");
     context.Set<Project>().Add(project2);
-    Project project3 = new Project("Image Painting", Ohad.id, yaron.id, lital.id, gradeA2.gradeAid, gradeB2.gradeBid, ProjectType.Development);
+    Project project3 = new Project("Image Painting", Ohad.id, yaron.id, lital.id, gradeA2.gradeAid, gradeB2.gradeBid, ProjectType.Development, "A");
     context.Set<Project>().Add(project3);
-    Project project4 = new Project("akol tov", Meni.id, david.id, itay.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Research);
+    Project project4 = new Project("akol tov", Meni.id, david.id, itay.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Research, "A");
     context.Set<Project>().Add(project4);
-    Project project5 = new Project("Aviv gayBaPe", Meni.id, Menahem.id, Meshulam.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Development);
+    Project project5 = new Project("Aviv gayBaPe", Meni.id, Menahem.id, Meshulam.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Development, "A");
     context.Set<Project>().Add(project5);
-    Project project6 = new Project("Sagi Gever", Meni.id, marom.id, shlomi.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Research);
+    Project project6 = new Project("Sagi Gever", Meni.id, marom.id, shlomi.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Research, "A");
     context.Set<Project>().Add(project6);
-    Project project7 = new Project("Project Name", Ohad.id, Benny.id, Munitz.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Development);
+    Project project7 = new Project("Project Name", Ohad.id, Benny.id, Munitz.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Development, "A");
     context.Set<Project>().Add(project7);
-    Project project8 = new Project("Name Of Project", Ohad.id, messi.id, hameleh.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Development);
+    Project project8 = new Project("Name Of Project", Ohad.id, messi.id, hameleh.id, gradeA1.gradeAid, gradeB1.gradeBid, ProjectType.Development, "A");
     context.Set<Project>().Add(project8);
     context.Set<Premission>().Add(new Premission(5, "Ohad AbuGay"));
     context.Set<Premission>().Add(new Premission(6, "Meni Mamtera"));
@@ -159,17 +152,17 @@ void SeedDb()
     projList.Add(project4);
     projList.Add(project5);
     projList.Add(project6);
-    Session session1 = new Session(Erez.id, Meni.id, Ohad.id, projList, 1);
-    Session session2 = new Session(Benny.id, David.id, Ohad.id, projList, 2);
-    context.Set<Session>().Add(session1);
-    context.Set<Session>().Add(session2);
-    DayInSchedule dayInSchedule1= new DayInSchedule(true, session1.Id, session2.Id, session1.Id, session2.Id, session1.Id, session2.Id);
-    DayInSchedule dayInSchedule2 = new DayInSchedule(false, session1.Id, session2.Id, session1.Id, session2.Id, session1.Id, session2.Id);
-    context.Set<DayInSchedule>().Add(dayInSchedule1);
-    context.Set<DayInSchedule>().Add(dayInSchedule2);
+    //Session session1 = new Session(Erez.id, Meni.id, Ohad.id, projList, 1);
+    //Session session2 = new Session(Benny.id, David.id, Ohad.id, projList, 2);
+    //context.Set<Session>().Add(session1);
+    //context.Set<Session>().Add(session2);
+    //DayInSchedule dayInSchedule1= new DayInSchedule(true, session1.Id, session2.Id, session1.Id, session2.Id, session1.Id);
+    //DayInSchedule dayInSchedule2 = new DayInSchedule(false, session1.Id, session2.Id, session1.Id, session2.Id, session1.Id);
+    //context.Set<DayInSchedule>().Add(dayInSchedule1);
+    //context.Set<DayInSchedule>().Add(dayInSchedule2);
 
-    Schedule schedule = new Schedule(dayInSchedule1.Id, dayInSchedule2.Id);
-    context.Set<Schedule>().Add(schedule);
+    //Schedule schedule = new Schedule(dayInSchedule1.Id, dayInSchedule2.Id);
+    //context.Set<Schedule>().Add(schedule);
 
     ProjectProposal projectProposal = new ProjectProposal("Name", ProjectType.Development, "Development because .....", "keyword", "general description",
         "main tools", "planned Working Process During The First Semester", "product of the work", 2, 3, false, 4);

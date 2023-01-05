@@ -45,7 +45,7 @@ namespace TryGenetic
     public class Genetic
     {
         public int popSize = 1000;
-        public int numOfSessions = 12;
+        public int numOfSessions = 10;
         public List<Solution> Solutions { get; set; } = new List<Solution>();
         public int numOfBestSolutions = 100;
         public double Treshold = 0.1;
@@ -114,12 +114,10 @@ namespace TryGenetic
             Solutions.Sort((x, y) => x.fitnessScore.CompareTo(y.fitnessScore));
             Solutions.Reverse();
 
-
         }
         public void CrossOver()
         {
-
-            List<Solution> BetterSolutions = new List<Solution>();
+            var BetterSolutions = new List<Solution>();
             var BestSolutions = Solutions.Take(numOfBestSolutions).ToList();
             for (int j = 0; j < popSize; j++)
             {

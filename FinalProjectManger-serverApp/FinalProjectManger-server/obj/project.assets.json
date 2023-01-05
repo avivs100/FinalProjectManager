@@ -3752,6 +3752,16 @@
         "runtime": {
           "bin/placeholder/Domain.dll": {}
         }
+      },
+      "TryGenetic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/TryGenetic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TryGenetic.dll": {}
+        }
       }
     }
   },
@@ -10566,6 +10576,11 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "TryGenetic/1.0.0": {
+      "type": "project",
+      "path": "../TryGenetic/TryGenetic.csproj",
+      "msbuildProject": "../TryGenetic/TryGenetic.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10573,7 +10588,8 @@
       "Data >= 1.0.0",
       "Microsoft.AspNet.WebApi.Cors >= 5.2.9",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.10",
-      "Swashbuckle.AspNetCore >= 6.2.3"
+      "Swashbuckle.AspNetCore >= 6.2.3",
+      "TryGenetic >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -10611,6 +10627,9 @@
           "projectReferences": {
             "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
               "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj"
+            },
+            "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj": {
+              "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj"
             }
           }
         }

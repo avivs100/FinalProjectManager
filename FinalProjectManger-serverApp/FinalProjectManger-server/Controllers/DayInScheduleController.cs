@@ -26,9 +26,8 @@ namespace FinalProjectManger_server.Controllers
                 var session3 = await context.Set<Session>().Where(x => x.Id == day.Session3ID).Include(x => x.ProjectsID).FirstOrDefaultAsync();
                 var session4 = await context.Set<Session>().Where(x => x.Id == day.Session4ID).Include(x => x.ProjectsID).FirstOrDefaultAsync();
                 var session5 = await context.Set<Session>().Where(x => x.Id == day.Session5ID).Include(x => x.ProjectsID).FirstOrDefaultAsync();
-                var session6 = await context.Set<Session>().Where(x => x.Id == day.Session6ID).Include(x => x.ProjectsID).FirstOrDefaultAsync();
                 
-                var dayInScheduleFull = new DayInScheduleFull(day.Id, day.FirstDay, session1, session2, session3, session4, session5, session6);
+                var dayInScheduleFull = new DayInScheduleFull(day.Id, day.FirstDay, session1, session2, session3, session4, session5);
                 fullDayInSchedules.Add(dayInScheduleFull);
             }
             return fullDayInSchedules;

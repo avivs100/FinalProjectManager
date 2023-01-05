@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 
@@ -20,8 +21,11 @@ public class UsersDbContext : DbContext
     {
         modelBuilder.Entity<Student>().Property(e => e.id).ValueGeneratedNever();
 
+        modelBuilder.Entity<LecConstraint>().Property(e => e.Id).ValueGeneratedNever();
+        modelBuilder.Entity<LecConstraint>().Property(e => e.SessionNumber).ValueGeneratedNever();
+
         modelBuilder.Entity<Lecturer>().Property(e => e.id).ValueGeneratedNever();
-        modelBuilder.Entity<Lecturer>().HasMany<Constraint>();
+
 
         modelBuilder.Entity<Admin>().Property(e => e.id).ValueGeneratedNever();
 
