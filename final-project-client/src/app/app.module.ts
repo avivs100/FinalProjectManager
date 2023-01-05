@@ -85,6 +85,7 @@ import { ProposalDetailsPageComponent } from './pages/proposal-page/proposal-det
 //import { SelectScheduleDaysFormComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-form/select-schedule-days-form.component';
 import { DividerModule } from 'primeng/divider';
 import { SessionDetailsComponent } from './pages/schedule-page/schedule-details/session-details/session-details.component';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [
@@ -138,6 +139,7 @@ import { SessionDetailsComponent } from './pages/schedule-page/schedule-details/
     SessionDetailsComponent,
   ],
   imports: [
+    ScrollPanelModule,
     DividerModule,
     FileUploadModule,
     FocusTrapModule,
