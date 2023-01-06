@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "TIwgUwx0NRXQ6lsmvm0tRwnv1kLNWR/bIlBHSU47ihtLz/OmecUXLSsCFUkxtjAYYySqpkuE4knbHfvGhutPOQ==",
+=======
+  "dgSpecHash": "E3WejwDTUK4UjmCtKgxgHn/ewBmbwkNLRH/AgZWYvVS7NBNuWvMxs/KzcPBeHvAKO8NHDofXgUy5B3IjMvf2mg==",
+>>>>>>> SagisTheGever
   "success": true,
   "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
   "expectedPackageFiles": [],

@@ -16,11 +16,10 @@ namespace Domain
         public int Session3ID { get; set; }
         public int Session4ID { get; set; }
         public int Session5ID { get; set; }
-        public int Session6ID { get; set; }
 
         public DayInSchedule() { }
 
-        public DayInSchedule(bool firstDay, int session1ID, int session2ID, int session3ID, int session4ID, int session5ID, int session6ID)
+        public DayInSchedule(bool firstDay, int session1ID, int session2ID, int session3ID, int session4ID, int session5ID)
         {
             Id = new Random().Next();
             FirstDay = firstDay;
@@ -29,7 +28,6 @@ namespace Domain
             Session3ID = session3ID;
             Session4ID = session4ID;
             Session5ID = session5ID;
-            Session6ID = session6ID;
         }
 
         public class DayInScheduleFull
@@ -41,11 +39,10 @@ namespace Domain
             public Session Session3 { get; set; }
             public Session Session4 { get; set; }
             public Session Session5 { get; set; }
-            public Session Session6 { get; set; }
 
             public DayInScheduleFull() { }
 
-            public DayInScheduleFull(int id, bool firstDay, Session session1, Session session2, Session session3, Session session4, Session session5, Session session6)
+            public DayInScheduleFull(int id, bool firstDay, Session session1, Session session2, Session session3, Session session4, Session session5)
             {
                 Id = id;
                 FirstDay = firstDay;
@@ -54,7 +51,6 @@ namespace Domain
                 Session3 = session3;
                 Session4 = session4;
                 Session5 = session5;
-                Session6 = session6;
             }
         }
     }
