@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pO/tLDwS0zWbRZCI0sZ+TDvDVIDFPfrx9YAGMCjZ/bmMZl7FjvG2jTbwuSouXjIUv3XeJfZIPPvGUTsQM3+LXA==",
+  "dgSpecHash": "lSWUXXQ+YlGvdgWJ/UyV9+KJ4UUrpCNv0XqZVEIbsdjpYJws/z0lhrdCX6roRJ2YCx5/5Yzu+m8V+vZRj/xszg==",
   "success": true,
   "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
