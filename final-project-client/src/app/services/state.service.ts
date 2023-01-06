@@ -46,7 +46,7 @@ export class StateService implements OnDestroy {
     email: 'sagifishman1@gmail.com',
   };
   public subs: SubSink = new SubSink();
-  public connectedUser: Student | Admin | Lecturer | null = null;
+  public connectedUser: Student | Admin | Lecturer | null = this.admin;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
   public lecturerProjects: ProjectFull[] | null = null;
@@ -58,6 +58,7 @@ export class StateService implements OnDestroy {
   public proposals: ProjectProposalDetailsWithStatus[] | null = null;
   public selectedProposal: ProjectProposalDetailsWithStatus | null = null;
   public admins: Admin[] | null = null;
+  public proposalAfterAprove: ProjectProposalDetailsWithStatus[] | null = null;
 
   public errorMessage = '';
 
@@ -93,9 +94,9 @@ export class StateService implements OnDestroy {
       console.log('lecturers from server', this.lecturers);
     });
 
-    this.subs.sink = this.adminApi.getAdmins().subscribe((x) => {
-      this.admins = x;
-      console.log('admins from server', this.lecturers);
+    this.subs.sink = this.api.getProposals().subscribe((x) => {
+      this.proposals = x;
+      console.log('proposals from server', this.proposals);
     });
   }
 
@@ -112,9 +113,9 @@ export class StateService implements OnDestroy {
       console.log('premissions from server', this.premissions);
     });
 
-    this.subs.sink = this.api.getProposals().subscribe((x) => {
-      this.proposals = x;
-      console.log('proposals from server', this.proposals);
+    this.subs.sink = this.adminApi.getProposalsAfterAprove().subscribe((x) => {
+      this.proposalAfterAprove = x;
+      console.log('proposals from server', this.proposalAfterAprove);
     });
   }
 
@@ -126,11 +127,6 @@ export class StateService implements OnDestroy {
         this.lecturerProjects = x;
         console.log('lectuerer projects from server', this.lecturerProjects);
       });
-
-    this.subs.sink = this.api.getProposals().subscribe((x) => {
-      this.proposals = x;
-      console.log('proposals from server', this.proposals);
-    });
   }
 
   StudentLogedIn() {

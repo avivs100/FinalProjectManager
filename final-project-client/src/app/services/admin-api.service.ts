@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProjectFull } from '../models/project-grade-models';
+import {
+  ProjectFull,
+  ProjectProposalDetailsWithStatus,
+} from '../models/project-grade-models';
 import { Admin, Student, Lecturer, premission } from '../models/users-models';
 
 @Injectable({
@@ -84,10 +87,16 @@ export class AdminApiService {
     );
   }
 
-  aproveProposal(id: number) {
+  aproveProposal(id: number, code: string) {
     return this.http.post<boolean>(
-      `${this.serverUrl}/Lecturer/ApproveProposal${id}`,
+      `${this.serverUrl}/Admin/ApproveProposal/${id}/${code}`,
       null
+    );
+  }
+
+  getProposalsAfterAprove(): Observable<ProjectProposalDetailsWithStatus[]> {
+    return this.http.get<ProjectProposalDetailsWithStatus[]>(
+      `${this.serverUrl}/Admin/GetAllProposalsAfterLecturerApprove`
     );
   }
 }

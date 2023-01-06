@@ -1,4 +1,20 @@
-<app-proposal-list
-  [proposals]="state.proposals"
-  (goToProposalDetails)="goToProposalDetails($event)"
-></app-proposal-list>
+<div
+  style="position: absolute; overflow-y: scroll; overflow-x: hidden"
+  class="min-w-screen"
+>
+  <div class="mb-5">
+    <div class="text-5xl">Proposals After Aprove</div>
+  </div>
+  <app-proposal-list
+    [proposals]="state.proposalAfterAprove"
+    (goToProposalDetails)="goToProposalDetails($event)"
+  ></app-proposal-list>
+
+  <div class="m-5">
+    <div class="text-5xl">Proposals Before Lecturer Reference</div>
+  </div>
+  <app-proposal-list
+    [proposals]="state.proposals"
+    (goToProposalDetails)="goToProposalDetails($event)"
+  ></app-proposal-list>
+</div>

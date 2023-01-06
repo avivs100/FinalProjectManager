@@ -4,6 +4,8 @@ import { ProjectProposalDetailsWithStatus } from 'src/app/models/project-grade-m
 import { Student, Lecturer } from 'src/app/models/users-models';
 import { LecturerApiService } from 'src/app/services/lecturer-api.service';
 import { SubSink } from 'subsink';
+import { AdminApiService } from 'src/app/services/admin-api.service';
+import { UserType } from 'src/app/models/enums';
 
 @Component({
   selector: 'app-proposal-details-page',
@@ -11,15 +13,21 @@ import { SubSink } from 'subsink';
   styleUrls: ['./proposal-details-page.component.scss'],
 })
 export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
-  constructor(private state: StateService, private api: LecturerApiService) {}
-
+  constructor(
+    private state: StateService,
+    private api: LecturerApiService,
+    private adminApi: AdminApiService
+  ) {}
+  public CodeFromInput: string = '';
   public subs: SubSink = new SubSink();
-
+  public userType: UserType | null = null;
+  public code: string | null = null;
   public details: ProjectProposalDetailsWithStatus | null = null;
   public student1: Student | undefined = undefined;
   public student2: Student | undefined = undefined;
   public lecturer: Lecturer | undefined = undefined;
   ngOnInit(): void {
+    this.userType = this.state.connectedUser!.userType;
     this.details = this.state.selectedProposal;
     this.student1 = this.state.students!.find(
       (x) => x.id == this.details!.student1ID
@@ -46,6 +54,22 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
     this.subs.sink = this.api
       .aproveProposal(this.details!.id)
       .subscribe((x) => console.log('proposal was approved ? ', x));
+  }
+
+  setCode() {
+    this.code = this.CodeFromInput;
+  }
+
+  approveAdmin(id: number) {
+    console.log(
+      'approve and delete proposal with id ',
+      id,
+      'then create a project'
+    );
+    console.log(this.details!.id, this.code!);
+    this.subs.sink = this.adminApi
+      .aproveProposal(this.details!.id, this.code!)
+      .subscribe((x) => console.log('proposal was approved by admin ? ', x));
   }
 
   deny(id: number) {
