@@ -27,45 +27,44 @@
 
     <div class="col-2 font-bold">Student 1 Id :</div>
     <div class="col-2">
-      <div class="field-width field">
+      <div class="field">
         {{ project.student1.id }}
       </div>
     </div>
 
     <div class="col-2 font-bold">Student Name :</div>
     <div class="col-6">
-      <div class="field-width field">
+      <div class="field">
         {{ project.student1.firstName }} {{ project.student1.lastName }}
       </div>
     </div>
 
     <div class="col-2 font-bold">Student 2 Id :</div>
     <div class="col-2">
-      <div class="field-width field">
+      <div class="field">
         {{ project.student2.id }}
       </div>
     </div>
 
     <div class="col-2 font-bold">Student Name :</div>
     <div class="col-6">
-      <div class="field-width field">
+      <div class="field">
         {{ project.student2.firstName }} {{ project.student2.lastName }}
       </div>
     </div>
 
     <div class="col-2 font-bold">lecturer name :</div>
     <div class="col-10">
-      <div class="field-width field">
+      <div class="field">
         {{ project.lecturer.firstName }} {{ project.lecturer.lastName }}
       </div>
     </div>
 
     <div class="col-2 font-bold">Project Type :</div>
-    <div class="field-width field col-10" *ngIf="project.projectType == 0">
-      Research
-    </div>
-    <div class="field-width field col-10" *ngIf="project.projectType == 1">
-      Development
-    </div>
+    <div class="field col-10" *ngIf="project.projectType == 0">Research</div>
+    <div class="field col-10" *ngIf="project.projectType == 1">Development</div>
+
+    <div class="col-2 font-bold">Project code :</div>
+    <div class="field col-10">show here the project code</div>
   </div>
 </div>
