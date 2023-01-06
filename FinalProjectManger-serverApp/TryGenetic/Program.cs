@@ -1,30 +1,31 @@
 ﻿
 using TryGenetic;
 
-var genetic = new Genetic();
-var lecturers = new List<Lecturer>();
-const int lecNum = 8;
-const int conNum = 6;
-for (var i = 0; i < lecNum; i++)
+Genetic genetic = new Genetic();
+List<Lecturer> lecturers = new List<Lecturer>();
+int lecNum = 8;
+int conNum = 6;
+for (int i = 0; i < lecNum; i++)
 {
     var con = new List<int>();
-    for (var j = 0; j < conNum; j++)
-        con.Add(new Random().Next(1, 13));
+    for (int j = 0; j < conNum; j++)
+        con.Add(new Random().Next(1, genetic.numOfSessions+1));
     lecturers.Add(new Lecturer(i + 1, con));
 }
 genetic.CreatePopulation(lecturers);
 
 
-for (var i = 0; i < 1000; i++)
+for (int i = 0; i < 1000; i++)
 {
-    foreach (var t in genetic.Solutions)
+    for (int j = 0; j < genetic.Solutions.Count; j++)
     {
-        genetic.Fitness(t);
+        genetic.Fitness(genetic.Solutions[j]);
     }
     genetic.Selection();
-    System.Diagnostics.Debug.WriteLine("index: " + i + " Score: " + genetic.Solutions[0].FitnessScore); 
-    if (genetic.Solutions[0].FitnessScore >= 10 - 10 * genetic.Treshold)
+    System.Diagnostics.Debug.WriteLine("index: " + i + " Score: " + genetic.Solutions[0].fitnessScore); 
+    if (genetic.Solutions[0].fitnessScore >= 10 - 10 * genetic.Treshold)
         break;
     genetic.CrossOver();
-    
 }
+var bestSolution = genetic.Solutions[0];
+Console.WriteLine();

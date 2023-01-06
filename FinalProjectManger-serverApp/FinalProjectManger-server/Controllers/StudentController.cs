@@ -135,7 +135,7 @@ namespace FinalProjectManger_server.Controllers
                     var gradeB = await context.Set<GradeB>().Where(x => x.gradeBid == project.gradeBId).FirstOrDefaultAsync();
                     if(student1 == null || student2 == null || lecturer == null || gradeA == null || gradeB == null)
                         return NotFound();
-                    var projectFull = new ProjectFull(project.ProjectId, project.ProjectName, lecturer, student1, student2, gradeA, gradeB, project.ProjectType);
+                    var projectFull = new ProjectFull(project.ProjectId, project.ProjectName, lecturer, student1, student2, gradeA, gradeB, project.ProjectType,"A");
                     return Ok(projectFull);
 
                 }

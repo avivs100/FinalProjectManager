@@ -241,5 +241,52 @@ namespace FinalProjectManger_server.Controllers
             }
             return Ok(lecturerPermissionToGiveGradesFull);
         }
+        
+        [HttpGet("GetAllProposalsAfterLecturerApprove")]
+        public async Task<ActionResult<List<ProjectProposal>>> GetAllProposalsAfterLecturerApprove()
+        {
+            var context = new UsersDbContext();
+            var proposals = await context.Set<ProjectProposal>().ToListAsync();
+            if (proposals == null)
+                return NotFound();
+            var proposalsApprovedByLec = new List<ProjectProposal>();
+            foreach (var proposal in proposals)
+            {
+                if(proposal.IsApproved == true)
+                {
+                    proposalsApprovedByLec.Add(proposal);
+                }
+            }
+            return Ok(proposalsApprovedByLec);
+        }
+
+        [HttpPost("ApproveProposal/{proposalId}/{projCode}")]
+        public async Task<ActionResult<bool>> ApproveProposal([FromRoute] int proposalId, [FromRoute] string projCode)
+        {
+            var context = new UsersDbContext();
+            var proposals = await context.Set<ProjectProposal>().ToListAsync();
+            var proposal = await context.Set<ProjectProposal>().Where(x => x.Id == proposalId).FirstOrDefaultAsync();
+            if (proposal == null)
+                return NotFound(false);
+            Project project = new Project();
+            var gradeA = new GradeA();
+            var gradeB = new GradeB();
+            context.Add(gradeA);
+            context.Add(gradeB);
+            project.gradeAId = gradeA.gradeAid;
+            project.gradeBId = gradeB.gradeBid;
+            project.LecturerId = proposal.LecturerID;
+            project.ProjectName = proposal.ProjectName;
+            project.ProjectType = proposal.ProjectType;
+            project.student1Id = proposal.Student1ID;
+            project.student2Id = proposal.Student2ID;
+            project.projCode= projCode;
+            context.Remove(proposal);
+            context.Add(project);
+            await context.SaveChangesAsync();
+            return Ok(true);
+
+        }
+
     }
 }

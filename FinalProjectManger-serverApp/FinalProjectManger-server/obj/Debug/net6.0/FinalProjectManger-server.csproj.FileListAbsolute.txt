@@ -1180,3 +1180,8 @@ C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\F
 C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.pdb
 C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\FinalProjectManger-server.genruntimeconfig.cache
 C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\ref\FinalProjectManger-server.dll
+C:\Users\SAGIF2\source\repos\FinalProjectManager1\FinalProjectManger-serverApp\FinalProjectManger-server\bin\Debug\net6.0\TryGenetic.deps.json
+C:\Users\SAGIF2\source\repos\FinalProjectManager1\FinalProjectManger-serverApp\FinalProjectManger-server\bin\Debug\net6.0\TryGenetic.runtimeconfig.json
+C:\Users\SAGIF2\source\repos\FinalProjectManager1\FinalProjectManger-serverApp\FinalProjectManger-server\bin\Debug\net6.0\TryGenetic.exe
+C:\Users\SAGIF2\source\repos\FinalProjectManager1\FinalProjectManger-serverApp\FinalProjectManger-server\bin\Debug\net6.0\TryGenetic.dll
+C:\Users\SAGIF2\source\repos\FinalProjectManager1\FinalProjectManger-serverApp\FinalProjectManger-server\bin\Debug\net6.0\TryGenetic.pdb

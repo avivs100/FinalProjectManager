@@ -5,8 +5,8 @@ namespace Domain;
 public class LecturerConstraint
 {
     public DateTime Date { get; set; }
-    [NotMapped] 
-    public List<int> Sessions { get; set; } = new ();
+    [NotMapped]
+    public List<int> Sessions { get; set; } = new();
 
     public LecturerConstraint()
     {
@@ -34,15 +34,13 @@ public class LecturerConstraints
 
     public LecturerConstraints()
     {
-        
+
     }
 }
 
 public class LecturerConstraintDto
 {
     public long LecturerId { get; set; }
-    public DateTime Date1 { get; set; }
     public List<int> Sessions1 { get; set; } = new();
-    public DateTime Date2 { get; set; }
     public List<int> Sessions2 { get; set; } = new();
 }

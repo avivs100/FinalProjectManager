@@ -12,7 +12,7 @@ namespace FinalProjectManger_server.Controllers
     [ApiController]
     public class LecturerController : ControllerBase
     {
-        
+
 
         // GET: api/<LecturerController>
         [HttpGet("ListLecturers")]
@@ -48,32 +48,26 @@ namespace FinalProjectManger_server.Controllers
         //TODO add the lc to the table, if the lecturer already have constraints so replace with this
         //TODO create get method for this constraint by lecturer id, and also get all constraints for admin
         //TODO make this method async
-        public ActionResult<LecturerConstraints> PutLecturerConstraints([FromBody] LecturerConstraintDto details)
+        public async Task<bool> PutLecturerConstraints([FromBody] LecturerConstraintDto details)
         {
-            var lc = new LecturerConstraints()
+            var context = new UsersDbContext();
+            var lecturer = await context.Set<Lecturer>().Include(x => x.constraints).Where(x => x.id == details.LecturerId).FirstOrDefaultAsync();
+            if (lecturer == null)
+                return false;
+            details.Sessions1.AddRange(details.Sessions2);
+            foreach (var item in details.Sessions1)
             {
-                LecturerId = details.LecturerId,
-                Date1Constraint = new LecturerConstraint()
-                {
-                    Date = details.Date1,
-                    Sessions = details.Sessions1
-                },
-                Date2Constraint = new LecturerConstraint()
-                {
-                    Date = details.Date2,
-                    Sessions = details.Sessions2
-                }
-            };
-            return Ok(lc);
+                var constraint1 = new LecConstraint(item);
+                var constraint2 = new LecConstraint(item + 5);
+                var constraint3 = new LecConstraint(item + 10);
+                var constraint4 = new LecConstraint(item + 15);
+                lecturer.constraints.AddRange(new[] { constraint1, constraint2, constraint3, constraint4 });
+            }
+            await context.SaveChangesAsync();
+            return true;
         }
 
 
-        //[HttpPut("AddConstraint")]
-        //public async Task<ActionResult<IReadOnlyList<Constraint>>> AddConstraint([FromRoute] long id, [FromBody] ConstraintDetails constraintDetails)
-        //{
-        //    Constraint constraint = new Constraint(constraintDetails.Year, constraintDetails.Month, constraintDetails.Day, constraintDetails.Hour, constraintDetails.Minute, constraintDetails.Second);
-        //    await context.Set<Constraint>().Add(constraint);
-        //}
         [HttpPut("SendEmailTo1Student{StudentId}")]
         public async Task<ActionResult<bool>> SendEmailTo1Student([FromBody] EmailMessageDetails details, [FromRoute] long StudentId)
         {
@@ -114,7 +108,7 @@ namespace FinalProjectManger_server.Controllers
             var proposals = await context.Set<ProjectProposal>().ToListAsync();
             foreach (var item in proposals)
             {
-                if (item.LecturerID== lecturerId)
+                if (item.LecturerID == lecturerId)
                     projectProposalsOfLecturer.Add(item);
             }
             return Ok(projectProposalsOfLecturer);
@@ -129,21 +123,6 @@ namespace FinalProjectManger_server.Controllers
             if (proposal == null)
                 return NotFound(false);
             proposal.IsApproved = true;
-            
-            Project project = new Project();
-            var gradeA = new GradeA();
-            var gradeB = new GradeB();
-            context.Add(gradeA);
-            context.Add(gradeB);
-            project.gradeAId = gradeA.gradeAid;
-            project.gradeBId = gradeB.gradeBid;
-            project.LecturerId = proposal.LecturerID;
-            project.ProjectName = proposal.ProjectName;
-            project.ProjectType = proposal.ProjectType;
-            project.student1Id = proposal.Student1ID;
-            project.student2Id= proposal.Student2ID;
-            context.Remove(proposal);
-            context.Add(project);
             await context.SaveChangesAsync();
             return Ok(true);
 
@@ -170,16 +149,15 @@ namespace FinalProjectManger_server.Controllers
             foreach (var item in proposals)
             {
                 if (item.Id == proposalId)
-                { 
-                  context.Remove(item);
-                  await context.SaveChangesAsync();
-                  return Ok(true);
+                {
+                    context.Remove(item);
+                    await context.SaveChangesAsync();
+                    return Ok(true);
                 }
             }
             return NotFound(false);
-            
-        }
 
+        }
 
     }
 }

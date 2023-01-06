@@ -22,8 +22,8 @@ namespace Domain
         public int gradeAId { get; set; }
         public int gradeBId { get; set; }
         public ProjectType ProjectType { get; set; }
-
-        public Project(string projectName, long lecturerId, long student1Id, long student2Id, int gradeAId, int gradeBId, ProjectType projectType)
+        public string projCode { get; set; }
+        public Project(string projectName, long lecturerId, long student1Id, long student2Id, int gradeAId, int gradeBId, ProjectType projectType, string projCode)
         {
             ProjectId = new Random().Next();
             ProjectName = projectName;
@@ -33,6 +33,7 @@ namespace Domain
             this.gradeAId = gradeAId;
             this.gradeBId = gradeBId;
             ProjectType = projectType;
+            this.projCode = projCode;
         }
 
         public Project()
@@ -54,8 +55,9 @@ public class ProjectFull
     public GradeA gradeA { get; set; }
     public GradeB gradeB { get; set; }
     public ProjectType ProjectType { get; set; }
+    public string projCode { get; set; }
 
-    public ProjectFull(int projectId, string projectName, Lecturer lecturer, Student student1, Student student2, GradeA gradeA, GradeB gradeB, ProjectType projectType)
+    public ProjectFull(int projectId, string projectName, Lecturer lecturer, Student student1, Student student2, GradeA gradeA, GradeB gradeB, ProjectType projectType, string projCode)
     {
         ProjectId = projectId;
         ProjectName = projectName;
@@ -65,6 +67,7 @@ public class ProjectFull
         this.gradeA = gradeA;
         this.gradeB = gradeB;
         ProjectType = projectType;
+        this.projCode = projCode;
     }
     public ProjectFull()
     {

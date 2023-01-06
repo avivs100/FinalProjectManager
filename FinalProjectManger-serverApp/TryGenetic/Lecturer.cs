@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +17,18 @@ namespace TryGenetic
             this.id = id;
             this.constraints = constraints;
         }
+
+
+        //public Lecturer LecturerConverter(Domain.Lecturer lecturer)
+        //{
+        //    var constraintsList = new List<int>();
+        //    foreach (var constraint in lecturer.constraints)
+        //    {
+        //        constraintsList.Add(constraint.SessionNumber);
+        //    }
+        //    return new Lecturer(lecturer.id, constraintsList);
+        //}
     }
+
+
 }

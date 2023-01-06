@@ -3,11 +3,11 @@ namespace TryGenetic
 {
     public class Solution
     {
-        public List<Gene> Genes = new();
-        public double FitnessScore;
+        public List<Gene> genes= new List<Gene>();
+        public double fitnessScore = 0;
         public Solution(List<Gene> genes)
         {
-            Genes = genes;
+            this.genes = genes;
         }
         public Solution()
         {
@@ -17,66 +17,65 @@ namespace TryGenetic
     public class Gene
     {
         public int SessionNum { get; set; }
-        public Lecturer Lec3 { get; set; } = null!;
-        public Lecturer Lec2 { get; set; } = null!;
-        public Lecturer Lec1 { get; set; } = null!;
-
-        public bool AddLec(int lecIndex, Lecturer lec)
+        public Lecturer Lec3 { get; set; }
+        public Lecturer Lec2 { get; set; }
+        public Lecturer Lec1 { get; set; }
+ 
+        public bool AddLec(int LecIndex, Lecturer Lec)
         {
-            switch (lecIndex)
+            if(LecIndex == 1)
+                Lec1 = Lec;
+            else if (LecIndex == 2)
             {
-                case 1:
-                    Lec1 = lec;
-                    break;
-                case 2 when lec.id != Lec1.id:
-                    Lec2 = lec;
-                    break;
-                case 2:
-                    return false;
-                case 3 when lec.id != Lec1.id && lec.id != Lec2.id:
-                    Lec3 = lec;
-                    break;
-                case 3:
+                if(Lec.id != Lec1.id)  
+                    Lec2 = Lec;
+                else
                     return false;
             }
-
+            else if (LecIndex == 3)
+            {
+                if (Lec.id != Lec1.id && Lec.id != Lec2.id)
+                    Lec3 = Lec;
+                else
+                    return false;
+            }
             return true;
         }
     }
     public class Genetic
     {
-        public const int PopSize = 1000;
-        public const int NumOfSessions = 12;
-        public List<Solution> Solutions { get; set; } = new();
-        public const int NumOfBestSolutions = 100;
+        public int popSize = 1000;
+        public int numOfSessions = 10;
+        public List<Solution> Solutions { get; set; } = new List<Solution>();
+        public int numOfBestSolutions = 100;
         public double Treshold = 0.1;
-        public int LecNumbers { get; set; }
+        public int lecNumbers { get; set; }
+        public int ClassRoomNum { get; set; }
 
         public void CreatePopulation(List<TryGenetic.Lecturer> lecturers)
         {
-            for (var j = 0; j < PopSize; j++)
+            for (int j = 0; j < popSize; j++)
             {
                 var geneList = new List<Gene>();
-                for (var i = 0; i < NumOfSessions; i++)
+                for (int i = 0; i < numOfSessions; i++)
                 {
                     //create 1 gene
-                    var gene = new Gene
-                    {
-                        SessionNum = i + 1
-                    };
-                    while (!(gene.AddLec(1, lecturers[new Random().Next(lecturers.Count)]))) { }
-                    while (!(gene.AddLec(2, lecturers[new Random().Next(lecturers.Count)]))) { }
-                    while (!(gene.AddLec(3, lecturers[new Random().Next(lecturers.Count)]))) { }
+                    var gene = new Gene();
+                    gene.SessionNum = i + 1;
+                    while (!(gene.AddLec(1, lecturers[new Random().Next(lecturers.Count)]))) ;
+                    while (!(gene.AddLec(2, lecturers[new Random().Next(lecturers.Count)]))) ;
+                    while (!(gene.AddLec(3, lecturers[new Random().Next(lecturers.Count)]))) ;
                     geneList.Add(gene);
                 }
-                var solution = new Solution { Genes = geneList };
+                Solution solution = new Solution();
+                solution.genes = geneList;
                 Solutions.Add(solution);
             }
-            LecNumbers = lecturers.Count;
+            lecNumbers = lecturers.Count;
         }
-        public double GenFit(Gene gene)
+        public double genFit(Gene gene)
         {
-            var totalMatch = 0;
+            int totalMatch = 0;
             if (!(gene.Lec1.constraints.Contains(gene.SessionNum)))
                 totalMatch++;
             if (!(gene.Lec2.constraints.Contains(gene.SessionNum)))
@@ -86,79 +85,74 @@ namespace TryGenetic
             return totalMatch / 3;
         }
 
-        public void Fitness(Solution solution)
+        public void Fitness(Solution Solution)
         {
-            double sumEachGenFit = 0;
-            var lecturerMappingCounter = new Dictionary<Lecturer, int>();
-            foreach (var gene in solution.Genes)
+            double SumEachGenFit = 0;
+            var LecturerMappingCounter = new Dictionary<Lecturer,int>();
+            foreach (var gene in Solution.genes)
             {
-                sumEachGenFit += GenFit(gene);
+                SumEachGenFit += genFit(gene);
 
-                if (lecturerMappingCounter.ContainsKey(gene.Lec1))
-                    lecturerMappingCounter[gene.Lec1]++;
+                if (LecturerMappingCounter.ContainsKey(gene.Lec1))
+                     LecturerMappingCounter[gene.Lec1]++;
                 else
-                    lecturerMappingCounter.Add(gene.Lec1, 1);
-                if (lecturerMappingCounter.ContainsKey(gene.Lec2))
-                    lecturerMappingCounter[gene.Lec2]++;
+                    LecturerMappingCounter.Add(gene.Lec1, 1);
+                if (LecturerMappingCounter.ContainsKey(gene.Lec2))
+                    LecturerMappingCounter[gene.Lec2]++;
                 else
-                    lecturerMappingCounter.Add(gene.Lec2, 1);
-                if (lecturerMappingCounter.ContainsKey(gene.Lec3))
-                    lecturerMappingCounter[gene.Lec3]++;
+                    LecturerMappingCounter.Add(gene.Lec2, 1);
+                if (LecturerMappingCounter.ContainsKey(gene.Lec3))
+                    LecturerMappingCounter[gene.Lec3]++;
                 else
-                    lecturerMappingCounter.Add(gene.Lec3, 1);
+                    LecturerMappingCounter.Add(gene.Lec3, 1);
             }
-            solution.FitnessScore = 8 * (sumEachGenFit / solution.Genes.Count) + (lecturerMappingCounter.Count / LecNumbers) * 2;
+            Solution.fitnessScore = 8 * (SumEachGenFit / Solution.genes.Count) + (LecturerMappingCounter.Count / lecNumbers) * 2;
         }
 
 
         public void Selection()
         {
-            Solutions.Sort((x, y) => x.FitnessScore.CompareTo(y.FitnessScore));
+            Solutions.Sort((x, y) => x.fitnessScore.CompareTo(y.fitnessScore));
             Solutions.Reverse();
-
 
         }
         public void CrossOver()
         {
-
-            var betterSolutions = new List<Solution>();
-            var bestSolutions = Solutions.Take(NumOfBestSolutions).ToList();
-            for (var j = 0; j < PopSize; j++)
+            var BetterSolutions = new List<Solution>();
+            var BestSolutions = Solutions.Take(numOfBestSolutions).ToList();
+            for (int j = 0; j < popSize; j++)
             {
                 // Create specific solution
                 var geneList = new List<Gene>();
-                for (var i = 0; i < NumOfSessions; i++)
+                for (int i = 0; i < numOfSessions; i++)
                 {
                     // Create new Gene
-                    var gene = new Gene
-                    {
-                        SessionNum = i + 1
-                    };
+                    var gene = new Gene();
+                    gene.SessionNum = i + 1;
 
-                    for (var z = 0; z < 3; z++)
+                    for (int z = 0; z < 3; z++)
                     {
-                        var randSolutionIndex = new Random().Next(NumOfBestSolutions);
-                        var randLecIndex = new Random().Next(1, 4);
-                        var lecTemp = randLecIndex switch
-                        {
-                            1 => bestSolutions[randSolutionIndex].Genes[i].Lec1,
-                            2 => bestSolutions[randSolutionIndex].Genes[i].Lec2,
-                            _ => bestSolutions[randSolutionIndex].Genes[i].Lec3
-                        };
-                        if (gene.AddLec(z + 1, lecTemp) == false)
+                        var randSolutionIndex = new Random().Next(numOfBestSolutions);
+                        var randLecIndex = new Random().Next(1,4);
+                        Lecturer LecTemp;
+                        if (randLecIndex == 1)
+                            LecTemp = BestSolutions[randSolutionIndex].genes[i].Lec1;
+                        else if (randLecIndex == 2)
+                            LecTemp = BestSolutions[randSolutionIndex].genes[i].Lec2;
+                        else
+                            LecTemp = BestSolutions[randSolutionIndex].genes[i].Lec3;
+                        if (gene.AddLec(z + 1, LecTemp) == false)
                             z--;
                     }
 
                     geneList.Add(gene);
                 }
 
-                var betterSolution = new Solution
-                {
-                    Genes = geneList
-                };
-                betterSolutions.Add(betterSolution);
+                var BetterSolution = new Solution();
+                BetterSolution.genes = geneList;
+                BetterSolutions.Add(BetterSolution);
             }
-            Solutions = betterSolutions;
+            Solutions = BetterSolutions;
         }
     }
 }
