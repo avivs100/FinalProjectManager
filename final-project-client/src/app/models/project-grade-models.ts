@@ -1,57 +1,5 @@
-export enum UserType {
-  admin,
-  Student,
-  lecturer,
-  none,
-}
-
-export enum ProjectType {
-  Development = 'Development',
-  Research = 'Research',
-  Data = 'Data',
-}
-
-export interface User {
-  id: number;
-  pass: string;
-  userType: UserType;
-  email: String;
-  firstName: string;
-  lastName: string;
-}
-
-export interface Admin {
-  id: number;
-  password: string;
-  userType: UserType;
-  //email: String;
-  firstName: string;
-  lastName: string;
-}
-export interface constraint {
-  id: string;
-  dataTime: Date;
-}
-
-export interface Lecturer {
-  id: number;
-  userType: UserType;
-  password: string;
-  //email: String;
-  firstName: string;
-  lastName: string;
-  constraints: constraint[];
-}
-
-export interface Student {
-  id: number;
-  userType: UserType;
-  password: string;
-  //email: String;
-  firstName: string;
-  lastName: string;
-  partnerId: number;
-}
+import { ProjectType } from './enums';
+import { Lecturer, Student } from './users-models';
 
 export interface Grade {
   description: string;
@@ -115,4 +63,35 @@ export interface ProjectFull {
   student2: Student;
   gradeB: GradeB;
   gradeA: GradeA;
+  projectType: ProjectType;
+}
+
+export interface ProjectProposalDetails {
+  projectName: string;
+  projectType: ProjectType;
+  student1ID: number;
+  student2ID: number;
+  lecturerID: number;
+  projectCategoryExplain: string;
+  keywords: string;
+  generalDescriptionOfTheProblem: string;
+  mainToolsThatWillBeUsedForSolvingTheProblem: string;
+  plannedWorkingProcessDuringTheFirstSemester: string;
+  productOfTheWorkOfTheFirstSemester: string;
+}
+
+export interface ProjectProposalDetailsWithStatus {
+  id: number;
+  projectName: string;
+  projectType: ProjectType;
+  student1ID: number;
+  student2ID: number;
+  lecturerID: number;
+  projectCategoryExplain: string;
+  keywords: string;
+  generalDescriptionOfTheProblem: string;
+  mainToolsThatWillBeUsedForSolvingTheProblem: string;
+  plannedWorkingProcessDuringTheFirstSemester: string;
+  productOfTheWorkOfTheFirstSemester: string;
+  isApproved: boolean;
 }

@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  Admin,
-  Lecturer,
-  Student,
-  User,
-  UserType,
-} from 'src/app/models/modelsInterfaces';
-import { LoginService } from 'src/app/services/login-service.service';
+import { UserType } from 'src/app/models/enums';
+import { Student, Lecturer, Admin } from 'src/app/models/users-models';
 import { StateService } from 'src/app/services/state.service';
 
 @Component({
@@ -16,9 +10,8 @@ import { StateService } from 'src/app/services/state.service';
 })
 export class ProjectsPageComponent {
   public userType: UserType | undefined;
-  public user: Student | Lecturer | Admin | null = null;
-  constructor(public state: StateService) {
+
+  constructor(state: StateService) {
     this.userType = state.connectedUser?.userType;
-    this.user = state.connectedUser;
   }
 }

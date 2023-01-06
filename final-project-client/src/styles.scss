@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
-@import 'primeflex/primeflex.scss';
+@import "primeflex/primeflex.scss";
 
 :root {
   --text-color-secondary: rgb(184, 216, 255) !important;
@@ -11,9 +11,9 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto,
-    'Helvetica Neue', Helvetica, Ubuntu, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .logo {
@@ -25,7 +25,7 @@ html {
 }
 
 .header-margin {
-  @include styleclass('mb-3');
+  @include styleclass("mb-3");
 }
 
 ::-webkit-scrollbar {
@@ -60,31 +60,31 @@ html {
 }
 
 .field-border {
-  @include styleclass('border-gray border-round gutter');
+  @include styleclass("border-gray border-round gutter");
 }
 
 .field-width {
-  @include styleclass('w-12rem');
+  @include styleclass("w-12rem");
 }
 
 .small-field-width {
-  @include styleclass('w-6rem');
+  @include styleclass("w-6rem");
 }
 
 .xs-field-width {
-  @include styleclass('w-4rem');
+  @include styleclass("w-4rem");
 }
 
 .text-center {
-  @include styleclass('flex align-items-center justify-content-center');
+  @include styleclass("flex align-items-center justify-content-center");
 }
 
 .text-center-v {
-  @include styleclass('flex align-items-center');
+  @include styleclass("flex align-items-center");
 }
 
 .text-center-h {
-  @include styleclass('flex justify-content-center');
+  @include styleclass("flex justify-content-center");
 }
 
 .border-gray {
@@ -113,3 +113,7 @@ p-dropdown {
   margin: 0px !important;
 }
 
+.div {
+  height: 100%;
+  overflow: auto;
+}

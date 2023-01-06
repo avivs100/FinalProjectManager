@@ -3752,6 +3752,16 @@
         "runtime": {
           "bin/placeholder/Domain.dll": {}
         }
+      },
+      "TryGenetic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/TryGenetic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TryGenetic.dll": {}
+        }
       }
     }
   },
@@ -10566,6 +10576,11 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "TryGenetic/1.0.0": {
+      "type": "project",
+      "path": "../TryGenetic/TryGenetic.csproj",
+      "msbuildProject": "../TryGenetic/TryGenetic.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10573,23 +10588,29 @@
       "Data >= 1.0.0",
       "Microsoft.AspNet.WebApi.Cors >= 5.2.9",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.10",
-      "Swashbuckle.AspNetCore >= 6.2.3"
+      "Swashbuckle.AspNetCore >= 6.2.3",
+      "TryGenetic >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AVIVSHI\\.nuget\\packages\\": {}
+    "C:\\Users\\SAGIF2\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
+      "projectUniqueName": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
       "projectName": "FinalProjectManger-server",
-      "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
-      "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\FinalProjectManger-server\\obj\\",
+      "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\FinalProjectManger-server\\FinalProjectManger-server.csproj",
+      "packagesPath": "C:\\Users\\SAGIF2\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\FinalProjectManger-server\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\SAGIF2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10597,14 +10618,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj"
+            "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj"
+            },
+            "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj": {
+              "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj"
             }
           }
         }
@@ -10651,7 +10676,15 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+=======
+<<<<<<< HEAD
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+>>>>>>> SagisTheGever
+>>>>>>> working_on_pages
       }
     }
   },

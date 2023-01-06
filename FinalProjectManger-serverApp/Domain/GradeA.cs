@@ -13,7 +13,7 @@ namespace Domain
         public BookGrade bookGrade { get; set; }
         public LecturerGrade lecturerGrade { get; set; }
 
-        double AverageScore { get; set; }
+        public double AverageScore { get; set; }
 
         public double ComputeGrade()
         {
@@ -25,7 +25,10 @@ namespace Domain
 
         public GradeA()
         {
-
+            gradeAid = new Random().Next();
+            presentationGrade = new PresentationGrade();
+            bookGrade = new BookGrade();
+            lecturerGrade = new LecturerGrade();
         }
         public GradeA(PresentationGrade presentationGrade, BookGrade bookGrade, LecturerGrade lecturerGrade)
         {

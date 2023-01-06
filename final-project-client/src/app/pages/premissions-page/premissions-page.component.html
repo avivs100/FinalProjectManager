@@ -1,12 +1,13 @@
 <!-- *ngIf="premissions$ | async as premissions" -->
-<div class="w-full h-full">
-  <p-card>
+<div class="w-full h-full" *ngIf="premissions">
+  <p-card class="w-full h-full">
     <p-table
+      class="w-full h-full"
       [value]="premissions"
-      styleClass="p-datatable-gridlines p-datatable-striped h-20rem overflow-auto"
+      styleClass="p-datatable-gridlines p-datatable-striped  overflow-auto"
       selectionMode="single"
       scrollHeight="flex"
-      [scrollable]="true"
+      [scrollable]="false"
       *ngIf="premissions"
     >
       <ng-template pTemplate="header">
@@ -28,11 +29,17 @@
               class="flex align-items-stretch flex-wrap card-container blue-container"
             >
               <div class="p-field p-md-4">
-                <p-button label="Aprove"></p-button>
+                <p-button
+                  label="Aprove"
+                  (onClick)="aproveLecturerPremission(premission.lecturerId)"
+                ></p-button>
               </div>
 
               <div class="p-field p-md-4">
-                <p-button label="Denay"></p-button>
+                <p-button
+                  label="Denay"
+                  (onClick)="deleteLecturerPremission(premission.lecturerId)"
+                ></p-button>
               </div>
 
               <div class="p-field p-md-4">
@@ -43,5 +50,10 @@
         </tr>
       </ng-template>
     </p-table>
+  </p-card>
+  <p-card *ngIf="premissions.length == 0">
+    <div class="flex flex-row justify-content-between mb-5">
+      <div class="text-5xl">No Waiting Premissions</div>
+    </div>
   </p-card>
 </div>

@@ -1,0 +1,125 @@
+<div
+  style="position: absolute; overflow-y: scroll; overflow-x: hidden"
+  class="grid w-full h-full"
+>
+  <div class="mb-5">
+    <div class="text-5xl">Project Details</div>
+  </div>
+
+  <div class="grid w-screen" *ngIf="details !== null">
+    <div class="col-4 grid">
+      <div class="col-6 font-bold">Project Name</div>
+      <div class="col-6">
+        <div class="field-width field">
+          {{ details.projectName }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8 grid">
+      <div class="col-2 font-bold">Project Type</div>
+      <div class="col-10">
+        <div class="field-width field" *ngIf="details.projectType == 0">
+          Research
+        </div>
+        <div class="field-width field" *ngIf="details.projectType == 1">
+          Development
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2 font-bold">Student 1 Name and id:</div>
+    <div class="col-1">
+      <div class="field-width field">
+        {{ student1!.firstName }} {{ student1!.lastName }} {{ student1!.id }}
+      </div>
+    </div>
+    <p-divider class="col-1" layout="vertical"></p-divider>
+
+    <div class="col-2 font-bold">Student 2 Name and id:</div>
+    <div class="col-1">
+      <div class="field-width field">
+        {{ student2!.firstName }} {{ student2!.lastName }} {{ student2!.id }}
+      </div>
+    </div>
+    <p-divider class="col-1" layout="vertical"></p-divider>
+    <div class="col-2 font-bold">Lecturer name and id:</div>
+    <div class="col-2">
+      <div class="field-width field">
+        {{ lecturer!.firstName }} {{ lecturer!.lastName }} {{ lecturer!.id }}
+      </div>
+    </div>
+    <p-divider class="col-12"></p-divider>
+    <div class="col-3 font-bold">Project Category Explain :</div>
+    <div class="col-7 card">
+      <div class="line-height-3 card-container blue-container">
+        <div
+          class="overflow-scroll surface-overlay p-3 border-blue-500 border-2 border-round"
+          style="height: 100%"
+        >
+          {{ details.projectCategoryExplain }}
+        </div>
+      </div>
+    </div>
+    <p-divider class="col-12"></p-divider>
+    <div class="col-3 font-bold">General Description Of The Problem :</div>
+    <div class="col-7 card">
+      <div class="line-height-3 card-container blue-container">
+        <div
+          class="overflow-scroll surface-overlay p-3 border-blue-500 border-2 border-round"
+          style="height: 100%"
+        >
+          {{ details.generalDescriptionOfTheProblem }}
+        </div>
+      </div>
+    </div>
+    <p-divider class="col-12"></p-divider>
+    <div class="col-3 font-bold">
+      Main Tools That Will Be Used For Solving The Problem :
+    </div>
+    <div class="col-7 card">
+      <div class="line-height-3 card-container blue-container"></div>
+      <div
+        class="overflow-scroll surface-overlay p-3 border-blue-500 border-2 border-round"
+        style="height: 100%"
+      >
+        {{ details.mainToolsThatWillBeUsedForSolvingTheProblem }}
+      </div>
+    </div>
+    <p-divider class="col-12"></p-divider>
+    <div class="col-3 font-bold">
+      Planned Working Process During The First Semester
+    </div>
+    <div class="col-7 card">
+      <div class="line-height-3 card-container blue-container">
+        <div
+          class="overflow-scroll surface-overlay p-3 border-blue-500 border-2 border-round"
+          style="height: 100%"
+        >
+          {{ details.plannedWorkingProcessDuringTheFirstSemester }}
+        </div>
+      </div>
+    </div>
+    <p-divider class="col-12"></p-divider>
+    <div class="col-3 font-bold">Product Of The Work Of The First Semester</div>
+    <div class="col-7 card">
+      <div class="line-height-3 card-container blue-container">
+        <div
+          class="overflow-scroll surface-overlay p-3 border-blue-500 border-2 border-round"
+          style="height: 100%"
+        >
+          {{ details.productOfTheWorkOfTheFirstSemester }}
+        </div>
+      </div>
+    </div>
+
+    <p-divider class="col-12"></p-divider>
+    <div class="col-6 gap-3">
+      <p-button label="Approve" class="mr-6" (onClick)="approve(details.id)">
+      </p-button>
+      <p-button label="Deny" class="mr-6" (onClick)="deny(details.id)">
+      </p-button>
+      <p-button label="Replay with issues"> </p-button>
+    </div>
+  </div>
+</div>

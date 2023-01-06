@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProjectFull } from 'src/app/models/modelsInterfaces';
+import { ProjectFull } from 'src/app/models/project-grade-models';
+
 import { AdminApiService } from 'src/app/services/admin-api.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-admin-projects',
@@ -9,13 +12,18 @@ import { AdminApiService } from 'src/app/services/admin-api.service';
   styleUrls: ['./admin-projects.component.scss'],
 })
 export class AdminProjectsComponent implements OnInit {
-  public projects$: Observable<ProjectFull[]> = this.adminApi.getProjects();
-  constructor(private adminApi: AdminApiService) {}
+  public projects: ProjectFull[] | null = null;
+  constructor(
+    private adminApi: AdminApiService,
+    private state: StateService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
-    this.projects$.subscribe((x) => console.log(x));
+    this.projects = this.state.projects;
   }
 
   public selectedProject({ data }: { data: ProjectFull }) {
-    console.log(data);
+    this.state.project = data;
+    this.router.navigate(['home/project']);
   }
 }

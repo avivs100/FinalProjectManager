@@ -12,13 +12,13 @@ namespace FinalProjectManger_server.Controllers
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        static UsersDbContext context = new UsersDbContext();
-        // GET: api/<ProjectController>
+        
         [HttpGet("GetProjects")]
         public async Task<ActionResult<IReadOnlyList<ProjectFull>>> GetProjects()
         {
+            var context = new UsersDbContext();
             var projects = await context.Set<Project>().ToListAsync();
-            var Fullprojects = new List<ProjectFull>();
+            var fullprojects = new List<ProjectFull>();
             foreach (var proj in projects)
             {                
                 var student1 = await context.Set<Student>().Where(x=>x.id == proj.student1Id).FirstOrDefaultAsync();
@@ -26,72 +26,79 @@ namespace FinalProjectManger_server.Controllers
                 var lecturer = await context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
                 var gradeA = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
                 var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
-                var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB);
-                Fullprojects.Add(fullProj);
+                var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB, proj.ProjectType, proj.projCode);
+                fullprojects.Add(fullProj);
             }
-            return Fullprojects;
+            return fullprojects;
         }
 
-        // GET api/<ProjectController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProjectFull>> Get([FromRoute] int id)
         {
+            var context = new UsersDbContext();
             var projects = await context.Set<Project>().ToListAsync();
-            var proj = projects.Where(x => x.ProjectId == id).FirstOrDefault();
+            var proj = projects.FirstOrDefault(x => x.ProjectId == id);
             if(proj == null) return NotFound();
             var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
             var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
             var gradeA = await context.Set<GradeA>().Include(x=>x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
             var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
-            var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB);
+            var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB, proj.ProjectType, proj.projCode);
             return Ok(fullProj);
         }
 
         [HttpPut]
         public async Task<ActionResult<Project>> Put([FromBody] ProjectDetails projectDetails)
         {
+            var context = new UsersDbContext();
             var project = new Project();
 
             var student1 = await context.Set<Student>().Where(x => x.id == projectDetails.student1Id).FirstOrDefaultAsync();
             var student2 = await context.Set<Student>().Where(x => x.id == projectDetails.student2Id).FirstOrDefaultAsync();
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == projectDetails.LecturerId).FirstOrDefaultAsync();
-            var gradeA = await context.Set<GradeA>().Where(x => x.gradeAid == projectDetails.gradeAId).FirstOrDefaultAsync();
-            var gradeB = await context.Set<GradeB>().Where(x => x.gradeBid == projectDetails.gradeBId).FirstOrDefaultAsync();
-            if(student1 == null || student2 == null || lecturer == null || gradeA == null || gradeB == null)
+            if(student1 == null || student2 == null || lecturer == null)
                 return NotFound();
             project.ProjectId = new Random().Next();
             project.LecturerId = projectDetails.LecturerId;
             project.ProjectName = projectDetails.ProjectName;
-            project.gradeBId = projectDetails.gradeBId;
-            project.gradeAId = projectDetails.gradeAId;
+            var gradeB = new GradeB();
+            context.Set<GradeB>().Add(gradeB);
+            await context.SaveChangesAsync();
+            var gradeA = new GradeA();
+            context.Set<GradeA>().Add(gradeA);
+            await context.SaveChangesAsync();
+            project.gradeBId = gradeB.gradeBid;
+            project.gradeAId = gradeA.gradeAid;
             project.student1Id = projectDetails.student1Id;
             project.student2Id = projectDetails.student2Id;
+            project.ProjectType = projectDetails.ProjectType;
             context.Set<Project>().Add(project);
+
             //context.Add(project);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             return Ok();
+
         }
 
         // DELETE api/<ProjectController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Project>> Delete([FromRoute] int id)
         {
+            var context = new UsersDbContext();
             var projects = await context.Set<Project>().ToListAsync();
             var project = await context.Set<Project>().Where(x => x.ProjectId == id).FirstOrDefaultAsync();
-            if (project != null)
-            {
-                context.Remove(project);
-                context.SaveChanges();
-                return Ok();
-            }
-            return NotFound();
+            if (project == null) return NotFound();
+            context.Remove(project);
+            await context.SaveChangesAsync();
+            return Ok();
 
         }
 
-        [HttpGet("GetFullProjectByStudentId{studentId}")]
+        [HttpGet("GetFullProjectByStudentId/{studentId}")]
         public async Task<ActionResult<ProjectFull>> GetFullProjectByStudentId([FromRoute] int studentId)
         {
+            var context = new UsersDbContext();
             var projects = await context.Set<Project>().ToListAsync();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
             var gradeAs = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).ToListAsync();
@@ -100,63 +107,75 @@ namespace FinalProjectManger_server.Controllers
             var bookGrades = await context.Set<BookGrade>().ToListAsync();
             var presentationGrades = context.Set<PresentationGrade>().ToListAsync();
             var lecturerGrades = context.Set<LecturerGrade>().ToListAsync();
-            var student = students.Where(x => x.id == studentId).FirstOrDefault();
+            var student = students.FirstOrDefault(x => x.id == studentId);
             if (student == null)
                 return NotFound();
-            var project1 = projects.Where(x => x.student1Id == student.id).FirstOrDefault();
-            if (project1 == null)
-            {
-               project1 = projects.Where(x => x.student2Id == student.id).FirstOrDefault();
-            }
+            var project1 = projects.FirstOrDefault(x => x.student1Id == student.id) ?? projects.FirstOrDefault(x => x.student2Id == student.id);
             if (project1 == null)
                 return NotFound();
-            ProjectFull FullProject = new ProjectFull();
-            var s1 = students.Where(x => x.id == project1.student1Id).FirstOrDefault();
-            var s2 = students.Where(x => x.id == project1.student2Id).FirstOrDefault();
-            var l = lecturers.Where(x => x.id == project1.LecturerId).FirstOrDefault();
-            var gradeA = gradeAs.Where(x => x.gradeAid == project1.gradeAId).FirstOrDefault();
-            var gradeB = gradeBs.Where(x => x.gradeBid == project1.gradeBId).FirstOrDefault();
-            FullProject.ProjectId = project1.ProjectId;
-            FullProject.Lecturer = l;
-            FullProject.ProjectName = project1.ProjectName;
-            FullProject.student1 = s1;
-            FullProject.student2 = s2;
-            FullProject.gradeA = gradeA;
-            FullProject.gradeB = gradeB;
-            return Ok(FullProject);
+            var fullProject = new ProjectFull();
+            var s1 = students.FirstOrDefault(x => x.id == project1.student1Id);
+            var s2 = students.FirstOrDefault(x => x.id == project1.student2Id);
+            var l = lecturers.FirstOrDefault(x => x.id == project1.LecturerId);
+            var gradeA = gradeAs.FirstOrDefault(x => x.gradeAid == project1.gradeAId);
+            var gradeB = gradeBs.FirstOrDefault(x => x.gradeBid == project1.gradeBId);
+            fullProject.ProjectId = project1.ProjectId;
+            fullProject.Lecturer = l;
+            fullProject.ProjectName = project1.ProjectName;
+            fullProject.student1 = s1;
+            fullProject.student2 = s2;
+            fullProject.gradeA = gradeA;
+            fullProject.gradeB = gradeB;
+            fullProject.projCode = project1.projCode;
+            return Ok(fullProject);
         }
-        [HttpGet("GetAllProjectsOfLecturer{lecturerId}")]
-        public async Task<ActionResult<IReadOnlyList<ProjectFull>>> GetAllProjectsOfLecturerr([FromRoute]int lecturerId)
+
+        [HttpGet("GetScheduleDates")]
+        public async Task<ActionResult<ScheduleDates>> GetScheduleDates()
         {
+            var context = new UsersDbContext();
+            var scheduleDates = await context.Set<ScheduleDates>().FirstOrDefaultAsync();
+            return Ok(scheduleDates);
+        }
+
+        [HttpGet("GetAllProjectsOfLecturer/{lecturerId}")]
+        public async Task<ActionResult<IReadOnlyList<ProjectFull>>> GetAllProjectsOfLecturer([FromRoute]int lecturerId)
+        {
+            var context = new UsersDbContext();
             var projects = await context.Set<Project>().ToListAsync();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
             var gradeAs = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).ToListAsync();
             var gradeBs = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).ToListAsync();
             var students = await context.Set<Student>().ToListAsync();
             var projectsOfLecturer = new List<ProjectFull>();
-            var lecturer = lecturers.Where(x => x.id == lecturerId).FirstOrDefault();
+            var lecturer = lecturers.FirstOrDefault(x => x.id == lecturerId);
             if (lecturer == null)
-                return NotFound();
+                return NotFound(null);
             else
             {                
                 foreach (var item in projects)
                 {
                     if(item.LecturerId == lecturerId)
                     {
-                        ProjectFull FullProject = new ProjectFull();
-                        var s1 = students.Where(x => x.id == item.student1Id).FirstOrDefault();
-                        var s2 = students.Where(x => x.id == item.student2Id).FirstOrDefault();
-                        var l = lecturers.Where(x => x.id == item.LecturerId).FirstOrDefault();
-                        var gradeA = gradeAs.Where(x => x.gradeAid == item.gradeAId).FirstOrDefault();
-                        var gradeB = gradeBs.Where(x => x.gradeBid == item.gradeBId).FirstOrDefault();
-                        FullProject.ProjectId = item.ProjectId;
-                        FullProject.Lecturer = l;
-                        FullProject.ProjectName = item.ProjectName;
-                        FullProject.student1 = s1;
-                        FullProject.student2 = s2;
-                        FullProject.gradeA = gradeA;
-                        FullProject.gradeB = gradeB;
-                        projectsOfLecturer.Add(FullProject);
+                        var fullProject = new ProjectFull();
+                        var s1 = students.FirstOrDefault(x => x.id == item.student1Id);
+                        var s2 = students.FirstOrDefault(x => x.id == item.student2Id);
+                        var l = lecturers.FirstOrDefault(x => x.id == item.LecturerId);
+                        var gradeA = gradeAs.FirstOrDefault(x => x.gradeAid == item.gradeAId);
+                        var gradeB = gradeBs.FirstOrDefault(x => x.gradeBid == item.gradeBId);
+                        if (gradeA == null && gradeB == null && s1 == null && s2 == null && l == null)
+                        {
+                            return NotFound(null);
+                        }
+                        fullProject.ProjectId = item.ProjectId;
+                        fullProject.Lecturer = l!;
+                        fullProject.ProjectName = item.ProjectName;
+                        fullProject.student1 = s1!;
+                        fullProject.student2 = s2!;
+                        fullProject.gradeA = gradeA!;
+                        fullProject.gradeB = gradeB!;
+                        fullProject.projCode = item.projCode;
+                        projectsOfLecturer.Add(fullProject);
                     }
                     
                 }

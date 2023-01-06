@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TabViewModule } from 'primeng/tabview';
 import { RippleModule } from 'primeng/ripple';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
@@ -56,7 +57,6 @@ import { AdminMessagesComponent } from './pages/messages-page/admin-messages/adm
 import { MessagesPageComponent } from './pages/messages-page/messages-page.component';
 import { ScheduleComponent } from './pages/schedule-page/schedule-page.component';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
-import { ServerApiService } from './services/server-api.service';
 import { WelcomeComponent } from './layout/welcome/welcome.component';
 import { StudentProjectsComponent } from './pages/projects/student-projects/student-projects.component';
 import { ProjectDetailsComponent } from './pages/projects/project-details/project-details.component';
@@ -66,12 +66,26 @@ import { LecturerApiService } from './services/lecturer-api.service';
 import { LoginService } from './services/login-service.service';
 import { StateService } from './services/state.service';
 import { ToastModule } from 'primeng/toast';
+import { FileUploadModule } from 'primeng/fileupload';
 import { ScheduleDetailsComponent } from './pages/schedule-page/schedule-details/schedule-details.component';
 import { CreateScheduleComponent } from './pages/schedule-page/admin-schedule/create-schedule/create-schedule.component';
 import { SelectScheduleDaysDialogComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-dialog.component';
 import { RegisterDialogComponent } from './pages/login/login-page/register-dialog/register-dialog.component';
 import { RegisterFormComponent } from './pages/login/login-page/register-dialog/register-form/register-form.component';
+import { LecturerAddConstraintsComponent } from './pages/schedule-page/lecturer-schedule/lecturer-add-constraints/lecturer-add-constraints.component';
+import { SendMessageDialogComponent } from './pages/messages-page/send-message-dialog/send-message-dialog.component';
+import { SendMessageFormComponent } from './pages/messages-page/send-message-dialog/send-message-form/send-message-form.component';
+import { CreateProjectProposalDialogComponent } from './pages/projects/create-project-proposal-dialog/create-project-proposal-dialog.component';
+import { CreateProjectProposalFormComponent } from './pages/projects/create-project-proposal-dialog/create-project-proposal-form/create-project-proposal-form.component';
+import { ProposalPageComponent } from './pages/proposal-page/proposal-page.component';
+import { AdminProposalComponent } from './pages/proposal-page/admin-proposal/admin-proposal.component';
+import { LecturerProposalComponent } from './pages/proposal-page/lecturer-proposal/lecturer-proposal.component';
+import { ProposalListComponent } from './pages/proposal-page/proposal-list/proposal-list.component';
+import { ProposalDetailsPageComponent } from './pages/proposal-page/proposal-details-page/proposal-details-page.component';
 //import { SelectScheduleDaysFormComponent } from './pages/schedule-page/admin-schedule/select-schedule-days-dialog/select-schedule-days-form/select-schedule-days-form.component';
+import { DividerModule } from 'primeng/divider';
+import { SessionDetailsComponent } from './pages/schedule-page/schedule-details/session-details/session-details.component';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [
@@ -112,8 +126,22 @@ import { RegisterFormComponent } from './pages/login/login-page/register-dialog/
     SelectScheduleDaysDialogComponent,
     RegisterDialogComponent,
     RegisterFormComponent,
+    LecturerAddConstraintsComponent,
+    SendMessageDialogComponent,
+    SendMessageFormComponent,
+    CreateProjectProposalDialogComponent,
+    CreateProjectProposalFormComponent,
+    ProposalPageComponent,
+    AdminProposalComponent,
+    LecturerProposalComponent,
+    ProposalListComponent,
+    ProposalDetailsPageComponent,
+    SessionDetailsComponent,
   ],
   imports: [
+    ScrollPanelModule,
+    DividerModule,
+    FileUploadModule,
     FocusTrapModule,
     ToastModule,
     HttpClientModule,
@@ -142,11 +170,11 @@ import { RegisterFormComponent } from './pages/login/login-page/register-dialog/
     ToastModule,
     ConfirmDialogModule,
     TableModule,
+    TabViewModule,
   ],
   providers: [
     ConfirmationService,
     MessageService,
-    ServerApiService,
     AdminApiService,
     GeneralApiService,
     LecturerApiService,

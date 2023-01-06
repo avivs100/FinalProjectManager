@@ -1,0 +1,176 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
+  <div class="flex card border-solid align-content-center" pFocusTrap>
+    <div class="grid col-12 row-gap-2">
+      <div class="field col-12 mt-5">
+        <span class="p-float-label">
+          <input id="projectNameId" formControlName="projectName" pInputText />
+          <label for="projectNameId">Project Name</label>
+        </span>
+      </div>
+
+      <div class="field col-12">
+        <span class="p-float-label">
+          <p-dropdown
+            [options]="projectTypeOptions"
+            id="projectTypeId"
+            class="max-w-13rem"
+            formControlName="projectType"
+            placeholder="Select project type"
+            optionValue="num"
+            optionLabel="name"
+          ></p-dropdown>
+          <label for="projectTypeId">Project Type</label>
+        </span>
+      </div>
+
+      <div class="fields col-12">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="student1IDId"
+              pInputText
+              formControlName="student1ID"
+            />
+            <label for="student1IDId">Student 1 ID </label>
+          </span>
+        </div>
+      </div>
+
+      <div class="fields col-12">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="student2IDId"
+              pInputText
+              formControlName="student2ID"
+            />
+            <label for="student2IDId">Student 2 ID</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="fields col-6">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="lecturerIDId"
+              class="max-w-13rem"
+              pInputText
+              formControlName="lecturerID"
+            />
+            <label for="lecturerIDId">Lecturer ID</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="field col-12 mt-5">
+        <span class="p-float-label">
+          <textarea
+            [rows]="10"
+            [cols]="50"
+            pInputTextarea
+            [autoResize]="true"
+            formControlName="projectCategoryExplain"
+            id="messageId1"
+          ></textarea>
+          <label for="messageId1">Project Category Explain</label>
+        </span>
+      </div>
+
+      <div class="field col-12 mt-5">
+        <span class="p-float-label">
+          <textarea
+            [rows]="10"
+            [cols]="50"
+            pInputTextarea
+            [autoResize]="true"
+            formControlName="generalDescriptionOfTheProblem"
+            id="messageId2"
+          ></textarea>
+
+          <label for="messageId2">General Description Of The Problem</label>
+        </span>
+      </div>
+
+      <div class="field col-12 mt-5">
+        <span class="p-float-label">
+          <textarea
+            [rows]="10"
+            [cols]="50"
+            pInputTextarea
+            [autoResize]="true"
+            formControlName="mainToolsThatWillBeUsedForSolvingTheProblem"
+            id="messageId3"
+          ></textarea>
+
+          <label for="messageId3"
+            >Main Tools That Will Be Used For Solving The Problem</label
+          >
+        </span>
+      </div>
+
+      <div class="field col-12 mt-5">
+        <span class="p-float-label">
+          <textarea
+            [rows]="10"
+            [cols]="50"
+            pInputTextarea
+            [autoResize]="true"
+            formControlName="plannedWorkingProcessDuringTheFirstSemester"
+            id="messageId4"
+          ></textarea>
+
+          <label for="messageId4"
+            >Planned Working Process During The First Semester</label
+          >
+        </span>
+      </div>
+
+      <div class="field col-12 mt-5">
+        <span class="p-float-label">
+          <textarea
+            [rows]="10"
+            [cols]="50"
+            pInputTextarea
+            [autoResize]="true"
+            formControlName="productOfTheWorkOfTheFirstSemester"
+            id="messageId5"
+          ></textarea>
+
+          <label for="messageId5"
+            >Product Of The Work Of The First Semester</label
+          >
+        </span>
+      </div>
+
+      <div class="field col-12 mt-5">
+        <span class="p-float-label">
+          <textarea
+            pTooltip="enter keywords with , between each ketword"
+            [rows]="10"
+            [cols]="50"
+            pInputTextarea
+            [autoResize]="true"
+            formControlName="keywords"
+            id="messageId6"
+          ></textarea>
+          <label for="messageId6">Keywords</label>
+        </span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="grid col-3"></div>
+      <button
+        pButton
+        type="submit"
+        label="Create New User"
+        class="p-button-raised p-button-outlined m-3"
+        [disabled]="form.invalid"
+      ></button>
+    </div>
+  </div>
+</form>

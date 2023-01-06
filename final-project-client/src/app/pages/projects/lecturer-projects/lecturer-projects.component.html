@@ -1,10 +1,10 @@
-<p-card>
+<p-card *ngIf="projects">
   <p-table
     [value]="projects"
     styleClass="p-datatable-gridlines p-datatable-striped h-30rem overflow-auto"
     selectionMode="single"
     scrollHeight="flex"
-    (onRowSelect)="selectedProduct($event)"
+    (onRowSelect)="selectedProject($event)"
     [scrollable]="true"
   >
     <ng-template pTemplate="header">
@@ -18,10 +18,14 @@
 
     <ng-template pTemplate="body" let-project>
       <tr [pSelectableRow]="project">
-        <td>{{ project.name }}</td>
-        <td>{{ project.StudentId1 }}</td>
-        <td>{{ project.StudentId2 }}</td>
-        <td>{{ project.type }}</td>
+        <td>{{ project.projectName }}</td>
+        <td>
+          {{ project.student1.lastName }} {{ project.student1.firstName }}
+        </td>
+        <td>
+          {{ project.student2.lastName }} {{ project.student2.firstName }}
+        </td>
+        <td>Web Application</td>
       </tr>
     </ng-template>
   </p-table>
