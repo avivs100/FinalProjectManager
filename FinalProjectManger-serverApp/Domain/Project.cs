@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
-{
+namespace Domain;
+
     public enum ProjectType
     {
         Research,
@@ -44,7 +44,7 @@ namespace Domain
     }
 
 
-}
+
 public class ProjectFull
 {
     public int ProjectId { get; set; }
