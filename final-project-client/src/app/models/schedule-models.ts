@@ -61,6 +61,6 @@ export interface Session {
   responsibleLecturer: Lecturer;
   lecturer2: Lecturer;
   lecturer3: Lecturer;
-  projects: ProjectFull[];
+  projects: ProjectInSession[];
   sessionNumber: number;
 }

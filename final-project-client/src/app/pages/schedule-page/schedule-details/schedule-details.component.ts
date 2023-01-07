@@ -10,48 +10,48 @@ import { StateService } from 'src/app/services/state.service';
 })
 export class ScheduleDetailsComponent {
   constructor(private state: StateService) {}
-  public session: Session = {
-    id: 123456,
-    responsibleLecturer: {
-      id: 123,
-      email: 'david@david',
-      firstName: 'david',
-      lastName: 'david',
-      isActive: true,
-      password: '123',
-      userType: UserType.lecturer,
-      constraints: [
-        { dataTime: new Date(), id: '12' },
-        { dataTime: new Date(), id: '12' },
-      ],
-    },
-    lecturer2: {
-      id: 123,
-      email: 'david@david',
-      firstName: 'david',
-      lastName: 'david',
-      isActive: true,
-      password: '123',
-      userType: UserType.lecturer,
-      constraints: [
-        { dataTime: new Date(), id: '12' },
-        { dataTime: new Date(), id: '12' },
-      ],
-    },
-    lecturer3: {
-      id: 123,
-      email: 'david@david',
-      firstName: 'david',
-      lastName: 'david',
-      isActive: true,
-      password: '123',
-      userType: UserType.lecturer,
-      constraints: [
-        { dataTime: new Date(), id: '12' },
-        { dataTime: new Date(), id: '12' },
-      ],
-    },
-    projects: this.state.lecturerProjects!,
-    sessionNumber: 1,
-  };
+  // public session: Session = {
+  //   id: 123456,
+  //   responsibleLecturer: {
+  //     id: 123,
+  //     email: 'david@david',
+  //     firstName: 'david',
+  //     lastName: 'david',
+  //     isActive: true,
+  //     password: '123',
+  //     userType: UserType.lecturer,
+  //     constraints: [
+  //       { dataTime: new Date(), id: '12' },
+  //       { dataTime: new Date(), id: '12' },
+  //     ],
+  //   },
+  //   lecturer2: {
+  //     id: 123,
+  //     email: 'david@david',
+  //     firstName: 'david',
+  //     lastName: 'david',
+  //     isActive: true,
+  //     password: '123',
+  //     userType: UserType.lecturer,
+  //     constraints: [
+  //       { dataTime: new Date(), id: '12' },
+  //       { dataTime: new Date(), id: '12' },
+  //     ],
+  //   },
+  //   lecturer3: {
+  //     id: 123,
+  //     email: 'david@david',
+  //     firstName: 'david',
+  //     lastName: 'david',
+  //     isActive: true,
+  //     password: '123',
+  //     userType: UserType.lecturer,
+  //     constraints: [
+  //       { dataTime: new Date(), id: '12' },
+  //       { dataTime: new Date(), id: '12' },
+  //     ],
+  //   },
+  //   //projects: this.state.lecturerProjects!,
+  //   sessionNumber: 1,
+  // };
 }
