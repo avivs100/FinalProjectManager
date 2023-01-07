@@ -15,15 +15,6 @@ export interface LecturerConstarintForDate {
   sessions2: number[];
 }
 
-export interface Session {
-  id: number;
-  responsibleLecturer: Lecturer;
-  lecturer2: Lecturer;
-  lecturer3: Lecturer;
-  projects: ProjectFull[];
-  sessionNumber: number;
-}
-
 export interface DayInScheduleFull {
   id: number;
   firstDay: boolean;
@@ -34,8 +25,42 @@ export interface DayInScheduleFull {
   Session5: Session;
   Session6: Session;
 }
+
 export interface ScheduleFull {
   id: number;
-  dayOne: DayInScheduleFull;
-  dayTwo: DayInScheduleFull;
+  dayOne: DayInSchedule;
+  dayTwo: DayInSchedule;
+}
+
+export interface DayInSchedule {
+  classSessions1: ClassSessions;
+  classSessions2: ClassSessions;
+  classSessions3: ClassSessions;
+  classSessions4: ClassSessions;
+  id: number;
+  day: boolean; //0 for first - 1 for second
+}
+
+export interface ClassSessions {
+  Session1: Session;
+  Session2: Session;
+  Session3: Session;
+  Session4: Session;
+  Session5: Session;
+  className: string;
+  id: number;
+}
+
+export interface ProjectInSession {
+  project: ProjectFull;
+  order: number;
+}
+
+export interface Session {
+  id: number;
+  responsibleLecturer: Lecturer;
+  lecturer2: Lecturer;
+  lecturer3: Lecturer;
+  projects: ProjectFull[];
+  sessionNumber: number;
 }
