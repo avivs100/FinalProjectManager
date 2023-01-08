@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using TryGenetic;
 using static Domain.DayInSchedule;
 using static Domain.Schedule;
+using static Domain.Session;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FinalProjectManger_server.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class ScheduleController : ControllerBase
@@ -23,6 +25,8 @@ namespace FinalProjectManger_server.Controllers
         {
             var context = new UsersDbContext();
             var schedule = await context.Set<Schedule>().ToListAsync();
+            if (schedule.Count == 0)
+                return NotFound();
             var day1NotFull = await context.Set<DayInSchedule>().Where(x => x.Id == schedule[0].DayOneID).FirstOrDefaultAsync();
             var session1day1 = await context.Set<Session>().Where(x => x.Id == day1NotFull.Session1ID).Include(x => x.ProjectsID).FirstOrDefaultAsync();
             var session2day1 = await context.Set<Session>().Where(x => x.Id == day1NotFull.Session2ID).Include(x => x.ProjectsID).FirstOrDefaultAsync();
@@ -45,10 +49,10 @@ namespace FinalProjectManger_server.Controllers
         [HttpPost("GenerateSchedule")]
         public async Task<ActionResult<Schedule>> GenerateSchedule()
         {
-
             var context = new UsersDbContext();
             var schedule1 = await context.Set<Schedule>().ToListAsync();
-            if(schedule1.Count != 0)
+
+            if (schedule1.Count != 0)
             {
                 context.Set<Schedule>().RemoveRange(schedule1);
                 var sessions1 = await context.Set<Session>().ToListAsync();
@@ -58,6 +62,7 @@ namespace FinalProjectManger_server.Controllers
                 await context.SaveChangesAsync();
             }
             var genetic = new Genetic();
+            var projects = await context.Set<Domain.Project>().ToListAsync();
             var lecturers = await context.Set<Domain.Lecturer>().Include(x => x.constraints).ToListAsync();
             var cons = await context.Set<LecConstraint>().ToListAsync();
             var lecturersForGenetic = new List<TryGenetic.Lecturer>();
@@ -71,9 +76,13 @@ namespace FinalProjectManger_server.Controllers
                 var lecturerForGenetic = new TryGenetic.Lecturer(lec.id, conList);
                 lecturersForGenetic.Add(lecturerForGenetic);
             }
-            genetic.CreatePopulation(lecturersForGenetic);
-
-
+            var projectsForGenetic = new List<TryGenetic.Project>();
+            foreach (var proj in projects)
+            {
+                var projForGenetic = new TryGenetic.Project(proj.ProjectId, proj.LecturerId);
+                projectsForGenetic.Add(projForGenetic);
+            }
+            genetic.CreatePopulation(lecturersForGenetic, projectsForGenetic);
             for (int i = 0; i < 1000; i++)
             {
                 for (int j = 0; j < genetic.Solutions.Count; j++)
@@ -93,7 +102,7 @@ namespace FinalProjectManger_server.Controllers
             {
                 sessions.Add(scheduleService.ConvertToSession(item));
             }
-            var day1 = scheduleService.CreateDayInSchedule(true,sessions.Take(sessions.Count/2).ToList());
+            var day1 = scheduleService.CreateDayInSchedule(true, sessions.Take(sessions.Count / 2).ToList());
             sessions.Reverse();
             var day2 = scheduleService.CreateDayInSchedule(false, sessions.Take(sessions.Count / 2).ToList());
             var schedule = new Schedule(day1.Id, day2.Id);
@@ -107,5 +116,28 @@ namespace FinalProjectManger_server.Controllers
             await context.SaveChangesAsync();
             return Ok(schedule);
         }
+
+
+        //public List<ClassSessions> CreateClassSessions(List<Session> sessions)
+        //{
+        //    var classSessions1List = new List<ClassSessions>();
+        //    var classSessions = new ClassSessions();
+        //    foreach (var session in sessions)
+        //    {
+        //        if (session.ClassRoom == ClassRoomNames.ClassRoom1Name)
+        //        {
+        //            if (classSessions.Session1Id == 0)
+        //                classSessions.Session1Id = session.Id;
+        //            else if (classSessions.Session2Id == 0)
+        //                classSessions.Session2Id = session.Id;
+        //            else if (classSessions.Session3Id == 0)
+        //                classSessions.Session3Id = session.Id;
+        //            else
+        //                classSessions.Session4Id = session.Id;
+        //            classSessions1List.Add(classSessions);
+        //        }
+        //    }
+        //    return classSessions1List;
+        //}
     }
 }

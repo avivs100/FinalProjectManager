@@ -76,6 +76,12 @@ public class ProjectFull
 
 }
 
+public class ProjectInSession
+{
+    public ProjectFull ProjectFull { get; set; }
+    public int order { get; set; }
+}
+
 public class ProjectDetails
 {
     public string ProjectName { get; set; }

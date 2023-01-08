@@ -20,7 +20,7 @@ namespace TryGenetic
         public Lecturer Lec3 { get; set; }
         public Lecturer Lec2 { get; set; }
         public Lecturer Lec1 { get; set; }
- 
+        public List<Project> Projects { get; set; } = new();
         public bool AddLec(int LecIndex, Lecturer Lec)
         {
             if(LecIndex == 1)
@@ -41,18 +41,35 @@ namespace TryGenetic
             }
             return true;
         }
+
+        public bool AddProjs(Project proj)
+        {
+            if(Projects.Contains(proj) == true)
+              return false;
+            //else if(Projects.Count == 6)
+            //    return false;
+            else
+            {
+                Projects.Add(proj);
+                return true;
+            }
+        }
+
+
     }
     public class Genetic
     {
         public int popSize = 1000;
-        public int numOfSessions = 10;
+        public int numOfSessions = 40;
         public List<Solution> Solutions { get; set; } = new List<Solution>();
         public int numOfBestSolutions = 100;
         public double Treshold = 0.1;
+        public int NumOfProjectsInSession = 6;
         public int lecNumbers { get; set; }
+        public int projNumber { get; set; }
         public int ClassRoomNum { get; set; }
 
-        public void CreatePopulation(List<TryGenetic.Lecturer> lecturers)
+        public void CreatePopulation(List<TryGenetic.Lecturer> lecturers, List<TryGenetic.Project> projects)
         {
             for (int j = 0; j < popSize; j++)
             {
@@ -65,6 +82,10 @@ namespace TryGenetic
                     while (!(gene.AddLec(1, lecturers[new Random().Next(lecturers.Count)]))) ;
                     while (!(gene.AddLec(2, lecturers[new Random().Next(lecturers.Count)]))) ;
                     while (!(gene.AddLec(3, lecturers[new Random().Next(lecturers.Count)]))) ;
+                    while(gene.Projects.Count < NumOfProjectsInSession)
+                    {
+                        gene.AddProjs(projects[new Random().Next(projects.Count)]);
+                    }
                     geneList.Add(gene);
                 }
                 Solution solution = new Solution();
@@ -72,6 +93,7 @@ namespace TryGenetic
                 Solutions.Add(solution);
             }
             lecNumbers = lecturers.Count;
+            projNumber = projects.Count;
         }
         public double genFit(Gene gene)
         {
@@ -82,17 +104,33 @@ namespace TryGenetic
                 totalMatch++;
             if (!(gene.Lec3.constraints.Contains(gene.SessionNum)))
                 totalMatch++;
-            return totalMatch / 3;
+            return totalMatch / 3.0;
+        }
+
+        public double projFit(Gene gene)
+        {
+            int temp = 0;
+            foreach (var proj in gene.Projects)
+            {
+                if(proj.LecturerId == gene.Lec1.id)
+                    temp++;
+                else if (proj.LecturerId == gene.Lec2.id)
+                    temp++;
+                else if (proj.LecturerId == gene.Lec3.id)
+                    temp++;
+            }
+            return temp / 6.0;
         }
 
         public void Fitness(Solution Solution)
         {
             double SumEachGenFit = 0;
+            double SumEachProjFit = 0;
             var LecturerMappingCounter = new Dictionary<Lecturer,int>();
             foreach (var gene in Solution.genes)
             {
                 SumEachGenFit += genFit(gene);
-
+                SumEachProjFit += projFit(gene);
                 if (LecturerMappingCounter.ContainsKey(gene.Lec1))
                      LecturerMappingCounter[gene.Lec1]++;
                 else
@@ -106,7 +144,7 @@ namespace TryGenetic
                 else
                     LecturerMappingCounter.Add(gene.Lec3, 1);
             }
-            Solution.fitnessScore = 8 * (SumEachGenFit / Solution.genes.Count) + (LecturerMappingCounter.Count / lecNumbers) * 2;
+            Solution.fitnessScore = 6 * (SumEachGenFit / Solution.genes.Count) + (LecturerMappingCounter.Count / lecNumbers) * 2 + (SumEachProjFit / Solution.genes.Count) * 2;
         }
 
 
@@ -143,6 +181,16 @@ namespace TryGenetic
                             LecTemp = BestSolutions[randSolutionIndex].genes[i].Lec3;
                         if (gene.AddLec(z + 1, LecTemp) == false)
                             z--;
+                    }
+
+                    for (int k = 0; k < 6; k++)
+                    {
+                        var randSolutionIndex = new Random().Next(numOfBestSolutions);
+                        var randProjIndex = new Random().Next(1, 6);
+                        Project projTemp;
+                        projTemp = BestSolutions[randSolutionIndex].genes[i].Projects[randProjIndex];
+                        if (gene.AddProjs(projTemp) == false)
+                            k--;
                     }
 
                     geneList.Add(gene);
