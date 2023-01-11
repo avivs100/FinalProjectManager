@@ -53,7 +53,7 @@ export class StateService implements OnDestroy {
     email: 'sagifishman1@gmail.com',
   };
   public subs: SubSink = new SubSink();
-  public connectedUser: Student | Admin | Lecturer | null = this.admin;
+  public connectedUser: Student | Admin | Lecturer | null = this.lecturer;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
   public lecturerProjects: ProjectFull[] | null = null;
@@ -105,6 +105,11 @@ export class StateService implements OnDestroy {
       this.proposals = x;
       console.log('proposals from server', this.proposals);
     });
+
+    this.subs.sink = this.adminApi.getProjects().subscribe((x) => {
+      this.projects = x;
+      console.log('projects from server', this.projects);
+    });
   }
 
   adminLogedIn() {
@@ -152,11 +157,14 @@ export class StateService implements OnDestroy {
   }
 
   returnSceduleFull(): ScheduleFull {
-    return {
+    var schedule = {
       dayOne: this.returnDayInSchedule(false, 1),
       dayTwo: this.returnDayInSchedule(false, 2),
       id: 12344,
     };
+
+    console.log(schedule);
+    return schedule;
   }
 
   returnDayInSchedule(day: boolean, id: number): DayInSchedule {
