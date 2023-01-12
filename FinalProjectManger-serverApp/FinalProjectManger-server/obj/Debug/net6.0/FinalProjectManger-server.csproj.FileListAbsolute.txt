@@ -1190,8 +1190,3 @@ C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\F
 C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\bin\Debug\net6.0\TryGenetic.exe
 C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\bin\Debug\net6.0\TryGenetic.dll
 C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\bin\Debug\net6.0\TryGenetic.pdb
-C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\staticwebassets\msbuild.FinalProjectManger-server.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\staticwebassets\msbuild.build.FinalProjectManger-server.props
-C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.FinalProjectManger-server.props
-C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.FinalProjectManger-server.props
-C:\Users\AVIVSHI\source\repos\FinalProjectManager\FinalProjectManger-serverApp\FinalProjectManger-server\obj\Debug\net6.0\staticwebassets.pack.json

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserType } from 'src/app/models/enums';
 import { Session } from 'src/app/models/schedule-models';
 import { StateService } from 'src/app/services/state.service';
@@ -8,50 +8,14 @@ import { StateService } from 'src/app/services/state.service';
   templateUrl: './schedule-details.component.html',
   styleUrls: ['./schedule-details.component.scss'],
 })
-export class ScheduleDetailsComponent {
-  constructor(private state: StateService) {}
-  // public session: Session = {
-  //   id: 123456,
-  //   responsibleLecturer: {
-  //     id: 123,
-  //     email: 'david@david',
-  //     firstName: 'david',
-  //     lastName: 'david',
-  //     isActive: true,
-  //     password: '123',
-  //     userType: UserType.lecturer,
-  //     constraints: [
-  //       { dataTime: new Date(), id: '12' },
-  //       { dataTime: new Date(), id: '12' },
-  //     ],
-  //   },
-  //   lecturer2: {
-  //     id: 123,
-  //     email: 'david@david',
-  //     firstName: 'david',
-  //     lastName: 'david',
-  //     isActive: true,
-  //     password: '123',
-  //     userType: UserType.lecturer,
-  //     constraints: [
-  //       { dataTime: new Date(), id: '12' },
-  //       { dataTime: new Date(), id: '12' },
-  //     ],
-  //   },
-  //   lecturer3: {
-  //     id: 123,
-  //     email: 'david@david',
-  //     firstName: 'david',
-  //     lastName: 'david',
-  //     isActive: true,
-  //     password: '123',
-  //     userType: UserType.lecturer,
-  //     constraints: [
-  //       { dataTime: new Date(), id: '12' },
-  //       { dataTime: new Date(), id: '12' },
-  //     ],
-  //   },
-  //   //projects: this.state.lecturerProjects!,
-  //   sessionNumber: 1,
-  // };
+export class ScheduleDetailsComponent implements OnInit {
+  constructor(private state: StateService) {
+    this.state.schedule = this.state.returnSceduleFull();
+  }
+  ngOnInit(): void {
+    if (this.state.schedule !== null) {
+      this.session = this.state.schedule.dayOne.classSessions1.Session1;
+    }
+  }
+  public session: Session | null = null;
 }
