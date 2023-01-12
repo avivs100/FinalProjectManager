@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
@@ -13,27 +12,9 @@
         "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\ConsoleApp1\\obj\\",
-=======
-    "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj",
-        "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\ConsoleApp1\\ConsoleApp1.csproj",
-        "packagesPath": "C:\\Users\\SAGIF2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\ConsoleApp1\\obj\\",
->>>>>>> SagisTheMeleh
         "projectStyle": "PackageReference",
         "configFilePaths": [
-<<<<<<< HEAD
           "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\SAGIF2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
->>>>>>> SagisTheMeleh
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -47,13 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-<<<<<<< HEAD
               "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
                 "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj"
-=======
-              "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj"
->>>>>>> SagisTheMeleh
               }
             }
           }
@@ -95,7 +71,6 @@
         }
       }
     },
-<<<<<<< HEAD
     "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -104,24 +79,9 @@
         "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Data\\obj\\",
-=======
-    "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj",
-        "projectName": "Data",
-        "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\SAGIF2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Data\\obj\\",
->>>>>>> SagisTheMeleh
         "projectStyle": "PackageReference",
         "configFilePaths": [
-<<<<<<< HEAD
           "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\SAGIF2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
->>>>>>> SagisTheMeleh
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -135,13 +95,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-<<<<<<< HEAD
               "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj"
-=======
-              "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Domain\\Domain.csproj"
->>>>>>> SagisTheMeleh
               }
             }
           }
@@ -197,7 +152,6 @@
         }
       }
     },
-<<<<<<< HEAD
     "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -206,24 +160,9 @@
         "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\obj\\",
-=======
-    "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Domain\\Domain.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
-        "projectName": "Domain",
-        "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\SAGIF2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\Domain\\obj\\",
->>>>>>> SagisTheMeleh
         "projectStyle": "PackageReference",
         "configFilePaths": [
-<<<<<<< HEAD
           "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\SAGIF2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
->>>>>>> SagisTheMeleh
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

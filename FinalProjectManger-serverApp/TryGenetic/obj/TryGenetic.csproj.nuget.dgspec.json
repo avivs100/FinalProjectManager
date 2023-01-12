@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj": {}
   },
   "projects": {
@@ -13,27 +12,9 @@
         "projectPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj",
         "packagesPath": "C:\\Users\\AVIVSHI\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\TryGenetic\\obj\\",
-=======
-    "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj",
-        "projectName": "TryGenetic",
-        "projectPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj",
-        "packagesPath": "C:\\Users\\SAGIF2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\obj\\",
->>>>>>> SagisTheMeleh
         "projectStyle": "PackageReference",
         "configFilePaths": [
-<<<<<<< HEAD
           "C:\\Users\\AVIVSHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\SAGIF2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
->>>>>>> SagisTheMeleh
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
