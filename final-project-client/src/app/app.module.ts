@@ -86,6 +86,8 @@ import { ProposalDetailsPageComponent } from './pages/proposal-page/proposal-det
 import { DividerModule } from 'primeng/divider';
 import { SessionDetailsComponent } from './pages/schedule-page/schedule-details/session-details/session-details.component';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ClassRoomDetailsComponent } from './pages/schedule-page/schedule-details/class-room-details/class-room-details.component';
+import { DayInScheduleDetailsComponent } from './pages/schedule-page/schedule-details/day-in-schedule-details/day-in-schedule-details.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +139,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     ProposalListComponent,
     ProposalDetailsPageComponent,
     SessionDetailsComponent,
+    ClassRoomDetailsComponent,
+    DayInScheduleDetailsComponent,
   ],
   imports: [
     ScrollPanelModule,

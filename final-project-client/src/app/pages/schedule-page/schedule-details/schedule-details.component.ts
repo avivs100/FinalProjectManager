@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserType } from 'src/app/models/enums';
-import { Session } from 'src/app/models/schedule-models';
+import {
+  ScheduleDates,
+  ScheduleFull,
+  Session,
+} from 'src/app/models/schedule-models';
 import { StateService } from 'src/app/services/state.service';
 
 @Component({
@@ -14,8 +18,11 @@ export class ScheduleDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.state.schedule !== null) {
-      this.session = this.state.schedule.dayOne.classSessions1.Session1;
+      this.schedule = this.state.schedule;
+      this.dates = this.state.scheduleDates;
+      console.log('david', this.schedule);
     }
   }
-  public session: Session | null = null;
+  public schedule: ScheduleFull | null = null;
+  public dates: ScheduleDates | null = null;
 }

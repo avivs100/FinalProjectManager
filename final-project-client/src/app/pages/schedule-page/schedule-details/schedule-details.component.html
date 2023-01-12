@@ -1,101 +1,10 @@
 <p-tabView>
-  <p-tabPanel header="day 1">
-    <p-tabView>
-      <p-tabPanel header="class 1">
-        <div
-          class="grid"
-          style="position: absolute; overflow-y: scroll; overflow-x: hidden"
-        >
-          <app-session-details
-            [session]="session"
-            class="col-6"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-6"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-6"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-6"
-          ></app-session-details>
-        </div>
-      </p-tabPanel>
-      <p-tabPanel header="class 2">
-        <div
-          class="gap-4"
-          style="position: absolute; overflow-y: scroll; overflow-x: hidden"
-        >
-          <app-session-details
-            [session]="session"
-            class="col-5 shadow-7"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5 shadow-7"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5 shadow-7"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5 shadow-7"
-          ></app-session-details>
-        </div>
-      </p-tabPanel>
-      <p-tabPanel header="class 3">
-        <div style="position: absolute; overflow-y: scroll; overflow-x: hidden">
-          <app-session-details
-            [session]="session"
-            class="col-5"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5"
-          ></app-session-details>
-        </div>
-      </p-tabPanel>
-      <p-tabPanel header="class 4">
-        <div style="position: absolute; overflow-y: scroll; overflow-x: hidden">
-          <app-session-details
-            [session]="session"
-            class="col-5"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5"
-          ></app-session-details>
-          <app-session-details
-            [session]="session"
-            class="col-5"
-          ></app-session-details>
-        </div>
-      </p-tabPanel>
-    </p-tabView>
+  <p-tabPanel [header]="dates!.date1.slice(0, 10)">
+    <app-day-in-schedule-details [day]="schedule!.dayOne">
+    </app-day-in-schedule-details>
   </p-tabPanel>
-
-  <p-tabPanel header="day 2">
-    <p-tabView>
-      <p-tabPanel header="class 1"> </p-tabPanel>
-      <p-tabPanel header="class 2"> </p-tabPanel>
-      <p-tabPanel header="class 3"> </p-tabPanel>
-      <p-tabPanel header="class 4"> </p-tabPanel>
-    </p-tabView>
+  <p-tabPanel [header]="dates!.date2.slice(0, 10)">
+    <app-day-in-schedule-details [day]="schedule!.dayTwo">
+    </app-day-in-schedule-details>
   </p-tabPanel>
 </p-tabView>
