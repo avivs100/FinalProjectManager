@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Domain.Session;
 
 namespace Domain
 {
@@ -37,11 +38,11 @@ namespace Domain
     public class ClassSessionsFull
     {
         public int id { get; set; }
-        public Session Session1 { get; set; }
-        public Session Session2 { get; set; }
-        public Session Session3 { get; set; }
-        public Session Session4 { get; set; }
-        public Session Session5 { get; set; }
+        public SessionFull Session1 { get; set; }
+        public SessionFull Session2 { get; set; }
+        public SessionFull Session3 { get; set; }
+        public SessionFull Session4 { get; set; }
+        public SessionFull Session5 { get; set; }
         public string ClassName { get; set; }
 
         public ClassSessionsFull()
@@ -49,7 +50,7 @@ namespace Domain
             id = new Random().Next();
         }
 
-        public ClassSessionsFull(Session session1, Session session2, Session session3, Session session4, string className)
+        public ClassSessionsFull(SessionFull session1, SessionFull session2, SessionFull session3, SessionFull session4, string className)
         {
             id = new Random().Next();
             Session1 = session1;
