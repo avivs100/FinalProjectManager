@@ -2,7 +2,7 @@
   <div class="flex flex-row justify-content-between mb-5">
     <div class="text-5xl">Admin Schedule</div>
   </div>
-  <p-card *ngIf="state.schedule" class="w-full h-full m-4">
+  <p-card *ngIf="state.schedule || scedule" class="w-full h-full m-4">
     <p-button
       (click)="navigateToScheduleDetails()"
       label="Navigate To Schedule"

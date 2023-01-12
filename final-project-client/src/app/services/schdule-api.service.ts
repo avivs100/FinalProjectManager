@@ -24,6 +24,12 @@ export class SchduleApiService {
     );
   }
 
+  DeleteSchedule(): Observable<boolean> {
+    return this.http.delete<boolean>(
+      `${this.serverUrl}/Schedule/GenerateSchedule`
+    );
+  }
+
   RemoveLecturerFromSession(
     sessionId: number,
     lecturerId: number
