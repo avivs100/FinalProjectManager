@@ -52,4 +52,10 @@ export class LecturerApiService {
       null
     );
   }
+
+  denyProposal(id: number) {
+    return this.http.delete<boolean>(
+      `${this.serverUrl}/Lecturer/DenyProposal${id}`
+    );
+  }
 }

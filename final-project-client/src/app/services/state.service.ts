@@ -1,4 +1,11 @@
-import { ScheduleDates, ScheduleFull } from './../models/schedule-models';
+import {
+  ClassSessions,
+  DayInSchedule,
+  ProjectInSession,
+  ScheduleDates,
+  ScheduleFull,
+  Session,
+} from './../models/schedule-models';
 import { Injectable, OnDestroy } from '@angular/core';
 import {
   ProjectFull,
@@ -46,7 +53,7 @@ export class StateService implements OnDestroy {
     email: 'sagifishman1@gmail.com',
   };
   public subs: SubSink = new SubSink();
-  public connectedUser: Student | Admin | Lecturer | null = null;
+  public connectedUser: Student | Admin | Lecturer | null = this.lecturer;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
   public lecturerProjects: ProjectFull[] | null = null;
@@ -58,6 +65,7 @@ export class StateService implements OnDestroy {
   public proposals: ProjectProposalDetailsWithStatus[] | null = null;
   public selectedProposal: ProjectProposalDetailsWithStatus | null = null;
   public admins: Admin[] | null = null;
+  public proposalAfterAprove: ProjectProposalDetailsWithStatus[] | null = null;
 
   public errorMessage = '';
 
@@ -93,9 +101,14 @@ export class StateService implements OnDestroy {
       console.log('lecturers from server', this.lecturers);
     });
 
-    this.subs.sink = this.adminApi.getAdmins().subscribe((x) => {
-      this.admins = x;
-      console.log('admins from server', this.lecturers);
+    this.subs.sink = this.api.getProposals().subscribe((x) => {
+      this.proposals = x;
+      console.log('proposals from server', this.proposals);
+    });
+
+    this.subs.sink = this.adminApi.getProjects().subscribe((x) => {
+      this.projects = x;
+      console.log('projects from server', this.projects);
     });
   }
 
@@ -112,9 +125,9 @@ export class StateService implements OnDestroy {
       console.log('premissions from server', this.premissions);
     });
 
-    this.subs.sink = this.api.getProposals().subscribe((x) => {
-      this.proposals = x;
-      console.log('proposals from server', this.proposals);
+    this.subs.sink = this.adminApi.getProposalsAfterAprove().subscribe((x) => {
+      this.proposalAfterAprove = x;
+      console.log('proposals from server', this.proposalAfterAprove);
     });
   }
 
@@ -126,11 +139,6 @@ export class StateService implements OnDestroy {
         this.lecturerProjects = x;
         console.log('lectuerer projects from server', this.lecturerProjects);
       });
-
-    this.subs.sink = this.api.getProposals().subscribe((x) => {
-      this.proposals = x;
-      console.log('proposals from server', this.proposals);
-    });
   }
 
   StudentLogedIn() {
@@ -146,5 +154,82 @@ export class StateService implements OnDestroy {
   //unsubscribe from all subs
   ngOnDestroy(): void {
     this.subs.unsubscribe();
+  }
+
+  returnSceduleFull(): ScheduleFull {
+    var schedule = {
+      dayOne: this.returnDayInSchedule(false, 1),
+      dayTwo: this.returnDayInSchedule(false, 2),
+      id: 12344,
+    };
+
+    console.log(schedule);
+    return schedule;
+  }
+
+  returnDayInSchedule(day: boolean, id: number): DayInSchedule {
+    var dayOne: DayInSchedule = {
+      classSessions1: this.returnClassSessions('1', 1),
+      classSessions2: this.returnClassSessions('2', 2),
+      classSessions3: this.returnClassSessions('3', 3),
+      classSessions4: this.returnClassSessions('4', 4),
+      day: day,
+      id: id,
+    };
+    return dayOne;
+  }
+
+  returnSession(id: number, sessionNum: number): Session {
+    return {
+      id: id,
+      lecturer2: this.lecturer,
+      lecturer3: this.lecturer,
+      projects: this.returnProjectInSession(),
+      responsibleLecturer: this.lecturer,
+      sessionNumber: sessionNum,
+    };
+  }
+
+  returnProjectInSession(): ProjectInSession[] {
+    var projectInSession = [
+      {
+        order: 0,
+        project: this.projects![0],
+      },
+      {
+        order: 1,
+        project: this.projects![1],
+      },
+      {
+        order: 2,
+        project: this.projects![2],
+      },
+      {
+        order: 3,
+        project: this.projects![3],
+      },
+      {
+        order: 4,
+        project: this.projects![4],
+      },
+      {
+        order: 5,
+        project: this.projects![5],
+      },
+    ];
+
+    return projectInSession;
+  }
+
+  returnClassSessions(className: string, id: number): ClassSessions {
+    return <ClassSessions>{
+      className: className,
+      Session1: this.returnSession(1, 1),
+      Session2: this.returnSession(2, 2),
+      Session3: this.returnSession(3, 3),
+      Session4: this.returnSession(4, 4),
+      Session5: this.returnSession(5, 5),
+      id: id,
+    };
   }
 }

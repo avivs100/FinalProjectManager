@@ -44,23 +44,25 @@
 
       <ng-template pTemplate="body" let-project>
         <tr [pSelectableRow]="project">
-          <td>{{ project.projectName }}</td>
+          <td>{{ project.project.projectName }}</td>
           <td>
-            {{ project.student1.lastName }} {{ project.student1.firstName }}
+            {{ project.project.student1.lastName }}
+            {{ project.project.student1.firstName }}
           </td>
           <td>
-            {{ project.student2.lastName }} {{ project.student2.firstName }}
+            {{ project.project.student2.lastName }}
+            {{ project.project.student2.firstName }}
           </td>
           <td>
             <div
               class="field-width field col-10"
-              *ngIf="project.projectType == 0"
+              *ngIf="project.project.projectType == 0"
             >
               Research
             </div>
             <div
               class="field-width field col-10"
-              *ngIf="project.projectType == 1"
+              *ngIf="project.project.projectType == 1"
             >
               Development
             </div>

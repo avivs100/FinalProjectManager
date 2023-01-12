@@ -114,8 +114,34 @@
     </div>
 
     <p-divider class="col-12"></p-divider>
-    <div class="col-6 gap-3">
+    <div class="col-6 gap-3" *ngIf="userType == 2">
       <p-button label="Approve" class="mr-6" (onClick)="approve(details.id)">
+      </p-button>
+      <p-button label="Deny" class="mr-6" (onClick)="deny(details.id)">
+      </p-button>
+      <p-button label="Replay with issues"> </p-button>
+    </div>
+
+    <div class="col-6 gap-3" *ngIf="userType == 0">
+      <div class="col-6">
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="codeId"
+            pTooltip="Enter A code For The New Project"
+            [(ngModel)]="CodeFromInput"
+          />
+          <label for="codeId">Code For Project</label>
+          <p-button label="Set Code" class="mr-6" (onClick)="setCode()">
+          </p-button>
+        </span>
+      </div>
+      <p-button
+        label="Approve"
+        class="mr-6"
+        (onClick)="approveAdmin(details.id)"
+        [disabled]="code === null"
+      >
       </p-button>
       <p-button label="Deny" class="mr-6" (onClick)="deny(details.id)">
       </p-button>

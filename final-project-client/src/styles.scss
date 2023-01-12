@@ -50,7 +50,6 @@ html {
 }
 
 .text-ellipsis {
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -115,5 +114,4 @@ p-dropdown {
 
 .div {
   height: 100%;
-  overflow: auto;
 }
