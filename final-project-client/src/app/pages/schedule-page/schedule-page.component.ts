@@ -13,10 +13,8 @@ import { StateService } from 'src/app/services/state.service';
 export class ScheduleComponent implements OnInit {
   public userType: UserType | undefined;
   constructor(public state: StateService, private api: GeneralApiService) {
-    this.userType = state.connectedUser?.userType;
+    this.userType = state.connectedUser!.userType;
   }
-  ngOnInit(): void {
-    this.schedule = this.state.schedule;
-  }
-  public schedule: ScheduleFull | null = null;
+
+  ngOnInit(): void {}
 }
