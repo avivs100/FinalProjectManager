@@ -37,12 +37,12 @@ namespace Domain
             public Lecturer ResponsibleLecturer { get; set; }
             public Lecturer Lecturer2 { get; set; }
             public Lecturer Lecturer3 { get; set; }
-            public List<ProjectFull> Projects { get; set; }
+            public List<ProjectInSession> Projects { get; set; }
             public int SessionNumber { get; set; }
             public string ClassRoom { get; set; }
             public SessionFull() { }
 
-            public SessionFull(int id, Lecturer responsibleLecturer, Lecturer lecturer2, Lecturer lecturer3, List<ProjectFull> projects, int sessionNumber, string classRoom)
+            public SessionFull(int id, Lecturer responsibleLecturer, Lecturer lecturer2, Lecturer lecturer3, List<ProjectInSession> projects, int sessionNumber, string classRoom)
             {
                 Id = id;
                 ResponsibleLecturer = responsibleLecturer;

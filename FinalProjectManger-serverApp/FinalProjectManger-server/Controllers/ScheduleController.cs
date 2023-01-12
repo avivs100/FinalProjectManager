@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
 using TryGenetic;
 using static Domain.DayInSchedule;
 using static Domain.Schedule;
@@ -46,6 +47,8 @@ namespace FinalProjectManger_server.Controllers
                  var lecturer3 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer3ID).FirstOrDefaultAsync();
 
                 var fullprojects = new List<ProjectFull>();
+                var fullProjectsInSession = new List<ProjectInSession>();
+                var counter = 1;
                 foreach (var proj in session.ProjectsID)
                 {
                     var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
@@ -55,8 +58,12 @@ namespace FinalProjectManger_server.Controllers
                     var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
                     var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB, proj.ProjectType, proj.projCode);
                     fullprojects.Add(fullProj);
+                    var fullProjInSession = new ProjectInSession(fullProj, counter++);
+                    fullProjectsInSession.Add(fullProjInSession);
                 }
-                var sessionFull = new SessionFull(session.Id, lecturer1, lecturer2, lecturer3, fullprojects, session.SessionNumber, session.ClassRoom);
+
+
+                var sessionFull = new SessionFull(session.Id, lecturer1, lecturer2, lecturer3, fullProjectsInSession, session.SessionNumber, session.ClassRoom);
                 FullSessions.Add(sessionFull);
             }
 
@@ -141,14 +148,6 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<ScheduleFull1>> GenerateSchedule()
         {
             var context = new UsersDbContext();
-            var sessionsForCheck = await context.Set<Domain.Session>().ToListAsync();
-            if (sessionsForCheck.Count > 0)
-            {
-                context.Set<Domain.Session>().RemoveRange(sessionsForCheck);
-                await context.SaveChangesAsync();
-            }
-            var sessionsForCheck2 = await context.Set<Domain.Session>().ToListAsync();
-
             var genetic = new Genetic();
             var projects = await context.Set<Domain.Project>().ToListAsync();
             var lecturers = await context.Set<Domain.Lecturer>().Include(x => x.constraints).ToListAsync();
@@ -205,8 +204,9 @@ namespace FinalProjectManger_server.Controllers
                 var lecturer1 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.ResponsibleLecturerID).FirstOrDefaultAsync();
                 var lecturer2 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer2ID).FirstOrDefaultAsync();
                 var lecturer3 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer3ID).FirstOrDefaultAsync();
-
+                var fullProjectsInSession = new List<ProjectInSession>();
                 var fullprojects = new List<ProjectFull>();
+                var counter = 1;
                 foreach (var proj in session.ProjectsID)
                 {
                     var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
@@ -216,8 +216,10 @@ namespace FinalProjectManger_server.Controllers
                     var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
                     var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB, proj.ProjectType, proj.projCode);
                     fullprojects.Add(fullProj);
+                    var fullProjInSession = new ProjectInSession(fullProj, counter++);
+                    fullProjectsInSession.Add(fullProjInSession);
                 }
-                var sessionFull = new SessionFull(session.Id, lecturer1, lecturer2, lecturer3, fullprojects, session.SessionNumber, session.ClassRoom);
+                var sessionFull = new SessionFull(session.Id, lecturer1, lecturer2, lecturer3, fullProjectsInSession, session.SessionNumber, session.ClassRoom);
                 FullSessions.Add(sessionFull);
             }
 

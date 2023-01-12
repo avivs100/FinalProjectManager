@@ -79,7 +79,13 @@ public class ProjectFull
 public class ProjectInSession
 {
     public ProjectFull ProjectFull { get; set; }
-    public int order { get; set; }
+    public int Order { get; set; }
+
+    public ProjectInSession(ProjectFull projectFull, int order)
+    {
+        ProjectFull = projectFull;
+        Order = order;
+    }
 }
 
 public class ProjectDetails
