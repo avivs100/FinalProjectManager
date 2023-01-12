@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Subscriber, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-schedule',
@@ -6,15 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-schedule.component.scss'],
 })
 export class CreateScheduleComponent {
+  @Output() public generateScheduleOutput = new EventEmitter();
+  @Output() public deleteScheduleOutput = new EventEmitter();
+  @Output() public manuelScheduleOutput = new EventEmitter();
+
   generateSchedule() {
-    console.log('need to generate schedule');
+    this.generateScheduleOutput.emit();
   }
 
   deleteSchedule() {
-    console.log('need to delete schedule');
+    this.deleteScheduleOutput.emit();
   }
 
   nevigateToManualEdit() {
-    console.log('need to nevigate To Manual Edit');
+    this.manuelScheduleOutput.emit();
   }
 }

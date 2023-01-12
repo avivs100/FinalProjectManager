@@ -259,9 +259,21 @@ namespace FinalProjectManger_server.Controllers
             return Ok(scheduleNew);
         }
 
+        [HttpDelete("RemoveSchedule")]
+        public async Task<ActionResult<bool>> RemovesSchedule()
+        {
+            var context = new UsersDbContext();
+            var schedule = await context.Set<Schedule>().FirstOrDefaultAsync();
+            if (schedule == null)
+                return NotFound(false);
+            context.Remove(schedule);
+            await context.SaveChangesAsync();
+            return Ok(true);
+        }
 
 
-        [HttpPost("RemoveLecturerFromSession/{sessionId}/{lecturerId}")]
+
+        [HttpDelete("RemoveLecturerFromSession/{sessionId}/{lecturerId}")]
         public async Task<ActionResult<bool>> RemoveLecturerFromSession([FromRoute] int sessionId, [FromRoute] int lecturerId)
         {
             var context = new UsersDbContext();
@@ -313,7 +325,7 @@ namespace FinalProjectManger_server.Controllers
             return Ok(true);
         }
 
-        [HttpPost("RemoveProjectFromSession/{sessionId}/{projectId}")]
+        [HttpDelete("RemoveProjectFromSession/{sessionId}/{projectId}")]
         public async Task<ActionResult<bool>> RemoveProjectFromSession([FromRoute] int sessionId, [FromRoute] int projectId)
         {
             var context = new UsersDbContext();
