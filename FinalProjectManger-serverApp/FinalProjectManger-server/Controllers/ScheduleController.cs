@@ -148,8 +148,18 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<ScheduleFull1>> GenerateSchedule()
         {
             var context = new UsersDbContext();
-            var genetic = new Genetic();
+            var sessionsForCheck = await context.Set<Domain.Session>().ToListAsync();
             var projects = await context.Set<Domain.Project>().ToListAsync();
+            if(sessionsForCheck.Count> 0)
+            {
+                foreach (var ses in sessionsForCheck)
+                {
+                    ses.ProjectsID = null;
+                }
+            }
+            context.RemoveRange(sessionsForCheck);
+            await context.SaveChangesAsync();
+            var genetic = new Genetic();
             var lecturers = await context.Set<Domain.Lecturer>().Include(x => x.constraints).ToListAsync();
             var cons = await context.Set<LecConstraint>().ToListAsync();
             var lecturersForGenetic = new List<TryGenetic.Lecturer>();
@@ -238,7 +248,7 @@ namespace FinalProjectManger_server.Controllers
 
 
 
-
+            
             classSessions1day1.Session1 = FullSessions[0];
             classSessions1day1.Session2 = FullSessions[4];
             classSessions1day1.Session3 = FullSessions[8];
