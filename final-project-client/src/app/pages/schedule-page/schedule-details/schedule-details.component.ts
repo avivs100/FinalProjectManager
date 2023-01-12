@@ -13,9 +13,7 @@ import { StateService } from 'src/app/services/state.service';
   styleUrls: ['./schedule-details.component.scss'],
 })
 export class ScheduleDetailsComponent implements OnInit {
-  constructor(private state: StateService) {
-    this.state.schedule = this.state.returnSceduleFull();
-  }
+  constructor(private state: StateService) {}
   ngOnInit(): void {
     if (this.state.schedule !== null) {
       this.schedule = this.state.schedule;

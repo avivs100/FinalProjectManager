@@ -2,6 +2,7 @@ import { SubSink } from 'subsink';
 import { AdminApiService } from 'src/app/services/admin-api.service';
 import { Component, OnDestroy } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-select-schedule-days-dialog',
@@ -12,7 +13,7 @@ export class SelectScheduleDaysDialogComponent implements OnDestroy {
   public dates: Date[] = [];
   public subs: SubSink = new SubSink();
 
-  constructor(private api: AdminApiService) {}
+  constructor(private api: AdminApiService, protected state: StateService) {}
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }

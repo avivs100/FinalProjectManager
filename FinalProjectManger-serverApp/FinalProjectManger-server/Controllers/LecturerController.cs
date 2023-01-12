@@ -56,10 +56,10 @@ namespace FinalProjectManger_server.Controllers
             return Ok(projectProposalsOfLecturer);
         }
         [HttpPut("PutLecturerConstraints")]
-        //TODO create with ef table for lecturer constraints and change return type to bool,
+        
         //TODO add the lc to the table, if the lecturer already have constraints so replace with this
-        //TODO create get method for this constraint by lecturer id, and also get all constraints for admin
-        //TODO make this method async
+        //Todo if the admin change dates for presentation clear all constrains 
+        
         public async Task<bool> PutLecturerConstraints([FromBody] LecturerConstraintDto details)
         {
             var context = new UsersDbContext();

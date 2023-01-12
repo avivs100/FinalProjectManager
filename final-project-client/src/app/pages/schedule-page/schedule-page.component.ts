@@ -16,11 +16,7 @@ export class ScheduleComponent implements OnInit {
     this.userType = state.connectedUser?.userType;
   }
   ngOnInit(): void {
-    this.schedule = this.state.returnSceduleFull();
+    this.schedule = this.state.schedule;
   }
   public schedule: ScheduleFull | null = null;
-
-  trySchedule() {
-    this.schedule = this.state.returnSceduleFull();
-  }
 }

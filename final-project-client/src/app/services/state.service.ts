@@ -18,6 +18,7 @@ import { StudentApiService } from './student-api.service';
 import { SubSink } from 'subsink';
 import { GeneralApiService } from './general-api.service';
 import { catchError, of, throwError } from 'rxjs';
+import { SchduleApiService } from './schdule-api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -73,7 +74,8 @@ export class StateService implements OnDestroy {
     private api: GeneralApiService,
     private adminApi: AdminApiService,
     private lecturerApi: LecturerApiService,
-    private studentApi: StudentApiService
+    private studentApi: StudentApiService,
+    private scheduleApi: SchduleApiService
   ) {}
 
   userLogedIn() {
@@ -91,10 +93,17 @@ export class StateService implements OnDestroy {
         console.log('app schedule dates from server', this.scheduleDates);
       });
 
-    this.subs.sink = this.adminApi.getStudents().subscribe((x) => {
-      this.students = x;
-      console.log('students from server', this.students);
+    this.subs.sink = this.scheduleApi.GetSchedule().subscribe((x) => {
+      this.schedule = x;
+      console.log('scedule from server ', x);
     });
+
+    this.subs.sink = this.subs.sink = this.adminApi
+      .getStudents()
+      .subscribe((x) => {
+        this.students = x;
+        console.log('students from server', this.students);
+      });
 
     this.subs.sink = this.adminApi.getAllLecturer().subscribe((x) => {
       this.lecturers = x;

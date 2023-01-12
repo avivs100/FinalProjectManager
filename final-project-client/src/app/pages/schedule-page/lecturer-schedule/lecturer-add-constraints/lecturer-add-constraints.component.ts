@@ -37,12 +37,14 @@ export class LecturerAddConstraintsComponent implements OnDestroy, OnInit {
   }
 
   saveConstrains() {
+    var session2after: number[] = [];
+    this.SelectedSession2.forEach((x) => session2after.push(x + 20));
     var lecturerConstraints: LecturerConstarintForDate = {
       lecturerId: this.state.connectedUser!.id,
       date1: this.dates!.date1,
       date2: this.dates!.date2,
-      sessions1: this.SelectedSession2,
-      sessions2: this.SelectedSession1,
+      sessions1: this.SelectedSession1,
+      sessions2: session2after,
     };
     this.subs.sink = this.api
       .PutLecturerConstraints(lecturerConstraints)

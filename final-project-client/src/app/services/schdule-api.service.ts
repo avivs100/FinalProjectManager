@@ -11,9 +11,8 @@ export class SchduleApiService {
   constructor(private http: HttpClient) {}
 
   GetSchedule(): Observable<ScheduleFull> {
-    return this.http.post<ScheduleFull>(
-      `${this.serverUrl}/Schedule/GetSchedule`,
-      null
+    return this.http.get<ScheduleFull>(
+      `${this.serverUrl}/Schedule/GetSchedule`
     );
   }
 
@@ -26,7 +25,7 @@ export class SchduleApiService {
 
   DeleteSchedule(): Observable<boolean> {
     return this.http.delete<boolean>(
-      `${this.serverUrl}/Schedule/GenerateSchedule`
+      `${this.serverUrl}/Schedule/RemoveSchedule`
     );
   }
 
