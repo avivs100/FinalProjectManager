@@ -42,17 +42,17 @@ export interface DayInSchedule {
 }
 
 export interface ClassSessions {
-  Session1: Session;
-  Session2: Session;
-  Session3: Session;
-  Session4: Session;
-  Session5: Session;
+  session1: Session;
+  session2: Session;
+  session3: Session;
+  session4: Session;
+  session5: Session;
   className: string;
   id: number;
 }
 
 export interface ProjectInSession {
-  project: ProjectFull;
+  projectFull: ProjectFull;
   order: number;
 }
 

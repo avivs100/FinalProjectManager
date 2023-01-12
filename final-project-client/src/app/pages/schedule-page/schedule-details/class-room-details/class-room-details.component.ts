@@ -9,7 +9,6 @@ import { ClassSessions } from 'src/app/models/schedule-models';
 export class ClassRoomDetailsComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ddddd', this.classSessions);
-    console.log('fhisman object ', this.classSessions!.Session1);
   }
   @Input() classSessions: ClassSessions | null = null;
 }
