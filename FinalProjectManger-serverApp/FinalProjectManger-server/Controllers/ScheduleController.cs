@@ -38,61 +38,83 @@ namespace FinalProjectManger_server.Controllers
             var classSessions3day2 = new ClassSessionsFull();
             var classSessions4day2 = new ClassSessionsFull();
 
-            classSessions1day1.Session1 = sessions[0];
-            classSessions1day1.Session2 = sessions[4];
-            classSessions1day1.Session3 = sessions[8];
-            classSessions1day1.Session4 = sessions[12];
-            classSessions1day1.Session5 = sessions[16];
-            classSessions1day1.ClassName = sessions[0].ClassRoom;
+            var FullSessions = new List<SessionFull>();
+            foreach (var session in sessions)
+            {
+                 var lecturer1 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.ResponsibleLecturerID).FirstOrDefaultAsync();
+                 var lecturer2 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer2ID).FirstOrDefaultAsync();
+                 var lecturer3 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer3ID).FirstOrDefaultAsync();
 
-            classSessions2day1.Session1 = sessions[1];
-            classSessions2day1.Session2 = sessions[5];
-            classSessions2day1.Session3 = sessions[9];
-            classSessions2day1.Session4 = sessions[13];
-            classSessions2day1.Session5 = sessions[17];
-            classSessions2day1.ClassName = sessions[1].ClassRoom;
+                var fullprojects = new List<ProjectFull>();
+                foreach (var proj in session.ProjectsID)
+                {
+                    var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
+                    var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
+                    var lecturer = await context.Set<Domain.Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
+                    var gradeA = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
+                    var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
+                    var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB, proj.ProjectType, proj.projCode);
+                    fullprojects.Add(fullProj);
+                }
+                var sessionFull = new SessionFull(session.Id, lecturer1, lecturer2, lecturer3, fullprojects, session.SessionNumber, session.ClassRoom);
+                FullSessions.Add(sessionFull);
+            }
 
-            classSessions3day1.Session1 = sessions[2];
-            classSessions3day1.Session2 = sessions[6];
-            classSessions3day1.Session3 = sessions[10];
-            classSessions3day1.Session4 = sessions[14];
-            classSessions3day1.Session5 = sessions[18];
-            classSessions3day1.ClassName = sessions[2].ClassRoom;
+            classSessions1day1.Session1 = FullSessions[0];
+            classSessions1day1.Session2 = FullSessions[4];
+            classSessions1day1.Session3 = FullSessions[8];
+            classSessions1day1.Session4 = FullSessions[12];
+            classSessions1day1.Session5 = FullSessions[16];
+            classSessions1day1.ClassName = FullSessions[0].ClassRoom;
 
-            classSessions4day1.Session1 = sessions[3];
-            classSessions4day1.Session2 = sessions[7];
-            classSessions4day1.Session3 = sessions[11];
-            classSessions4day1.Session4 = sessions[15];
-            classSessions4day1.Session5 = sessions[19];
-            classSessions4day1.ClassName = sessions[3].ClassRoom;
+            classSessions2day1.Session1 = FullSessions[1];
+            classSessions2day1.Session2 = FullSessions[5];
+            classSessions2day1.Session3 = FullSessions[9];
+            classSessions2day1.Session4 = FullSessions[13];
+            classSessions2day1.Session5 = FullSessions[17];
+            classSessions2day1.ClassName = FullSessions[1].ClassRoom;
 
-            classSessions1day2.Session1 = sessions[20];
-            classSessions1day2.Session2 = sessions[24];
-            classSessions1day2.Session3 = sessions[28];
-            classSessions1day2.Session4 = sessions[32];
-            classSessions1day2.Session5 = sessions[36];
-            classSessions1day2.ClassName = sessions[20].ClassRoom;
+            classSessions3day1.Session1 = FullSessions[2];
+            classSessions3day1.Session2 = FullSessions[6];
+            classSessions3day1.Session3 = FullSessions[10];
+            classSessions3day1.Session4 = FullSessions[14];
+            classSessions3day1.Session5 = FullSessions[18];
+            classSessions3day1.ClassName = FullSessions[2].ClassRoom;
 
-            classSessions2day2.Session1 = sessions[21];
-            classSessions2day2.Session2 = sessions[25];
-            classSessions2day2.Session3 = sessions[29];
-            classSessions2day2.Session4 = sessions[33];
-            classSessions2day2.Session5 = sessions[37];
-            classSessions2day2.ClassName = sessions[21].ClassRoom;
+            classSessions4day1.Session1 = FullSessions[3];
+            classSessions4day1.Session2 = FullSessions[7];
+            classSessions4day1.Session3 = FullSessions[11];
+            classSessions4day1.Session4 = FullSessions[15];
+            classSessions4day1.Session5 = FullSessions[19];
+            classSessions4day1.ClassName = FullSessions[3].ClassRoom;
 
-            classSessions3day2.Session1 = sessions[22];
-            classSessions3day2.Session2 = sessions[26];
-            classSessions3day2.Session3 = sessions[30];
-            classSessions3day2.Session4 = sessions[34];
-            classSessions3day2.Session5 = sessions[38];
-            classSessions3day2.ClassName = sessions[22].ClassRoom;
+            classSessions1day2.Session1 = FullSessions[20];
+            classSessions1day2.Session2 = FullSessions[24];
+            classSessions1day2.Session3 = FullSessions[28];
+            classSessions1day2.Session4 = FullSessions[32];
+            classSessions1day2.Session5 = FullSessions[36];
+            classSessions1day2.ClassName = FullSessions[20].ClassRoom;
 
-            classSessions4day2.Session1 = sessions[23];
-            classSessions4day2.Session2 = sessions[27];
-            classSessions4day2.Session3 = sessions[31];
-            classSessions4day2.Session4 = sessions[35];
-            classSessions4day2.Session5 = sessions[39];
-            classSessions4day2.ClassName = sessions[23].ClassRoom;
+            classSessions2day2.Session1 = FullSessions[21];
+            classSessions2day2.Session2 = FullSessions[25];
+            classSessions2day2.Session3 = FullSessions[29];
+            classSessions2day2.Session4 = FullSessions[33];
+            classSessions2day2.Session5 = FullSessions[37];
+            classSessions2day2.ClassName = FullSessions[21].ClassRoom;
+
+            classSessions3day2.Session1 = FullSessions[22];
+            classSessions3day2.Session2 = FullSessions[26];
+            classSessions3day2.Session3 = FullSessions[30];
+            classSessions3day2.Session4 = FullSessions[34];
+            classSessions3day2.Session5 = FullSessions[38];
+            classSessions3day2.ClassName = FullSessions[22].ClassRoom;
+
+            classSessions4day2.Session1 = FullSessions[23];
+            classSessions4day2.Session2 = FullSessions[27];
+            classSessions4day2.Session3 = FullSessions[31];
+            classSessions4day2.Session4 = FullSessions[35];
+            classSessions4day2.Session5 = FullSessions[39];
+            classSessions4day2.ClassName = FullSessions[23].ClassRoom;
 
             var dayInSchedule1 = new DayInScheduleFull1();
             dayInSchedule1.ClassSessions1 = classSessions1day1;
@@ -119,6 +141,14 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<ScheduleFull1>> GenerateSchedule()
         {
             var context = new UsersDbContext();
+            var sessionsForCheck = await context.Set<Domain.Session>().ToListAsync();
+            if (sessionsForCheck.Count > 0)
+            {
+                context.Set<Domain.Session>().RemoveRange(sessionsForCheck);
+                await context.SaveChangesAsync();
+            }
+            var sessionsForCheck2 = await context.Set<Domain.Session>().ToListAsync();
+
             var genetic = new Genetic();
             var projects = await context.Set<Domain.Project>().ToListAsync();
             var lecturers = await context.Set<Domain.Lecturer>().Include(x => x.constraints).ToListAsync();
@@ -168,6 +198,32 @@ namespace FinalProjectManger_server.Controllers
             {
                 context.Add(session);
             }
+
+            var FullSessions = new List<SessionFull>();
+            foreach (var session in sessions)
+            {
+                var lecturer1 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.ResponsibleLecturerID).FirstOrDefaultAsync();
+                var lecturer2 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer2ID).FirstOrDefaultAsync();
+                var lecturer3 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer3ID).FirstOrDefaultAsync();
+
+                var fullprojects = new List<ProjectFull>();
+                foreach (var proj in session.ProjectsID)
+                {
+                    var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
+                    var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
+                    var lecturer = await context.Set<Domain.Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
+                    var gradeA = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
+                    var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
+                    var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB, proj.ProjectType, proj.projCode);
+                    fullprojects.Add(fullProj);
+                }
+                var sessionFull = new SessionFull(session.Id, lecturer1, lecturer2, lecturer3, fullprojects, session.SessionNumber, session.ClassRoom);
+                FullSessions.Add(sessionFull);
+            }
+
+
+
+
             var classSessions1day1 = new ClassSessionsFull();
             var classSessions2day1 = new ClassSessionsFull();
             var classSessions3day1 = new ClassSessionsFull();
@@ -178,61 +234,64 @@ namespace FinalProjectManger_server.Controllers
             var classSessions3day2 = new ClassSessionsFull();
             var classSessions4day2 = new ClassSessionsFull();
 
-            classSessions1day1.Session1 = sessions[0];
-            classSessions1day1.Session2 = sessions[4];
-            classSessions1day1.Session3 = sessions[8];
-            classSessions1day1.Session4 = sessions[12];
-            classSessions1day1.Session5 = sessions[16];
-            classSessions1day1.ClassName = sessions[0].ClassRoom;
 
-            classSessions2day1.Session1 = sessions[1];
-            classSessions2day1.Session2 = sessions[5];
-            classSessions2day1.Session3 = sessions[9];
-            classSessions2day1.Session4 = sessions[13];
-            classSessions2day1.Session5 = sessions[17];
-            classSessions2day1.ClassName = sessions[1].ClassRoom;
 
-            classSessions3day1.Session1 = sessions[2];
-            classSessions3day1.Session2 = sessions[6];
-            classSessions3day1.Session3 = sessions[10];
-            classSessions3day1.Session4 = sessions[14];
-            classSessions3day1.Session5 = sessions[18];
-            classSessions3day1.ClassName = sessions[2].ClassRoom;
 
-            classSessions4day1.Session1 = sessions[3];
-            classSessions4day1.Session2 = sessions[7];
-            classSessions4day1.Session3 = sessions[11];
-            classSessions4day1.Session4 = sessions[15];
-            classSessions4day1.Session5 = sessions[19];
-            classSessions4day1.ClassName = sessions[3].ClassRoom;
+            classSessions1day1.Session1 = FullSessions[0];
+            classSessions1day1.Session2 = FullSessions[4];
+            classSessions1day1.Session3 = FullSessions[8];
+            classSessions1day1.Session4 = FullSessions[12];
+            classSessions1day1.Session5 = FullSessions[16];
+            classSessions1day1.ClassName = FullSessions[0].ClassRoom;
 
-            classSessions1day2.Session1 = sessions[20];
-            classSessions1day2.Session2 = sessions[24];
-            classSessions1day2.Session3 = sessions[28];
-            classSessions1day2.Session4 = sessions[32];
-            classSessions1day2.Session5 = sessions[36];
-            classSessions1day2.ClassName = sessions[20].ClassRoom;
+            classSessions2day1.Session1 = FullSessions[1];
+            classSessions2day1.Session2 = FullSessions[5];
+            classSessions2day1.Session3 = FullSessions[9];
+            classSessions2day1.Session4 = FullSessions[13];
+            classSessions2day1.Session5 = FullSessions[17];
+            classSessions2day1.ClassName = FullSessions[1].ClassRoom;
 
-            classSessions2day2.Session1 = sessions[21];
-            classSessions2day2.Session2 = sessions[25];
-            classSessions2day2.Session3 = sessions[29];
-            classSessions2day2.Session4 = sessions[33];
-            classSessions2day2.Session5 = sessions[37];
-            classSessions2day2.ClassName = sessions[21].ClassRoom;
+            classSessions3day1.Session1 = FullSessions[2];
+            classSessions3day1.Session2 = FullSessions[6];
+            classSessions3day1.Session3 = FullSessions[10];
+            classSessions3day1.Session4 = FullSessions[14];
+            classSessions3day1.Session5 = FullSessions[18];
+            classSessions3day1.ClassName = FullSessions[2].ClassRoom;
 
-            classSessions3day2.Session1 = sessions[22];
-            classSessions3day2.Session2 = sessions[26];
-            classSessions3day2.Session3 = sessions[30];
-            classSessions3day2.Session4 = sessions[34];
-            classSessions3day2.Session5 = sessions[38];
-            classSessions3day2.ClassName = sessions[22].ClassRoom;
+            classSessions4day1.Session1 = FullSessions[3];
+            classSessions4day1.Session2 = FullSessions[7];
+            classSessions4day1.Session3 = FullSessions[11];
+            classSessions4day1.Session4 = FullSessions[15];
+            classSessions4day1.Session5 = FullSessions[19];
+            classSessions4day1.ClassName = FullSessions[3].ClassRoom;
 
-            classSessions4day2.Session1 = sessions[23];
-            classSessions4day2.Session2 = sessions[27];
-            classSessions4day2.Session3 = sessions[31];
-            classSessions4day2.Session4 = sessions[35];
-            classSessions4day2.Session5 = sessions[39];
-            classSessions4day2.ClassName = sessions[23].ClassRoom;
+            classSessions1day2.Session1 = FullSessions[20];
+            classSessions1day2.Session2 = FullSessions[24];
+            classSessions1day2.Session3 = FullSessions[28];
+            classSessions1day2.Session4 = FullSessions[32];
+            classSessions1day2.Session5 = FullSessions[36];
+            classSessions1day2.ClassName = FullSessions[20].ClassRoom;
+
+            classSessions2day2.Session1 = FullSessions[21];
+            classSessions2day2.Session2 = FullSessions[25];
+            classSessions2day2.Session3 = FullSessions[29];
+            classSessions2day2.Session4 = FullSessions[33];
+            classSessions2day2.Session5 = FullSessions[37];
+            classSessions2day2.ClassName = FullSessions[21].ClassRoom;
+
+            classSessions3day2.Session1 = FullSessions[22];
+            classSessions3day2.Session2 = FullSessions[26];
+            classSessions3day2.Session3 = FullSessions[30];
+            classSessions3day2.Session4 = FullSessions[34];
+            classSessions3day2.Session5 = FullSessions[38];
+            classSessions3day2.ClassName = FullSessions[22].ClassRoom;
+
+            classSessions4day2.Session1 = FullSessions[23];
+            classSessions4day2.Session2 = FullSessions[27];
+            classSessions4day2.Session3 = FullSessions[31];
+            classSessions4day2.Session4 = FullSessions[35];
+            classSessions4day2.Session5 = FullSessions[39];
+            classSessions4day2.ClassName = FullSessions[23].ClassRoom;
 
             var dayInSchedule1 = new DayInScheduleFull1();
             dayInSchedule1.ClassSessions1 = classSessions1day1;
