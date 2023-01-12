@@ -165,80 +165,80 @@ export class StateService implements OnDestroy {
     this.subs.unsubscribe();
   }
 
-  returnSceduleFull(): ScheduleFull {
-    var schedule = {
-      dayOne: this.returnDayInSchedule(false, 1),
-      dayTwo: this.returnDayInSchedule(false, 2),
-      id: 12344,
-    };
+  // returnSceduleFull(): ScheduleFull {
+  //   var schedule = {
+  //     dayOne: this.returnDayInSchedule(false, 1),
+  //     dayTwo: this.returnDayInSchedule(false, 2),
+  //     id: 12344,
+  //   };
 
-    console.log(schedule);
-    return schedule;
-  }
+  //   console.log(schedule);
+  //   return schedule;
+  // }
 
-  returnDayInSchedule(day: boolean, id: number): DayInSchedule {
-    var dayOne: DayInSchedule = {
-      classSessions1: this.returnClassSessions('1', 1),
-      classSessions2: this.returnClassSessions('2', 2),
-      classSessions3: this.returnClassSessions('3', 3),
-      classSessions4: this.returnClassSessions('4', 4),
-      day: day,
-      id: id,
-    };
-    return dayOne;
-  }
+  // returnDayInSchedule(day: boolean, id: number): DayInSchedule {
+  //   var dayOne: DayInSchedule = {
+  //     classSessions1: this.returnClassSessions('1', 1),
+  //     classSessions2: this.returnClassSessions('2', 2),
+  //     classSessions3: this.returnClassSessions('3', 3),
+  //     classSessions4: this.returnClassSessions('4', 4),
+  //     day: day,
+  //     id: id,
+  //   };
+  //   return dayOne;
+  // }
 
-  returnSession(id: number, sessionNum: number): Session {
-    return {
-      id: id,
-      lecturer2: this.lecturer,
-      lecturer3: this.lecturer,
-      projects: this.returnProjectInSession(),
-      responsibleLecturer: this.lecturer,
-      sessionNumber: sessionNum,
-    };
-  }
+  // returnSession(id: number, sessionNum: number): Session {
+  //   return {
+  //     id: id,
+  //     lecturer2: this.lecturer,
+  //     lecturer3: this.lecturer,
+  //     projects: this.returnProjectInSession(),
+  //     responsibleLecturer: this.lecturer,
+  //     sessionNumber: sessionNum,
+  //   };
+  // }
 
-  returnProjectInSession(): ProjectInSession[] {
-    var projectInSession = [
-      {
-        order: 0,
-        project: this.projects![0],
-      },
-      {
-        order: 1,
-        project: this.projects![1],
-      },
-      {
-        order: 2,
-        project: this.projects![2],
-      },
-      {
-        order: 3,
-        project: this.projects![3],
-      },
-      {
-        order: 4,
-        project: this.projects![4],
-      },
-      {
-        order: 5,
-        project: this.projects![5],
-      },
-    ];
+  // returnProjectInSession(): ProjectInSession[] {
+  //   var projectInSession = [
+  //     {
+  //       order: 0,
+  //       project: this.projects![0],
+  //     },
+  //     {
+  //       order: 1,
+  //       project: this.projects![1],
+  //     },
+  //     {
+  //       order: 2,
+  //       project: this.projects![2],
+  //     },
+  //     {
+  //       order: 3,
+  //       project: this.projects![3],
+  //     },
+  //     {
+  //       order: 4,
+  //       project: this.projects![4],
+  //     },
+  //     {
+  //       order: 5,
+  //       project: this.projects![5],
+  //     },
+  //   ];
 
-    return projectInSession;
-  }
+  //   return projectInSession;
+  // }
 
-  returnClassSessions(className: string, id: number): ClassSessions {
-    return <ClassSessions>{
-      className: className,
-      Session1: this.returnSession(1, 1),
-      Session2: this.returnSession(2, 2),
-      Session3: this.returnSession(3, 3),
-      Session4: this.returnSession(4, 4),
-      Session5: this.returnSession(5, 5),
-      id: id,
-    };
-  }
+  // returnClassSessions(className: string, id: number): ClassSessions {
+  //   return <ClassSessions>{
+  //     className: className,
+  //     Session1: this.returnSession(1, 1),
+  //     Session2: this.returnSession(2, 2),
+  //     Session3: this.returnSession(3, 3),
+  //     Session4: this.returnSession(4, 4),
+  //     Session5: this.returnSession(5, 5),
+  //     id: id,
+  //   };
+  // }
 }

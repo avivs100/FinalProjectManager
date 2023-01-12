@@ -63,4 +63,5 @@ export interface Session {
   lecturer3: Lecturer;
   projects: ProjectInSession[];
   sessionNumber: number;
+  classRoom: string;
 }
