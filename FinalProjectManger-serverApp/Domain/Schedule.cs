@@ -38,4 +38,22 @@ namespace Domain
             }
         }
     }
-}
+
+    public class ScheduleFull1
+    {
+        public int Id { get; set; }
+        public DayInScheduleFull1 DayOne { get; set; }
+        public DayInScheduleFull1 DayTwo { get; set; }
+        public ScheduleFull1() 
+        {
+            Id = new Random().Next();
+        }
+        public ScheduleFull1(DayInScheduleFull1 dayOne, DayInScheduleFull1 dayTwo)
+        {
+            Id = new Random().Next();
+            DayOne= dayOne;
+            DayTwo= dayTwo;
+        }
+    }
+    }
+

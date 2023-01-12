@@ -67,10 +67,10 @@ namespace Domain
         }
         public class ClassRoomNames
         {
-            public static string ClassRoom1Name = "L700";
-            public static string ClassRoom2Name = "L701";
-            public static string ClassRoom3Name = "L702";
-            public static string ClassRoom4Name = "L703";
+            public const string ClassRoom1Name = "L700";
+            public const string ClassRoom2Name = "L701";
+            public const string ClassRoom3Name = "L702";
+            public const string ClassRoom4Name = "L703";
         }
     }
 }
