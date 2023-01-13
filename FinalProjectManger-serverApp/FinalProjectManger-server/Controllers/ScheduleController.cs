@@ -66,7 +66,9 @@ namespace FinalProjectManger_server.Controllers
                 var sessionFull = new SessionFull(session.Id, lecturer1, lecturer2, lecturer3, fullProjectsInSession, session.SessionNumber, session.ClassRoom);
                 FullSessions.Add(sessionFull);
             }
-
+            var temp = FullSessions.OrderBy(x => x.SessionNumber);
+            var FullSessionsToClassSessions = temp.Reverse();
+            FullSessions = FullSessionsToClassSessions.ToList();
             classSessions1day1.Session1 = FullSessions[0];
             classSessions1day1.Session2 = FullSessions[4];
             classSessions1day1.Session3 = FullSessions[8];
