@@ -60,11 +60,11 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
   }
 
   showToast(msg: string) {
+    this.messageService.clear();
     this.messageService.add({
       severity: 'success',
       summary: 'Success',
-      detail:
-        'Your Account added with success, if you a lecturer you need to wait for admin aprove',
+      detail: msg,
     });
   }
 }

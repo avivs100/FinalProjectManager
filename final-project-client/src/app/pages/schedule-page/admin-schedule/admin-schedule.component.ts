@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Console } from 'console';
+import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { ScheduleFull } from 'src/app/models/schedule-models';
 import { SchduleApiService } from 'src/app/services/schdule-api.service';
@@ -15,13 +16,14 @@ export class AdminScheduleComponent implements OnDestroy {
   constructor(
     private router: Router,
     protected state: StateService,
-    private sceduleApi: SchduleApiService
+    private sceduleApi: SchduleApiService,
+    private messageService: MessageService
   ) {}
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
 
-  public scedule: ScheduleFull | null = null;
+  public scedule$ = this.sceduleApi.GetSchedule();
   public subs: Subscription = new Subscription();
 
   public navigateToScheduleDetails() {
@@ -32,8 +34,8 @@ export class AdminScheduleComponent implements OnDestroy {
     console.log('generate schedule');
     this.subs.add(
       this.sceduleApi.GenerateSchedule().subscribe((x) => {
-        this.state.schedule = x;
-        this.scedule = x;
+        this.scedule$ = this.sceduleApi.GetSchedule();
+        this.showToast('Schedule is Created ');
       })
     );
   }
@@ -41,13 +43,24 @@ export class AdminScheduleComponent implements OnDestroy {
   deleteSchedule() {
     console.log('delete schedule');
     this.subs.add(
-      this.sceduleApi
-        .DeleteSchedule()
-        .subscribe((x) => console.log('schedule is removed? : ', x))
+      this.sceduleApi.DeleteSchedule().subscribe((x) => {
+        console.log('schedule is removed? : ', x);
+        this.showToast('your schedule is deleted ' + x);
+        this.scedule$ = this.sceduleApi.GetSchedule();
+      })
     );
   }
 
   nevigateToManualEdit() {
     console.log('navigate to manuel editing schedule page');
+  }
+
+  showToast(msg: string) {
+    this.messageService.clear();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: msg,
+    });
   }
 }

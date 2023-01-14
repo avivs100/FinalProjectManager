@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Subscriber, Subscription } from 'rxjs';
 
 @Component({
@@ -7,6 +8,7 @@ import { Subscriber, Subscription } from 'rxjs';
   styleUrls: ['./create-schedule.component.scss'],
 })
 export class CreateScheduleComponent {
+  constructor(private messageService: MessageService) {}
   @Output() public generateScheduleOutput = new EventEmitter();
   @Output() public deleteScheduleOutput = new EventEmitter();
   @Output() public manuelScheduleOutput = new EventEmitter();
@@ -21,5 +23,14 @@ export class CreateScheduleComponent {
 
   nevigateToManualEdit() {
     this.manuelScheduleOutput.emit();
+  }
+
+  showToast(msg: string) {
+    this.messageService.clear();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: msg,
+    });
   }
 }
