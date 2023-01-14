@@ -8,6 +8,7 @@ import { SubSink } from 'subsink';
 import { ProjectFull } from 'src/app/models/project-grade-models';
 import { CreateProjectProposalDialogComponent } from '../create-project-proposal-dialog/create-project-proposal-dialog.component';
 import { filter } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   providers: [DialogService],
@@ -23,7 +24,8 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
     private state: StateService,
     private api: StudentApiService,
     private router: Router,
-    private dialog: DialogService
+    private dialog: DialogService,
+    private messageService: MessageService
   ) {}
   ngOnInit(): void {
     this.project = this.state.project;
@@ -44,11 +46,25 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
 
       this.subs.sink = this.api
         .AddNewProjectProposal(formData)
-        .subscribe((x) => console.log('response from server', x));
+        .subscribe((x) => {
+          console.log('response from server', x);
+          this.showToast(
+            'your proposal is sent to lecturer with name' + x.projectName
+          );
+        });
     });
   }
 
   navigateToProjectDetails() {
     this.router.navigate(['home/project']);
+  }
+
+  showToast(msg: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail:
+        'Your Account added with success, if you a lecturer you need to wait for admin aprove',
+    });
   }
 }
