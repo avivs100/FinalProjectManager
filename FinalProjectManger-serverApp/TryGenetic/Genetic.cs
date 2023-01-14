@@ -63,7 +63,7 @@ namespace TryGenetic
         public int numOfSessions = 40;
         public List<Solution> Solutions { get; set; } = new List<Solution>();
         public int numOfBestSolutions = 100;
-        public double Treshold = 0.1;
+        public double Treshold = 0.2;
         public int NumOfProjectsInSession = 6;
         public int lecNumbers { get; set; }
         public int projNumber { get; set; }
