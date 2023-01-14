@@ -141,23 +141,24 @@ namespace FinalProjectManger_server.Controllers
             scheduleNew.DayOne = dayInSchedule1;
             scheduleNew.DayTwo = dayInSchedule2;
 
-            foreach (var sess in FullSessions)
-            {
-                if(sess.Lecturer2.id == sess.Lecturer3.id || sess.Lecturer2.id == sess.ResponsibleLecturer.id || sess.ResponsibleLecturer.id == sess.Lecturer3.id)
-                {
-                    Console.WriteLine();
-                }
-                if (sess.Projects[0].ProjectFull.ProjectId == sess.Projects[1].ProjectFull.ProjectId || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[2].ProjectFull.ProjectId
-                    || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId
-                    || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[2].ProjectFull.ProjectId || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId
-                    || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId
-                    || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId
-                    || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId || sess.Projects[3].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId
-                    || sess.Projects[3].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId || sess.Projects[4].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId)
-                {
-                    Console.WriteLine();
-                }
-            }
+            //check if the gentic is good
+            //foreach (var sess in FullSessions)
+            //{
+            //    if(sess.Lecturer2.id == sess.Lecturer3.id || sess.Lecturer2.id == sess.ResponsibleLecturer.id || sess.ResponsibleLecturer.id == sess.Lecturer3.id)
+            //    {
+            //        Console.WriteLine();
+            //    }
+            //    if (sess.Projects[0].ProjectFull.ProjectId == sess.Projects[1].ProjectFull.ProjectId || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[2].ProjectFull.ProjectId
+            //        || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId
+            //        || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[2].ProjectFull.ProjectId || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId
+            //        || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId
+            //        || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId
+            //        || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId || sess.Projects[3].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId
+            //        || sess.Projects[3].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId || sess.Projects[4].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId)
+            //    {
+            //        Console.WriteLine();
+            //    }
+            //}
 
 
             return Ok(scheduleNew);
@@ -168,18 +169,19 @@ namespace FinalProjectManger_server.Controllers
         {
             var context = new UsersDbContext();
             var sessionsForCheck = await context.Set<Domain.Session>().ToListAsync();
+            var projectsForSession = await context.Set<ProjectForSession>().ToListAsync();
             var projects = await context.Set<Domain.Project>().ToListAsync();
-            //if(sessionsForCheck.Count> 0)
-            //{
-            //    foreach (var ses in sessionsForCheck)
-            //    {
-            //        ses.ProjectsID = null;
-            //    }
-            //    context.RemoveRange(sessionsForCheck);
-            //    await context.SaveChangesAsync();
-            //}
-            //context.RemoveRange(sessionsForCheck);
-            //await context.SaveChangesAsync();
+            if (sessionsForCheck.Count > 0)
+            {
+                context.RemoveRange(projectsForSession);
+                await context.SaveChangesAsync();
+                foreach (var ses in sessionsForCheck)
+                {
+                    ses.ProjectsForSessionID = null;
+                }
+                context.RemoveRange(sessionsForCheck);
+                await context.SaveChangesAsync();
+            }
             var genetic = new Genetic();
             var lecturers = await context.Set<Domain.Lecturer>().Include(x => x.constraints).ToListAsync();
             var cons = await context.Set<LecConstraint>().ToListAsync();
@@ -354,17 +356,20 @@ namespace FinalProjectManger_server.Controllers
         {
             var context = new UsersDbContext();
             var sessionsForCheck = await context.Set<Domain.Session>().ToListAsync();
-            var projects = await context.Set<Domain.Project>().ToListAsync();
+            var projectsForSession = await context.Set<ProjectForSession>().ToListAsync();
             if (sessionsForCheck.Count > 0)
             {
+                context.RemoveRange(projectsForSession);
+                await context.SaveChangesAsync();
                 foreach (var ses in sessionsForCheck)
                 {
                     ses.ProjectsForSessionID = null;
                 }
+                context.RemoveRange(sessionsForCheck);
+                await context.SaveChangesAsync();
+                return Ok(true);
             }
-            context.RemoveRange(sessionsForCheck);
-            await context.SaveChangesAsync();
-            return Ok(true);
+            return NotFound(false);
         }
 
 
