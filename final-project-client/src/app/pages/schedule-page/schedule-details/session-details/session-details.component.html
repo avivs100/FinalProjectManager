@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="grid" [ngClass]="{ classname: itsMySession }">
   <div class="col-12 grid">
     <div class="col-2 font-bold">Responsible Lecturer:</div>
     <div class="col-1">
@@ -18,12 +18,14 @@
     </div>
     <p-divider class="col-1" layout="vertical"></p-divider>
     <div class="col-2 font-bold">Lecturer 3</div>
-    <div class="col-2">
+    <div class="col-1">
       <div class="field-width field">
         {{ session!.responsibleLecturer.firstName }}
         {{ session!.responsibleLecturer.lastName }}
       </div>
     </div>
+    <p-divider class="col-1" layout="vertical"></p-divider>
+    <div class="col-2 font-bold bg-green-100">Session time: {{ time }}</div>
 
     <p-table
       class="col-12"
@@ -36,8 +38,8 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Project Name</th>
-          <th>Student Id 1</th>
-          <th>Student Id 2</th>
+          <th>Student 1 Name</th>
+          <th>Student 2 Name</th>
           <th>Project Type</th>
         </tr>
       </ng-template>
