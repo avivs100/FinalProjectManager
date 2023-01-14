@@ -29,33 +29,33 @@ public class UsersDbContext : DbContext
 
         modelBuilder.Entity<Admin>().Property(e => e.id).ValueGeneratedNever();
 
-        modelBuilder.Entity<LecturerGrade>().Property(e => e.Id).ValueGeneratedNever();
-        modelBuilder.Entity<LecturerGrade>().OwnsOne(x => x.Grade1);
-        modelBuilder.Entity<LecturerGrade>().OwnsOne(x => x.Grade2);
+        //modelBuilder.Entity<LecturerGrade>().Property(e => e.Id).ValueGeneratedNever();
+        //modelBuilder.Entity<LecturerGrade>().OwnsOne(x => x.Grade1);
+        //modelBuilder.Entity<LecturerGrade>().OwnsOne(x => x.Grade2);
 
-        modelBuilder.Entity<BookGrade>().Property(e => e.Id).ValueGeneratedNever();
-        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.AnalysisAndConclusion);
-        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.UIandAPPguides);
-        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.Research);
-        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.Organization);
-        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.SwQuality);
-        modelBuilder.Entity<BookGrade>().OwnsOne(x => x.GeneralEvaluation);
+        //modelBuilder.Entity<BookGrade>().Property(e => e.Id).ValueGeneratedNever();
+        //modelBuilder.Entity<BookGrade>().OwnsOne(x => x.AnalysisAndConclusion);
+        //modelBuilder.Entity<BookGrade>().OwnsOne(x => x.UIandAPPguides);
+        //modelBuilder.Entity<BookGrade>().OwnsOne(x => x.Research);
+        //modelBuilder.Entity<BookGrade>().OwnsOne(x => x.Organization);
+        //modelBuilder.Entity<BookGrade>().OwnsOne(x => x.SwQuality);
+        //modelBuilder.Entity<BookGrade>().OwnsOne(x => x.GeneralEvaluation);
 
-        modelBuilder.Entity<PresentationGrade>().Property(e => e.Id).ValueGeneratedNever();
-        modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.Organization);
-        modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.QualityOfProblem);
-        modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.TechnicalQuality);
-        modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.GeneralEvaluation);
+        //modelBuilder.Entity<PresentationGrade>().Property(e => e.Id).ValueGeneratedNever();
+        //modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.Organization);
+        //modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.QualityOfProblem);
+        //modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.TechnicalQuality);
+        //modelBuilder.Entity<PresentationGrade>().OwnsOne(x => x.GeneralEvaluation);
 
-        modelBuilder.Entity<GradeA>().Property(e => e.gradeAid).ValueGeneratedNever();
-        modelBuilder.Entity<GradeA>().HasOne(x => x.bookGrade);
-        modelBuilder.Entity<GradeA>().HasOne(x => x.presentationGrade);
-        modelBuilder.Entity<GradeA>().HasOne(x => x.lecturerGrade);
+        //modelBuilder.Entity<GradeA>().Property(e => e.gradeAid).ValueGeneratedNever();
+        //modelBuilder.Entity<GradeA>().HasOne(x => x.bookGrade);
+        //modelBuilder.Entity<GradeA>().HasOne(x => x.presentationGrade);
+        //modelBuilder.Entity<GradeA>().HasOne(x => x.lecturerGrade);
 
-        modelBuilder.Entity<GradeB>().Property(e => e.gradeBid).ValueGeneratedNever();
-        modelBuilder.Entity<GradeB>().HasOne(x => x.bookGrade);
-        modelBuilder.Entity<GradeB>().HasOne(x => x.presentationGrade);
-        modelBuilder.Entity<GradeB>().HasOne(x => x.lecturerGrade);
+        //modelBuilder.Entity<GradeB>().Property(e => e.gradeBid).ValueGeneratedNever();
+        //modelBuilder.Entity<GradeB>().HasOne(x => x.bookGrade);
+        //modelBuilder.Entity<GradeB>().HasOne(x => x.presentationGrade);
+        //modelBuilder.Entity<GradeB>().HasOne(x => x.lecturerGrade);
 
         modelBuilder.Entity<Project>().Property(e => e.ProjectId).ValueGeneratedNever();
 

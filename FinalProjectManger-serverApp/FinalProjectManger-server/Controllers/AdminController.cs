@@ -288,12 +288,6 @@ namespace FinalProjectManger_server.Controllers
             if (proposal == null)
                 return NotFound(false);
             Project project = new Project();
-            var gradeA = new GradeA();
-            var gradeB = new GradeB();
-            context.Add(gradeA);
-            context.Add(gradeB);
-            project.gradeAId = gradeA.gradeAid;
-            project.gradeBId = gradeB.gradeBid;
             project.LecturerId = proposal.LecturerID;
             project.ProjectName = proposal.ProjectName;
             project.ProjectType = proposal.ProjectType;

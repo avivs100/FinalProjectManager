@@ -54,9 +54,7 @@ namespace FinalProjectManger_server.Controllers
                     var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
                     var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
                     var lecturer = await context.Set<Domain.Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
-                    var gradeA = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
-                    var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
-                    var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB, proj.ProjectType, proj.projCode);
+                    var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, proj.ProjectType, proj.projCode);
                     fullprojects.Add(fullProj);
                     var fullProjInSession = new ProjectInSession(fullProj, counter++);
                     fullProjectsInSession.Add(fullProjInSession);
@@ -143,6 +141,25 @@ namespace FinalProjectManger_server.Controllers
             scheduleNew.DayOne = dayInSchedule1;
             scheduleNew.DayTwo = dayInSchedule2;
 
+            foreach (var sess in FullSessions)
+            {
+                if(sess.Lecturer2.id == sess.Lecturer3.id || sess.Lecturer2.id == sess.ResponsibleLecturer.id || sess.ResponsibleLecturer.id == sess.Lecturer3.id)
+                {
+                    Console.WriteLine();
+                }
+                if (sess.Projects[0].ProjectFull.ProjectId == sess.Projects[1].ProjectFull.ProjectId || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[2].ProjectFull.ProjectId
+                    || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId || sess.Projects[0].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId
+                    || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[2].ProjectFull.ProjectId || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId
+                    || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId || sess.Projects[1].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId
+                    || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[3].ProjectFull.ProjectId || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId
+                    || sess.Projects[2].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId || sess.Projects[3].ProjectFull.ProjectId == sess.Projects[4].ProjectFull.ProjectId
+                    || sess.Projects[3].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId || sess.Projects[4].ProjectFull.ProjectId == sess.Projects[5].ProjectFull.ProjectId)
+                {
+                    Console.WriteLine();
+                }
+            }
+
+
             return Ok(scheduleNew);
         }
 
@@ -158,9 +175,11 @@ namespace FinalProjectManger_server.Controllers
                 {
                     ses.ProjectsID = null;
                 }
+                context.RemoveRange(sessionsForCheck);
+                await context.SaveChangesAsync();
             }
-            context.RemoveRange(sessionsForCheck);
-            await context.SaveChangesAsync();
+            //context.RemoveRange(sessionsForCheck);
+            //await context.SaveChangesAsync();
             var genetic = new Genetic();
             var lecturers = await context.Set<Domain.Lecturer>().Include(x => x.constraints).ToListAsync();
             var cons = await context.Set<LecConstraint>().ToListAsync();
@@ -178,7 +197,7 @@ namespace FinalProjectManger_server.Controllers
             var projectsForGenetic = new List<TryGenetic.Project>();
             foreach (var proj in projects)
             {
-                var projForGenetic = new TryGenetic.Project(proj.ProjectId, proj.ProjectName, proj.LecturerId, proj.student1Id, proj.student2Id, proj.gradeAId, proj.gradeBId, (TryGenetic.ProjectType)proj.ProjectType, proj.projCode);
+                var projForGenetic = new TryGenetic.Project(proj.ProjectId, proj.ProjectName, proj.LecturerId, proj.student1Id, proj.student2Id, (TryGenetic.ProjectType)proj.ProjectType, proj.projCode);
                 projectsForGenetic.Add(projForGenetic);
             }
             genetic.CreatePopulation(lecturersForGenetic, projectsForGenetic);
@@ -224,9 +243,7 @@ namespace FinalProjectManger_server.Controllers
                     var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
                     var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
                     var lecturer = await context.Set<Domain.Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
-                    var gradeA = await context.Set<GradeA>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeAid == proj.gradeAId).FirstOrDefaultAsync();
-                    var gradeB = await context.Set<GradeB>().Include(x => x.bookGrade).Include(x => x.presentationGrade).Include(x => x.lecturerGrade).Where(x => x.gradeBid == proj.gradeBId).FirstOrDefaultAsync();
-                    var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, gradeA, gradeB, proj.ProjectType, proj.projCode);
+                    var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, proj.ProjectType, proj.projCode);
                     fullprojects.Add(fullProj);
                     var fullProjInSession = new ProjectInSession(fullProj, counter++);
                     fullProjectsInSession.Add(fullProjInSession);
@@ -325,9 +342,9 @@ namespace FinalProjectManger_server.Controllers
             scheduleNew.DayOne = dayInSchedule1;
             scheduleNew.DayTwo = dayInSchedule2;
 
-            context.Add(day1);
-            context.Add(day2);
-            context.Add(schedule);
+            //context.Add(day1);
+            //context.Add(day2);
+            //context.Add(schedule);
             await context.SaveChangesAsync();
             return Ok(scheduleNew);
         }
@@ -336,10 +353,16 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<bool>> RemovesSchedule()
         {
             var context = new UsersDbContext();
-            var schedule = await context.Set<Schedule>().FirstOrDefaultAsync();
-            if (schedule == null)
-                return NotFound(false);
-            context.Remove(schedule);
+            var sessionsForCheck = await context.Set<Domain.Session>().ToListAsync();
+            var projects = await context.Set<Domain.Project>().ToListAsync();
+            if (sessionsForCheck.Count > 0)
+            {
+                foreach (var ses in sessionsForCheck)
+                {
+                    ses.ProjectsID = null;
+                }
+            }
+            context.RemoveRange(sessionsForCheck);
             await context.SaveChangesAsync();
             return Ok(true);
         }
