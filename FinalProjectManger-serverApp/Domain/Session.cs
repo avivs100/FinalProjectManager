@@ -14,19 +14,19 @@ namespace Domain
         public long ResponsibleLecturerID { get; set; }
         public long Lecturer2ID { get; set; }
         public long Lecturer3ID { get; set; }
-        public List<Project> ProjectsID { get; set; }
+        public List<ProjectForSession> ProjectsForSessionID { get; set; }
         public int SessionNumber { get; set; }
         public string ClassRoom { get; set; }
 
         public Session() { }
 
-        public Session(long responsibleLecturerID, long lecturer2ID, long lecturer3ID, List<Project> projectsID, int sessionNumber)
+        public Session(long responsibleLecturerID, long lecturer2ID, long lecturer3ID, List<ProjectForSession> projectsForSessionID, int sessionNumber)
         {
             Id = new Random().Next();
             ResponsibleLecturerID = responsibleLecturerID;
             Lecturer2ID = lecturer2ID;
             Lecturer3ID = lecturer3ID;
-            ProjectsID = projectsID;
+            ProjectsForSessionID = projectsForSessionID;
             SessionNumber = sessionNumber;
             ClassRoom = ConvertFromSessionNumToClassRoom(sessionNumber);
         }
