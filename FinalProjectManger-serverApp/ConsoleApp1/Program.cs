@@ -17,12 +17,12 @@ void SeedDb()
 {
     using var context = new UsersDbContext();
     //add 120 students
-    for (int i = 0; i < 120; i++)
+    for (int i = 0; i < 200; i++)
     {   
         if(i == 2)
             context.Set<Student>().Add(new Student(i, UserType.student, "Sagi", "Fishman", "1", "default@gmail.com"));
         else
-            context.Set<Student>().Add(new Student(i, UserType.student, "FirstName " + i, "LastName " + i, "1", "default@gmail.com"));
+            context.Set<Student>().Add(new Student(i, UserType.student, "Fname " + i, "Lname " + i, "1", "default@gmail.com"));
     }
     //add 30 lecturers
     for (int i = 0; i < 30; i++)
@@ -50,7 +50,7 @@ void SeedDb()
     var tempListOfStudents = students;
 
     //add 60 projects
-    for (int i = 0; i < 60; i++)
+    for (int i = 0; i < 100; i++)
     {
         var tempStudent1 = tempListOfStudents[new Random().Next(tempListOfStudents.Count)];
         var tempStudent2 = tempListOfStudents[new Random().Next(tempListOfStudents.Count)];
