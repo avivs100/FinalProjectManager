@@ -3,7 +3,7 @@
     <div class="text-5xl">Proposals After Aprove</div>
   </div>
   <app-proposal-list
-    [proposals]="state.proposalAfterAprove"
+    [proposals]="proposalsAfterAprove$ | async"
     (goToProposalDetails)="goToProposalDetails($event)"
   ></app-proposal-list>
 
@@ -11,7 +11,7 @@
     <div class="text-5xl">Proposals Before Lecturer Reference</div>
   </div>
   <app-proposal-list
-    [proposals]="state.proposals"
+    [proposals]="proposals$ | async"
     (goToProposalDetails)="goToProposalDetails($event)"
   ></app-proposal-list>
 </div>

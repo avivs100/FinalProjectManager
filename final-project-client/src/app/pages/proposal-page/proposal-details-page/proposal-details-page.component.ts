@@ -6,6 +6,7 @@ import { LecturerApiService } from 'src/app/services/lecturer-api.service';
 import { SubSink } from 'subsink';
 import { AdminApiService } from 'src/app/services/admin-api.service';
 import { UserType } from 'src/app/models/enums';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proposal-details-page',
@@ -16,7 +17,8 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
   constructor(
     private state: StateService,
     private api: LecturerApiService,
-    private adminApi: AdminApiService
+    private adminApi: AdminApiService,
+    private router: Router
   ) {}
   public CodeFromInput: string = '';
   public subs: SubSink = new SubSink();
@@ -53,7 +55,10 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
     console.log('approve and delete proposal with id ', id);
     this.subs.sink = this.api
       .aproveProposal(this.details!.id)
-      .subscribe((x) => console.log('proposal was approved ? ', x));
+      .subscribe((x) => {
+        console.log('proposal was approved ? ', x);
+        this.router.navigate(['home/proposals']);
+      });
   }
 
   setCode() {
@@ -69,7 +74,10 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
     console.log(this.details!.id, this.code!);
     this.subs.sink = this.adminApi
       .aproveProposal(this.details!.id, this.code!)
-      .subscribe((x) => console.log('proposal was approved by admin ? ', x));
+      .subscribe((x) => {
+        console.log('proposal was approved by admin ? ', x);
+        this.router.navigate(['home/proposals']);
+      });
   }
 
   deny(id: number) {

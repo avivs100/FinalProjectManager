@@ -15,6 +15,10 @@ export class AdminApiService {
 
   constructor(private http: HttpClient) {}
 
+  deleteProject(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.serverUrl}/Project/${id}`);
+  }
+
   getAdmin(id: number): Observable<Admin> {
     return this.http.get<Admin>(`${this.serverUrl}/Admin/${id}`);
   }

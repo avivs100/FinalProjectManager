@@ -17,6 +17,7 @@ export class PremissionsPageComponent implements OnInit {
     private router: Router
   ) {}
   public subs: SubSink = new SubSink();
+  public premissions$ = this.api.getPremissions();
   public premissions: premission[] | null = null;
 
   ngOnInit(): void {
@@ -25,31 +26,16 @@ export class PremissionsPageComponent implements OnInit {
   }
 
   aproveLecturerPremission(id: number) {
-    this.subs.sink = this.api
-      .aproveLecturerPremission(id)
-      .subscribe((x) => console.log('aproved lecturer with id ', id, x));
-
-    this.subs.sink = this.api
-      .getPremissions()
-      .pipe(delay(2000))
-      .subscribe((x) => {
-        this.state.premissions = x;
-        this.premissions = this.state.premissions;
-      });
+    this.subs.sink = this.api.aproveLecturerPremission(id).subscribe((x) => {
+      console.log('aproved lecturer with id ', id, x);
+      this.premissions$ = this.api.getPremissions();
+    });
   }
 
   deleteLecturerPremission(id: number) {
-    this.subs.sink = this.api
-      .deleteLecturerPremission(id)
-      .subscribe((x) =>
-        console.log('deleted lecturer premission with id ', id, x)
-      );
-    this.subs.sink = this.api
-      .getPremissions()
-      .pipe(delay(2000))
-      .subscribe((x) => {
-        this.state.premissions = x;
-        this.premissions = this.state.premissions;
-      });
+    this.subs.sink = this.api.deleteLecturerPremission(id).subscribe((x) => {
+      console.log('deleted lecturer premission with id ', id, x);
+      this.premissions$ = this.api.getPremissions();
+    });
   }
 }

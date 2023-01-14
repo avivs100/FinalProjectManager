@@ -35,93 +35,101 @@
       ></p-button>
     </p-card>
 
-    <p-card class="col-4 grid">
-      <div class="text-2xl mb-5 col-12">
-        Send message to specific project (lecturer and students)
+    <p-card class="col-4">
+      <div class="grid">
+        <div class="text-2xl mb-5 col-12">
+          Send message to specific project (lecturer and students)
+        </div>
+        <p-dropdown
+          class="col-5"
+          [options]="state.projects!"
+          optionValue="projectId"
+          [(ngModel)]="idOfProjectSend"
+          placeholder="Select Project"
+          ><ng-template let-project pTemplate="selectedItem">
+            <div>{{ project.projectName }} {{ project.projectId }}</div>
+          </ng-template>
+          <ng-template let-project pTemplate="item">
+            {{ project.projectName }} -id :{{ project.projectId }}
+          </ng-template>
+        </p-dropdown>
+        <p-button
+          label="Create Message"
+          class="col-3"
+          (onClick)="createMessage(2)"
+        ></p-button>
+        <p-button
+          class="ml-2 col-3"
+          label="Send"
+          [disabled]="messageTo1Project === null || idOfProjectSend === null"
+          (onClick)="SendEmailTo2StudentsByProjectId()"
+        ></p-button>
       </div>
-      <p-dropdown
-        class="col-5"
-        [options]="state.projects!"
-        optionValue="projectId"
-        [(ngModel)]="idOfProjectSend"
-        placeholder="Select Project"
-        ><ng-template let-project pTemplate="selectedItem">
-          <div>{{ project.projectName }} {{ project.projectId }}</div>
-        </ng-template>
-        <ng-template let-project pTemplate="item">
-          {{ project.projectName }} -id :{{ project.projectId }}
-        </ng-template>
-      </p-dropdown>
-      <p-button
-        label="Create Message"
-        class="col-1"
-        (onClick)="createMessage(2)"
-      ></p-button>
-      <p-button
-        class="ml-2 col-1"
-        label="Send"
-        [disabled]="messageTo1Project === null || idOfProjectSend === null"
-        (onClick)="SendEmailTo2StudentsByProjectId()"
-      ></p-button>
     </p-card>
 
-    <p-card class="col-4 grid">
-      <div class="text-2xl mb-5 col-12">Send message to specific student</div>
-      <p-dropdown
-        class="col-5"
-        [options]="state.students!"
-        optionValue="id"
-        [(ngModel)]="idOfStudentSend"
-        placeholder="Select Student"
-        ><ng-template let-student pTemplate="selectedItem">
-          <div>{{ student.firstName }} {{ student.lastName }}</div>
-        </ng-template>
-        <ng-template let-student pTemplate="item">
-          {{ student.firstName }} {{ student.lastName }} {{ student.id }}
-        </ng-template>
-      </p-dropdown>
-      <p-button
-        label="Create Message"
-        class="col-1"
-        (onClick)="createMessage(0)"
-      ></p-button>
-      <p-button
-        class="ml-2 col-1"
-        label="Send"
-        [disabled]="messageTo1Student === null || idOfStudentSend === null"
-        (onClick)="SendEmailTo1Student()"
-      ></p-button>
+    <p-card class="col-4">
+      <div class="grid">
+        <div class="text-2xl mb-5 col-12">Send message to specific student</div>
+        <p-dropdown
+          class="col-5"
+          [options]="state.students!"
+          optionValue="id"
+          [(ngModel)]="idOfStudentSend"
+          placeholder="Select Student"
+          ><ng-template let-student pTemplate="selectedItem">
+            <div>{{ student.firstName }} {{ student.lastName }}</div>
+          </ng-template>
+          <ng-template let-student pTemplate="item">
+            {{ student.firstName }} {{ student.lastName }} {{ student.id }}
+          </ng-template>
+        </p-dropdown>
+        <p-button
+          label="Create Message"
+          class="col-3"
+          (onClick)="createMessage(0)"
+        ></p-button>
+        <p-button
+          class="ml-2 col-3"
+          label="Send"
+          [disabled]="messageTo1Student === null || idOfStudentSend === null"
+          (onClick)="SendEmailTo1Student()"
+        ></p-button>
+      </div>
     </p-card>
 
-    <p-card class="col-4 grid">
-      <div class="text-2xl mb-5 col-12">Send message to specific lecturer</div>
-      <p-dropdown
-        class="col-5"
-        [options]="state.lecturers!"
-        optionValue="id"
-        placeholder="Select Lecturer"
-        [(ngModel)]="idOfLecturerSend"
-      >
-        <ng-template let-lecturer pTemplate="selectedItem">
-          <div>
+    <p-card class="col-4">
+      <div class="grid">
+        <div class="text-2xl mb-5 col-12">
+          Send message to specific lecturer
+        </div>
+        <p-dropdown
+          class="col-5"
+          [options]="state.lecturers!"
+          optionValue="id"
+          placeholder="Select Lecturer"
+          [(ngModel)]="idOfLecturerSend"
+        >
+          <ng-template let-lecturer pTemplate="selectedItem">
+            <div>
+              {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+            </div>
+          </ng-template>
+          <ng-template let-lecturer pTemplate="item">
             {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
-          </div>
-        </ng-template>
-        <ng-template let-lecturer pTemplate="item">
-          {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
-        </ng-template></p-dropdown
-      >
-      <p-button
-        class="col-1"
-        label="Create Message"
-        (onClick)="createMessage(1)"
-      ></p-button>
-      <p-button
-        class="ml-2 col-1"
-        label="Send"
-        [disabled]="messageTo1Lecturer === null || idOfLecturerSend === null"
-        (onClick)="SendEmailTo1Lecturer()"
-      ></p-button>
+          </ng-template></p-dropdown
+        >
+        <p-button
+          class="col-3"
+          label="Create Message"
+          (onClick)="createMessage(1)"
+        ></p-button>
+        <p-button
+          class="ml-2 col-3"
+          label="Send"
+          [disabled]="messageTo1Lecturer === null || idOfLecturerSend === null"
+          (onClick)="SendEmailTo1Lecturer()"
+        ></p-button>
+      </div>
     </p-card>
   </div>
 </div>
