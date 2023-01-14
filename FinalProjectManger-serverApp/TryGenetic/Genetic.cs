@@ -73,6 +73,11 @@ namespace TryGenetic
         {
             for (int j = 0; j < popSize; j++)
             {
+                var tempProjects = new List<TryGenetic.Project>();
+                foreach (var item in projects)
+                {
+                    tempProjects.Add(item);
+                }
                 var geneList = new List<Gene>();
                 for (int i = 0; i < numOfSessions; i++)
                 {
@@ -84,7 +89,13 @@ namespace TryGenetic
                     while (!(gene.AddLec(3, lecturers[new Random().Next(lecturers.Count)]))) ;
                     while(gene.Projects.Count < NumOfProjectsInSession)
                     {
-                        gene.AddProjs(projects[new Random().Next(projects.Count)]);
+                        if (tempProjects.Count == 0)
+                            break;
+                        var temp = new Random().Next(tempProjects.Count);
+                        if (gene.AddProjs(tempProjects[temp]) == true)
+                        {
+                            tempProjects.Remove(tempProjects[temp]);
+                        }
                     }
                     geneList.Add(gene);
                 }
@@ -186,7 +197,10 @@ namespace TryGenetic
                     for (int k = 0; k < 6; k++)
                     {
                         var randSolutionIndex = new Random().Next(numOfBestSolutions);
-                        var randProjIndex = new Random().Next(1, 6);
+                        if (BestSolutions[randSolutionIndex].genes[i].Projects.Count == 0)
+                            break;
+                        var randProjIndex = new Random().Next(1, BestSolutions[randSolutionIndex].genes[i].Projects.Count);
+
                         Project projTemp;
                         projTemp = BestSolutions[randSolutionIndex].genes[i].Projects[randProjIndex];
                         if (gene.AddProjs(projTemp) == false)
