@@ -20,12 +20,12 @@ namespace FinalProjectManger_server.Services
             return dayInSchedule;
         }
 
-        public List<Domain.Project> ConvertToProject(List<TryGenetic.Project> projs)
+        public List<ProjectForSession> ConvertToProject(List<TryGenetic.Project> projs)
         {
-            var listOfProjects = new List<Domain.Project>();
+            var listOfProjects = new List<ProjectForSession>();
             foreach (var proj in projs)
             {
-                var newProj = new Domain.Project(proj.ProjectName, proj.LecturerId, proj.student1Id, proj.student2Id, (Domain.ProjectType)proj.ProjectType, proj.projCode);
+                var newProj = new ProjectForSession(proj.ProjectName, proj.LecturerId, proj.student1Id, proj.student2Id, (Domain.ProjectType)proj.ProjectType, proj.projCode);
                 listOfProjects.Add(newProj);
             }
             return listOfProjects;

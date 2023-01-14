@@ -63,7 +63,12 @@ public class UsersDbContext : DbContext
 
         modelBuilder.Entity<Premission>().Property(e => e.Id).ValueGeneratedNever();
 
+        modelBuilder.Entity<ProjectForSession>().Property(e => e.ProjectSessionId).ValueGeneratedNever();
+
+
         modelBuilder.Entity<Session>().Property(e => e.Id).ValueGeneratedNever();
+        modelBuilder.Entity<Session>().HasMany(x=>x.ProjectsForSessionID);
+
 
         modelBuilder.Entity<DayInSchedule>().Property(e => e.Id).ValueGeneratedNever();
 
