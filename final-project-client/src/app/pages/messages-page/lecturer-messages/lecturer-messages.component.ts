@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { filter } from 'rxjs';
 import { LecturerApiService } from 'src/app/services/lecturer-api.service';
@@ -26,7 +27,8 @@ export class LecturerMessagesComponent implements OnDestroy, OnInit {
     private dialog: DialogService,
     private messageService: MessageServiceApi,
     public state: StateService,
-    private lecturerApi: LecturerApiService
+    private lecturerApi: LecturerApiService,
+    private toastMessageService: MessageService
   ) {}
   ngOnDestroy(): void {
     this.subs.unsubscribe();
@@ -88,6 +90,7 @@ export class LecturerMessagesComponent implements OnDestroy, OnInit {
       )
       .subscribe((x) => {
         console.log(x);
+        this.showToast(x);
         this.messageTo1Student = null;
         this.message = null;
       });
@@ -109,6 +112,7 @@ export class LecturerMessagesComponent implements OnDestroy, OnInit {
       )
       .subscribe((x) => {
         console.log(x);
+        this.showToast(x);
         this.messageTo1Project = null;
         this.message = null;
       });
@@ -137,5 +141,21 @@ export class LecturerMessagesComponent implements OnDestroy, OnInit {
     //     this.messageTo1Project = null;
     //     this.message = null;
     //   });
+  }
+  showToast(x: boolean) {
+    this.toastMessageService.clear();
+    if (x == true) {
+      this.toastMessageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Your Massege Sent Successfully',
+      });
+    } else {
+      this.toastMessageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Error, faild to send the message',
+      });
+    }
   }
 }

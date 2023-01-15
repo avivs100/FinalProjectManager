@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { filter } from 'rxjs';
 import { MessageServiceApi } from 'src/app/services/message.service';
@@ -32,7 +33,8 @@ export class StudentMessagesComponent implements OnDestroy, OnInit {
     private dialog: DialogService,
     private messageService: MessageServiceApi,
     public state: StateService,
-    private studentApi: StudentApiService
+    private studentApi: StudentApiService,
+    private toastMessageService: MessageService
   ) {}
 
   ngOnDestroy(): void {
@@ -120,7 +122,7 @@ export class StudentMessagesComponent implements OnDestroy, OnInit {
         this.messageTo1Project.message
       )
       .subscribe((x) => {
-        console.log(x);
+        this.showToast(x);
         this.messageTo1Project = null;
         this.message = null;
       });
@@ -141,9 +143,26 @@ export class StudentMessagesComponent implements OnDestroy, OnInit {
         this.messageTo1lecturer.message
       )
       .subscribe((x) => {
-        console.log(x);
+        this.showToast(x);
         this.messageTo1lecturer = null;
         this.message = null;
       });
+  }
+
+  showToast(x: boolean) {
+    this.toastMessageService.clear();
+    if (x == true) {
+      this.toastMessageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Your Massege Sent Successfully',
+      });
+    } else {
+      this.toastMessageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Error, faild to send the message',
+      });
+    }
   }
 }
