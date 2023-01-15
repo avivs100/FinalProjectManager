@@ -37,6 +37,14 @@ export class SessionDetailsComponent implements OnChanges {
     ) {
       this.itsMySession = true;
     }
+    this.session!.projects.forEach((x) => {
+      if (
+        x.projectFull.student1.id == this.state.connectedUser!.id ||
+        x.projectFull!.student2.id == this.state.connectedUser!.id
+      ) {
+        this.itsMySession = true;
+      }
+    });
   }
   @Input() session: Session | null = null;
   @Input() number: Number | null = null;
