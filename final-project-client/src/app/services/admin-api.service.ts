@@ -5,6 +5,7 @@ import {
   ProjectFull,
   ProjectProposalDetailsWithStatus,
 } from '../models/project-grade-models';
+import { ScheduleDates } from '../models/schedule-models';
 import { Admin, Student, Lecturer, premission } from '../models/users-models';
 
 @Injectable({
@@ -63,8 +64,10 @@ export class AdminApiService {
     return this.http.get<Lecturer>(`${this.serverUrl}/Lecturer/${id}`);
   }
 
-  getScheduleDates(): Observable<any> {
-    return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  getScheduleDates(): Observable<ScheduleDates> {
+    return this.http.get<ScheduleDates>(
+      `${this.serverUrl}/Lecturer/ScheduleDates`
+    );
   }
 
   getPremissions(): Observable<premission[]> {
