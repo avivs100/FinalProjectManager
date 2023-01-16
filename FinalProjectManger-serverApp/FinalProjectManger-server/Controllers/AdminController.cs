@@ -177,7 +177,7 @@ namespace FinalProjectManger_server.Controllers
             var students = await context.Set<Student>().ToListAsync();
             foreach (var student in students)
             {
-                var msg = "Hi, " + student.FirstName + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+                var msg = "Hi, " + student.FirstName + " " + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
                 sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
             }
             return Ok(true);
@@ -191,7 +191,7 @@ namespace FinalProjectManger_server.Controllers
             var lecturers = await context.Set<Lecturer>().ToListAsync();
             foreach (var lecturer in lecturers)
             {
-                var msg = "Hi, " + lecturer.FirstName + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+                var msg = "Hi, " + lecturer.FirstName + " " + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
                 sender.SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, details.Subject, msg);
             }
             return Ok(true);
@@ -206,12 +206,12 @@ namespace FinalProjectManger_server.Controllers
             var students = await context.Set<Student>().ToListAsync();
             foreach (var lecturer in lecturers)
             {
-                var msg = "Hi, " + lecturer.FirstName + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+                var msg = "Hi, " + lecturer.FirstName + " " + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
                 sender.SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, details.Subject, msg);
             }
             foreach (var student in students)
             {
-                var msg = "Hi, " + student.FirstName + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+                var msg = "Hi, " + student.FirstName + " " + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
                 sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
             }
             return Ok(true);
@@ -225,7 +225,7 @@ namespace FinalProjectManger_server.Controllers
             var student = await context.Set<Student>().Where(x => x.id == StudentId).FirstOrDefaultAsync();
             if(student == null)
                 return NotFound(false);
-            var msg = "Hi, " + student.FirstName + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+            var msg = "Hi, " + student.FirstName + " " + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
             sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
             return Ok(true);
         }
@@ -238,7 +238,7 @@ namespace FinalProjectManger_server.Controllers
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == LecturerId).FirstOrDefaultAsync();
             if (lecturer == null)
                 return NotFound(false);
-            var msg = "Hi, " + lecturer.FirstName + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+            var msg = "Hi, " + lecturer.FirstName + " " + lecturer.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
             sender.SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, details.Subject, msg);
             return Ok(true);
         }
@@ -301,6 +301,20 @@ namespace FinalProjectManger_server.Controllers
 
         }
 
+
+        [HttpPut("SendEmailsAfterScheduleDates")]
+        public async Task<ActionResult<bool>> SendEmailsAfterScheduleDates()
+        {
+            var context = new UsersDbContext();
+            EmailService sender = new EmailService();
+            var lecturers = await context.Set<Lecturer>().ToListAsync();
+            foreach (var lecturer in lecturers)
+            {
+                var msg = "Hi, " + lecturer.FirstName + " " + lecturer.LastName + "\n" + "Dates for presentation is published, please enter your constraints" + "\n" + "From: " + "Admin";
+                sender.SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, "Presentation dates", msg);
+            }
+            return Ok(true);
+        }
 
 
 

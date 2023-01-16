@@ -6,7 +6,7 @@ using Domain;
 
 
 using (var context = new UsersDbContext())
-{ 
+{
     context.Database.EnsureDeleted();
     context.Database.EnsureCreated();
 }
@@ -17,7 +17,19 @@ SeedDb();
 void SeedDb()
 {
     using var context = new UsersDbContext();
+    //add Sagi 
+    context.Set<Student>().Add(new Student(2, UserType.student, "Sagi", "Fishman", "1", "sagifishman1@gmail.com"));
+    //add Erez 
+    var tempLec = new Lecturer(4, UserType.lecturer, "Erez ", "Eres", "1", "sagifishman1@gmail.com");
+    tempLec.IsActive= true;
+    var tempCon = new Random().Next(21);
+    tempLec.constraints.Add(new LecConstraint(tempCon));
+    tempLec.constraints.Add(new LecConstraint(tempCon + 5));
+    tempLec.constraints.Add(new LecConstraint(tempCon + 10));
+    tempLec.constraints.Add(new LecConstraint(tempCon + 15));
+    context.Set<Lecturer>().Add(tempLec);
     //add 120 students
+<<<<<<< HEAD
     for (int i = 0; i < 201; i++)
     {   
         if(i==4)continue;
@@ -25,16 +37,27 @@ void SeedDb()
             context.Set<Student>().Add(new Student(i, UserType.student, "Sagi", "Fishman", "1", "default@gmail.com"));
         else
             context.Set<Student>().Add(new Student(i, UserType.student, "Fname " + i, "Lname " + i, "1", "default@gmail.com"));
+=======
+    for (int i = 100; i < 299; i++)
+    {
+        context.Set<Student>().Add(new Student(i, UserType.student, "Fname " + i, "Lname " + i, "1", "default@gmail.com"));
+>>>>>>> 66730788994865b6df3d1cdb3a9bee3cf69d3048
     }
     //add 30 lecturers
-    for (int i = 0; i < 30; i++)
+    for (int i = 600; i < 629; i++)
     {
+<<<<<<< HEAD
         Lecturer tempLec;
         if (i == 4)
             tempLec = new Lecturer(i, UserType.lecturer, "Erez ", "Eres", "1", "default@gmail.com",true);
         else
             tempLec = new Lecturer(i, UserType.lecturer, "Fname " + i, "Lname " + i, "1", "default@gmail.com");
         var tempCon = new Random().Next(21);
+=======
+
+        tempLec = new Lecturer(i, UserType.lecturer, "Fname " + i, "Lname " + i, "1", "default@gmail.com");
+        tempCon = new Random().Next(21);
+>>>>>>> 66730788994865b6df3d1cdb3a9bee3cf69d3048
         tempLec.constraints.Add(new LecConstraint(tempCon));
         tempLec.constraints.Add(new LecConstraint(tempCon + 5));
         tempLec.constraints.Add(new LecConstraint(tempCon + 10));
@@ -56,17 +79,15 @@ void SeedDb()
     {
         var tempStudent1 = tempListOfStudents[new Random().Next(tempListOfStudents.Count)];
         var tempStudent2 = tempListOfStudents[new Random().Next(tempListOfStudents.Count)];
-        var tempLec = lecturers[new Random().Next(lecturers.Count)];
+        tempLec = lecturers[new Random().Next(lecturers.Count)];
         context.Set<Project>().Add(new Project("Name " + i, tempLec.id, tempStudent1.id,
             tempStudent2.id, ProjectType.Research, "Code " + i));
         tempListOfStudents.Remove(tempStudent1);
         tempListOfStudents.Remove(tempStudent2);
     }
     context.SaveChanges();
-    var lecForPermission = lecturers.Where(x => x.id == 2).FirstOrDefault();
-    var lecForPermission2 = lecturers.Where(x => x.id == 8).FirstOrDefault();
+    var lecForPermission = lecturers.Where(x => x.id == 4).FirstOrDefault();
     context.Set<Premission>().Add(new Premission(lecForPermission.id, lecForPermission.FirstName + " " + lecForPermission.LastName));
-    context.Set<Premission>().Add(new Premission(lecForPermission2.id, lecForPermission2.FirstName + " " + lecForPermission2.LastName));
 
     var projectProposal = new ProjectProposal("Project proposal 1", ProjectType.Development, "Development because .....", "keyword1", "general description1",
         "main tools1", "planned Working Process During The First Semester1", "product of the work1", 2, 3, false, 4);
