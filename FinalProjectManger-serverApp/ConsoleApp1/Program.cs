@@ -29,35 +29,16 @@ void SeedDb()
     tempLec.constraints.Add(new LecConstraint(tempCon + 15));
     context.Set<Lecturer>().Add(tempLec);
     //add 120 students
-<<<<<<< HEAD
-    for (int i = 0; i < 201; i++)
-    {   
-        if(i==4)continue;
-        if(i == 2)
-            context.Set<Student>().Add(new Student(i, UserType.student, "Sagi", "Fishman", "1", "default@gmail.com"));
-        else
-            context.Set<Student>().Add(new Student(i, UserType.student, "Fname " + i, "Lname " + i, "1", "default@gmail.com"));
-=======
     for (int i = 100; i < 299; i++)
     {
         context.Set<Student>().Add(new Student(i, UserType.student, "Fname " + i, "Lname " + i, "1", "default@gmail.com"));
->>>>>>> 66730788994865b6df3d1cdb3a9bee3cf69d3048
     }
     //add 30 lecturers
     for (int i = 600; i < 629; i++)
     {
-<<<<<<< HEAD
-        Lecturer tempLec;
-        if (i == 4)
-            tempLec = new Lecturer(i, UserType.lecturer, "Erez ", "Eres", "1", "default@gmail.com",true);
-        else
-            tempLec = new Lecturer(i, UserType.lecturer, "Fname " + i, "Lname " + i, "1", "default@gmail.com");
-        var tempCon = new Random().Next(21);
-=======
 
         tempLec = new Lecturer(i, UserType.lecturer, "Fname " + i, "Lname " + i, "1", "default@gmail.com");
         tempCon = new Random().Next(21);
->>>>>>> 66730788994865b6df3d1cdb3a9bee3cf69d3048
         tempLec.constraints.Add(new LecConstraint(tempCon));
         tempLec.constraints.Add(new LecConstraint(tempCon + 5));
         tempLec.constraints.Add(new LecConstraint(tempCon + 10));
