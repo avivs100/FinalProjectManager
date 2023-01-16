@@ -346,9 +346,6 @@ namespace FinalProjectManger_server.Controllers
             scheduleNew.DayOne = dayInSchedule1;
             scheduleNew.DayTwo = dayInSchedule2;
 
-            //context.Add(day1);
-            //context.Add(day2);
-            //context.Add(schedule);
             await context.SaveChangesAsync();
             return Ok(scheduleNew);
         }
@@ -372,26 +369,6 @@ namespace FinalProjectManger_server.Controllers
                 return Ok(true);
             }
             return NotFound(false);
-        }
-
-
-
-        [HttpDelete("RemoveLecturerFromSession/{sessionId}/{lecturerId}")]
-        public async Task<ActionResult<bool>> RemoveLecturerFromSession([FromRoute] int sessionId, [FromRoute] int lecturerId)
-        {
-            var context = new UsersDbContext();
-            var lecturer = await context.Set<Domain.Lecturer>().Where(x => x.id == lecturerId).FirstOrDefaultAsync();
-            var session = await context.Set<Session>().Where(x => x.Id == sessionId).FirstOrDefaultAsync();
-            if (lecturer == null || session == null)
-                return NotFound(false);
-            if (session.Lecturer2ID == lecturer.id)
-                session.Lecturer2ID = 0;
-            if (session.Lecturer3ID == lecturer.id)
-                session.Lecturer3ID = 0;
-            if (session.ResponsibleLecturerID == lecturer.id)
-                session.ResponsibleLecturerID = 0;
-            await context.SaveChangesAsync();
-            return Ok(true);
         }
 
         [HttpPost("UpdateSession")]

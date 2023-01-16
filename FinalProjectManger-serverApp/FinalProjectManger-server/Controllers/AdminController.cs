@@ -302,18 +302,12 @@ namespace FinalProjectManger_server.Controllers
         }
 
 
-        [HttpPut("SendEmailsAfterSchedule")]
-        public async Task<ActionResult<bool>> SendEmailsAfterSchedule()
+        [HttpPut("SendEmailsAfterScheduleDates")]
+        public async Task<ActionResult<bool>> SendEmailsAfterScheduleDates()
         {
-            EmailService sender = new EmailService();
             var context = new UsersDbContext();
-            var students = await context.Set<Student>().ToListAsync();
+            EmailService sender = new EmailService();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
-            foreach (var student in students)
-            {
-                var msg = "Hi, " + student.FirstName + " " + student.LastName + "\n" + "Dates for presentation is published" + "\n" + "From: " + "Admin";
-                sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, "Presentation dates", msg);
-            }
             foreach (var lecturer in lecturers)
             {
                 var msg = "Hi, " + lecturer.FirstName + " " + lecturer.LastName + "\n" + "Dates for presentation is published, please enter your constraints" + "\n" + "From: " + "Admin";
