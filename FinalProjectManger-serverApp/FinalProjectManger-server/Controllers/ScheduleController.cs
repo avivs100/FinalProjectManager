@@ -66,7 +66,8 @@ namespace FinalProjectManger_server.Controllers
             }
             var temp = FullSessions.OrderBy(x => x.SessionNumber);
             var FullSessionsToClassSessions = temp.Reverse();
-            FullSessions = FullSessionsToClassSessions.ToList();
+            //FullSessions = FullSessionsToClassSessions.ToList();
+            FullSessions = temp.ToList();
             classSessions1day1.Session1 = FullSessions[0];
             classSessions1day1.Session2 = FullSessions[4];
             classSessions1day1.Session3 = FullSessions[8];
@@ -225,6 +226,7 @@ namespace FinalProjectManger_server.Controllers
             var day1 = scheduleService.CreateDayInSchedule(true, sessions.Take(sessions.Count / 2).ToList());
             sessions.Reverse();
             var day2 = scheduleService.CreateDayInSchedule(false, sessions.Take(sessions.Count / 2).ToList());
+            sessions.Reverse();
             var schedule = new Schedule(day1.Id, day2.Id);
             foreach (var session in sessions)
             {
