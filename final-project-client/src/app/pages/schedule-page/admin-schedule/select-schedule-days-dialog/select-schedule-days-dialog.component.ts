@@ -43,7 +43,7 @@ export class SelectScheduleDaysDialogComponent implements OnDestroy {
       date2: datesStr[1],
     };
     this.subs.sink = this.api.putScheduleDates(datesToSend).subscribe((x) => {
-      this.showToast('Schedule Dates Are Saved :' + x.valueOf());
+      this.showToast('Schedule Dates Are Saved ');
       this.dates$ = this.genApi.getScheduleDate();
     });
   }
