@@ -134,4 +134,21 @@ export class MessageServiceApi {
       details
     );
   }
+
+  SendEmailTo1Admin(
+    id: number,
+    from: string,
+    subject: string,
+    message: string
+  ) {
+    var details: MessageDetails = {
+      from: from,
+      subject,
+      message,
+    };
+    return this.http.put<boolean>(
+      `${this.serverUrl}/Lecturer/SendEmailTo1Admin${id}`,
+      details
+    );
+  }
 }

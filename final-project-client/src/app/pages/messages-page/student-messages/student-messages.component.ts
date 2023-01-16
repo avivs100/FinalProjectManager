@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { filter } from 'rxjs';
+import { filter, Observable } from 'rxjs';
+import { Admin } from 'src/app/models/users-models';
+import { GeneralApiService } from 'src/app/services/general-api.service';
+import { LecturerApiService } from 'src/app/services/lecturer-api.service';
 import { MessageServiceApi } from 'src/app/services/message.service';
 import { StateService } from 'src/app/services/state.service';
 import { StudentApiService } from 'src/app/services/student-api.service';
@@ -33,8 +36,9 @@ export class StudentMessagesComponent implements OnDestroy, OnInit {
     private dialog: DialogService,
     private messageService: MessageServiceApi,
     public state: StateService,
-    private studentApi: StudentApiService,
-    private toastMessageService: MessageService
+    private genApi: GeneralApiService,
+    private toastMessageService: MessageService,
+    private lecApi: LecturerApiService
   ) {}
 
   ngOnDestroy(): void {
@@ -44,6 +48,8 @@ export class StudentMessagesComponent implements OnDestroy, OnInit {
     this.idOfProjectSend = this.state.project!.projectId;
     this.idOfLecturerSend = this.state.project!.lecturer.id;
   }
+
+  public admins$: Observable<Admin[]> = this.genApi.getAdmins();
 
   public messageTo1lecturer: messageFormData | null = null; //0
   public messageTo1Project: messageFormData | null = null; //1
@@ -78,33 +84,24 @@ export class StudentMessagesComponent implements OnDestroy, OnInit {
   }
 
   SendEmailTo1Admin() {
-    console.log(
-      'send message to 1 admin',
-      this.messageTo1Admin,
-      'with id ',
-      this.idOfAdminSend
-    );
+    if (this.messageTo1Admin == null) return;
 
-    this.messageTo1Admin = null;
-    this.message = null;
-    // if (this.messageTo1Project == null) return;
-
-    // var from =
-    //   this.state.connectedUser!.firstName +
-    //   ' ' +
-    //   this.state.connectedUser!.lastName;
-    // this.subs.sink = this.messageService
-    //   .SendEmailTo2StudentsByProjectId(
-    //     this.idOfProjectSend!,
-    //     from,
-    //     this.messageTo1Project.subject,
-    //     this.messageTo1Project.message
-    //   )
-    //   .subscribe((x) => {
-    //     console.log(x);
-    //     this.messageTo1Project = null;
-    //     this.message = null;
-    //   });
+    var from =
+      this.state.connectedUser!.firstName +
+      ' ' +
+      this.state.connectedUser!.lastName;
+    this.subs.sink = this.messageService
+      .SendEmailTo1Admin(
+        this.idOfAdminSend!,
+        from,
+        this.messageTo1Admin.subject,
+        this.messageTo1Admin.message
+      )
+      .subscribe((x) => {
+        this.showToast(x);
+        this.messageTo1Admin = null;
+        this.message = null;
+      });
   }
 
   SendEmailTo2StudentsByProjectId() {
