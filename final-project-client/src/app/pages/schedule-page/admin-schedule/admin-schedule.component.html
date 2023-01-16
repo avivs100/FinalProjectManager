@@ -38,7 +38,9 @@
   </div>
   <p-card class="w-full h-full m-4">
     <span>
-      <app-select-schedule-days-dialog></app-select-schedule-days-dialog>
+      <app-select-schedule-days-dialog
+        (save1)="onDatesSave()"
+      ></app-select-schedule-days-dialog>
     </span>
   </p-card>
 </div>

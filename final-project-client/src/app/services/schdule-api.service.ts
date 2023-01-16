@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ScheduleFull } from '../models/schedule-models';
+import { ScheduleFull, Session } from '../models/schedule-models';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,13 @@ import { ScheduleFull } from '../models/schedule-models';
 export class SchduleApiService {
   readonly serverUrl = 'https://localhost:7114/api';
   constructor(private http: HttpClient) {}
+
+  updateSession(session: Session): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.serverUrl}/Schedule/UpdateSession`,
+      session
+    );
+  }
 
   GetSchedule(): Observable<ScheduleFull> {
     return this.http.get<ScheduleFull>(

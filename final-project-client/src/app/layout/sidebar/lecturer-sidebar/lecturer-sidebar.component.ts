@@ -8,14 +8,14 @@ import { MenuItem } from 'primeng/api';
 })
 export class LecturerSidebarComponent {
   public items: MenuItem[] = [
-    {
-      label: 'Grade',
-      routerLink: 'grades',
-      icon: 'pi pi-sitemap',
-      tooltipOptions: {
-        tooltipLabel: 'Grade Page',
-      },
-    },
+    // {
+    //   label: 'Grade',
+    //   routerLink: 'grades',
+    //   icon: 'pi pi-sitemap',
+    //   tooltipOptions: {
+    //     tooltipLabel: 'Grade Page',
+    //   },
+    // },
     {
       label: 'Messages',
       routerLink: 'messages',

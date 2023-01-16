@@ -1,31 +1,101 @@
 <div [ngClass]="{ 'bg-yellow-500': itsMySession }">
   <div class="grid">
     <div class="col-2 font-bold">Responsible Lecturer:</div>
-    <div class="col-2">
+    <div class="col-2" *ngIf="session!.responsibleLecturer != null">
       <div class="field-width field">
-        {{ session!.responsibleLecturer.firstName }}
-        {{ session!.responsibleLecturer.lastName }}
+        {{ session!.responsibleLecturer!.firstName }}
+        {{ session!.responsibleLecturer!.lastName }}
       </div>
+      <p-button
+        *ngIf="!isEdit"
+        icon="pi pi-pencil"
+        (onClick)="removeLecturer1()"
+      ></p-button>
+    </div>
+    <div class="col-2" *ngIf="session!.responsibleLecturer == null">
+      <p-dropdown
+        [options]="state.lecturers!"
+        placeholder="Select Lecturer"
+        (onChange)="addLecturer1($event)"
+      >
+        <ng-template let-lecturer pTemplate="selectedItem">
+          <div>
+            {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+          </div>
+        </ng-template>
+        <ng-template let-lecturer pTemplate="item">
+          {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+        </ng-template></p-dropdown
+      >
     </div>
     <p-divider layout="vertical"></p-divider>
 
     <div class="col-1 font-bold">Lecturer 2</div>
-    <div class="col-2">
+    <div class="col-2" *ngIf="session!.lecturer2 != null">
       <div class="field-width field">
-        {{ session!.lecturer2.firstName }}
-        {{ session!.lecturer2.lastName }}
+        {{ session!.lecturer2!.firstName }}
+        {{ session!.lecturer2!.lastName }}
       </div>
+      <p-button
+        *ngIf="!isEdit"
+        icon="pi pi-pencil"
+        (onClick)="removeLecturer2()"
+      ></p-button>
+    </div>
+    <div class="col-2" *ngIf="session!.lecturer2 == null">
+      <p-dropdown
+        [options]="state.lecturers!"
+        placeholder="Select Lecturer"
+        (onChange)="addLecturer2($event)"
+      >
+        <ng-template let-lecturer pTemplate="selectedItem">
+          <div>
+            {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+          </div>
+        </ng-template>
+        <ng-template let-lecturer pTemplate="item">
+          {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+        </ng-template></p-dropdown
+      >
     </div>
     <p-divider layout="vertical"></p-divider>
     <div class="col-1 font-bold">Lecturer 3</div>
-    <div class="col-2">
+    <div class="col-2" *ngIf="session!.lecturer3 != null">
       <div class="field-width field">
-        {{ session!.lecturer3.firstName }}
-        {{ session!.lecturer3.lastName }}
+        {{ session!.lecturer3!.firstName }}
+        {{ session!.lecturer3!.lastName }}
       </div>
+      <p-button
+        *ngIf="!isEdit"
+        icon="pi pi-pencil"
+        (onClick)="removeLecturer3()"
+      ></p-button>
     </div>
-    <p-divider class="col-1" layout="vertical"></p-divider>
-    <div class="col-2 font-bold bg-green-100">Session time: {{ time }}</div>
+    <div class="col-2" *ngIf="session!.lecturer3 == null">
+      <p-dropdown
+        [options]="state.lecturers!"
+        placeholder="Select Lecturer"
+        (onChange)="addLecturer3($event)"
+      >
+        <ng-template let-lecturer pTemplate="selectedItem">
+          <div>
+            {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+          </div>
+        </ng-template>
+        <ng-template let-lecturer pTemplate="item">
+          {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+        </ng-template></p-dropdown
+      >
+    </div>
+    <p-divider layout="vertical"></p-divider>
+    <p-button
+      *ngIf="isEdit"
+      icon="pi pi-pencil"
+      (onClick)="manualEdit(session!)"
+    ></p-button>
+    <div class="col-2 font-bold bg-green-100" *ngIf="isEdit">
+      Session time: {{ time }}
+    </div>
 
     <p-table
       class="col-12"
@@ -41,6 +111,7 @@
           <th>Student 1 Name</th>
           <th>Student 2 Name</th>
           <th>Project Type</th>
+          <th *ngIf="!isEdit"></th>
         </tr>
       </ng-template>
 
@@ -69,8 +140,16 @@
               Development
             </div>
           </td>
+          <td *ngIf="!isEdit">
+            <p-button
+              [style]="{ 'background-color': 'red', color: 'white' }"
+              label="Delete Project"
+              (onClick)="deleteProjFromSession(project.projectFull)"
+            ></p-button>
+          </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
+<button class="block" (click)="saveSessionToDb()">Save Session</button>

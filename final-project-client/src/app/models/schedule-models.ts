@@ -58,9 +58,9 @@ export interface ProjectInSession {
 
 export interface Session {
   id: number;
-  responsibleLecturer: Lecturer;
-  lecturer2: Lecturer;
-  lecturer3: Lecturer;
+  responsibleLecturer: Lecturer | null;
+  lecturer2: Lecturer | null;
+  lecturer3: Lecturer | null;
   projects: ProjectInSession[];
   sessionNumber: number;
   classRoom: string;

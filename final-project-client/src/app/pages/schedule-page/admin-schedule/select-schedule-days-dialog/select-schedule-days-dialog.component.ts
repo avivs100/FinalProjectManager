@@ -1,6 +1,6 @@
 import { SubSink } from 'subsink';
 import { AdminApiService } from 'src/app/services/admin-api.service';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { StateService } from 'src/app/services/state.service';
 import { GeneralApiService } from 'src/app/services/general-api.service';
@@ -26,6 +26,7 @@ export class SelectScheduleDaysDialogComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
+  @Output() public save1 = new EventEmitter();
 
   public dates$: Observable<ScheduleDates> = this.genApi.getScheduleDate();
 
@@ -45,6 +46,7 @@ export class SelectScheduleDaysDialogComponent implements OnDestroy {
     this.subs.sink = this.api.putScheduleDates(datesToSend).subscribe((x) => {
       this.showToast('Schedule Dates Are Saved ');
       this.dates$ = this.genApi.getScheduleDate();
+      this.save1.emit();
     });
   }
 

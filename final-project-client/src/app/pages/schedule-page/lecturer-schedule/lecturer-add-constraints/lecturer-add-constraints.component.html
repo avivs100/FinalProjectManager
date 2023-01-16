@@ -1,4 +1,4 @@
-<h1 *ngIf="dates == null">The admin still not chose date for presentation</h1>
+<h1 *ngIf="dates$ | async">The admin still not chose date for presentation</h1>
 <div
   *ngIf="dates"
   class="flex align-items-stretch flex-wrap card-container blue-container grid"

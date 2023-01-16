@@ -67,6 +67,7 @@ export class StateService implements OnDestroy {
   public selectedProposal: ProjectProposalDetailsWithStatus | null = null;
   public admins: Admin[] | null = null;
   public proposalAfterAprove: ProjectProposalDetailsWithStatus[] | null = null;
+  public session: Session | null = null;
 
   public errorMessage = '';
 

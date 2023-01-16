@@ -1,5 +1,11 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { ProjectFull } from 'src/app/models/project-grade-models';
 import { Session } from 'src/app/models/schedule-models';
+import { Lecturer } from 'src/app/models/users-models';
+import { SchduleApiService } from 'src/app/services/schdule-api.service';
 import { StateService } from 'src/app/services/state.service';
 
 @Component({
@@ -7,8 +13,25 @@ import { StateService } from 'src/app/services/state.service';
   templateUrl: './session-details.component.html',
   styleUrls: ['./session-details.component.scss'],
 })
-export class SessionDetailsComponent implements OnChanges {
-  constructor(private state: StateService) {}
+export class SessionDetailsComponent implements OnChanges, OnDestroy {
+  constructor(
+    protected state: StateService,
+    private router: Router,
+    private messageService: MessageService,
+    private api: SchduleApiService
+  ) {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+  ngOnInit(): void {}
+
+  @Input() session: Session | null = null;
+  @Input() number: Number | null = null;
+  public time: string = '';
+  public itsMySession: boolean = false;
+  @Input() isEdit: boolean = true;
+  public sub: Subscription = new Subscription();
+
   ngOnChanges(): void {
     console.log('eee', this.session);
     switch (this.number) {
@@ -31,9 +54,9 @@ export class SessionDetailsComponent implements OnChanges {
         break;
     }
     if (
-      this.session!.lecturer2.id == this.state.connectedUser!.id ||
-      this.session!.lecturer3.id == this.state.connectedUser!.id ||
-      this.session!.responsibleLecturer.id == this.state.connectedUser!.id
+      this.session!.lecturer2?.id == this.state.connectedUser!.id ||
+      this.session!.lecturer3?.id == this.state.connectedUser!.id ||
+      this.session!.responsibleLecturer?.id == this.state.connectedUser!.id
     ) {
       this.itsMySession = true;
     }
@@ -46,8 +69,70 @@ export class SessionDetailsComponent implements OnChanges {
       }
     });
   }
-  @Input() session: Session | null = null;
-  @Input() number: Number | null = null;
-  public time: string = '';
-  public itsMySession: boolean = false;
+  manualEdit(session: Session) {
+    this.state.session = session;
+    console.log(session);
+    this.router.navigate(['home/manual-edit']);
+  }
+
+  deleteProjFromSession(proj: ProjectFull) {
+    this.itsMySession = false;
+    this.session!.projects = this.session!.projects.filter(function (project) {
+      return project.projectFull.projectId !== proj.projectId;
+    });
+  }
+
+  removeLecturer1() {
+    this.itsMySession = false;
+    this.session!.responsibleLecturer = null;
+  }
+
+  removeLecturer2() {
+    this.itsMySession = false;
+    this.session!.lecturer2 = null;
+  }
+
+  removeLecturer3() {
+    this.itsMySession = false;
+    this.session!.lecturer3 = null;
+  }
+
+  addLecturer1({ value }: { value: Lecturer }) {
+    console.log(value, 1);
+    this.session!.responsibleLecturer = value;
+  }
+  addLecturer2({ value }: { value: Lecturer }) {
+    console.log(value, 2);
+    this.session!.lecturer2 = value;
+  }
+  addLecturer3({ value }: { value: Lecturer }) {
+    console.log(value, 3);
+    this.session!.lecturer3 = value;
+  }
+
+  saveSessionToDb() {
+    this.sub.add(
+      this.api.updateSession(this.session!).subscribe((x) => {
+        this.showToast(x);
+        this.router.navigate(['/home/schedule-details']);
+      })
+    );
+  }
+
+  showToast(x: boolean) {
+    this.messageService.clear();
+    if (x == true) {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Session Updated',
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Error, Session not Updated',
+      });
+    }
+  }
 }

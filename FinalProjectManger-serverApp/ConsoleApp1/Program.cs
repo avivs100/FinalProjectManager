@@ -18,8 +18,9 @@ void SeedDb()
 {
     using var context = new UsersDbContext();
     //add 120 students
-    for (int i = 0; i < 200; i++)
+    for (int i = 0; i < 201; i++)
     {   
+        if(i==4)continue;
         if(i == 2)
             context.Set<Student>().Add(new Student(i, UserType.student, "Sagi", "Fishman", "1", "default@gmail.com"));
         else
@@ -30,7 +31,7 @@ void SeedDb()
     {
         Lecturer tempLec;
         if (i == 4)
-            tempLec = new Lecturer(i, UserType.lecturer, "Erez ", "Eres", "1", "default@gmail.com");
+            tempLec = new Lecturer(i, UserType.lecturer, "Erez ", "Eres", "1", "default@gmail.com",true);
         else
             tempLec = new Lecturer(i, UserType.lecturer, "Fname " + i, "Lname " + i, "1", "default@gmail.com");
         var tempCon = new Random().Next(21);

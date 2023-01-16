@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProjectFull } from '../models/project-grade-models';
-import { LecturerConstarintForDate } from '../models/schedule-models';
+import {
+  LecturerConstarintForDate,
+  ScheduleDates,
+} from '../models/schedule-models';
 import { Lecturer } from '../models/users-models';
 
 @Injectable({
@@ -33,8 +36,10 @@ export class LecturerApiService {
     );
   }
 
-  getScheduleDates(): Observable<any> {
-    return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  getScheduleDates(): Observable<ScheduleDates> {
+    return this.http.get<ScheduleDates>(
+      `${this.serverUrl}/Lecturer/ScheduleDates`
+    );
   }
 
   PutLecturerConstraints(
@@ -55,7 +60,7 @@ export class LecturerApiService {
 
   denyProposal(id: number) {
     return this.http.delete<boolean>(
-      `${this.serverUrl}/Lecturer/DenyProposal${id}`
+      `${this.serverUrl}/Lecturer/DenyProposal/${id}`
     );
   }
 }

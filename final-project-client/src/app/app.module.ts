@@ -88,6 +88,7 @@ import { SessionDetailsComponent } from './pages/schedule-page/schedule-details/
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ClassRoomDetailsComponent } from './pages/schedule-page/schedule-details/class-room-details/class-room-details.component';
 import { DayInScheduleDetailsComponent } from './pages/schedule-page/schedule-details/day-in-schedule-details/day-in-schedule-details.component';
+import { SessionEditPageComponent } from './pages/schedule-page/admin-schedule/session-edit-page/session-edit-page.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { DayInScheduleDetailsComponent } from './pages/schedule-page/schedule-de
     SessionDetailsComponent,
     ClassRoomDetailsComponent,
     DayInScheduleDetailsComponent,
+    SessionEditPageComponent,
   ],
   imports: [
     ScrollPanelModule,

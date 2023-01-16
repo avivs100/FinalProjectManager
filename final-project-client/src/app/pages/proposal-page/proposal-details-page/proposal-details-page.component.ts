@@ -7,6 +7,7 @@ import { SubSink } from 'subsink';
 import { AdminApiService } from 'src/app/services/admin-api.service';
 import { UserType } from 'src/app/models/enums';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-proposal-details-page',
@@ -18,7 +19,8 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
     private state: StateService,
     private api: LecturerApiService,
     private adminApi: AdminApiService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
   public CodeFromInput: string = '';
   public subs: SubSink = new SubSink();
@@ -56,7 +58,7 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
     this.subs.sink = this.api
       .aproveProposal(this.details!.id)
       .subscribe((x) => {
-        console.log('proposal was approved ? ', x);
+        this.showToast('Proposal Aproved');
         this.router.navigate(['home/proposals']);
       });
   }
@@ -75,12 +77,24 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
     this.subs.sink = this.adminApi
       .aproveProposal(this.details!.id, this.code!)
       .subscribe((x) => {
-        console.log('proposal was approved by admin ? ', x);
+        this.showToast('Proposal Aproved');
         this.router.navigate(['home/proposals']);
       });
   }
 
   deny(id: number) {
-    console.log('deny and delete proposal with id ', id);
+    this.subs.sink = this.api.denyProposal(this.details!.id).subscribe((x) => {
+      this.showToast('Proposal Denied');
+      this.router.navigate(['home/proposals']);
+    });
+  }
+
+  showToast(msg: string) {
+    this.messageService.clear();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: msg,
+    });
   }
 }
