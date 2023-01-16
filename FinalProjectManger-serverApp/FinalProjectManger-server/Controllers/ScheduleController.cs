@@ -394,52 +394,38 @@ namespace FinalProjectManger_server.Controllers
             return Ok(true);
         }
 
-        [HttpPost("AddLecturerToSession/{sessionId}/{lecturerId}")]
-        public async Task<ActionResult<bool>> AddLecturerToSession([FromRoute] int sessionId, [FromRoute] int lecturerId)
+        [HttpPost("UpdateSession")]
+        public async Task<ActionResult<bool>> UpdateSession([FromBody] SessionFull ses)
         {
             var context = new UsersDbContext();
-            var lecturer = await context.Set<Domain.Lecturer>().Where(x => x.id == lecturerId).FirstOrDefaultAsync();
-            var session = await context.Set<Session>().Where(x => x.Id == sessionId).FirstOrDefaultAsync();
-            if (lecturer == null || session == null)
+            var sessions = await context.Set<Domain.Session>().ToListAsync();
+            var session = await context.Set<Session>().Include(x=>x.ProjectsForSessionID).Where(x => x.Id == ses.Id).FirstOrDefaultAsync();
+            if (session == null)
                 return NotFound(false);
-            if (session.Lecturer2ID == 0)
-                session.Lecturer2ID = lecturerId;
-            else if (session.Lecturer3ID == 0)
-                session.Lecturer3ID = lecturerId;
-            else if (session.ResponsibleLecturerID == 0)
-                session.ResponsibleLecturerID = lecturerId;
+
+            foreach (var item in session.ProjectsForSessionID)
+            {
+                context.Remove(item);
+            }
             await context.SaveChangesAsync();
-            return Ok(true);
-        }
-
-
-        [HttpPost("AddProjectToSession/{sessionId}/{projectId}")]
-        public async Task<ActionResult<bool>> AddProjectToSession([FromRoute] int sessionId, [FromRoute] int projectId)
-        {
-            var context = new UsersDbContext();
-            var project = await context.Set<Domain.Project>().Where(x => x.ProjectId == projectId).FirstOrDefaultAsync();
-            var session = await context.Set<Session>().Where(x => x.Id == sessionId).Include(x=>x.ProjectsForSessionID).FirstOrDefaultAsync();
-            if (project == null || session == null)
-                return NotFound(false);
-            if (session.ProjectsForSessionID.Count == 6)
-                return false;
-            var projForSession = new ProjectForSession(project);
-            session.ProjectsForSessionID.Add(projForSession);
+            context.Remove(session);
             await context.SaveChangesAsync();
-            return Ok(true);
-        }
+            var newSession = new Session();
+            newSession.Id = session.Id;
+            newSession.ResponsibleLecturerID = ses.ResponsibleLecturer.id;
+            newSession.Lecturer2ID = ses.Lecturer2.id;
+            newSession.Lecturer3ID = ses.Lecturer3.id;
+            newSession.ClassRoom = ses.ClassRoom;
+            newSession.SessionNumber = ses.SessionNumber;
+            var ListProjForSession = new List<ProjectForSession>();
+            foreach ( var proj in ses.Projects)
+            {
+                var sessionProj = new ProjectForSession(proj.ProjectFull);
+                ListProjForSession.Add(sessionProj);
+            }
+            newSession.ProjectsForSessionID = ListProjForSession;
 
-        [HttpDelete("RemoveProjectFromSession/{sessionId}/{projectId}")]
-        public async Task<ActionResult<bool>> RemoveProjectFromSession([FromRoute] int sessionId, [FromRoute] int projectId)
-        {
-            var context = new UsersDbContext();
-            var project = await context.Set<Domain.Project>().Where(x => x.ProjectId == projectId).FirstOrDefaultAsync();
-            var session = await context.Set<Session>().Where(x => x.Id == sessionId).FirstOrDefaultAsync();
-            if (project == null || session == null)
-                return NotFound(false);
-
-            var projForSession = new ProjectForSession(project);
-            session.ProjectsForSessionID.Remove(projForSession);
+            context.Add(newSession);
             await context.SaveChangesAsync();
             return Ok(true);
         }

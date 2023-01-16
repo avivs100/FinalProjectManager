@@ -62,10 +62,23 @@ namespace FinalProjectManger_server.Controllers
         
         public async Task<bool> PutLecturerConstraints([FromBody] LecturerConstraintDto details)
         {
+
             var context = new UsersDbContext();
             var lecturer = await context.Set<Lecturer>().Include(x => x.constraints).Where(x => x.id == details.LecturerId).FirstOrDefaultAsync();
             if (lecturer == null)
                 return false;
+
+            if(lecturer.constraints.Count> 0)
+            {
+                foreach (var item in lecturer.constraints)
+                {
+                    context.Set<LecConstraint>().Remove(item);
+                }
+                lecturer.constraints.Clear();
+            }
+                
+
+            await context.SaveChangesAsync();
             details.Sessions1.AddRange(details.Sessions2);
             foreach (var item in details.Sessions1)
             {

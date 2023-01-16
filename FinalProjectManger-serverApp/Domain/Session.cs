@@ -31,6 +31,17 @@ namespace Domain
             ClassRoom = ConvertFromSessionNumToClassRoom(sessionNumber);
         }
 
+        public Session(int id, long responsibleLecturerID, long lecturer2ID, long lecturer3ID, List<ProjectForSession> projectsForSessionID, int sessionNumber)
+        {
+            Id = id;
+            ResponsibleLecturerID = responsibleLecturerID;
+            Lecturer2ID = lecturer2ID;
+            Lecturer3ID = lecturer3ID;
+            ProjectsForSessionID = projectsForSessionID;
+            SessionNumber = sessionNumber;
+            ClassRoom = ConvertFromSessionNumToClassRoom(sessionNumber);
+        }
+
         public class SessionFull
         {
             public int Id { get; set; }

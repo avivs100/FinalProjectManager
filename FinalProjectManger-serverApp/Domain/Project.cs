@@ -142,4 +142,14 @@ public class ProjectForSession
         ProjectType = project.ProjectType;
         this.projCode = project.projCode;
     }
+    public ProjectForSession(ProjectFull projectFull)
+    {
+        ProjectSessionId = projectFull.ProjectId;
+        ProjectName = projectFull.ProjectName;
+        LecturerId = projectFull.Lecturer.id;
+        student1Id = projectFull.student1.id;
+        student2Id= projectFull.student2.id;
+        ProjectType = projectFull.ProjectType;
+        this.projCode = projectFull.projCode;
+    }
 }
