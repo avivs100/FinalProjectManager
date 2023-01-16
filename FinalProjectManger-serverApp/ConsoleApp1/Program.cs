@@ -18,9 +18,9 @@ void SeedDb()
 {
     using var context = new UsersDbContext();
     //add Sagi 
-    context.Set<Student>().Add(new Student(2, UserType.student, "Sagi", "Fishman", "1", "default@gmail.com"));
+    context.Set<Student>().Add(new Student(2, UserType.student, "Sagi", "Fishman", "1", "sagifishman1@gmail.com"));
     //add Erez 
-    var tempLec = new Lecturer(4, UserType.lecturer, "Erez ", "Eres", "1", "default@gmail.com");
+    var tempLec = new Lecturer(4, UserType.lecturer, "Erez ", "Eres", "1", "sagifishman1@gmail.com");
     tempLec.IsActive= true;
     var tempCon = new Random().Next(21);
     tempLec.constraints.Add(new LecConstraint(tempCon));

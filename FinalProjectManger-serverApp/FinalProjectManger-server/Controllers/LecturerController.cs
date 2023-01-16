@@ -101,7 +101,7 @@ namespace FinalProjectManger_server.Controllers
             var student = await context.Set<Student>().Where(x => x.id == StudentId).FirstOrDefaultAsync();
             if (student == null)
                 return NotFound(false);
-            var msg = "Hi, " + student.FirstName + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+            var msg = "Hi, " + student.FirstName + " " + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
             sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
             return Ok(true);
         }
@@ -136,7 +136,7 @@ namespace FinalProjectManger_server.Controllers
             var admin = await context.Set<Admin>().Where(x => x.id == AdminId).FirstOrDefaultAsync();
             if (admin == null)
                 return NotFound(false);
-            var msg = "Hi, " + admin.FirstName + admin.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+            var msg = "Hi, " + admin.FirstName + " " + admin.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
             sender.SendEmail(EmailMessageDetails.SystemEmail, admin.Email, details.Subject, msg);
             return Ok(true);
         }
