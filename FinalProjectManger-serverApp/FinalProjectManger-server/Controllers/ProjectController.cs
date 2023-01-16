@@ -23,7 +23,7 @@ namespace FinalProjectManger_server.Controllers
             {                
                 var student1 = await context.Set<Student>().Where(x=>x.id == proj.student1Id).FirstOrDefaultAsync();
                 var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
-                var lecturer = await context.Set<Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
+                var lecturer = await context.Set<Lecturer>().Include(x=>x.constraints).Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
                 var fullProj = new ProjectFull(proj.ProjectId, proj.ProjectName, lecturer, student1, student2, proj.ProjectType, proj.projCode);
                 fullprojects.Add(fullProj);
             }

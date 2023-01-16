@@ -150,6 +150,22 @@
         </tr>
       </ng-template>
     </p-table>
+    <div *ngIf="!isEdit" class="grid">
+      <p-dropdown
+        [options]="state.projects!"
+        placeholder="Select Project"
+        (onChange)="addProject($event)"
+      >
+        <ng-template let-project pTemplate="selectedItem">
+          <div>{{ project.projectName }} {{ project.projCode }}</div>
+        </ng-template>
+        <ng-template let-project pTemplate="item">
+          {{ project.projectName }} {{ project.projCode }}
+        </ng-template>
+      </p-dropdown>
+    </div>
   </div>
 </div>
-<button class="block" (click)="saveSessionToDb()">Save Session</button>
+<button *ngIf="!isEdit" class="block" (click)="saveSessionToDb()">
+  Save Session
+</button>

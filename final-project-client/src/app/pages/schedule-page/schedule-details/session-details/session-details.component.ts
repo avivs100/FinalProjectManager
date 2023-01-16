@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { ProjectFull } from 'src/app/models/project-grade-models';
-import { Session } from 'src/app/models/schedule-models';
+import { ProjectInSession, Session } from 'src/app/models/schedule-models';
 import { Lecturer } from 'src/app/models/users-models';
 import { SchduleApiService } from 'src/app/services/schdule-api.service';
 import { StateService } from 'src/app/services/state.service';
@@ -117,6 +117,19 @@ export class SessionDetailsComponent implements OnChanges, OnDestroy {
         this.router.navigate(['/home/schedule-details']);
       })
     );
+  }
+
+  addProject({ value }: { value: ProjectFull }) {
+    if (this.session!.projects.length >= 6) {
+      this.showToast(false);
+      return;
+    }
+    var projectForSession: ProjectInSession = {
+      order: 1,
+      projectFull: value,
+    };
+    console.log(value);
+    this.session!.projects.push(projectForSession);
   }
 
   showToast(x: boolean) {

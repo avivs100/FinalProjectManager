@@ -16,7 +16,7 @@ export interface Admin {
 }
 export interface constraint {
   id: string;
-  dataTime: Date;
+  SessionNumber: number;
 }
 
 export interface Lecturer {

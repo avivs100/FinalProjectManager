@@ -45,7 +45,6 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
     console.log(this.details);
     console.log(this.student1);
     console.log(this.student2);
-    console.log(this.lecturer);
   }
 
   ngOnDestroy(): void {

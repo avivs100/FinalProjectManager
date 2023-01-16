@@ -19,7 +19,7 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<IReadOnlyList<Lecturer>>> ListLecturers()
         {
             var context = new UsersDbContext();
-            return await context.Set<Lecturer>().ToListAsync();
+            return await context.Set<Lecturer>().Include(x=>x.constraints).ToListAsync();
         }
 
         // GET api/<LecturerController>/5

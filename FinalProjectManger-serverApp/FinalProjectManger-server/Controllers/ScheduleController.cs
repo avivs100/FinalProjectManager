@@ -42,9 +42,9 @@ namespace FinalProjectManger_server.Controllers
             var FullSessions = new List<SessionFull>();
             foreach (var session in sessions)
             {
-                 var lecturer1 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.ResponsibleLecturerID).FirstOrDefaultAsync();
-                 var lecturer2 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer2ID).FirstOrDefaultAsync();
-                 var lecturer3 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer3ID).FirstOrDefaultAsync();
+                 var lecturer1 = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Where(x => x.id == session.ResponsibleLecturerID).FirstOrDefaultAsync();
+                 var lecturer2 = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Where(x => x.id == session.Lecturer2ID).FirstOrDefaultAsync();
+                 var lecturer3 = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Where(x => x.id == session.Lecturer3ID).FirstOrDefaultAsync();
 
                 var fullprojects = new List<ProjectFull>();
                 var fullProjectsInSession = new List<ProjectInSession>();
@@ -53,7 +53,7 @@ namespace FinalProjectManger_server.Controllers
                 {
                     var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
                     var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
-                    var lecturer = await context.Set<Domain.Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
+                    var lecturer = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
                     var fullProj = new ProjectFull(proj.ProjectSessionId, proj.ProjectName, lecturer, student1, student2, proj.ProjectType, proj.projCode);
                     fullprojects.Add(fullProj);
                     var fullProjInSession = new ProjectInSession(fullProj, counter++);
@@ -184,7 +184,7 @@ namespace FinalProjectManger_server.Controllers
                 await context.SaveChangesAsync();
             }
             var genetic = new Genetic();
-            var lecturers = await context.Set<Domain.Lecturer>().Include(x => x.constraints).ToListAsync();
+            var lecturers = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Include(x => x.constraints).ToListAsync();
             var cons = await context.Set<LecConstraint>().ToListAsync();
             var lecturersForGenetic = new List<TryGenetic.Lecturer>();
             foreach (var lec in lecturers)
@@ -236,9 +236,9 @@ namespace FinalProjectManger_server.Controllers
             var FullSessions = new List<SessionFull>();
             foreach (var session in sessions)
             {
-                var lecturer1 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.ResponsibleLecturerID).FirstOrDefaultAsync();
-                var lecturer2 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer2ID).FirstOrDefaultAsync();
-                var lecturer3 = await context.Set<Domain.Lecturer>().Where(x => x.id == session.Lecturer3ID).FirstOrDefaultAsync();
+                var lecturer1 = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Where(x => x.id == session.ResponsibleLecturerID).FirstOrDefaultAsync();
+                var lecturer2 = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Where(x => x.id == session.Lecturer2ID).FirstOrDefaultAsync();
+                var lecturer3 = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Where(x => x.id == session.Lecturer3ID).FirstOrDefaultAsync();
                 var fullProjectsInSession = new List<ProjectInSession>();
                 var fullprojects = new List<ProjectFull>();
                 var counter = 1;
@@ -246,7 +246,7 @@ namespace FinalProjectManger_server.Controllers
                 {
                     var student1 = await context.Set<Student>().Where(x => x.id == proj.student1Id).FirstOrDefaultAsync();
                     var student2 = await context.Set<Student>().Where(x => x.id == proj.student2Id).FirstOrDefaultAsync();
-                    var lecturer = await context.Set<Domain.Lecturer>().Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
+                    var lecturer = await context.Set<Domain.Lecturer>().Include(x=>x.constraints).Where(x => x.id == proj.LecturerId).FirstOrDefaultAsync();
                     var fullProj = new ProjectFull(proj.ProjectSessionId, proj.ProjectName, lecturer, student1, student2, proj.ProjectType, proj.projCode);
                     fullprojects.Add(fullProj);
                     var fullProjInSession = new ProjectInSession(fullProj, counter++);
@@ -385,7 +385,7 @@ namespace FinalProjectManger_server.Controllers
                 context.Remove(item);
             }
             await context.SaveChangesAsync();
-            context.Remove(session);
+            //context.Remove(session);
             await context.SaveChangesAsync();
             var newSession = new Session();
             newSession.Id = session.Id;
@@ -401,7 +401,8 @@ namespace FinalProjectManger_server.Controllers
                 ListProjForSession.Add(sessionProj);
             }
             newSession.ProjectsForSessionID = ListProjForSession;
-
+            context.Remove(session);
+            await context.SaveChangesAsync();
             context.Add(newSession);
             await context.SaveChangesAsync();
             return Ok(true);
