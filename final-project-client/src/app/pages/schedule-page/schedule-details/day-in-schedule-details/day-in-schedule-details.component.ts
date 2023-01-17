@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DayInSchedule } from 'src/app/models/schedule-models';
 
 @Component({
@@ -6,6 +6,9 @@ import { DayInSchedule } from 'src/app/models/schedule-models';
   templateUrl: './day-in-schedule-details.component.html',
   styleUrls: ['./day-in-schedule-details.component.scss'],
 })
-export class DayInScheduleDetailsComponent {
+export class DayInScheduleDetailsComponent implements OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('day in schedule component : ', this.day);
+  }
   @Input() day: DayInSchedule | null = null;
 }

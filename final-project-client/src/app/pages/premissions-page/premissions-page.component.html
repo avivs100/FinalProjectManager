@@ -1,5 +1,10 @@
-<!-- *ngIf="premissions$ | async as premissions" -->
-<div class="w-full h-full" *ngIf="premissions">
+<p-toast
+  position="top-right"
+  [showTransformOptions]="'translateX(100%)'"
+  [hideTransitionOptions]="'3000ms'"
+></p-toast>
+
+<div class="w-full h-full" *ngIf="premissions$ | async as premissions">
   <p-card class="w-full h-full">
     <p-table
       class="w-full h-full"

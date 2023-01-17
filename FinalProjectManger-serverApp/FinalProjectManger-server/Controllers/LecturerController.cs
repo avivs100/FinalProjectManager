@@ -19,7 +19,7 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<IReadOnlyList<Lecturer>>> ListLecturers()
         {
             var context = new UsersDbContext();
-            return await context.Set<Lecturer>().ToListAsync();
+            return await context.Set<Lecturer>().Include(x=>x.constraints).ToListAsync();
         }
 
         // GET api/<LecturerController>/5
@@ -42,18 +42,43 @@ namespace FinalProjectManger_server.Controllers
             var context = new UsersDbContext();
             return await context.Set<ScheduleDates>().ToListAsync();
         }
-
+        [HttpGet("GetProjectProposal/{lecturerId}")]
+        public async Task<ActionResult<IReadOnlyList<ProjectProposal>>> GetProjectProposal([FromRoute] long lecturerId)
+        {
+            var context = new UsersDbContext();
+            var projectProposalsOfLecturer = new List<ProjectProposal>();
+            var proposals = await context.Set<ProjectProposal>().ToListAsync();
+            foreach (var item in proposals)
+            {
+                if (item.LecturerID == lecturerId)
+                    projectProposalsOfLecturer.Add(item);
+            }
+            return Ok(projectProposalsOfLecturer);
+        }
         [HttpPut("PutLecturerConstraints")]
-        //TODO create with ef table for lecturer constraints and change return type to bool,
+        
         //TODO add the lc to the table, if the lecturer already have constraints so replace with this
-        //TODO create get method for this constraint by lecturer id, and also get all constraints for admin
-        //TODO make this method async
+        //Todo if the admin change dates for presentation clear all constrains 
+        
         public async Task<bool> PutLecturerConstraints([FromBody] LecturerConstraintDto details)
         {
+
             var context = new UsersDbContext();
             var lecturer = await context.Set<Lecturer>().Include(x => x.constraints).Where(x => x.id == details.LecturerId).FirstOrDefaultAsync();
             if (lecturer == null)
                 return false;
+
+            if(lecturer.constraints.Count> 0)
+            {
+                foreach (var item in lecturer.constraints)
+                {
+                    context.Set<LecConstraint>().Remove(item);
+                }
+                lecturer.constraints.Clear();
+            }
+                
+
+            await context.SaveChangesAsync();
             details.Sessions1.AddRange(details.Sessions2);
             foreach (var item in details.Sessions1)
             {
@@ -76,7 +101,7 @@ namespace FinalProjectManger_server.Controllers
             var student = await context.Set<Student>().Where(x => x.id == StudentId).FirstOrDefaultAsync();
             if (student == null)
                 return NotFound(false);
-            var msg = "Hi, " + student.FirstName + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+            var msg = "Hi, " + student.FirstName + " " + student.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
             sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, details.Subject, msg);
             return Ok(true);
         }
@@ -100,18 +125,20 @@ namespace FinalProjectManger_server.Controllers
             return Ok(true);
         }
 
-        [HttpGet("GetProjectProposal/{lecturerId}")]
-        public async Task<ActionResult<IReadOnlyList<ProjectProposal>>> GetProjectProposal([FromRoute] long lecturerId)
+
+
+
+        [HttpPut("SendEmailTo1Admin{AdminId}")]
+        public async Task<ActionResult<bool>> SendEmailTo1Admin([FromBody] EmailMessageDetails details, [FromRoute] long AdminId)
         {
+            EmailService sender = new EmailService();
             var context = new UsersDbContext();
-            var projectProposalsOfLecturer = new List<ProjectProposal>();
-            var proposals = await context.Set<ProjectProposal>().ToListAsync();
-            foreach (var item in proposals)
-            {
-                if (item.LecturerID == lecturerId)
-                    projectProposalsOfLecturer.Add(item);
-            }
-            return Ok(projectProposalsOfLecturer);
+            var admin = await context.Set<Admin>().Where(x => x.id == AdminId).FirstOrDefaultAsync();
+            if (admin == null)
+                return NotFound(false);
+            var msg = "Hi, " + admin.FirstName + " " + admin.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
+            sender.SendEmail(EmailMessageDetails.SystemEmail, admin.Email, details.Subject, msg);
+            return Ok(true);
         }
 
         [HttpPost("ApproveProposal{proposalId}")]
@@ -127,20 +154,6 @@ namespace FinalProjectManger_server.Controllers
             return Ok(true);
 
         }
-
-        [HttpPut("SendEmailTo1Admin{AdminId}")]
-        public async Task<ActionResult<bool>> SendEmailTo1Admin([FromBody] EmailMessageDetails details, [FromRoute] long AdminId)
-        {
-            EmailService sender = new EmailService();
-            var context = new UsersDbContext();
-            var admin = await context.Set<Admin>().Where(x => x.id == AdminId).FirstOrDefaultAsync();
-            if (admin == null)
-                return NotFound(false);
-            var msg = "Hi, " + admin.FirstName + admin.LastName + "\n" + details.Message + "\n" + "From: " + details.From;
-            sender.SendEmail(EmailMessageDetails.SystemEmail, admin.Email, details.Subject, msg);
-            return Ok(true);
-        }
-
         [HttpDelete("DenyProposal/{proposalId}")]
         public async Task<ActionResult<bool>> DenyProposal([FromRoute] int proposalId)
         {

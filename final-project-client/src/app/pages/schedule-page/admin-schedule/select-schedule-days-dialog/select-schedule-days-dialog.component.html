@@ -1,3 +1,9 @@
+<p-toast
+  position="top-right"
+  [showTransformOptions]="'translateX(100%)'"
+  [hideTransitionOptions]="'3000ms'"
+></p-toast>
+
 <div
   class="flex align-items-stretch flex-wrap card-container blue-container"
   style="min-height: 100px"
@@ -21,5 +27,18 @@
 
   <div class="p-field p-md-4">
     <p-button label="Send Mail" (onClick)="sendToLecturer()"></p-button>
+  </div>
+
+  <div
+    *ngIf="dates$ | async as dates"
+    class="mb-2 underline flex flex-row mr-6 text-red-500 text-justify"
+  >
+    selected dates :
+    <div class="max-h-1rem mb-2 ml-4 mr-4 no-underline">
+      {{ dates.date1.slice(0, 10) }}
+    </div>
+    <div class="max-h-1rem no-underline">
+      {{ dates.date2.slice(0, 10) }}
+    </div>
   </div>
 </div>

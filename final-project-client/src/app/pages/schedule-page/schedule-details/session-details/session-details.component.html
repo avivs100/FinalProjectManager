@@ -1,74 +1,183 @@
-<div class="grid">
-  <div class="col-12 grid">
-    <div class="col-2 font-bold">Responsible Lecturer:</div>
-    <div class="col-1">
-      <div class="field-width field">
-        {{ session!.responsibleLecturer.firstName }}
-        {{ session!.responsibleLecturer.lastName }}
+<div class="h-full w-full">
+  <div [ngClass]="{ 'bg-yellow-500': itsMySession }">
+    <div class="grid">
+      <div class="col-2 font-bold">Responsible Lecturer:</div>
+      <div class="col-2" *ngIf="session!.responsibleLecturer != null">
+        <div class="field-width field">
+          {{ session!.responsibleLecturer!.firstName }}
+          {{ session!.responsibleLecturer!.lastName }}
+        </div>
+        <p-button
+          *ngIf="!isEdit"
+          icon="pi pi-pencil"
+          (onClick)="removeLecturer1()"
+        ></p-button>
       </div>
-    </div>
-    <p-divider class="col-1" layout="vertical"></p-divider>
-
-    <div class="col-2 font-bold">Lecturer 2</div>
-    <div class="col-1">
-      <div class="field-width field">
-        {{ session!.responsibleLecturer.firstName }}
-        {{ session!.responsibleLecturer.lastName }}
-      </div>
-    </div>
-    <p-divider class="col-1" layout="vertical"></p-divider>
-    <div class="col-2 font-bold">Lecturer 3</div>
-    <div class="col-2">
-      <div class="field-width field">
-        {{ session!.responsibleLecturer.firstName }}
-        {{ session!.responsibleLecturer.lastName }}
-      </div>
-    </div>
-
-    <p-table
-      class="col-12"
-      [value]="session!.projects"
-      styleClass="p-datatable-gridlines p-datatable-striped h-30rem overflow-auto"
-      selectionMode="single"
-      scrollHeight="flex"
-      [scrollable]="true"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Project Name</th>
-          <th>Student Id 1</th>
-          <th>Student Id 2</th>
-          <th>Project Type</th>
-        </tr>
-      </ng-template>
-
-      <ng-template pTemplate="body" let-project>
-        <tr [pSelectableRow]="project">
-          <td>{{ project.project.projectName }}</td>
-          <td>
-            {{ project.project.student1.lastName }}
-            {{ project.project.student1.firstName }}
-          </td>
-          <td>
-            {{ project.project.student2.lastName }}
-            {{ project.project.student2.firstName }}
-          </td>
-          <td>
-            <div
-              class="field-width field col-10"
-              *ngIf="project.project.projectType == 0"
-            >
-              Research
+      <div class="col-2" *ngIf="session!.responsibleLecturer == null">
+        <p-dropdown
+          [options]="state.lecturers!"
+          placeholder="Select Lecturer"
+          (onChange)="addLecturer1($event)"
+        >
+          <ng-template let-lecturer pTemplate="selectedItem">
+            <div>
+              {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
             </div>
-            <div
-              class="field-width field col-10"
-              *ngIf="project.project.projectType == 1"
-            >
-              Development
+          </ng-template>
+          <ng-template let-lecturer pTemplate="item">
+            {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+          </ng-template></p-dropdown
+        >
+      </div>
+      <p-divider layout="vertical"></p-divider>
+
+      <div class="col-1 font-bold">Lecturer 2</div>
+      <div class="col-2" *ngIf="session!.lecturer2 != null">
+        <div class="field-width field">
+          {{ session!.lecturer2!.firstName }}
+          {{ session!.lecturer2!.lastName }}
+        </div>
+        <p-button
+          *ngIf="!isEdit"
+          icon="pi pi-pencil"
+          (onClick)="removeLecturer2()"
+        ></p-button>
+      </div>
+      <div class="col-2" *ngIf="session!.lecturer2 == null">
+        <p-dropdown
+          [options]="state.lecturers!"
+          placeholder="Select Lecturer"
+          (onChange)="addLecturer2($event)"
+        >
+          <ng-template let-lecturer pTemplate="selectedItem">
+            <div>
+              {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
             </div>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+          </ng-template>
+          <ng-template let-lecturer pTemplate="item">
+            {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+          </ng-template></p-dropdown
+        >
+      </div>
+      <p-divider layout="vertical"></p-divider>
+      <div class="col-1 font-bold">Lecturer 3</div>
+      <div class="col-2" *ngIf="session!.lecturer3 != null">
+        <div class="field-width field">
+          {{ session!.lecturer3!.firstName }}
+          {{ session!.lecturer3!.lastName }}
+        </div>
+        <p-button
+          *ngIf="!isEdit"
+          icon="pi pi-pencil"
+          (onClick)="removeLecturer3()"
+        ></p-button>
+      </div>
+      <div class="col-2" *ngIf="session!.lecturer3 == null">
+        <p-dropdown
+          [options]="state.lecturers!"
+          placeholder="Select Lecturer"
+          (onChange)="addLecturer3($event)"
+        >
+          <ng-template let-lecturer pTemplate="selectedItem">
+            <div>
+              {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+            </div>
+          </ng-template>
+          <ng-template let-lecturer pTemplate="item">
+            {{ lecturer.firstName }} {{ lecturer.lastName }} {{ lecturer.id }}
+          </ng-template></p-dropdown
+        >
+      </div>
+      <p-divider layout="vertical"></p-divider>
+      <p-button
+        *ngIf="isEdit && state.connectedUser!.userType == 0"
+        icon="pi pi-pencil"
+        (onClick)="manualEdit(session!)"
+      ></p-button>
+      <div class="col-2 font-bold bg-green-100" *ngIf="isEdit">
+        Session time: {{ time }}
+      </div>
+
+      <p-table
+        class="col-12"
+        [value]="session!.projects"
+        styleClass="p-datatable-gridlines p-datatable-striped h-30rem overflow-auto"
+        selectionMode="single"
+        scrollHeight="flex"
+        [scrollable]="true"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Project Name</th>
+            <th>Student 1 Name</th>
+            <th>Student 2 Name</th>
+            <th>Project Type</th>
+            <th *ngIf="!isEdit"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-project>
+          <tr [pSelectableRow]="project">
+            <td>{{ project.projectFull.projectName }}</td>
+            <td>
+              {{ project.projectFull.student1.lastName }}
+              {{ project.projectFull.student1.firstName }}
+            </td>
+            <td>
+              {{ project.projectFull.student2.lastName }}
+              {{ project.projectFull.student2.firstName }}
+            </td>
+            <td>
+              <div
+                class="field-width field col-10"
+                *ngIf="project.projectFull.projectType == 0"
+              >
+                Research
+              </div>
+              <div
+                class="field-width field col-10"
+                *ngIf="project.projectFull.projectType == 1"
+              >
+                Development
+              </div>
+            </td>
+            <td *ngIf="!isEdit">
+              <p-button
+                [style]="{ 'background-color': 'red', color: 'white' }"
+                label="Delete Project"
+                (onClick)="deleteProjFromSession(project.projectFull)"
+              ></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <div *ngIf="!isEdit" class="col-12 grid m-4 shadow-2">
+        <div class="text-3xl col-3">Select a project to add</div>
+        <p-dropdown
+          tooltip="If you click the project will be added"
+          class="col-9"
+          [options]="state.projects!"
+          placeholder="Select Project"
+          (onChange)="addProject($event)"
+        >
+          <ng-template let-project pTemplate="selectedItem">
+            <div>{{ project.projectName }} {{ project.projCode }}</div>
+          </ng-template>
+          <ng-template let-project pTemplate="item">
+            {{ project.projectName }} {{ project.projCode }}
+          </ng-template>
+        </p-dropdown>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="!isEdit" class="block text-5xl" (click)="saveSessionToDb()">
+    Save Session
+  </button>
+  <div *ngIf="isChanged" class="w-full grid">
+    <div class="col-2"></div>
+    <div class="col-8 font-bold bg-red-500 text-5xl">
+      In order for the changes to be saved, click on Save Session
+    </div>
+    <div class="col-2"></div>
   </div>
 </div>

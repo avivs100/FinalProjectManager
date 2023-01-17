@@ -18,6 +18,7 @@ import { StudentApiService } from './student-api.service';
 import { SubSink } from 'subsink';
 import { GeneralApiService } from './general-api.service';
 import { catchError, of, throwError } from 'rxjs';
+import { SchduleApiService } from './schdule-api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -53,7 +54,7 @@ export class StateService implements OnDestroy {
     email: 'sagifishman1@gmail.com',
   };
   public subs: SubSink = new SubSink();
-  public connectedUser: Student | Admin | Lecturer | null = this.lecturer;
+  public connectedUser: Student | Admin | Lecturer | null = this.admin;
   public projects: ProjectFull[] | null = null;
   public project: ProjectFull | null = null;
   public lecturerProjects: ProjectFull[] | null = null;
@@ -66,6 +67,7 @@ export class StateService implements OnDestroy {
   public selectedProposal: ProjectProposalDetailsWithStatus | null = null;
   public admins: Admin[] | null = null;
   public proposalAfterAprove: ProjectProposalDetailsWithStatus[] | null = null;
+  public session: Session | null = null;
 
   public errorMessage = '';
 
@@ -73,7 +75,8 @@ export class StateService implements OnDestroy {
     private api: GeneralApiService,
     private adminApi: AdminApiService,
     private lecturerApi: LecturerApiService,
-    private studentApi: StudentApiService
+    private studentApi: StudentApiService,
+    private scheduleApi: SchduleApiService
   ) {}
 
   userLogedIn() {
@@ -91,10 +94,17 @@ export class StateService implements OnDestroy {
         console.log('app schedule dates from server', this.scheduleDates);
       });
 
-    this.subs.sink = this.adminApi.getStudents().subscribe((x) => {
-      this.students = x;
-      console.log('students from server', this.students);
+    this.subs.sink = this.scheduleApi.GetSchedule().subscribe((x) => {
+      this.schedule = x;
+      console.log('scedule from server ', x);
     });
+
+    this.subs.sink = this.subs.sink = this.adminApi
+      .getStudents()
+      .subscribe((x) => {
+        this.students = x;
+        console.log('students from server', this.students);
+      });
 
     this.subs.sink = this.adminApi.getAllLecturer().subscribe((x) => {
       this.lecturers = x;
@@ -156,80 +166,80 @@ export class StateService implements OnDestroy {
     this.subs.unsubscribe();
   }
 
-  returnSceduleFull(): ScheduleFull {
-    var schedule = {
-      dayOne: this.returnDayInSchedule(false, 1),
-      dayTwo: this.returnDayInSchedule(false, 2),
-      id: 12344,
-    };
+  // returnSceduleFull(): ScheduleFull {
+  //   var schedule = {
+  //     dayOne: this.returnDayInSchedule(false, 1),
+  //     dayTwo: this.returnDayInSchedule(false, 2),
+  //     id: 12344,
+  //   };
 
-    console.log(schedule);
-    return schedule;
-  }
+  //   console.log(schedule);
+  //   return schedule;
+  // }
 
-  returnDayInSchedule(day: boolean, id: number): DayInSchedule {
-    var dayOne: DayInSchedule = {
-      classSessions1: this.returnClassSessions('1', 1),
-      classSessions2: this.returnClassSessions('2', 2),
-      classSessions3: this.returnClassSessions('3', 3),
-      classSessions4: this.returnClassSessions('4', 4),
-      day: day,
-      id: id,
-    };
-    return dayOne;
-  }
+  // returnDayInSchedule(day: boolean, id: number): DayInSchedule {
+  //   var dayOne: DayInSchedule = {
+  //     classSessions1: this.returnClassSessions('1', 1),
+  //     classSessions2: this.returnClassSessions('2', 2),
+  //     classSessions3: this.returnClassSessions('3', 3),
+  //     classSessions4: this.returnClassSessions('4', 4),
+  //     day: day,
+  //     id: id,
+  //   };
+  //   return dayOne;
+  // }
 
-  returnSession(id: number, sessionNum: number): Session {
-    return {
-      id: id,
-      lecturer2: this.lecturer,
-      lecturer3: this.lecturer,
-      projects: this.returnProjectInSession(),
-      responsibleLecturer: this.lecturer,
-      sessionNumber: sessionNum,
-    };
-  }
+  // returnSession(id: number, sessionNum: number): Session {
+  //   return {
+  //     id: id,
+  //     lecturer2: this.lecturer,
+  //     lecturer3: this.lecturer,
+  //     projects: this.returnProjectInSession(),
+  //     responsibleLecturer: this.lecturer,
+  //     sessionNumber: sessionNum,
+  //   };
+  // }
 
-  returnProjectInSession(): ProjectInSession[] {
-    var projectInSession = [
-      {
-        order: 0,
-        project: this.projects![0],
-      },
-      {
-        order: 1,
-        project: this.projects![1],
-      },
-      {
-        order: 2,
-        project: this.projects![2],
-      },
-      {
-        order: 3,
-        project: this.projects![3],
-      },
-      {
-        order: 4,
-        project: this.projects![4],
-      },
-      {
-        order: 5,
-        project: this.projects![5],
-      },
-    ];
+  // returnProjectInSession(): ProjectInSession[] {
+  //   var projectInSession = [
+  //     {
+  //       order: 0,
+  //       project: this.projects![0],
+  //     },
+  //     {
+  //       order: 1,
+  //       project: this.projects![1],
+  //     },
+  //     {
+  //       order: 2,
+  //       project: this.projects![2],
+  //     },
+  //     {
+  //       order: 3,
+  //       project: this.projects![3],
+  //     },
+  //     {
+  //       order: 4,
+  //       project: this.projects![4],
+  //     },
+  //     {
+  //       order: 5,
+  //       project: this.projects![5],
+  //     },
+  //   ];
 
-    return projectInSession;
-  }
+  //   return projectInSession;
+  // }
 
-  returnClassSessions(className: string, id: number): ClassSessions {
-    return <ClassSessions>{
-      className: className,
-      Session1: this.returnSession(1, 1),
-      Session2: this.returnSession(2, 2),
-      Session3: this.returnSession(3, 3),
-      Session4: this.returnSession(4, 4),
-      Session5: this.returnSession(5, 5),
-      id: id,
-    };
-  }
+  // returnClassSessions(className: string, id: number): ClassSessions {
+  //   return <ClassSessions>{
+  //     className: className,
+  //     Session1: this.returnSession(1, 1),
+  //     Session2: this.returnSession(2, 2),
+  //     Session3: this.returnSession(3, 3),
+  //     Session4: this.returnSession(4, 4),
+  //     Session5: this.returnSession(5, 5),
+  //     id: id,
+  //   };
+  // }
 }

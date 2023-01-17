@@ -131,17 +131,15 @@ namespace FinalProjectManger_server.Controllers
                     var student1 = await context.Set<Student>().Where(x => x.id == project.student1Id).FirstOrDefaultAsync();
                     var student2 = await context.Set<Student>().Where(x => x.id == project.student2Id).FirstOrDefaultAsync();
                     var lecturer = await context.Set<Lecturer>().Where(x => x.id == project.LecturerId).FirstOrDefaultAsync();
-                    var gradeA = await context.Set<GradeA>().Where(x => x.gradeAid == project.gradeAId).FirstOrDefaultAsync();
-                    var gradeB = await context.Set<GradeB>().Where(x => x.gradeBid == project.gradeBId).FirstOrDefaultAsync();
-                    if(student1 == null || student2 == null || lecturer == null || gradeA == null || gradeB == null)
+                    if(student1 == null || student2 == null || lecturer == null)
                         return NotFound();
-                    var projectFull = new ProjectFull(project.ProjectId, project.ProjectName, lecturer, student1, student2, gradeA, gradeB, project.ProjectType,"A");
+                    var projectFull = new ProjectFull(project.ProjectId, project.ProjectName, lecturer, student1, student2, project.ProjectType,"A");
                     return Ok(projectFull);
 
                 }
             }
 
-            return NotFound(); // check with Aviv Gayba what need to return
+            return NotFound(); 
         }
 
     }

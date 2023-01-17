@@ -14,19 +14,30 @@ namespace Domain
         public long ResponsibleLecturerID { get; set; }
         public long Lecturer2ID { get; set; }
         public long Lecturer3ID { get; set; }
-        public List<Project> ProjectsID { get; set; }
+        public List<ProjectForSession> ProjectsForSessionID { get; set; }
         public int SessionNumber { get; set; }
         public string ClassRoom { get; set; }
 
         public Session() { }
 
-        public Session(long responsibleLecturerID, long lecturer2ID, long lecturer3ID, List<Project> projectsID, int sessionNumber)
+        public Session(long responsibleLecturerID, long lecturer2ID, long lecturer3ID, List<ProjectForSession> projectsForSessionID, int sessionNumber)
         {
             Id = new Random().Next();
             ResponsibleLecturerID = responsibleLecturerID;
             Lecturer2ID = lecturer2ID;
             Lecturer3ID = lecturer3ID;
-            ProjectsID = projectsID;
+            ProjectsForSessionID = projectsForSessionID;
+            SessionNumber = sessionNumber;
+            ClassRoom = ConvertFromSessionNumToClassRoom(sessionNumber);
+        }
+
+        public Session(int id, long responsibleLecturerID, long lecturer2ID, long lecturer3ID, List<ProjectForSession> projectsForSessionID, int sessionNumber)
+        {
+            Id = id;
+            ResponsibleLecturerID = responsibleLecturerID;
+            Lecturer2ID = lecturer2ID;
+            Lecturer3ID = lecturer3ID;
+            ProjectsForSessionID = projectsForSessionID;
             SessionNumber = sessionNumber;
             ClassRoom = ConvertFromSessionNumToClassRoom(sessionNumber);
         }
@@ -37,12 +48,12 @@ namespace Domain
             public Lecturer ResponsibleLecturer { get; set; }
             public Lecturer Lecturer2 { get; set; }
             public Lecturer Lecturer3 { get; set; }
-            public List<ProjectFull> Projects { get; set; }
+            public List<ProjectInSession> Projects { get; set; }
             public int SessionNumber { get; set; }
             public string ClassRoom { get; set; }
             public SessionFull() { }
 
-            public SessionFull(int id, Lecturer responsibleLecturer, Lecturer lecturer2, Lecturer lecturer3, List<ProjectFull> projects, int sessionNumber, string classRoom)
+            public SessionFull(int id, Lecturer responsibleLecturer, Lecturer lecturer2, Lecturer lecturer3, List<ProjectInSession> projects, int sessionNumber, string classRoom)
             {
                 Id = id;
                 ResponsibleLecturer = responsibleLecturer;
@@ -67,10 +78,10 @@ namespace Domain
         }
         public class ClassRoomNames
         {
-            public static string ClassRoom1Name = "L700";
-            public static string ClassRoom2Name = "L701";
-            public static string ClassRoom3Name = "L702";
-            public static string ClassRoom4Name = "L703";
+            public const string ClassRoom1Name = "L700";
+            public const string ClassRoom2Name = "L701";
+            public const string ClassRoom3Name = "L702";
+            public const string ClassRoom4Name = "L703";
         }
     }
 }

@@ -1,3 +1,9 @@
+<p-toast
+  position="top-right"
+  [showTransformOptions]="'translateX(100%)'"
+  [hideTransitionOptions]="'3000ms'"
+></p-toast>
+
 <p-button
   label="Generate"
   styleClass="p-button-lg"
@@ -11,8 +17,8 @@
   (onClick)="deleteSchedule()"
 ></p-button>
 <p-button
-  (onClick)="nevigateToManualEdit()"
-  label="Manual Editing"
+  label="Send an email that the schedule is ready"
   styleClass="p-button-lg"
   class="mr-4"
+  (onClick)="sendEmail()"
 ></p-button>

@@ -1,10 +1,12 @@
-<p-tabView>
-  <p-tabPanel [header]="dates!.date1.slice(0, 10)">
-    <app-day-in-schedule-details [day]="schedule!.dayOne">
-    </app-day-in-schedule-details>
-  </p-tabPanel>
-  <p-tabPanel [header]="dates!.date2.slice(0, 10)">
-    <app-day-in-schedule-details [day]="schedule!.dayTwo">
-    </app-day-in-schedule-details>
-  </p-tabPanel>
-</p-tabView>
+<div *ngIf="schedule$ | async as schedule">
+  <p-tabView *ngIf="dates$ | async as dates">
+    <p-tabPanel [header]="dates.date1.slice(0, 10)">
+      <app-day-in-schedule-details [day]="schedule.dayOne">
+      </app-day-in-schedule-details>
+    </p-tabPanel>
+    <p-tabPanel [header]="dates.date2.slice(0, 10)">
+      <app-day-in-schedule-details [day]="schedule.dayTwo">
+      </app-day-in-schedule-details>
+    </p-tabPanel>
+  </p-tabView>
+</div>

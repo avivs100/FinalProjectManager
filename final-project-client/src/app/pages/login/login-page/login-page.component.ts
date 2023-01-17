@@ -63,6 +63,7 @@ export class LoginPageComponent {
   onReject() {}
 
   showToast(x: boolean) {
+    this.messageService.clear();
     if (x == true) {
       this.messageService.add({
         severity: 'success',

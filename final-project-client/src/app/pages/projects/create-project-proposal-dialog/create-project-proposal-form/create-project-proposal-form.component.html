@@ -54,13 +54,24 @@
       <div class="fields col-6">
         <div class="field pt-2">
           <span class="p-float-label">
-            <input
-              type="text"
-              id="lecturerIDId"
-              class="max-w-13rem"
-              pInputText
+            <p-dropdown
+              class="col-5"
+              [options]="lecturers!"
+              optionValue="id"
+              placeholder="Select Lecturer"
               formControlName="lecturerID"
-            />
+            >
+              <ng-template let-lecturer pTemplate="selectedItem">
+                <div>
+                  {{ lecturer.firstName }} {{ lecturer.lastName }}
+                  {{ lecturer.id }}
+                </div>
+              </ng-template>
+              <ng-template let-lecturer pTemplate="item">
+                {{ lecturer.firstName }} {{ lecturer.lastName }}
+                {{ lecturer.id }}
+              </ng-template></p-dropdown
+            >
             <label for="lecturerIDId">Lecturer ID</label>
           </span>
         </div>

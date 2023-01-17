@@ -1,1 +1,16 @@
-<p>student-schedule works!</p>
+<div class="flex flex-row justify-content-between mb-5">
+  <div class="text-5xl font-bold">Student Schedule</div>
+</div>
+<p-card *ngIf="schedule$ | async" class="w-full h-full m-4">
+  <p-button
+    (click)="navigateToScheduleDetails()"
+    label="Navigate To Schedule"
+  ></p-button>
+</p-card>
+
+<p-card *ngIf="!(schedule$ | async)" class="w-full h-full m-4">
+  <div class="text-3xl">Schedule Still Not Generated</div>
+  <div class="text-2xl">
+    When the schedule will generated you will have the option to see him
+  </div>
+</p-card>

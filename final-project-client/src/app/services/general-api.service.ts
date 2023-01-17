@@ -19,6 +19,9 @@ export class GeneralApiService {
     console.log('generalApiLoginFunction');
     return this.http.get<number>(this.serverUrl + `/LogIn/${id}/${pass}`);
   }
+  getAdmins(): Observable<Admin[]> {
+    return this.http.get<Admin[]>(`${this.serverUrl}/Admin`);
+  }
 
   getAdmin(id: number): Observable<Admin> {
     return this.http.get<Admin>(`${this.serverUrl}/Admin/${id}`);

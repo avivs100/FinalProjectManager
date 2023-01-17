@@ -7,6 +7,8 @@ import {
   LecturerConstarintForDate,
   ScheduleDates,
 } from 'src/app/models/schedule-models';
+import { MessageService } from 'primeng/api';
+import { Observable } from 'rxjs';
 export interface DateAndNumberForConstraint {
   num: Number;
   presentation: String;
@@ -31,27 +33,43 @@ export class LecturerAddConstraintsComponent implements OnDestroy, OnInit {
   public SelectedSession2: number[] = [];
   public conFromServer: LecturerConstarintForDate | undefined;
 
-  constructor(private state: StateService, private api: LecturerApiService) {}
+  constructor(
+    private state: StateService,
+    private api: LecturerApiService,
+    private msgService: MessageService
+  ) {}
   ngOnInit(): void {
     this.dates = this.state.scheduleDates;
   }
 
+  public dates$: Observable<ScheduleDates> = this.api.getScheduleDates();
+
   saveConstrains() {
+    var session2after: number[] = [];
+    this.SelectedSession2.forEach((x) => session2after.push(x + 20));
     var lecturerConstraints: LecturerConstarintForDate = {
       lecturerId: this.state.connectedUser!.id,
       date1: this.dates!.date1,
       date2: this.dates!.date2,
-      sessions1: this.SelectedSession2,
-      sessions2: this.SelectedSession1,
+      sessions1: this.SelectedSession1,
+      sessions2: session2after,
     };
     this.subs.sink = this.api
       .PutLecturerConstraints(lecturerConstraints)
-      .subscribe((x) => console.log(x, 'response from server'));
-    console.log(lecturerConstraints, 'send to server');
+      .subscribe((x) => this.showToast('Successfully Saved'));
+    this.SelectedSession1 = [];
+    this.SelectedSession2 = [];
   }
   ngOnDestroy(): void {
     this.subs.unsubscribe();
-    console.log(this.SelectedSession1);
-    console.log(this.SelectedSession2);
+  }
+
+  showToast(msg: string) {
+    this.msgService.clear();
+    this.msgService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: msg,
+    });
   }
 }

@@ -42,25 +42,26 @@ export interface DayInSchedule {
 }
 
 export interface ClassSessions {
-  Session1: Session;
-  Session2: Session;
-  Session3: Session;
-  Session4: Session;
-  Session5: Session;
+  session1: Session;
+  session2: Session;
+  session3: Session;
+  session4: Session;
+  session5: Session;
   className: string;
   id: number;
 }
 
 export interface ProjectInSession {
-  project: ProjectFull;
+  projectFull: ProjectFull;
   order: number;
 }
 
 export interface Session {
   id: number;
-  responsibleLecturer: Lecturer;
-  lecturer2: Lecturer;
-  lecturer3: Lecturer;
+  responsibleLecturer: Lecturer | null;
+  lecturer2: Lecturer | null;
+  lecturer3: Lecturer | null;
   projects: ProjectInSession[];
   sessionNumber: number;
+  classRoom: string;
 }

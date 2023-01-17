@@ -8,6 +8,7 @@ import { filter } from 'rxjs';
 import { MessageServiceApi } from 'src/app/services/message.service';
 import { SendMessageDialogComponent } from '../send-message-dialog/send-message-dialog.component';
 import { messageFormData } from '../send-message-dialog/send-message-form/send-message-form.component';
+import { MessageService } from 'primeng/api';
 
 export enum MessageType {
   Student,
@@ -28,6 +29,7 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
   constructor(
     private dialog: DialogService,
     private messageService: MessageServiceApi,
+    private toastMessageService: MessageService,
     public state: StateService,
     private adminApi: AdminApiService
   ) {}
@@ -102,7 +104,7 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
         this.messageToAllStudents.message
       )
       .subscribe((x) => {
-        console.log(x);
+        this.showToast(x);
         this.messageToAllStudents = null;
         this.message = null;
       });
@@ -121,7 +123,7 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
         this.messageToAllLecturers.message
       )
       .subscribe((x) => {
-        console.log(x);
+        this.showToast(x);
         this.messageToAllLecturers = null;
         this.message = null;
       });
@@ -140,7 +142,7 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
         this.messageToAllUsers.message
       )
       .subscribe((x) => {
-        console.log(x);
+        this.showToast(x);
         this.messageToAllUsers = null;
         this.message = null;
       });
@@ -161,7 +163,7 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
         this.messageTo1Student.message
       )
       .subscribe((x) => {
-        console.log(x);
+        this.showToast(x);
         this.messageTo1Student = null;
         this.message = null;
       });
@@ -182,7 +184,7 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
         this.messageTo1Lecturer.message
       )
       .subscribe((x) => {
-        console.log(x);
+        this.showToast(x);
         this.messageTo1Lecturer = null;
         this.message = null;
       });
@@ -203,9 +205,26 @@ export class AdminMessagesComponent implements OnDestroy, OnInit {
         this.messageTo1Project.message
       )
       .subscribe((x) => {
-        console.log(x);
+        this.showToast(x);
         this.messageTo1Project = null;
         this.message = null;
       });
+  }
+
+  showToast(x: boolean) {
+    this.toastMessageService.clear();
+    if (x == true) {
+      this.toastMessageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Your Massege Sent Successfully',
+      });
+    } else {
+      this.toastMessageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Error, faild to send the message',
+      });
+    }
   }
 }

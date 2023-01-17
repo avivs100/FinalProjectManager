@@ -21,11 +21,17 @@ export class StudentSubmissionsComponent {
     for (let file of event.files) {
       this.uploadedFiles.push(file);
     }
+    this.messageService.clear();
+    this.showToast();
+  }
 
+  showToast() {
+    this.messageService.clear();
+    console.log('david');
     this.messageService.add({
-      severity: 'info',
-      summary: 'File Uploaded',
-      detail: '',
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Your Files Uploaded Successfully',
     });
   }
 }

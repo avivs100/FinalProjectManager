@@ -1,20 +1,4 @@
-<!-- <div class="h-full overflow-hidden flex flex-column">
-  <header class="surface-card shadow-2 z-5 flex-shrink-0">
-    <app-toolbar></app-toolbar>
-  </header>
-
-  <main class="flex-grow-1 flex flex-row h-full">
-    <p-toast position="top-right"></p-toast>
-    <app-admin-sidebar *ngIf="userType == 0" ></app-admin-sidebar>
-    <app-student-sidebar *ngIf="userType == 1"></app-student-sidebar>
-    <app-lecturer-sidebar *ngIf="userType == 2"></app-lecturer-sidebar>
-
-    <div class="flex-grow-1 surface-ground">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
-</div> -->
-<div class="h-full w-full overflow-hidden flex flex-column">
+<!-- <div class="h-screen w-screen flex flex-column">
   <header class="surface-card shadow-2 z-5 flex-shrink-0" style="height: 50px">
     <app-toolbar></app-toolbar>
   </header>
@@ -34,8 +18,35 @@
       style="width: 230px"
     ></app-lecturer-sidebar>
 
-    <div class="flex-grow-1 surface-ground overflow-auto">
+    <div class="flex-grow-1 overflow-scroll">
       <router-outlet></router-outlet>
+    </div>
+  </main>
+</div> -->
+
+<div class="h-screen w-screen flex flex-column">
+  <header class="surface-card shadow-2 z-5 flex-shrink-0" style="height: 50px">
+    <app-toolbar></app-toolbar>
+  </header>
+
+  <main class="flex-grow-1 flex flex-row h-full">
+    <p-toast position="top-right"></p-toast>
+    <app-admin-sidebar
+      *ngIf="userType == 0"
+      style="width: 230px"
+    ></app-admin-sidebar>
+    <app-student-sidebar
+      *ngIf="userType == 1"
+      style="width: 230px"
+    ></app-student-sidebar>
+    <app-lecturer-sidebar
+      *ngIf="userType == 2"
+      style="width: 230px"
+    ></app-lecturer-sidebar>
+    <div class="flex-grow-1 h-full overflow-y-auto">
+      <div class="h-full">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </main>
 </div>

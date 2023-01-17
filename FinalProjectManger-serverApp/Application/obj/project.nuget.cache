@@ -1,16 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "TIwgUwx0NRXQ6lsmvm0tRwnv1kLNWR/bIlBHSU47ihtLz/OmecUXLSsCFUkxtjAYYySqpkuE4knbHfvGhutPOQ==",
-=======
-<<<<<<< HEAD
-  "dgSpecHash": "TIwgUwx0NRXQ6lsmvm0tRwnv1kLNWR/bIlBHSU47ihtLz/OmecUXLSsCFUkxtjAYYySqpkuE4knbHfvGhutPOQ==",
-=======
-  "dgSpecHash": "E3WejwDTUK4UjmCtKgxgHn/ewBmbwkNLRH/AgZWYvVS7NBNuWvMxs/KzcPBeHvAKO8NHDofXgUy5B3IjMvf2mg==",
->>>>>>> SagisTheGever
->>>>>>> working_on_pages
+  "dgSpecHash": "jnvBBWTYDwcVudwsiOIETUw4wvef04pmTr5oaha7uRTjir1J6s3UYkafnlVVeKN3dinxZ9EFp5tcefMdlEzvvA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
+  "projectFilePath": "F:\\repo\\ProjectManager\\FinalProjectManger-serverApp\\Application\\Application.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file F:\\repo\\ProjectManager\\FinalProjectManger-serverApp\\Application\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

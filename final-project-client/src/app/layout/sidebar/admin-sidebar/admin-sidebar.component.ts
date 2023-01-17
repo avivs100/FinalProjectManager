@@ -33,14 +33,6 @@ export class AdminSidebarComponent {
       },
     },
     {
-      label: 'Grades',
-      routerLink: 'grades',
-      icon: 'pi pi-star-fill',
-      tooltipOptions: {
-        tooltipLabel: 'Grades',
-      },
-    },
-    {
       label: 'Premissions',
       routerLink: 'premissions',
       icon: 'pi pi-check-circle',

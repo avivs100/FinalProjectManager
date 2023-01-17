@@ -1,17 +1,18 @@
-<div class="min-w-screen">
+<div class="max-w-screen">
   <div class="mb-5">
-    <div class="text-5xl">Proposals After Aprove</div>
+    <div class="text-5xl font-bold">Proposals After Aprove</div>
   </div>
   <app-proposal-list
-    [proposals]="state.proposalAfterAprove"
+    [proposals]="proposalsAfterAprove$ | async"
     (goToProposalDetails)="goToProposalDetails($event)"
   ></app-proposal-list>
 
   <div class="m-5">
-    <div class="text-5xl">Proposals Before Lecturer Reference</div>
+    <div class="text-5xl font-bold">All Proposals</div>
+    <p-button label="Send Notification To Lecturers"></p-button>
   </div>
   <app-proposal-list
-    [proposals]="state.proposals"
+    [proposals]="proposals$ | async"
     (goToProposalDetails)="goToProposalDetails($event)"
   ></app-proposal-list>
 </div>

@@ -11,6 +11,7 @@ import { ProjectsPageComponent } from './pages/projects/projects-page.component'
 import { ProposalDetailsPageComponent } from './pages/proposal-page/proposal-details-page/proposal-details-page.component';
 import { ProposalPageComponent } from './pages/proposal-page/proposal-page.component';
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
+import { SessionEditPageComponent } from './pages/schedule-page/admin-schedule/session-edit-page/session-edit-page.component';
 import { LecturerScheduleComponent } from './pages/schedule-page/lecturer-schedule/lecturer-schedule.component';
 import { ScheduleDetailsComponent } from './pages/schedule-page/schedule-details/schedule-details.component';
 import { ScheduleComponent } from './pages/schedule-page/schedule-page.component';
@@ -65,6 +66,10 @@ const routes: Routes = [
       {
         path: 'proposal-details',
         component: ProposalDetailsPageComponent,
+      },
+      {
+        path: 'manual-edit',
+        component: SessionEditPageComponent,
       },
     ],
   },
