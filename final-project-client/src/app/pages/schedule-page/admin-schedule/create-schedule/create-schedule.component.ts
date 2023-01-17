@@ -3,6 +3,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -18,8 +19,15 @@ import { SubSink } from 'subsink';
   templateUrl: './create-schedule.component.html',
   styleUrls: ['./create-schedule.component.scss'],
 })
-export class CreateScheduleComponent {
-  constructor(private messageService: MessageService) {}
+export class CreateScheduleComponent implements OnDestroy {
+  constructor(
+    private messageService: MessageService,
+    private api: AdminApiService
+  ) {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+  public sub = new SubSink();
 
   @Output() public generateScheduleOutput = new EventEmitter();
   @Output() public deleteScheduleOutput = new EventEmitter();
@@ -37,12 +45,26 @@ export class CreateScheduleComponent {
     this.manuelScheduleOutput.emit();
   }
 
-  showToast(msg: string) {
+  sendEmail() {
+    console.log('send mail to users');
+    this.sub.sink = this.api
+      .SendEmailsSchedule()
+      .subscribe((x) => this.showToast(x));
+  }
+  showToast(x: boolean) {
     this.messageService.clear();
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: msg,
-    });
+    if (x == true) {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'The email has been sent ',
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Error with email service ',
+      });
+    }
   }
 }

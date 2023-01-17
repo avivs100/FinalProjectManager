@@ -106,4 +106,18 @@ export class AdminApiService {
       `${this.serverUrl}/Admin/GetAllProposalsAfterLecturerApprove`
     );
   }
+
+  SendEmailsSchedule() {
+    return this.http.put<boolean>(
+      `${this.serverUrl}/Admin/SendEmailsSchedule`,
+      null
+    );
+  }
+
+  SendEmailsAfterScheduleDates() {
+    return this.http.put<boolean>(
+      `${this.serverUrl}/Admin/SendEmailsAfterScheduleDates`,
+      null
+    );
+  }
 }

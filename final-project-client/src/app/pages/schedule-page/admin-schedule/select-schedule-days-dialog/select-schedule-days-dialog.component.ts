@@ -27,7 +27,7 @@ export class SelectScheduleDaysDialogComponent implements OnDestroy {
     this.subs.unsubscribe();
   }
   @Output() public save1 = new EventEmitter();
-
+  public sub = new SubSink();
   public dates$: Observable<ScheduleDates> = this.genApi.getScheduleDate();
 
   public save(): void {
@@ -51,7 +51,10 @@ export class SelectScheduleDaysDialogComponent implements OnDestroy {
   }
 
   sendToLecturer() {
-    console.log('send email to all lecturer to add constrains');
+    console.log('send mail to lecturers');
+    this.sub.sink = this.api
+      .SendEmailsAfterScheduleDates()
+      .subscribe((x) => this.showToast('Email sent to all lecturers'));
   }
 
   showToast(msg: string) {
