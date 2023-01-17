@@ -316,6 +316,26 @@ namespace FinalProjectManger_server.Controllers
             return Ok(true);
         }
 
+        [HttpPut("SendEmailsSchedule")]
+        public async Task<ActionResult<bool>> SendEmailsSchedule()
+        {
+            var context = new UsersDbContext();
+            EmailService sender = new EmailService();
+            var lecturers = await context.Set<Lecturer>().ToListAsync();
+            var students = await context.Set<Student>().ToListAsync();
+            foreach (var lecturer in lecturers)
+            {
+                var msg = "Hi, " + lecturer.FirstName + " " + lecturer.LastName + "\n" + "Schedule is published" + "\n" + "From: " + "Admin";
+                sender.SendEmail(EmailMessageDetails.SystemEmail, lecturer.Email, "Schedule", msg);
+            }
+            foreach (var student in students)
+            {
+                var msg = "Hi, " + student.FirstName + " " + student.LastName + "\n" + "Schedule is published" + "\n" + "From: " + "Admin";
+                sender.SendEmail(EmailMessageDetails.SystemEmail, student.Email, "Schedule", msg);
+            }
+            return Ok(true);
+        }
+
 
 
     }
