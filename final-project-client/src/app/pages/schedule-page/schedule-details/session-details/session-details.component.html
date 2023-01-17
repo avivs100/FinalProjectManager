@@ -90,7 +90,7 @@
       </div>
       <p-divider layout="vertical"></p-divider>
       <p-button
-        *ngIf="isEdit"
+        *ngIf="isEdit && state.connectedUser!.userType == 0"
         icon="pi pi-pencil"
         (onClick)="manualEdit(session!)"
       ></p-button>
@@ -154,6 +154,7 @@
       <div *ngIf="!isEdit" class="col-12 grid m-4 shadow-2">
         <div class="text-3xl col-3">Select a project to add</div>
         <p-dropdown
+          tooltip="If you click the project will be added"
           class="col-9"
           [options]="state.projects!"
           placeholder="Select Project"

@@ -1,6 +1,6 @@
 <div class="min-w-screen">
   <div class="mb-5">
-    <div class="text-5xl">Proposals After Aprove</div>
+    <div class="text-5xl font-bold">Proposals After Aprove</div>
   </div>
   <app-proposal-list
     [proposals]="proposalsAfterAprove$ | async"
@@ -8,7 +8,7 @@
   ></app-proposal-list>
 
   <div class="m-5">
-    <div class="text-5xl">Proposals Before Lecturer Reference</div>
+    <div class="text-5xl font-bold">Proposals Before Lecturer Reference</div>
   </div>
   <app-proposal-list
     [proposals]="proposals$ | async"

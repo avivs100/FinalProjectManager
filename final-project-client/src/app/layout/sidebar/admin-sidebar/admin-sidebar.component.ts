@@ -32,14 +32,6 @@ export class AdminSidebarComponent {
         tooltipLabel: 'Schedule',
       },
     },
-    // {
-    //   label: 'Grades',
-    //   routerLink: 'grades',
-    //   icon: 'pi pi-star-fill',
-    //   tooltipOptions: {
-    //     tooltipLabel: 'Grades',
-    //   },
-    // },
     {
       label: 'Premissions',
       routerLink: 'premissions',

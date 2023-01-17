@@ -5,14 +5,14 @@
 ></p-toast>
 
 <div class="gap-4 m-5">
-  <div class="text-2xl">Student Messages</div>
+  <div class="text-5xl font-bold">Student Messages</div>
   <div class="grid">
     <p-card class="col-4">
       <div class="grid">
         <div class="text-2xl mb-5 col-12">Send message to lecturer</div>
         <p-button
           label="Create Message"
-          class="col-3"
+          class="col-6"
           (onClick)="createMessage(0)"
         ></p-button>
         <p-button
@@ -32,7 +32,7 @@
 
         <p-button
           label="Create Message"
-          class="col-3"
+          class="col-6"
           (onClick)="createMessage(1)"
         ></p-button>
         <p-button
@@ -44,11 +44,11 @@
       </div>
     </p-card>
 
-    <p-card class="col-4">
+    <p-card class="col-8">
       <div class="grid">
         <div class="text-2xl mb-5 col-12">Send message to specific Admin</div>
         <p-dropdown
-          class="col-5"
+          class="col-6"
           [options]="(admins$ | async)!"
           optionValue="id"
           placeholder="Select Admin"
@@ -62,12 +62,12 @@
           </ng-template></p-dropdown
         >
         <p-button
-          class="col-3"
+          class="col-4"
           label="Create Message"
           (onClick)="createMessage(2)"
         ></p-button>
         <p-button
-          class="ml-2 col-2"
+          class="ml-2 col-1"
           label="Send"
           [disabled]="messageTo1Admin === null || idOfAdminSend === null"
           (onClick)="SendEmailTo1Admin()"
