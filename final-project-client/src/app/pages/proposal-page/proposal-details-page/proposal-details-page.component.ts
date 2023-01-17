@@ -33,6 +33,7 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.userType = this.state.connectedUser!.userType;
     this.details = this.state.selectedProposal;
+    console.log('details :', this.details);
     this.student1 = this.state.students!.find(
       (x) => x.id == this.details!.student1ID
     );
@@ -42,9 +43,9 @@ export class ProposalDetailsPageComponent implements OnDestroy, OnInit {
     this.lecturer = this.state.lecturers!.find(
       (x) => x.id == this.details!.lecturerID
     );
-    console.log(this.details);
-    console.log(this.student1);
-    console.log(this.student2);
+    console.log('student1 ', this.student1);
+    console.log('student2 ', this.student2);
+    console.log('lecturer ', this.lecturer);
   }
 
   ngOnDestroy(): void {

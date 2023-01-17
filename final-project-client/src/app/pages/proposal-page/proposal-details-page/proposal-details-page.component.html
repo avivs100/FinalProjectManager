@@ -1,4 +1,4 @@
-<div class="w-full h-full">
+<div class="max-w-screen h-auto">
   <div class="mb-5">
     <div class="text-5xl font-bold">Project Details</div>
   </div>
@@ -111,17 +111,18 @@
     </div>
 
     <p-divider class="col-12"></p-divider>
-    <div class="col-6 gap-3" *ngIf="userType == 2">
-      <p-button label="Approve" class="mr-6" (onClick)="approve(details.id)">
-      </p-button>
-      <p-button label="Deny" class="mr-6" (onClick)="deny(details.id)">
-      </p-button>
-      <p-button label="Replay with issues"> </p-button>
+    <div class="col-12" *ngIf="userType == 2">
+      <div class="flex flex-row">
+        <p-button label="Approve" class="mr-6" (onClick)="approve(details.id)">
+        </p-button>
+        <p-button label="Deny" class="mr-6" (onClick)="deny(details.id)">
+        </p-button>
+        <p-button label="Replay with issues"> </p-button>
+      </div>
     </div>
-
-    <div class="col-6 gap-3" *ngIf="userType == 0">
-      <div class="col-6">
-        <span class="p-float-label">
+    <div class="col-12 gap-3" *ngIf="userType == 0">
+      <div class="grid">
+        <span class="p-float-label col-4">
           <input
             pInputText
             id="codeId"
@@ -132,17 +133,17 @@
           <p-button label="Set Code" class="mr-6" (onClick)="setCode()">
           </p-button>
         </span>
+        <p-button
+          label="Approve"
+          class="mr-6 col-2"
+          (onClick)="approveAdmin(details.id)"
+          [disabled]="code === null"
+        >
+        </p-button>
+        <p-button label="Deny" class="mr-6 col-2" (onClick)="deny(details.id)">
+        </p-button>
+        <p-button label="Replay with issues" class="col-2"> </p-button>
       </div>
-      <p-button
-        label="Approve"
-        class="mr-6"
-        (onClick)="approveAdmin(details.id)"
-        [disabled]="code === null"
-      >
-      </p-button>
-      <p-button label="Deny" class="mr-6" (onClick)="deny(details.id)">
-      </p-button>
-      <p-button label="Replay with issues"> </p-button>
     </div>
   </div>
 </div>

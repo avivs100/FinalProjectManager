@@ -71,10 +71,15 @@ void SeedDb()
     context.Set<Premission>().Add(new Premission(lecForPermission.id, lecForPermission.FirstName + " " + lecForPermission.LastName));
 
     var projectProposal = new ProjectProposal("Project proposal 1", ProjectType.Development, "Development because .....", "keyword1", "general description1",
-        "main tools1", "planned Working Process During The First Semester1", "product of the work1", 2, 3, false, 4);
+        "main tools1", "planned Working Process During The First Semester1", "product of the work1", 184, 186, false, 4);
 
     var projectProposal2 = new ProjectProposal("Project proposal 2", ProjectType.Research, "Research because .....", "keyword2", "general description2",
-    "main tools2", "planned Working Process During The First Semester2", "product of the work2", 5, 6, false, 4);
+    "main tools2", "planned Working Process During The First Semester2", "product of the work2", 200, 238, false, 4);
+    var projectProposal3 = new ProjectProposal("Project proposal 3", ProjectType.Development, "Development because .....", "keyword1", "general description1",
+        "main tools1", "planned Working Process During The First Semester1", "product of the work3", 180, 181, false, 4);
+
+    var projectProposal4 = new ProjectProposal("Project proposal 4", ProjectType.Research, "Research because .....", "keyword2", "general description2",
+        "main tools2", "planned Working Process During The First Semester2", "product of the work4", 182, 183, false, 4);
 
     context.Set<ProjectProposal>().Add(projectProposal);
     context.Set<ProjectProposal>().Add(projectProposal2);
