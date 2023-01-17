@@ -106,20 +106,6 @@ void SeedDb()
         lecForPermission = lecturers.Where(x => x.id == i).FirstOrDefault();
         context.Set<Premission>().Add(new Premission(lecForPermission.id, lecForPermission.FirstName + " " + lecForPermission.LastName));
     }
-    //var 
-    //var lecForPermission2 = lecturers.Where(x => x.id == 600).FirstOrDefault();
-    //context.Set<Premission>().Add(new Premission(lecForPermission2.id, lecForPermission2.FirstName + " " + lecForPermission2.LastName));
-    //var lecForPermission3 = lecturers.Where(x => x.id == 606).FirstOrDefault();
-    //context.Set<Premission>().Add(new Premission(lecForPermission3.id, lecForPermission3.FirstName + " " + lecForPermission3.LastName));
-    //var lecForPermission4 = lecturers.Where(x => x.id == 602).FirstOrDefault();
-    //context.Set<Premission>().Add(new Premission(lecForPermission4.id, lecForPermission4.FirstName + " " + lecForPermission4.LastName));
-    //var lecForPermission5 = lecturers.Where(x => x.id == 603).FirstOrDefault();
-    //context.Set<Premission>().Add(new Premission(lecForPermission5.id, lecForPermission5.FirstName + " " + lecForPermission5.LastName));
-    //var lecForPermission6 = lecturers.Where(x => x.id == 604).FirstOrDefault();
-    //context.Set<Premission>().Add(new Premission(lecForPermission6.id, lecForPermission6.FirstName + " " + lecForPermission6.LastName));
-    //var lecForPermission7 = lecturers.Where(x => x.id == 605).FirstOrDefault();
-    //context.Set<Premission>().Add(new Premission(lecForPermission7.id, lecForPermission7.FirstName + " " + lecForPermission7.LastName));
-
 
     var projectProposal = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
         , ProjectType.Development, "Development because .....", "keyword1", "general description1",

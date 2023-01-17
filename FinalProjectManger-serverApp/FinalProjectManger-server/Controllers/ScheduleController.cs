@@ -168,6 +168,9 @@ namespace FinalProjectManger_server.Controllers
         [HttpPost("GenerateSchedule")]
         public async Task<ActionResult<ScheduleFull1>> GenerateSchedule()
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+
             var context = new UsersDbContext();
             var sessionsForCheck = await context.Set<Domain.Session>().ToListAsync();
             var projectsForSession = await context.Set<ProjectForSession>().ToListAsync();
@@ -345,7 +348,9 @@ namespace FinalProjectManger_server.Controllers
             var scheduleNew = new ScheduleFull1();
             scheduleNew.DayOne = dayInSchedule1;
             scheduleNew.DayTwo = dayInSchedule2;
-
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine(elapsedMs);
             await context.SaveChangesAsync();
             return Ok(scheduleNew);
         }
