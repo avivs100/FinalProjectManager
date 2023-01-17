@@ -151,8 +151,10 @@
           </tr>
         </ng-template>
       </p-table>
-      <div *ngIf="!isEdit" class="grid">
+      <div *ngIf="!isEdit" class="col-12 grid m-4 shadow-2">
+        <div class="text-3xl col-3">Select a project to add</div>
         <p-dropdown
+          class="col-9"
           [options]="state.projects!"
           placeholder="Select Project"
           (onChange)="addProject($event)"
@@ -167,7 +169,14 @@
       </div>
     </div>
   </div>
-  <button *ngIf="!isEdit" class="block" (click)="saveSessionToDb()">
+  <button *ngIf="!isEdit" class="block text-5xl" (click)="saveSessionToDb()">
     Save Session
   </button>
+  <div *ngIf="isChanged" class="w-full grid">
+    <div class="col-2"></div>
+    <div class="col-8 font-bold bg-red-500 text-5xl">
+      In order for the changes to be saved, click on Save Session
+    </div>
+    <div class="col-2"></div>
+  </div>
 </div>

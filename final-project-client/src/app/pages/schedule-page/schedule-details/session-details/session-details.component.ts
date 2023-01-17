@@ -25,6 +25,7 @@ export class SessionDetailsComponent implements OnChanges, OnDestroy {
   }
   ngOnInit(): void {}
 
+  public isChanged = false;
   @Input() session: Session | null = null;
   @Input() number: Number | null = null;
   public time: string = '';
@@ -80,40 +81,83 @@ export class SessionDetailsComponent implements OnChanges, OnDestroy {
     this.session!.projects = this.session!.projects.filter(function (project) {
       return project.projectFull.projectId !== proj.projectId;
     });
+    this.isChanged = true;
   }
 
   removeLecturer1() {
     this.itsMySession = false;
+    this.isChanged = true;
     this.session!.responsibleLecturer = null;
+    this.showToast(true, 'Lecturer Removed');
   }
 
   removeLecturer2() {
     this.itsMySession = false;
+    this.isChanged = true;
     this.session!.lecturer2 = null;
+    this.showToast(true, 'Lecturer Removed');
   }
 
   removeLecturer3() {
     this.itsMySession = false;
+    this.isChanged = true;
     this.session!.lecturer3 = null;
+    this.showToast(true, 'Lecturer Removed');
   }
 
   addLecturer1({ value }: { value: Lecturer }) {
-    console.log(value, 1);
-    this.session!.responsibleLecturer = value;
+    if (
+      (this.session!.lecturer2 != null &&
+        this.session!.lecturer2?.id == value.id) ||
+      (this.session!.lecturer3 != null &&
+        this.session!.lecturer3?.id == value.id)
+    ) {
+      this.showToast(
+        false,
+        'cant add this lecturer he is alredy in this session'
+      );
+    } else {
+      this.showToast(true, 'Lecturer Updated');
+      this.session!.responsibleLecturer = value;
+    }
   }
   addLecturer2({ value }: { value: Lecturer }) {
-    console.log(value, 2);
-    this.session!.lecturer2 = value;
+    if (
+      (this.session!.responsibleLecturer != null &&
+        this.session!.responsibleLecturer?.id == value.id) ||
+      (this.session!.lecturer3 != null &&
+        this.session!.lecturer3?.id == value.id)
+    ) {
+      this.showToast(
+        false,
+        'cant add this lecturer he is alredy in this session'
+      );
+    } else {
+      this.showToast(true, 'Lecturer Updated');
+      this.session!.lecturer2 = value;
+    }
   }
   addLecturer3({ value }: { value: Lecturer }) {
-    console.log(value, 3);
-    this.session!.lecturer3 = value;
+    if (
+      (this.session!.responsibleLecturer != null &&
+        this.session!.responsibleLecturer?.id == value.id) ||
+      (this.session!.lecturer2 != null &&
+        this.session!.lecturer2?.id == value.id)
+    ) {
+      this.showToast(
+        false,
+        'cant add this lecturer he is alredy in this session'
+      );
+    } else {
+      this.showToast(true, 'Lecturer Updated');
+      this.session!.lecturer3 = value;
+    }
   }
 
   saveSessionToDb() {
     this.sub.add(
       this.api.updateSession(this.session!).subscribe((x) => {
-        this.showToast(x);
+        this.showToast(x, 'Success, Session Updated');
         this.router.navigate(['/home/schedule-details']);
       })
     );
@@ -121,7 +165,7 @@ export class SessionDetailsComponent implements OnChanges, OnDestroy {
 
   addProject({ value }: { value: ProjectFull }) {
     if (this.session!.projects.length >= 6) {
-      this.showToast(false);
+      this.showToast(false, 'Error, cant add more than 6 project');
       return;
     }
     var found = false;
@@ -134,7 +178,7 @@ export class SessionDetailsComponent implements OnChanges, OnDestroy {
       }
     }
     if (found) {
-      this.showToast(false);
+      this.showToast(false, 'Error, the session already contains this project');
       return;
     }
     var projectForSession: ProjectInSession = {
@@ -145,19 +189,19 @@ export class SessionDetailsComponent implements OnChanges, OnDestroy {
     this.session!.projects.push(projectForSession);
   }
 
-  showToast(x: boolean) {
+  showToast(x: boolean, msg: string) {
     this.messageService.clear();
     if (x == true) {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: 'Session Updated',
+        detail: msg,
       });
     } else {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'Error, Session not Updated',
+        detail: msg,
       });
     }
   }
