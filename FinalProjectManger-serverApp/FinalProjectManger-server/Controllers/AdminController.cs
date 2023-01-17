@@ -124,16 +124,7 @@ namespace FinalProjectManger_server.Controllers
         {
             var context = new UsersDbContext();
             var proposals = await context.Set<ProjectProposal>().ToListAsync();
-            if (proposals == null)
-                return NotFound();
-            var proposalsApprovedByLec = new List<ProjectProposal>();
-            foreach (var proposal in proposals)
-            {
-                if (proposal.IsApproved == true)
-                {
-                    proposalsApprovedByLec.Add(proposal);
-                }
-            }
+            var proposalsApprovedByLec = proposals.Where(proposal => proposal.IsApproved).ToList();
             return Ok(proposalsApprovedByLec);
         }
         
@@ -172,7 +163,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailToAllStudents")]
         public async Task<ActionResult<bool>> SendEmailToAllStudents([FromBody] EmailMessageDetails details)
         {
-            EmailService sender= new EmailService();
+            var sender= new EmailService();
             var context = new UsersDbContext();
             var students = await context.Set<Student>().ToListAsync();
             foreach (var student in students)
@@ -186,7 +177,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailToAllLecturers")]
         public async Task<ActionResult<bool>> SendEmailToAllLecturers([FromBody] EmailMessageDetails details)
         {
-            EmailService sender = new EmailService();
+            var sender = new EmailService();
             var context = new UsersDbContext();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
             foreach (var lecturer in lecturers)
@@ -200,7 +191,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailToAllUsers")]
         public async Task<ActionResult<bool>> SendEmailToAllUsers([FromBody] EmailMessageDetails details)
         {
-            EmailService sender = new EmailService();
+            var sender = new EmailService();
             var context = new UsersDbContext();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
             var students = await context.Set<Student>().ToListAsync();
@@ -220,7 +211,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailTo1Student{StudentId}")]
         public async Task<ActionResult<bool>> SendEmailTo1Student([FromBody] EmailMessageDetails details, [FromRoute] long StudentId)
         {
-            EmailService sender = new EmailService();
+            var sender = new EmailService();
             var context = new UsersDbContext();
             var student = await context.Set<Student>().Where(x => x.id == StudentId).FirstOrDefaultAsync();
             if(student == null)
@@ -233,7 +224,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailTo1Lecturer{LecturerId}")]
         public async Task<ActionResult<bool>> SendEmailTo1Lecturer([FromBody] EmailMessageDetails details, [FromRoute] long LecturerId)
         {
-            EmailService sender = new EmailService();
+            var sender = new EmailService();
             var context = new UsersDbContext();
             var lecturer = await context.Set<Lecturer>().Where(x => x.id == LecturerId).FirstOrDefaultAsync();
             if (lecturer == null)
@@ -246,7 +237,7 @@ namespace FinalProjectManger_server.Controllers
         [HttpPut("SendEmailTo2StudentsByProjectId{ProjectId}")]
         public async Task<ActionResult<bool>> SendEmaSendEmailTo2StudentsByProjectIdilTo1Lecturer([FromBody] EmailMessageDetails details, [FromRoute] long ProjectId)
         {
-            EmailService sender = new EmailService();
+            var sender = new EmailService();
             var context = new UsersDbContext();
             var project = await context.Set<Project>().Where(x => x.ProjectId == ProjectId).FirstOrDefaultAsync();
             if (project == null)
@@ -287,13 +278,15 @@ namespace FinalProjectManger_server.Controllers
             var proposal = await context.Set<ProjectProposal>().Where(x => x.Id == proposalId).FirstOrDefaultAsync();
             if (proposal == null)
                 return NotFound(false);
-            Project project = new Project();
-            project.LecturerId = proposal.LecturerID;
-            project.ProjectName = proposal.ProjectName;
-            project.ProjectType = proposal.ProjectType;
-            project.student1Id = proposal.Student1ID;
-            project.student2Id = proposal.Student2ID;
-            project.projCode= projCode;
+            var project = new Project
+            {
+                LecturerId = proposal.LecturerID,
+                ProjectName = proposal.ProjectName,
+                ProjectType = proposal.ProjectType,
+                student1Id = proposal.Student1ID,
+                student2Id = proposal.Student2ID,
+                projCode = projCode
+            };
             context.Remove(proposal);
             context.Add(project);
             await context.SaveChangesAsync();
@@ -306,7 +299,7 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<bool>> SendEmailsAfterScheduleDates()
         {
             var context = new UsersDbContext();
-            EmailService sender = new EmailService();
+            var sender = new EmailService();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
             foreach (var lecturer in lecturers)
             {
@@ -320,7 +313,7 @@ namespace FinalProjectManger_server.Controllers
         public async Task<ActionResult<bool>> SendEmailsSchedule()
         {
             var context = new UsersDbContext();
-            EmailService sender = new EmailService();
+            var sender = new EmailService();
             var lecturers = await context.Set<Lecturer>().ToListAsync();
             var students = await context.Set<Student>().ToListAsync();
             foreach (var lecturer in lecturers)
