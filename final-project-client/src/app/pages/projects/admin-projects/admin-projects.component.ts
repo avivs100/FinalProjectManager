@@ -41,4 +41,6 @@ export class AdminProjectsComponent implements OnInit, OnDestroy {
     this.state.project = data;
     this.router.navigate(['home/project']);
   }
+
+  public exportToExcel() {}
 }

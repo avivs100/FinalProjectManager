@@ -1,0 +1,73 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
+  <div class="flex card border-solid align-content-center" pFocusTrap>
+    <div class="grid col-12 row-gap-2">
+      <div class="field col-12 mt-4">
+        <span class="p-float-label">
+          <p-password
+            [toggleMask]="true"
+            id="passwordInput"
+            class="max-w-13rem"
+            formControlName="password"
+          ></p-password>
+          <label for="passwordInput">Password</label>
+        </span>
+      </div>
+
+      <div class="fields col-12">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="emailInput"
+              class="max-w-13rem"
+              pInputText
+              formControlName="email"
+            />
+            <label for="emailInput">email</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="fields col-6">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="firstInput"
+              class="max-w-13rem"
+              pInputText
+              formControlName="firstName"
+            />
+            <label for="firstInput">First Name</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="fields col-6">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="lastInput"
+              class="max-w-13rem"
+              pInputText
+              formControlName="lastName"
+            />
+            <label for="lastInput">Last Name</label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="grid col-3"></div>
+      <button
+        pButton
+        type="submit"
+        label="Update User Details"
+        class="p-button-raised p-button-outlined m-3"
+        [disabled]="form.invalid"
+      ></button>
+    </div>
+  </div>
+</form>

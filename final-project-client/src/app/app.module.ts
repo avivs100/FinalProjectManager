@@ -89,6 +89,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ClassRoomDetailsComponent } from './pages/schedule-page/schedule-details/class-room-details/class-room-details.component';
 import { DayInScheduleDetailsComponent } from './pages/schedule-page/schedule-details/day-in-schedule-details/day-in-schedule-details.component';
 import { SessionEditPageComponent } from './pages/schedule-page/admin-schedule/session-edit-page/session-edit-page.component';
+import { UserDetailsDialogComponent } from './layout/toolbar/toolbar/user-details-dialog/user-details-dialog.component';
+import { UserDetailsFormComponent } from './layout/toolbar/toolbar/user-details-dialog/user-details-form/user-details-form.component';
 
 @NgModule({
   declarations: [
@@ -143,6 +145,8 @@ import { SessionEditPageComponent } from './pages/schedule-page/admin-schedule/s
     ClassRoomDetailsComponent,
     DayInScheduleDetailsComponent,
     SessionEditPageComponent,
+    UserDetailsDialogComponent,
+    UserDetailsFormComponent,
   ],
   imports: [
     ScrollPanelModule,
