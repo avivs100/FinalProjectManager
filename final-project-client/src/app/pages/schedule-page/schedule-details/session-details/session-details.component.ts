@@ -124,6 +124,19 @@ export class SessionDetailsComponent implements OnChanges, OnDestroy {
       this.showToast(false);
       return;
     }
+    var found = false;
+    for (var i = 0; i < this.session!.projects.length; i++) {
+      if (
+        this.session!.projects[i].projectFull.projectName == value.projectName
+      ) {
+        found = true;
+        break;
+      }
+    }
+    if (found) {
+      this.showToast(false);
+      return;
+    }
     var projectForSession: ProjectInSession = {
       order: 1,
       projectFull: value,

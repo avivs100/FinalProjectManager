@@ -22,7 +22,14 @@ export class LecturerProposalComponent implements OnInit {
     });
     console.log(this.proposals);
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sub.sink = this.api.getProposals().subscribe((p) => {
+      this.proposals = p;
+      this.proposals = this.proposals.filter((x) => {
+        return x.lecturerID == this.state.connectedUser!.id;
+      });
+    });
+  }
   public proposals$: Observable<ProjectProposalDetailsWithStatus[]> =
     this.api.getProposals();
   public sub = new SubSink();
