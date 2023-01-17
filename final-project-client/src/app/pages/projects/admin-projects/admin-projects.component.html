@@ -2,7 +2,11 @@
   <div class="grid">
     <div class="text-5xl font-bold col-10">Admin Projects page</div>
 
-    <p-button label="Export To Excel" class="col-2 mt-3 text-3xl"></p-button>
+    <p-button
+      label="Export To Excel"
+      class="col-2 mt-3 text-3xl"
+      (onClick)="exportToExcel()"
+    ></p-button>
   </div>
   <p-card class="h-full">
     <p-table

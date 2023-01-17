@@ -23,7 +23,6 @@ export class UserDetailsFormComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.state.connectedUser;
     this.form.patchValue({
-      id: this.user!.id,
       password: this.user!.password,
       email: this.user!.email,
       firstName: this.user!.firstName,
@@ -32,7 +31,6 @@ export class UserDetailsFormComponent implements OnInit {
   }
   public user: Admin | Student | Lecturer | null = null;
   public form: FormGroup = this.fb.group({
-    id: ['', Validators.required],
     password: ['', Validators.required],
     email: ['', Validators.required],
     firstName: ['', Validators.required],
