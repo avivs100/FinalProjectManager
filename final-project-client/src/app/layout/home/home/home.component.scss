@@ -4,13 +4,13 @@
 //     top:0;
 //     z-index:1;
 // }
-// app-admin-sidebar, app-student-sidebar, app-lecturer-sidebar{
-//     position: fixed;
-//     top:50px;
-//     z-index: 2;
-//     left: 0;
-//     height: calc(100vh - 50px);
-// }
+app-admin-sidebar, app-student-sidebar, app-lecturer-sidebar{
+    
+    height: 100vh;
+    z-index:10;
+    left: 0;
+    
+}
 // router-outlet{
 //     overflow-y: auto;
 //     margin-left: 230px;

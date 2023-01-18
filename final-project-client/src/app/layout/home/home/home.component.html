@@ -1,5 +1,5 @@
-<!-- <div class="h-screen w-screen flex flex-column">
-  <header class="surface-card shadow-2 z-5 flex-shrink-0" style="height: 50px">
+<div class="h-screen w-screen flex flex-column surface-50">
+  <header class="surface-card shadow-2 z-5 flex-shrink-0" style="height: 74px">
     <app-toolbar></app-toolbar>
   </header>
 
@@ -7,41 +7,15 @@
     <p-toast position="top-right"></p-toast>
     <app-admin-sidebar
       *ngIf="userType == 0"
-      style="width: 230px"
+      style="width: 205px"
     ></app-admin-sidebar>
     <app-student-sidebar
       *ngIf="userType == 1"
-      style="width: 230px"
+      style="width: 205px"
     ></app-student-sidebar>
     <app-lecturer-sidebar
       *ngIf="userType == 2"
-      style="width: 230px"
-    ></app-lecturer-sidebar>
-
-    <div class="flex-grow-1 overflow-scroll">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
-</div> -->
-
-<div class="h-screen w-screen flex flex-column">
-  <header class="surface-card shadow-2 z-5 flex-shrink-0" style="height: 50px">
-    <app-toolbar></app-toolbar>
-  </header>
-
-  <main class="flex-grow-1 flex flex-row h-full">
-    <p-toast position="top-right"></p-toast>
-    <app-admin-sidebar
-      *ngIf="userType == 0"
-      style="width: 230px"
-    ></app-admin-sidebar>
-    <app-student-sidebar
-      *ngIf="userType == 1"
-      style="width: 230px"
-    ></app-student-sidebar>
-    <app-lecturer-sidebar
-      *ngIf="userType == 2"
-      style="width: 230px"
+      style="width: 205px"
     ></app-lecturer-sidebar>
     <div class="flex-grow-1 h-full overflow-y-auto">
       <div class="h-full">

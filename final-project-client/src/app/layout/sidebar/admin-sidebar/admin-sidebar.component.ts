@@ -33,7 +33,7 @@ export class AdminSidebarComponent {
       },
     },
     {
-      label: 'Premissions',
+      label: 'Permissions',
       routerLink: 'premissions',
       icon: 'pi pi-check-circle',
       tooltipOptions: {

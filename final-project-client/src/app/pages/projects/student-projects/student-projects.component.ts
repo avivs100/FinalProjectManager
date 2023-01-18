@@ -27,9 +27,19 @@ export class StudentProjectsComponent implements OnDestroy, OnInit {
     private dialog: DialogService,
     private messageService: MessageService
   ) {}
+
   ngOnInit(): void {
-    this.project = this.state.project;
-    if (this.project !== null) this.navigateToProjectDetails();
+    this.subs.sink = this.api
+      .getProject(this.state.connectedUser!.id)
+      .subscribe((x) => {
+        if (
+          x.student1.id == this.state.connectedUser!.id ||
+          x.student2.id == this.state.connectedUser!.id
+        ) {
+          this.state.project = x;
+          this.navigateToProjectDetails();
+        }
+      });
   }
   ngOnDestroy(): void {
     this.subs.unsubscribe();

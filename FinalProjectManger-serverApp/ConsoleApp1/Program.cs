@@ -70,7 +70,7 @@ void SeedDb()
         context.Set<Lecturer>().Add(tempLec);
     }
     //add admin
-    var Naomi = new Admin(7, UserType.admin, "Naomi", "Onklus", "1", "sagifishman1@gmail.com");
+    var Naomi = new Admin(7, UserType.admin, "Naomi", "Unkelos-Shpigel", "1", "sagifishman1@gmail.com");
     context.Set<Admin>().Add(Naomi);
     context.SaveChanges();
 

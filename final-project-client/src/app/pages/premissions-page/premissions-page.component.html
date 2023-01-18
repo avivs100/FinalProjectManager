@@ -4,10 +4,11 @@
   [hideTransitionOptions]="'3000ms'"
 ></p-toast>
 
-<div class="w-full h-full" *ngIf="premissions$ | async as premissions">
-  <p-card class="w-full h-full">
+<div class="text-5xl font-bold col-10">Permissions page</div>
+<div class="w-auto h-full" *ngIf="premissions$ | async as premissions">
+  <p-card class="w-auto h-full">
     <p-table
-      class="w-full h-full"
+      class="w-auto h-full"
       [value]="premissions"
       styleClass="p-datatable-gridlines p-datatable-striped  overflow-auto"
       selectionMode="single"
@@ -35,20 +36,16 @@
             >
               <div class="p-field p-md-4">
                 <p-button
-                  label="Aprove"
+                  label="Approve"
                   (onClick)="aproveLecturerPremission(premission.lecturerId)"
                 ></p-button>
               </div>
 
               <div class="p-field p-md-4">
                 <p-button
-                  label="Denay"
+                  label="Deny"
                   (onClick)="deleteLecturerPremission(premission.lecturerId)"
                 ></p-button>
-              </div>
-
-              <div class="p-field p-md-4">
-                <p-button label="Send Mail"></p-button>
               </div>
             </div>
           </td>
