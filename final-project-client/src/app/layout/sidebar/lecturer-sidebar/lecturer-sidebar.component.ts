@@ -8,26 +8,18 @@ import { MenuItem } from 'primeng/api';
 })
 export class LecturerSidebarComponent {
   public items: MenuItem[] = [
-    {
-      label: 'Submission',
-      routerLink: 'submissions',
-      icon: 'pi pi-book',
-      tooltipOptions: {
-        tooltipLabel: 'Submission',
-      },
-    },
-    {
-      label: 'Grade',
-      routerLink: 'grades',
-      icon: 'pi pi-sitemap',
-      tooltipOptions: {
-        tooltipLabel: 'Grade Page',
-      },
-    },
+    // {
+    //   label: 'Grade',
+    //   routerLink: 'grades',
+    //   icon: 'pi pi-sitemap',
+    //   tooltipOptions: {
+    //     tooltipLabel: 'Grade Page',
+    //   },
+    // },
     {
       label: 'Messages',
       routerLink: 'messages',
-      icon: 'pi pi-forward',
+      icon: 'pi pi-book',
       tooltipOptions: {
         tooltipLabel: 'Messages',
       },
@@ -35,7 +27,7 @@ export class LecturerSidebarComponent {
     {
       label: 'Schedule',
       routerLink: 'schedule',
-      icon: 'pi pi-book',
+      icon: 'pi pi-calendar',
       tooltipOptions: {
         tooltipLabel: 'Schedule',
       },
@@ -48,6 +40,22 @@ export class LecturerSidebarComponent {
         tooltipLabel: 'Projects Page',
       },
     },
+    {
+      label: 'Proposals',
+      routerLink: 'proposals',
+      icon: 'pi pi-paypal',
+      tooltipOptions: {
+        tooltipLabel: 'Project Proposals',
+      },
+    },
+    // {
+    //   label: 'Grades',
+    //   routerLink: 'grades',
+    //   icon: 'pi pi-star-fill',
+    //   tooltipOptions: {
+    //     tooltipLabel: 'Grades',
+    //   },
+    // },
   ];
 
   constructor() {}

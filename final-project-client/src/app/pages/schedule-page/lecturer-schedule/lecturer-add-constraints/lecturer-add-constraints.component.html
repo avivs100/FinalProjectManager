@@ -1,0 +1,43 @@
+<h1 *ngIf="!dates">The admin still not chose date for presentation</h1>
+<div
+  *ngIf="dates"
+  class="flex align-items-stretch flex-wrap card-container blue-container grid"
+>
+  <p-card class="p-field col-6">
+    <h5>
+      Choose hours when you cannot appear for date
+      {{ dates.date1.slice(0, 10) }}
+    </h5>
+    <p-multiSelect
+      class="custom-ms"
+      [options]="sessions"
+      optionValue="num"
+      optionLabel="presentation"
+      [(ngModel)]="SelectedSession1"
+      [virtualScroll]="true"
+      [virtualScrollItemSize]="30"
+      placeholder="Select Constrints for day 1"
+    ></p-multiSelect>
+  </p-card>
+  <p-card class="p-field col-6">
+    <h5>
+      Choose hours when you cannot appear for date
+      {{ dates.date2.slice(0, 10) }}
+    </h5>
+    <p-multiSelect
+      class="custom-ms"
+      [options]="sessions"
+      [(ngModel)]="SelectedSession2"
+      optionValue="num"
+      optionLabel="presentation"
+      [virtualScroll]="true"
+      [virtualScrollItemSize]="30"
+      placeholder="Select Constrints for day 2"
+    >
+      ></p-multiSelect
+    >
+  </p-card>
+</div>
+<div *ngIf="dates" class="flex align-items-center justify-content-center">
+  <p-button label="Save Constraints" (onClick)="saveConstrains()"></p-button>
+</div>

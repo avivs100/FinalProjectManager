@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Admin, Lecturer, Student, UserType } from '../models/modelsInterfaces';
+import { ProjectProposalDetailsWithStatus } from '../models/project-grade-models';
+import { ScheduleDates } from '../models/schedule-models';
+import { Admin, Lecturer, Student } from '../models/users-models';
+
 import { RegisterFormData } from '../pages/login/login-page/register-dialog/register-form/register-form.component';
 
 @Injectable({
@@ -16,6 +19,9 @@ export class GeneralApiService {
     console.log('generalApiLoginFunction');
     return this.http.get<number>(this.serverUrl + `/LogIn/${id}/${pass}`);
   }
+  getAdmins(): Observable<Admin[]> {
+    return this.http.get<Admin[]>(`${this.serverUrl}/Admin`);
+  }
 
   getAdmin(id: number): Observable<Admin> {
     return this.http.get<Admin>(`${this.serverUrl}/Admin/${id}`);
@@ -29,11 +35,19 @@ export class GeneralApiService {
     return this.http.get<Student>(this.serverUrl + `/Student/${id}`);
   }
 
-  getScheduleDates(): Observable<any> {
-    return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
-  }
-
   register(data: RegisterFormData): Observable<boolean> {
     return this.http.put<boolean>(`${this.serverUrl}/Register/Register`, data);
+  }
+
+  getScheduleDate(): Observable<ScheduleDates> {
+    return this.http.get<ScheduleDates>(
+      `${this.serverUrl}/Project/GetScheduleDates`
+    );
+  }
+
+  getProposals(): Observable<ProjectProposalDetailsWithStatus[]> {
+    return this.http.get<ProjectProposalDetailsWithStatus[]>(
+      this.serverUrl + `/Admin/GetProposals`
+    );
   }
 }

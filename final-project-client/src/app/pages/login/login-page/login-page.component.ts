@@ -30,9 +30,7 @@ export class LoginPageComponent {
     private dialog: DialogService,
     private genApi: GeneralApiService,
     private messageService: MessageService
-  ) {
-    console.log('now log in commponent start');
-  }
+  ) {}
   public form: FormGroup = this.fb.group({
     id: [, Validators.required],
     password: ['', Validators.required],
@@ -65,7 +63,7 @@ export class LoginPageComponent {
   onReject() {}
 
   showToast(x: boolean) {
-    console.log(x);
+    this.messageService.clear();
     if (x == true) {
       this.messageService.add({
         severity: 'success',

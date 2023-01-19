@@ -1,1 +1,95 @@
-<p>lecturer-messages works!</p>
+<p-toast
+  position="top-right"
+  [showTransformOptions]="'translateX(100%)'"
+  [hideTransitionOptions]="'3000ms'"
+></p-toast>
+
+<div class="gap-4 m-5">
+  <div class="text-5xl font-bold">Lecturer Messages</div>
+  <div class="grid">
+    <p-card class="col-12 grid">
+      <div class="text-2xl mb-5 col-12">Send message to specific project</div>
+      <p-dropdown
+        class="col-5"
+        [options]="state.lecturerProjects!"
+        optionValue="projectId"
+        [(ngModel)]="idOfProjectSend"
+        placeholder="Select Project"
+        ><ng-template let-project pTemplate="selectedItem">
+          <div>{{ project.projectName }} {{ project.projectId }}</div>
+        </ng-template>
+        <ng-template let-project pTemplate="item">
+          {{ project.projectName }} -id :{{ project.projectId }}
+        </ng-template>
+      </p-dropdown>
+      <p-button
+        label="Create Message"
+        class="col-1"
+        (onClick)="createMessage(1)"
+      ></p-button>
+      <p-button
+        class="ml-2 col-1"
+        label="Send"
+        [disabled]="messageTo1Project === null || idOfProjectSend === null"
+        (onClick)="SendEmailTo2StudentsByProjectId()"
+      ></p-button>
+    </p-card>
+
+    <p-card class="col-12 grid">
+      <div class="text-2xl mb-5 col-12">Send message to specific student</div>
+      <p-dropdown
+        class="col-5"
+        [options]="state.students!"
+        optionValue="id"
+        [(ngModel)]="idOfStudentSend"
+        placeholder="Select Student"
+        ><ng-template let-student pTemplate="selectedItem">
+          <div>{{ student.firstName }} {{ student.lastName }}</div>
+        </ng-template>
+        <ng-template let-student pTemplate="item">
+          {{ student.firstName }} {{ student.lastName }} {{ student.id }}
+        </ng-template>
+      </p-dropdown>
+      <p-button
+        label="Create Message"
+        class="col-1"
+        (onClick)="createMessage(0)"
+      ></p-button>
+      <p-button
+        class="ml-2 col-1"
+        label="Send"
+        [disabled]="messageTo1Student === null || idOfStudentSend === null"
+        (onClick)="SendEmailTo1Student()"
+      ></p-button>
+    </p-card>
+
+    <p-card class="col-12 grid">
+      <div class="text-2xl mb-5 col-12">Send message to specific Admin</div>
+      <p-dropdown
+        class="col-5"
+        [options]="state.admins!"
+        optionValue="id"
+        placeholder="Select Admin"
+        [(ngModel)]="idOfAdminSend"
+      >
+        <ng-template let-admin pTemplate="selectedItem">
+          <div>{{ admin.firstName }} {{ admin.lastName }} {{ admin.id }}</div>
+        </ng-template>
+        <ng-template let-admin pTemplate="item">
+          {{ admin.firstName }} {{ admin.lastName }} {{ admin.id }}
+        </ng-template></p-dropdown
+      >
+      <p-button
+        class="col-1"
+        label="Create Message"
+        (onClick)="createMessage(2)"
+      ></p-button>
+      <p-button
+        class="ml-2 col-1"
+        label="Send"
+        [disabled]="messageTo1Admin === null || idOfAdminSend === null"
+        (onClick)="SendEmailTo1Admin()"
+      ></p-button>
+    </p-card>
+  </div>
+</div>

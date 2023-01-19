@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,12 @@ namespace Domain
         public string LastName { get; set; }
         public string password { get; set; }
         public string Email { get; set; }
-        public List<Constraint> constraints { get; set; }
+        public List<LecConstraint> constraints { get; set; }
         public bool IsActive { get; set; }
 
         public Lecturer(long id, UserType userType, string firstName, string lastName, string password, string email)
         {
-            constraints = new List<Constraint>();
+            constraints = new List<LecConstraint>();
             this.id = id;
             this.userType = userType;
             LastName = firstName;
@@ -29,9 +30,9 @@ namespace Domain
             IsActive = false;
         }
 
-        public Lecturer(long id, UserType userType, string firstName, string lastName, string password, string email,bool isActive)
+        public Lecturer(long id, UserType userType, string firstName, string lastName, string password, string email, bool isActive)
         {
-            constraints = new List<Constraint>();
+            constraints = new List<LecConstraint>();
             this.id = id;
             this.userType = userType;
             LastName = firstName;
@@ -53,41 +54,21 @@ namespace Domain
         public string LastName { get; set; }
     }
 
-    public class Constraint
+    public class LecConstraint
     {
-        public Guid id { get; set; }
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public int Day { get; set; }
-        public int Hour { get; set; }
-        public int Minute { get; set; }
-        public int Second { get; set; }
+        public int Id;
+        public int SessionNumber;
 
-        public Constraint()
+        public LecConstraint()
         {
-
+            Id = new Random().Next();
         }
-        public Constraint(int year, int month, int day, int hour, int minute, int second)
+        public LecConstraint(int sessionNumber)
         {
-            id = new Guid();
-            Year = year;
-            Month = month;
-            Day = day;
-            Hour = hour;
-            Minute = minute;
-            Second = second;
+            Id = new Random().Next();
+            SessionNumber = sessionNumber;
         }
-
-
     }
 
-}
-public class ConstraintDetails
-{
-    public int Year { get; set; }
-    public int Month { get; set; }
-    public int Day { get; set; }
-    public int Hour { get; set; }
-    public int Minute { get; set; }
-    public int Second { get; set; }
+
 }

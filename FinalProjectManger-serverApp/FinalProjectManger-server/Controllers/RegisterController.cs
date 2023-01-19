@@ -11,12 +11,10 @@ namespace FinalProjectManger_server.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        static UsersDbContext context = new UsersDbContext();
-
-        // PUT api/<RegisterController>/5
         [HttpPut("Register")]
         public async Task<ActionResult<bool>> Put( [FromBody] DetailsForRegister detailsForRegister)
         {
+            var context = new UsersDbContext();
             if (detailsForRegister.IsLecturer == false)
             {
                 if( await context.Set<Student>().Where(x=>x.id == detailsForRegister.Id).FirstOrDefaultAsync() != null)

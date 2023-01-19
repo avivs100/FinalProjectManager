@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Lecturer, ProjectFull } from '../models/modelsInterfaces';
+import { ProjectFull } from '../models/project-grade-models';
+import {
+  LecturerConstarintForDate,
+  ScheduleDates,
+} from '../models/schedule-models';
+import { Lecturer } from '../models/users-models';
 
 @Injectable({
   providedIn: 'root',
@@ -25,13 +30,37 @@ export class LecturerApiService {
     return this.http.get<ProjectFull[]>(this.serverUrl + '/Project');
   }
 
-  getLecturerProjects(id: string): Observable<ProjectFull[]> {
+  getLecturerProjects(id: number): Observable<ProjectFull[]> {
     return this.http.get<ProjectFull[]>(
       this.serverUrl + `/Project/GetAllProjectsOfLecturer/${id}`
     );
   }
 
-  getScheduleDates(): Observable<any> {
-    return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  getScheduleDates(): Observable<ScheduleDates> {
+    return this.http.get<ScheduleDates>(
+      `${this.serverUrl}/Lecturer/ScheduleDates`
+    );
+  }
+
+  PutLecturerConstraints(
+    con: LecturerConstarintForDate
+  ): Observable<LecturerConstarintForDate> {
+    return this.http.put<LecturerConstarintForDate>(
+      `${this.serverUrl}/Lecturer/PutLecturerConstraints`,
+      con
+    );
+  }
+
+  aproveProposal(id: number) {
+    return this.http.post<boolean>(
+      `${this.serverUrl}/Lecturer/ApproveProposal${id}`,
+      null
+    );
+  }
+
+  denyProposal(id: number) {
+    return this.http.delete<boolean>(
+      `${this.serverUrl}/Lecturer/DenyProposal/${id}`
+    );
   }
 }

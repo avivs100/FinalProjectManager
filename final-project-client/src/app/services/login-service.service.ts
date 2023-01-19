@@ -1,31 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
-import {
-  catchError,
-  lastValueFrom,
-  map,
-  observable,
-  Observable,
-  of,
-  pipe,
-  Subscriber,
-  take,
-  tap,
-} from 'rxjs';
-import {
-  Admin,
-  Lecturer,
-  Student,
-  User,
-  UserType,
-} from '../models/modelsInterfaces';
-import { DataProvaiderService } from './data-provaider.service';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { GeneralApiService } from './general-api.service';
-import { LecturerApiService } from './lecturer-api.service';
 import { StateService } from './state.service';
-import { StudentApiService } from './student-api.service';
 import { SubSink } from 'subsink';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +24,6 @@ export class LoginService implements OnInit {
     this.generalApi
       .login(id, pass)
       .pipe(
-        tap((x) => console.log('type from the server is:', x)),
         catchError((err) => {
           return of(this.showError());
         })

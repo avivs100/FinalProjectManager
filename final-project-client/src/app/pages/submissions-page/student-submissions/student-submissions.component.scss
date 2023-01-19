@@ -1,0 +1,36 @@
+:host ::ng-deep .tabview-custom {
+  i,
+  span {
+    vertical-align: middle;
+  }
+
+  span {
+    margin: 0 0.5rem;
+  }
+}
+
+:host ::ng-deep .p-button {
+  margin-right: 0.25rem;
+}
+
+:host ::ng-deep .p-tabview p {
+  line-height: 1.5;
+  margin: 0;
+}
+
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}

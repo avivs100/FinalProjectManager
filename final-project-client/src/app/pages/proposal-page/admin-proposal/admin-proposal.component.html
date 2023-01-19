@@ -1,0 +1,18 @@
+<div class="max-w-screen gap-3">
+  <div class="m-5">
+    <div class="text-5xl font-bold">Proposals After Aprove</div>
+  </div>
+  <app-proposal-list
+    [proposals]="proposalsAfterAprove$ | async"
+    (goToProposalDetails)="goToProposalDetails($event)"
+  ></app-proposal-list>
+
+  <div class="m-5">
+    <div class="text-5xl font-bold">All Proposals</div>
+    <p-button label="Send Notification To Lecturers"></p-button>
+  </div>
+  <app-proposal-list
+    [proposals]="proposals$ | async"
+    (goToProposalDetails)="goToProposalDetails($event)"
+  ></app-proposal-list>
+</div>

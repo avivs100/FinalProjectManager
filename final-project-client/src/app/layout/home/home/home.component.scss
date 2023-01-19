@@ -1,0 +1,19 @@
+// header{
+//     position: fixed;
+//     width: 100%;
+//     top:0;
+//     z-index:1;
+// }
+app-admin-sidebar, app-student-sidebar, app-lecturer-sidebar{
+    
+    height: 100vh;
+    z-index:10;
+    left: 0;
+    
+}
+// router-outlet{
+//     overflow-y: auto;
+//     margin-left: 230px;
+//     z-index: 1;
+//     height: calc(100vh - 50px);
+// }

@@ -1,0 +1,46 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
+  <div class="flex card border-solid align-content-center" pFocusTrap>
+    <div class="grid col-12 row-gap-2">
+      <div class="fields col-12">
+        <div class="field pt-2">
+          <span class="p-float-label">
+            <input
+              type="text"
+              id="subjectId"
+              pInputText
+              class="max-w-full min-w-full"
+              formControlName="subject"
+            />
+            <label for="subjectId">Subject</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="field col-12 mt-5">
+        <span class="p-float-label">
+          <textarea
+            [rows]="10"
+            [cols]="30"
+            pInputTextarea
+            [autoResize]="true"
+            formControlName="message"
+            id="messageId"
+          ></textarea>
+
+          <label for="messageId">Enter Your Message</label>
+        </span>
+      </div>
+
+      <div class="grid">
+        <div class="grid col-3"></div>
+        <button
+          pButton
+          type="submit"
+          label="Save Message"
+          class="p-button-raised p-button-outlined m-3"
+          [disabled]="form.invalid"
+        ></button>
+      </div>
+    </div>
+  </div>
+</form>

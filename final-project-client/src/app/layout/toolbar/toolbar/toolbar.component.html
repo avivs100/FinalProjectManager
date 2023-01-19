@@ -1,22 +1,28 @@
-<p-toolbar styleClass="p-0">
-  <div
-    class="p-toolbar-group-left w-full"
-    style="background-color: rgb(154, 197, 183)"
-  >
+<p-toolbar styleClass="p-0 h-full">
+  <div class="p-toolbar-group-left w-full h-full surface-200 shadow-4">
     <div
-      class="mini-sidebar p-1 flex flex-row cursor-pointer w-full"
-      routerLink="/"
+      class="mini-sidebar p-1 flex flex-row cursor-pointer w-full text-900"
+      routerLink="/home/welcome"
     >
-      <img src="assets/goofy.png" />
-      <div class="text-2xl font-bold text-center logo">
-        Project management system
+      <img src="assets/logoAa.png" class="mr-8" />
+      <div class="text-2xl font-bold text-center logo text-900">
+        Project Management System
       </div>
-      <div class="text-2xl font-bold text-center logo ml-4 mr-4">
-        User: {{ firstName }} {{ lastName }}
+      <div class="text-2xl font-bold text-center logo ml-8 mr-4 text-900">
+        Welcome: {{ firstName }} {{ lastName }}
       </div>
       <div class="text-2xl font-bold text-center logo"></div>
     </div>
-    <p-button icon="pi pi-sign-out" (click)="navigateToLogin()"></p-button>
+    <p-button
+      class="mr-2"
+      icon="pi pi-cog"
+      (click)="openRegisterDialog()"
+    ></p-button>
+    <p-button
+      icon="pi pi-sign-out"
+      class="ml-1 mr-4"
+      (click)="navigateToLogin()"
+    ></p-button>
   </div>
 
   <div class="p-toolbar-group-right"></div>

@@ -1,12 +1,19 @@
-<!-- *ngIf="premissions$ | async as premissions" -->
-<div class="w-full h-full">
-  <p-card>
+<p-toast
+  position="top-right"
+  [showTransformOptions]="'translateX(100%)'"
+  [hideTransitionOptions]="'3000ms'"
+></p-toast>
+
+<div class="text-5xl font-bold col-10">Permissions page</div>
+<div class="w-auto h-full" *ngIf="premissions$ | async as premissions">
+  <p-card class="w-auto h-full">
     <p-table
+      class="w-auto h-full"
       [value]="premissions"
-      styleClass="p-datatable-gridlines p-datatable-striped h-20rem overflow-auto"
+      styleClass="p-datatable-gridlines p-datatable-striped  overflow-auto"
       selectionMode="single"
       scrollHeight="flex"
-      [scrollable]="true"
+      [scrollable]="false"
       *ngIf="premissions"
     >
       <ng-template pTemplate="header">
@@ -28,20 +35,27 @@
               class="flex align-items-stretch flex-wrap card-container blue-container"
             >
               <div class="p-field p-md-4">
-                <p-button label="Aprove"></p-button>
+                <p-button
+                  label="Approve"
+                  (onClick)="aproveLecturerPremission(premission.lecturerId)"
+                ></p-button>
               </div>
 
               <div class="p-field p-md-4">
-                <p-button label="Denay"></p-button>
-              </div>
-
-              <div class="p-field p-md-4">
-                <p-button label="Send Mail"></p-button>
+                <p-button
+                  label="Deny"
+                  (onClick)="deleteLecturerPremission(premission.lecturerId)"
+                ></p-button>
               </div>
             </div>
           </td>
         </tr>
       </ng-template>
     </p-table>
+  </p-card>
+  <p-card *ngIf="premissions.length == 0">
+    <div class="flex flex-row justify-content-between mb-5">
+      <div class="text-5xl">No Waiting Premissions</div>
+    </div>
   </p-card>
 </div>

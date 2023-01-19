@@ -1,16 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "dgSpecHash": "13+FREF2tphfPHgUbZ7340Cn/twOypjDHUzMmV//n1/BeuF9shiKa+RFWZjSc6KSdhc+D4JqSnKvitRiYzpBYg==",
-=======
-  "dgSpecHash": "SpyzP27RV2V1SJCg4CIfMt+Xw46moMp8qZ/ZYpnp961PbK8O5OSALwnz/zVYZGr+ryX9FvWyEt0skQxWoWnfHw==",
->>>>>>> b9dc2fdc05fe00dadec6d1322f53235941ac3787
-=======
-  "dgSpecHash": "LjFn2cY6VtPNvaTOB2qz/6F6dPj8dqMVFfjr2j2kMm7ruO609RPrNfnJSdPGfXx56Pj76lC5uJcCwA9NOkP7XA==",
->>>>>>> c02d9f30b8959eb1b18b77b380ad6507eec20488
+  "dgSpecHash": "pO/tLDwS0zWbRZCI0sZ+TDvDVIDFPfrx9YAGMCjZ/bmMZl7FjvG2jTbwuSouXjIUv3XeJfZIPPvGUTsQM3+LXA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

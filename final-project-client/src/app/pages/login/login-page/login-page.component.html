@@ -5,21 +5,15 @@
 ></p-toast>
 
 <div
-  class="h-full row-gap-7"
-  [ngStyle]="{ background: 'url(../../assets/braude.jpeg)' }"
-  style="
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    align-items: center;
-  "
+  class="h-full bg-cover bg-center bg-no-repeat"
+  style="background-image: url('../../assets/braude.jpeg')"
 >
   <div class="p-8 opacity-90">
     <p-card class="grid justify-content-center mt-5">
       <div class="text-5xl mb-5 mr-6 underline font-bold">Please Login</div>
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form.value)">
-        <div class="grid col-6 m-4">
-          <div class="field col-6 mb-4">
+        <div class="grid col-12 m-4">
+          <div class="field col-4 mb-4">
             <span class="p-float-label">
               <input
                 pInputText
@@ -31,7 +25,7 @@
             </span>
           </div>
 
-          <div class="field col-6 mb-4">
+          <div class="field col-5 mb-4">
             <span class="p-float-label">
               <p-password
                 pTooltip="Enter your password"
@@ -44,7 +38,7 @@
               <label for="passwordInput">Password</label>
             </span>
           </div>
-          <div class="m-6">
+          <div class="m-6 col-12">
             <button
               pButton
               type="submit"

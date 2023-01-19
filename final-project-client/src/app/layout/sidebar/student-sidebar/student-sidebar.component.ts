@@ -16,18 +16,18 @@ export class StudentSidebarComponent {
         tooltipLabel: 'Submission',
       },
     },
-    {
-      label: 'Grade',
-      routerLink: 'grades',
-      icon: 'pi pi-sitemap',
-      tooltipOptions: {
-        tooltipLabel: 'Grade Page',
-      },
-    },
+    // {
+    //   label: 'Grade',
+    //   routerLink: 'grades',
+    //   icon: 'pi pi-sitemap',
+    //   tooltipOptions: {
+    //     tooltipLabel: 'Grade Page',
+    //   },
+    // },
     {
       label: 'Messages',
       routerLink: 'messages',
-      icon: 'pi pi-forward',
+      icon: 'pi pi-book',
       tooltipOptions: {
         tooltipLabel: 'Messages',
       },
@@ -35,7 +35,7 @@ export class StudentSidebarComponent {
     {
       label: 'Schedule',
       routerLink: 'schedule',
-      icon: 'pi pi-book',
+      icon: 'pi pi-calendar',
       tooltipOptions: {
         tooltipLabel: 'Schedule',
       },
@@ -43,7 +43,7 @@ export class StudentSidebarComponent {
     {
       label: 'Project',
       routerLink: 'projects',
-      icon: 'pi pi-book',
+      icon: 'pi pi-sitemap',
       tooltipOptions: {
         tooltipLabel: 'projects',
       },

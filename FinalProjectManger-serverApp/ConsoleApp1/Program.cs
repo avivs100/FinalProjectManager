@@ -1,11 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
+// See https://aka.ms/new-console-template for more information
 using Data;
 using Domain;
 
 
 
 using (var context = new UsersDbContext())
-{ 
+{
     context.Database.EnsureDeleted();
     context.Database.EnsureCreated();
 }
@@ -15,141 +16,150 @@ SeedDb();
 
 void SeedDb()
 {
+    var FnameList = new List<string>() { "David", "Ariel", "Noam", "Lavi", "Yosef", "Ori", "Uri", "Eitan ", "Daniel", "Yehuda", "Moshe", "Raphael",
+        "Aharon", "Itai", "Yehonatan", "Israel", "Abraham", "Shmuel",  "Omer","Michael", "Itamar", "Yaakov", "Eliya", "Yair", "Yitzchak", "Yonatan", "Ido",
+        "Ari", "Shimon", "Chaim", "Yanai", "Shlomo", "Harel","Imri",  "Elon", "Amit", "Ilay", "Meir", "Nitai","Mordechai",  "Adam","Guy", "Nehorai", "Ben",
+        "Yishai", "Or", "Menachem", "Benjamin", "Liam", "Netanel", "Eliyahu", "Elroi", "Maor", "Aviv", "Roi", "Omri", "Natan","Bnaya", "Yuval", "Rom","Shachar"
+        , "Nadav", "Evyatar", "Dor", "Lior", "Nevo", "Matan","Yahav","Shalom"};
+    var LnameList = new List<string>() { "Hoffman", "Levi","Cohen", "Haddad", "Goldman", "Levy", "Blau", "Fridman", "Horowitz", "Abulafia", "Blum", "Kantor",
+        "Cardoso", "Leiberman", "Efron", "Abutbul", "Schechter", "Bernstein", "Geller", "Melamed", "Haziza", "Lavi", "Menachem", "Meir", "Goldberg","Abu fani",
+        "Ali","David", "Din", "Dolev", "Stern", "Becker", "Ackerman", "Hazan", "Altman", "Rubin", "Nahum", "Navarro", "Naftali", "Nisim", "Bach", "Alterman",
+        "Abadi", "Berenson", "Cooperman", "Barak", "Diamond", "Baran", "Bark", "Belman", "Klein", "Landau", "Eisen", "Hakimi", "Katz"};
+    var FirstWordToProjName = new List<string>() { "Voice-based", "Automated Robot",  "Project", "Wi-Fi Based" , "Semi-Supervised Learning", "Battery Optimizer",
+        "Visual Tracking", "Sockets Programming in Python","Computer-Aided", "Elevator Control", "Web-Based", "Software Engineering", "Privacy-Preserving Data Sharing",
+        "Information Flow", "Simulation and Exploration", "Band-Aids", "Mobile Apps", "A Railway Anti-collision System", "A Reverse Engineering Approach",
+        "Debugging Grids", "Automated Low-Level Analysis", "3D Mobile Game", "Bug Tracking System", "Development of a Feature-Rich", "Design and Development",
+        "File System", "Computer Folders", "Credit Card Reader", "Recognition of Hand Movement", "Network Security Implementation Layer","Data Mining Technique",
+        };
+    var SecWordToProjName = new List<string>() { "for the Blind", "for Military System", "Management System", "using Graph Kernels" , " for Android Mobile Devices",
+    "Cloud-Based Storage", "with Sea Shell Effect", "Learning Tool", "system", "Library System", "of Scientific Software", "Energy & Power Efficient",
+        "With Anonymous ID Assignment", "in Bargaining Scenarios", "of Hybrid Systems via Automata", "with Phis Plate Removal Sensing", "with Auto Track Changing",
+        "for Converting Conventional", "with Machine Learning", "Development Software Project", "of Speed Cash System", "Using WLS Algorithms", "with Auto-Track Changing",
+        "based Cheap Lie Detector", "with Face Recognition", "based on Webcam", "using Signature", "for DNS System", "for Web Services"};
+
     using var context = new UsersDbContext();
-    var Natasha = new Student(1, UserType.student, "Natasha", "ABC", "1","sagifishman1@gmail.com");
-    var Sagi = new Student(2, UserType.student, "Sagi", "Fishman", "1", "sagifishman1@gmail.com");
-    var Aviv = new Student(3, UserType.student, "Aviv", "GayBa", "1", "avivshichman@gmail.com" );
-    var itay = new Student(11, UserType.student, "Itay", "ABC", "1", "FinalProjectManager@outlook.com");
-    var lital = new Student(8, UserType.student, "Lital", "Fishman", "1", "default@gmail.com");
-    var yaron = new Student(9, UserType.student, "Yaron", "Cohen", "1", "default@gmail.com");
-    var david = new Student(10, UserType.student, "David", "Levi", "1", "default@gmail.com");
-    var shlomi = new Student(1114, UserType.student, "shlomi", "Ashkenazi", "1", "default@gmail.com");
-    var marom = new Student(12, UserType.student, "marom", "Muhamad", "1", "default@gmail.com");
-    var Menahem = new Student(13, UserType.student, "Yaron", "Argaz", "1", "default@gmail.com");
-    var Meshulam = new Student(14, UserType.student, "David", "Kesef", "1", "default@gmail.com");
-    var Benny = new Student(15, UserType.student, "Benny", "Kise", "1", "default@gmail.com");
-    var Munitz = new Student(16, UserType.student, "Munitz", "Shulhan", "1", "default@gmail.com");
-    var messi = new Student(17, UserType.student, "Messi", "Kise", "1", "default@gmail.com");
-    var hameleh = new Student(18, UserType.student, "King", "Shulhan", "1", "default@gmail.com");
-    context.Set<Student>().Add(Natasha);
-    context.Set<Student>().Add(Sagi);
-    context.Set<Student>().Add(Aviv);
-    context.Set<Student>().Add(itay);
-    context.Set<Student>().Add(lital);
-    context.Set<Student>().Add(david);
-    context.Set<Student>().Add(yaron);
-    context.Set<Student>().Add(shlomi);
-    context.Set<Student>().Add(marom);
-    context.Set<Student>().Add(Menahem);
-    context.Set<Student>().Add(Meshulam);
-    context.Set<Student>().Add(Benny);
-    context.Set<Student>().Add(Munitz);
-    context.Set<Student>().Add(messi);
-    context.Set<Student>().Add(hameleh);
-    var Erez = new Lecturer(4, UserType.lecturer, "Erez", "Eres", "1", "sagifishman1@gmail.com",true);
-    var David = new Lecturer(15, UserType.lecturer, "David", "David", "1", "default@gmaol.com");
-    var con1 = new Constraint(2022, 12, 9, 13, 22, 45);
-    context.Set<Constraint>().Add(con1);
-    Erez.constraints.Add(con1);
-    var con = new Constraint(2022, 12, 9, 16, 15, 33);
-    Erez.constraints.Add(con);
-    context.Set<Constraint>().Add(con);
-    var Ohad = new Lecturer(5, UserType.lecturer, "Ohad", "Hahaham", "1", "default@gmaol.com");
-    con = new Constraint(2022, 11, 4, 7, 55, 34);
-    Ohad.constraints.Add(con);
-    context.Set<Constraint>().Add(con);
-    con = new Constraint(2022, 9, 2, 19, 15, 52);
-    Ohad.constraints.Add(con);
-    context.Set<Constraint>().Add(con);
-    var Meni = new Lecturer(6, UserType.lecturer, "Meni", "Shit", "1", "default@gmaol.com");
-    con = new Constraint(2022, 4, 2, 5, 31, 17);
-    Meni.constraints.Add(con);
-    context.Set<Constraint>().Add(con);
-    context.Set<Lecturer>().Add(Erez);
-    context.Set<Lecturer>().Add(Ohad);
-    context.Set<Lecturer>().Add(Meni);
-
-    var Naomi = new Admin(7, UserType.admin, "Naomi", "Onklus", "1", "default@gmaol.com");
+    //add Sagi 
+    context.Set<Student>().Add(new Student(2, UserType.student, "Sagi", "Fishman", "1", "sagifishman1@gmail.com"));
+    //add Erez 
+    var tempLec = new Lecturer(4, UserType.lecturer, "Erez ", "Eres", "1", "sagifishman1@gmail.com");
+    tempLec.IsActive= true;
+    var tempCon = new Random().Next(21);
+    tempLec.constraints.Add(new LecConstraint(tempCon));
+    tempLec.constraints.Add(new LecConstraint(tempCon + 5));
+    tempLec.constraints.Add(new LecConstraint(tempCon + 10));
+    tempLec.constraints.Add(new LecConstraint(tempCon + 15));
+    context.Set<Lecturer>().Add(tempLec);
+    //add 120 students
+    for (int i = 100; i < 299; i++)
+    {
+        var tempFname = FnameList[new Random().Next(FnameList.Count)];
+        var tempLname = LnameList[new Random().Next(LnameList.Count)];
+        context.Set<Student>().Add(new Student(i, UserType.student, tempFname, tempLname, "1", "default@gmail.com"));
+    }
+    //add 30 lecturers
+    for (int i = 600; i < 629; i++)
+    {
+        var tempFname = FnameList[new Random().Next(FnameList.Count)];
+        var tempLname = LnameList[new Random().Next(LnameList.Count)];
+        tempLec = new Lecturer(i, UserType.lecturer, tempFname, tempLname, "1", "default@gmail.com");
+        tempCon = new Random().Next(21);
+        tempLec.constraints.Add(new LecConstraint(tempCon));
+        tempLec.constraints.Add(new LecConstraint(tempCon + 5));
+        tempLec.constraints.Add(new LecConstraint(tempCon + 10));
+        tempLec.constraints.Add(new LecConstraint(tempCon + 15));
+        context.Set<Lecturer>().Add(tempLec);
+    }
+    //add admin
+    var Naomi = new Admin(7, UserType.admin, "Naomi", "Unkelos-Shpigel", "1", "sagifishman1@gmail.com");
     context.Set<Admin>().Add(Naomi);
+    context.SaveChanges();
 
-    Grade organization1 = new Grade("Almost", 80, 0.25, "organization");
-    Grade qualityOfProblem1 = new Grade("Not Good", 60, 0.25, "Quality Of Problem");
-    Grade technicalQuality1 = new Grade("Wow", 100, 0.25, "Technical Quality");
-    Grade generalEvaluation1 = new Grade("Very Good", 90, 0.25, "General Evaluation");
-    string additionalComment1 = "Imale Ve Abale";
-    var PresentationGrade1 = new PresentationGrade(organization1, qualityOfProblem1, technicalQuality1,
-        generalEvaluation1, additionalComment1);
-    Grade organization2 = new Grade("Good", 90, 0.25, "organization");
-    Grade qualityOfProblem2 = new Grade("Plus Minus", 80, 0.25, "Quality Of Problem");
-    Grade technicalQuality2 = new Grade("Minus Plus", 80, 0.25, "Technical Quality");
-    Grade generalEvaluation2 = new Grade("Very Good", 90, 0.25, "General Evaluation");
-    string additionalComment2 = "Additional comment is wowwwww";
-    var PresentationGrade2 = new PresentationGrade(organization2, qualityOfProblem2, technicalQuality2,
-        generalEvaluation2, additionalComment2);
-    Grade organization3 = new Grade("Hi", 70, 0.25, "organization");
-    Grade qualityOfProblem3 = new Grade("Hipasti kvar", 85, 0.25, "Quality Of Problem");
-    Grade technicalQuality3 = new Grade("Be Kol", 77, 0.25, "Technical Quality");
-    Grade generalEvaluation3 = new Grade("Midbar", 91, 0.25, "General Evaluation");
-    string additionalComment3 = "Yasmin Mualem";
-    var PresentationGrade3 = new PresentationGrade(organization3, qualityOfProblem3, technicalQuality3,
-        generalEvaluation3, additionalComment3);
-    context.Set<PresentationGrade>().Add(PresentationGrade1);
-    context.Set<PresentationGrade>().Add(PresentationGrade2);
-    context.Set<PresentationGrade>().Add(PresentationGrade3);
-    Grade grade1 = new Grade("Hello", 70, 0.5, "organization");
-    Grade grade2 = new Grade("Haviv", 85, 0.5, "Quality Of Problem");
-    LecturerGrade lecturerGrade1 = new LecturerGrade(grade1, grade2, "Description is imale ve abale");
-    Grade grade3 = new Grade("Erez Lo Mafsik", 65, 0.5, "organization");
-    Grade grade4 = new Grade("Lihiot gayba", 98, 0.5, "Quality Of Problem");
-    LecturerGrade lecturerGrade2 = new LecturerGrade(grade3, grade4, "Aviv Kibel Mahshev Al Hapanim");
-    context.Set<LecturerGrade>().Add(lecturerGrade1);
-    context.Set<LecturerGrade>().Add(lecturerGrade2);
 
-    Grade research1 = new Grade("ABACA ", 96, 0.16, "research");
-    Grade analysisAndConclusion1 = new Grade("YOYOYOYO", 77, 0.16, "analysisAndConclusion");
-    Grade swQuality1 = new Grade("YAYAYAYA", 68, 0.16, "swQuality ");
-    Grade uIandAPPguides1 = new Grade("LOLOLOLOLO", 93, 0.16, "uIandAPPguides");
-    Grade organization11 = new Grade("NININININI", 87, 0.16, "organization");
-    Grade generalEvaluation11 = new Grade("SHEMO", 89, 0.16, "generalEvaluation");
-    Grade research2 = new Grade("OSJAFSFS ", 100, 0.16, "research");
-    Grade analysisAndConclusion2 = new Grade("RPREPGD", 89, 0.16, "analysisAndConclusion");
-    Grade swQuality2 = new Grade("ASFSDNKGS", 77, 0.16, "swQuality ");
-    Grade uIandAPPguides2 = new Grade("SDGDGFDHB", 93, 0.16, "uIandAPPguides");
-    Grade organization12 = new Grade("sdfgDFGDFG", 86, 0.16, "organization");
-    Grade generalEvaluation12 = new Grade("sdGafdhnft", 45, 0.16, "generalEvaluation");
+    var lecturers = context.Set<Lecturer>().ToList();
+    var students = context.Set<Student>().ToList();
+    var tempListOfStudents = students;
 
-    BookGrade bookGrade1 = new BookGrade(research1, analysisAndConclusion1, swQuality1, uIandAPPguides1, organization11, generalEvaluation11);
-    BookGrade bookGrade2 = new BookGrade(research2, analysisAndConclusion2, swQuality2, uIandAPPguides2, organization12, generalEvaluation12);
-    context.Set<BookGrade>().Add(bookGrade1);
-    context.Set<BookGrade>().Add(bookGrade2);
+    //add 60 projects
+    for (int i = 0; i < 100; i++)
+    {
 
-    GradeA gradeA1 = new GradeA(PresentationGrade1,bookGrade1,lecturerGrade1);
-    GradeA gradeA2 = new GradeA(PresentationGrade2, bookGrade2, lecturerGrade2);
-    context.Set<GradeA>().Add(gradeA1);
-    context.Set<GradeA>().Add(gradeA2);
-    GradeB gradeB1 = new GradeB(PresentationGrade1, bookGrade1, lecturerGrade1);
-    GradeB gradeB2 = new GradeB(PresentationGrade2, bookGrade2, lecturerGrade2);
-    context.Set<GradeB>().Add(gradeB1);
-    context.Set<GradeB>().Add(gradeB2);
-    
-    Project project1= new Project("Project Management", Erez.id, Sagi.id, Aviv.id, gradeA1.gradeAid, gradeB1.gradeBid);
-    context.Set<Project>().Add(project1);
-    Project project2 = new Project("Test Schedule", Erez.id, Natasha.id, yaron.id, gradeA2.gradeAid, gradeB2.gradeBid);
-    context.Set<Project>().Add(project2);
-    Project project3 = new Project("Image Painting", Ohad.id, yaron.id, lital.id, gradeA2.gradeAid, gradeB2.gradeBid);
-    context.Set<Project>().Add(project3);
-    Project project4 = new Project("akol tov", Meni.id, david.id, itay.id, gradeA1.gradeAid, gradeB1.gradeBid);
-    context.Set<Project>().Add(project4);
-    Project project5 = new Project("Name1", Meni.id, Menahem.id, Meshulam.id, gradeA1.gradeAid, gradeB1.gradeBid);
-    context.Set<Project>().Add(project5);
-    Project project6 = new Project("Name2", Meni.id, marom.id, shlomi.id, gradeA1.gradeAid, gradeB1.gradeBid);
-    context.Set<Project>().Add(project6);
-    Project project7 = new Project("Name4", Ohad.id, Benny.id, Munitz.id, gradeA1.gradeAid, gradeB1.gradeBid);
-    context.Set<Project>().Add(project7);
-    Project project8 = new Project("Name8", Ohad.id, messi.id, hameleh.id, gradeA1.gradeAid, gradeB1.gradeBid);
-    context.Set<Project>().Add(project8);
-    context.Set<Premission>().Add(new Premission(5, "Ohad AbuGay"));
-    context.Set<Premission>().Add(new Premission(6, "Meni Mamtera"));
+        var tempStudent1 = tempListOfStudents[new Random().Next(tempListOfStudents.Count)];
+        var tempStudent2 = tempListOfStudents[new Random().Next(tempListOfStudents.Count)];
+        var tempFirstword = FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)];
+        var tempSecword = SecWordToProjName[new Random().Next(SecWordToProjName.Count)];
+        var fullName = tempFirstword + " " + tempSecword;
+        tempLec = lecturers[new Random().Next(lecturers.Count)];
+        ProjectType tempProjType;
+        if (i % 2 == 0)
+            tempProjType = ProjectType.Research;
+        else
+            tempProjType = ProjectType.Development;
+        context.Set<Project>().Add(new Project(fullName, tempLec.id, tempStudent1.id,
+            tempStudent2.id, tempProjType, "Code " + i));
+        tempListOfStudents.Remove(tempStudent1);
+        tempListOfStudents.Remove(tempStudent2);
+    }
+    context.SaveChanges();
+    Lecturer lecForPermission;
+    for (int i = 600; i < 607; i++)
+    {
+        lecForPermission = lecturers.Where(x => x.id == i).FirstOrDefault();
+        context.Set<Premission>().Add(new Premission(lecForPermission.id, lecForPermission.FirstName + " " + lecForPermission.LastName));
+    }
+    //var 
+    //var lecForPermission2 = lecturers.Where(x => x.id == 600).FirstOrDefault();
+    //context.Set<Premission>().Add(new Premission(lecForPermission2.id, lecForPermission2.FirstName + " " + lecForPermission2.LastName));
+    //var lecForPermission3 = lecturers.Where(x => x.id == 606).FirstOrDefault();
+    //context.Set<Premission>().Add(new Premission(lecForPermission3.id, lecForPermission3.FirstName + " " + lecForPermission3.LastName));
+    //var lecForPermission4 = lecturers.Where(x => x.id == 602).FirstOrDefault();
+    //context.Set<Premission>().Add(new Premission(lecForPermission4.id, lecForPermission4.FirstName + " " + lecForPermission4.LastName));
+    //var lecForPermission5 = lecturers.Where(x => x.id == 603).FirstOrDefault();
+    //context.Set<Premission>().Add(new Premission(lecForPermission5.id, lecForPermission5.FirstName + " " + lecForPermission5.LastName));
+    //var lecForPermission6 = lecturers.Where(x => x.id == 604).FirstOrDefault();
+    //context.Set<Premission>().Add(new Premission(lecForPermission6.id, lecForPermission6.FirstName + " " + lecForPermission6.LastName));
+    //var lecForPermission7 = lecturers.Where(x => x.id == 605).FirstOrDefault();
+    //context.Set<Premission>().Add(new Premission(lecForPermission7.id, lecForPermission7.FirstName + " " + lecForPermission7.LastName));
+
+
+    var projectProposal = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
+        , ProjectType.Development, "Development because .....", "keyword1", "general description1",
+        "main tools1", "planned Working Process During The First Semester1", "product of the work1", 184, 186, false, 4);
+
+    var projectProposal2 = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
+        , ProjectType.Research, "Research because .....", "keyword2", "general description2",
+    "main tools2", "planned Working Process During The First Semester2", "product of the work2", 200, 238, false, 4);
+    var projectProposal3 = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
+        , ProjectType.Development, "Development because .....", "keyword1", "general description1",
+        "main tools1", "planned Working Process During The First Semester1", "product of the work3", 180, 181, false, 4);
+
+    var projectProposal4 = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
+        , ProjectType.Research, "Research because .....", "keyword2", "general description2",
+        "main tools2", "planned Working Process During The First Semester2", "product of the work4", 100, 101, false, 4);
+
+    var projectProposal5 = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
+        , ProjectType.Research, "Research because .....", "keyword2", "general description2",
+    "main tools2", "planned Working Process During The First Semester2", "product of the work4", 102, 103, true, 4);
+
+    var projectProposal6 = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
+        , ProjectType.Research, "Research because .....", "keyword2", "general description2",
+"main tools2", "planned Working Process During The First Semester2", "product of the work4", 104, 105, true, 600);
+
+    var projectProposal7 = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
+        , ProjectType.Research, "Research because .....", "keyword2", "general description2",
+"main tools2", "planned Working Process During The First Semester2", "product of the work4", 120, 121, true, 601);
+    var projectProposal8 = new ProjectProposal(FirstWordToProjName[new Random().Next(FirstWordToProjName.Count)] + " " + SecWordToProjName[new Random().Next(SecWordToProjName.Count)]
+        , ProjectType.Research, "Research because .....", "keyword2", "general description2",
+"main tools2", "planned Working Process During The First Semester2", "product of the work4", 122, 123, true, 601);
+
+
+    context.Set<ProjectProposal>().Add(projectProposal);
+    context.Set<ProjectProposal>().Add(projectProposal2);
+    context.Set<ProjectProposal>().Add(projectProposal3);
+    context.Set<ProjectProposal>().Add(projectProposal4);
+    context.Set<ProjectProposal>().Add(projectProposal5);
+    context.Set<ProjectProposal>().Add(projectProposal6);
+    context.Set<ProjectProposal>().Add(projectProposal7);
+    context.Set<ProjectProposal>().Add(projectProposal8);
 
     context.SaveChanges();
 }

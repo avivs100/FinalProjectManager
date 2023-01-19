@@ -1,7 +1,24 @@
-<p-button label="Generate" styleClass="p-button-lg" class="mr-4"></p-button>
-<p-button label="Delete" styleClass="p-button-lg" class="mr-4"></p-button>
+<p-toast
+  position="top-right"
+  [showTransformOptions]="'translateX(100%)'"
+  [hideTransitionOptions]="'3000ms'"
+></p-toast>
+
 <p-button
-  label="Manual Editing"
+  label="Generate"
   styleClass="p-button-lg"
   class="mr-4"
+  (onClick)="generateSchedule()"
+></p-button>
+<p-button
+  label="Delete"
+  styleClass="p-button-lg"
+  class="mr-4"
+  (onClick)="deleteSchedule()"
+></p-button>
+<p-button
+  label="Send an email that the schedule is ready"
+  styleClass="p-button-lg"
+  class="mr-4"
+  (onClick)="sendEmail()"
 ></p-button>

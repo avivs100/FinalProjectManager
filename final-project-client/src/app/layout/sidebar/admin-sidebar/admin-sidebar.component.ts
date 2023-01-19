@@ -33,19 +33,19 @@ export class AdminSidebarComponent {
       },
     },
     {
-      label: 'Grades',
-      routerLink: 'grades',
-      icon: 'pi pi-star-fill',
-      tooltipOptions: {
-        tooltipLabel: 'Grades',
-      },
-    },
-    {
-      label: 'Premissions',
+      label: 'Permissions',
       routerLink: 'premissions',
       icon: 'pi pi-check-circle',
       tooltipOptions: {
         tooltipLabel: 'Submission',
+      },
+    },
+    {
+      label: 'Proposals',
+      routerLink: 'proposals',
+      icon: 'pi pi-paypal',
+      tooltipOptions: {
+        tooltipLabel: 'Project Proposals',
       },
     },
   ];

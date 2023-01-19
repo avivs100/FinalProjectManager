@@ -1,0 +1,29 @@
+<p-tabView>
+  <p-tabPanel [header]="'class -' + day!.classSessions1.className">
+    <div class="grid">
+      <app-class-room-details [classSessions]="day!.classSessions1">
+      </app-class-room-details>
+    </div>
+  </p-tabPanel>
+
+  <p-tabPanel [header]="'class -' + day!.classSessions2.className">
+    <div class="grid">
+      <app-class-room-details [classSessions]="day!.classSessions2">
+      </app-class-room-details>
+    </div>
+  </p-tabPanel>
+
+  <p-tabPanel [header]="'class -' + day!.classSessions3.className">
+    <div class="grid">
+      <app-class-room-details [classSessions]="day!.classSessions3">
+      </app-class-room-details>
+    </div>
+  </p-tabPanel>
+
+  <p-tabPanel [header]="'class -' + day!.classSessions4.className">
+    <div class="grid">
+      <app-class-room-details [classSessions]="day!.classSessions4">
+      </app-class-room-details>
+    </div>
+  </p-tabPanel>
+</p-tabView>

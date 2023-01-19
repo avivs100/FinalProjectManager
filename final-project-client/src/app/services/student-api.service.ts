@@ -1,7 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
-import { Lecturer, ProjectFull, Student } from '../models/modelsInterfaces';
+import {
+  ProjectFull,
+  ProjectProposalDetails,
+  ProjectProposalDetailsWithStatus,
+} from '../models/project-grade-models';
+import { Student, Lecturer } from '../models/users-models';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +34,9 @@ export class StudentApiService {
   }
 
   getProject(id: number): Observable<ProjectFull> {
-    return this.http.get<ProjectFull>(this.serverUrl + `/Project/${id}`);
+    return this.http.get<ProjectFull>(
+      this.serverUrl + `/Project/GetFullProjectByStudentId/${id}`
+    );
   }
 
   getAllLecturer(): Observable<Lecturer[]> {
@@ -39,5 +47,14 @@ export class StudentApiService {
 
   getScheduleDates(): Observable<any> {
     return this.http.get<any>(`${this.serverUrl}/Lecturer/ScheduleDates`);
+  }
+
+  AddNewProjectProposal(
+    details: ProjectProposalDetails
+  ): Observable<ProjectProposalDetailsWithStatus> {
+    return this.http.post<ProjectProposalDetailsWithStatus>(
+      `${this.serverUrl}/Student/AddNewProjectProposal`,
+      details
+    );
   }
 }
