@@ -4,6 +4,7 @@ import { GeneralApiService } from './general-api.service';
 import { StateService } from './state.service';
 import { SubSink } from 'subsink';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class LoginService implements OnInit {
   constructor(
     private generalApi: GeneralApiService,
     private state: StateService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
   public ob$: Observable<any> | undefined;
   public type: number | undefined;
@@ -25,7 +27,12 @@ export class LoginService implements OnInit {
       .login(id, pass)
       .pipe(
         catchError((err) => {
-          return of(this.showError());
+          return of(
+            this.showError(
+              false,
+              'Error, The username (id) or password is incorrect'
+            )
+          );
         })
       )
       .subscribe((x) => {
@@ -35,7 +42,9 @@ export class LoginService implements OnInit {
             .pipe(
               tap((admin) => (this.state.connectedUser = admin)),
               catchError((err) => {
-                return of(this.showError());
+                return of(
+                  this.showError(false, 'Error, cant find admin with id: ' + id)
+                );
               })
             )
             .subscribe(() => this.router.navigate(['/home']));
@@ -46,7 +55,12 @@ export class LoginService implements OnInit {
             .pipe(
               tap((student) => (this.state.connectedUser = student)),
               catchError((err) => {
-                return of(this.showError());
+                return of(
+                  this.showError(
+                    false,
+                    'Error, cant find student with id: ' + id
+                  )
+                );
               })
             )
             .subscribe(() => this.router.navigate(['/home']));
@@ -57,18 +71,36 @@ export class LoginService implements OnInit {
             .pipe(
               tap((lecturer) => (this.state.connectedUser = lecturer)),
               catchError((err) => {
-                return of(this.showError());
+                return of(
+                  this.showError(
+                    false,
+                    'Error, cant find lecturer with id: ' + id
+                  )
+                );
               })
             )
             .subscribe(() => this.router.navigate(['/home']));
         }
         if (x === 3) {
-          this.showError();
+          this.showError(false, 'The username (id) or password is incorrect');
         }
       });
   }
 
-  showError() {
-    console.log('error');
+  showError(x: boolean, str: string) {
+    this.messageService.clear();
+    if (x == true) {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: str,
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: str,
+      });
+    }
   }
 }
