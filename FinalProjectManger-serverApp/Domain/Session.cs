@@ -17,7 +17,7 @@ namespace Domain
         public List<ProjectForSession> ProjectsForSessionID { get; set; }
         public int SessionNumber { get; set; }
         public string ClassRoom { get; set; }
-
+        
         public Session() { }
 
         public Session(long responsibleLecturerID, long lecturer2ID, long lecturer3ID, List<ProjectForSession> projectsForSessionID, int sessionNumber)

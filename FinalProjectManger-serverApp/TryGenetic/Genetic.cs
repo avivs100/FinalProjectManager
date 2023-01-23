@@ -155,7 +155,7 @@ namespace TryGenetic
                 else
                     LecturerMappingCounter.Add(gene.Lec3, 1);
             }
-            Solution.fitnessScore = 6 * (SumEachGenFit / Solution.genes.Count) + (LecturerMappingCounter.Count / lecNumbers) * 2 + (SumEachProjFit / Solution.genes.Count) * 2;
+            Solution.fitnessScore = 5 * (SumEachGenFit / Solution.genes.Count) + (LecturerMappingCounter.Count / lecNumbers) * 2 + (SumEachProjFit / Solution.genes.Count) * 3;
         }
 
 
