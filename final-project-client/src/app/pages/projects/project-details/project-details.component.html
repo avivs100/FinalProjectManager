@@ -1,5 +1,7 @@
 <div class="flex flex-row justify-content-between mb-5">
-  <div class="text-5xl font-bold">Project Details</div>
+  <div class="text-5xl font-bold" *ngIf="project !== null">
+    Project Details : {{ project.projectName }}
+  </div>
 </div>
 
 <div class="h-autogrid grid-nogutter">

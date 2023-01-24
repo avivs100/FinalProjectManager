@@ -168,6 +168,9 @@ namespace FinalProjectManger_server.Controllers
         [HttpPost("GenerateSchedule")]
         public async Task<ActionResult<ScheduleFull1>> GenerateSchedule()
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            // the code that you want to measure comes here
+
             var context = new UsersDbContext();
             var sessionsForCheck = await context.Set<Domain.Session>().ToListAsync();
             var projectsForSession = await context.Set<ProjectForSession>().ToListAsync();
@@ -347,6 +350,8 @@ namespace FinalProjectManger_server.Controllers
             scheduleNew.DayTwo = dayInSchedule2;
 
             await context.SaveChangesAsync();
+            watch.Stop();
+            Console.WriteLine(watch.ElapsedMilliseconds); 
             return Ok(scheduleNew);
         }
 
