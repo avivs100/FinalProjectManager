@@ -61,7 +61,8 @@ void SeedDb()
     {
         var tempFname = FnameList[new Random().Next(FnameList.Count)];
         var tempLname = LnameList[new Random().Next(LnameList.Count)];
-        tempLec = new Lecturer(i, UserType.lecturer, tempFname, tempLname, "1", "default@gmail.com");
+        var david = !(i >= 600 && i < 607);
+        tempLec = new Lecturer(i, UserType.lecturer, tempFname, tempLname, "1", "default@gmail.com", david);
         tempCon = new Random().Next(21);
         tempLec.constraints.Add(new LecConstraint(tempCon));
         tempLec.constraints.Add(new LecConstraint(tempCon + 5));
@@ -91,11 +92,17 @@ void SeedDb()
         tempLec = lecturers[new Random().Next(lecturers.Count)];
         ProjectType tempProjType;
         if (i % 2 == 0)
+        {
             tempProjType = ProjectType.Research;
+            context.Set<Project>().Add(new Project(fullName, tempLec.id, tempStudent1.id,
+                tempStudent2.id, tempProjType, "22-" + ((i % 2) + 1) + "-R-" + i));
+        }
         else
+        {
             tempProjType = ProjectType.Development;
-        context.Set<Project>().Add(new Project(fullName, tempLec.id, tempStudent1.id,
-            tempStudent2.id, tempProjType, "Code " + i));
+            context.Set<Project>().Add(new Project(fullName, tempLec.id, tempStudent1.id,
+                tempStudent2.id, tempProjType, "22-" + ((i % 2) + 1) + "-R-" + i));
+        }
         tempListOfStudents.Remove(tempStudent1);
         tempListOfStudents.Remove(tempStudent2);
     }

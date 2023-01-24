@@ -1,12 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "6FAbS5/mZFxZ7wC/Lbt/ZlANoWfEDkzGh6Ti1QJVkZgz3LuPLRrd8tYsjQqXnN5HtSg8rct3yilhlmlMmB69Ag==",
-=======
-  "dgSpecHash": "u0emoF54SRvI2skx3x41/cXJyHxiDqkfFPOeRpS6SX1lCxe0MoHtpRCxpZiZq5L2SaJ8GNJFVhMmwWfNWrBNQQ==",
->>>>>>> bd5b8b33df8bd254668fcd20af4c7702ef0c3708
+  "dgSpecHash": "n+KFEG8lHRwxmpUUbTis2bXXQhRsxqhK+6Jpupy/hLQIkJO3lAAyYAFEpyFuWtX3SAOP2C0PAlAEK+McWwW73A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SAGIF2\\source\\repos\\FinalProjectManager1\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj",
+  "projectFilePath": "C:\\Users\\AVIVSHI\\source\\repos\\FinalProjectManager\\FinalProjectManger-serverApp\\TryGenetic\\TryGenetic.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
